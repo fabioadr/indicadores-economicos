@@ -1,0 +1,6 @@
+httpx
+python-telegram-bot>=21
+matplotlib
+pandas
+python-dateutil
+python-dotenv

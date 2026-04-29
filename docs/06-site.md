@@ -64,30 +64,30 @@ Estrutura escaneável, do mais relevante ao menos:
 
 ```css
 /* Tons fundamentais */
---bg:           #FAFAF7;  /* off-white quente, papel */
---bg-elevated:  #FFFFFF;
---ink:          #1A1A1A;  /* texto principal */
---ink-muted:    #525252;  /* secundário */
---ink-faint:    #A3A3A3;  /* terciário, captions */
---border:       #E5E5E0;  /* divisores sutis */
+--bg: #fafaf7; /* off-white quente, papel */
+--bg-elevated: #ffffff;
+--ink: #1a1a1a; /* texto principal */
+--ink-muted: #525252; /* secundário */
+--ink-faint: #a3a3a3; /* terciário, captions */
+--border: #e5e5e0; /* divisores sutis */
 
 /* Categorias - cores semânticas discretas */
---cat-inflacao:           #B91C1C;  /* vermelho-tijolo */
---cat-juros:              #1E3A8A;  /* azul-marinho */
---cat-correcao-monetaria: #166534;  /* verde-floresta */
+--cat-inflacao: #b91c1c; /* vermelho-tijolo */
+--cat-juros: #1e3a8a; /* azul-marinho */
+--cat-correcao-monetaria: #166534; /* verde-floresta */
 
 /* Variação numérica */
---positive:  #166534;  /* alta (em inflação pode ser ruim, mas neutro visualmente) */
---negative:  #B91C1C;  /* baixa */
---neutral:   #525252;
+--positive: #166534; /* alta (em inflação pode ser ruim, mas neutro visualmente) */
+--negative: #b91c1c; /* baixa */
+--neutral: #525252;
 ```
 
 ### Tipografia
 
 ```css
---font-display: 'Fraunces', Georgia, serif;     /* títulos, números de destaque */
---font-body:    'Inter', -apple-system, sans-serif;  /* corpo */
---font-mono:    'JetBrains Mono', monospace;    /* tabelas de números, código */
+--font-display: "Fraunces", Georgia, serif; /* títulos, números de destaque */
+--font-body: "Inter", -apple-system, sans-serif; /* corpo */
+--font-mono: "JetBrains Mono", monospace; /* tabelas de números, código */
 ```
 
 Fontes via Google Fonts ou self-hosted (preferível para performance — usar `@fontsource`).
@@ -132,13 +132,13 @@ Geradas a partir dos JSONs:
 
 ```html
 <title>{meta.title}</title>
-<meta name="description" content="{meta.description}">
-<link rel="canonical" href="https://indicadoreseconomicoshoje.com.br{path}">
-<meta property="og:title" content="{meta.title}">
-<meta property="og:description" content="{meta.description}">
-<meta property="og:type" content="website">
-<meta property="og:url" content="...">
-<meta name="twitter:card" content="summary">
+<meta name="description" content="{meta.description}" />
+<link rel="canonical" href="https://indicadoreseconomicoshoje.com.br{path}" />
+<meta property="og:title" content="{meta.title}" />
+<meta property="og:description" content="{meta.description}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="..." />
+<meta name="twitter:card" content="summary" />
 ```
 
 ### Schema.org (JSON-LD)
@@ -186,21 +186,18 @@ Sitemap: https://indicadoreseconomicoshoje.com.br/sitemap.xml
 
 ```javascript
 // astro.config.mjs
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: 'https://indicadoreseconomicoshoje.com.br',
-  output: 'static',
-  trailingSlash: 'always',
+  site: "https://indicadoreseconomicoshoje.com.br",
+  output: "static",
+  trailingSlash: "always",
   build: {
-    format: 'directory',  // gera /ipca/index.html, URL final /ipca/
+    format: "directory" // gera /ipca/index.html, URL final /ipca/
   },
-  integrations: [
-    tailwind(),
-    sitemap(),
-  ],
+  integrations: [tailwind(), sitemap()]
 });
 ```
 
@@ -237,9 +234,9 @@ const detail = JSON.parse(
 
 ```json
 {
-  "buildCommand": "cd site && npm run build",
+  "buildCommand": "cd site && pnpm build",
   "outputDirectory": "site/dist",
-  "installCommand": "cd site && npm install",
+  "installCommand": "cd site && pnpm install",
   "framework": null,
   "redirects": [
     { "source": "/(.*)/index.html", "destination": "/$1/", "permanent": true }

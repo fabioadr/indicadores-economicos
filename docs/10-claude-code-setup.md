@@ -27,6 +27,7 @@ claude mcp add sqlite -- uvx mcp-server-sqlite --db-path ./data/indicadores.db
 ```
 
 **Por quê é essencial aqui:**
+
 - Você vai inspecionar o banco constantemente (verificar que migrations rodaram, validar agregações, conferir backfills)
 - Sem o MCP, cada inspeção exige escrever Python ou abrir terminal → tokens gastos
 - Com o MCP, Claude Code roda `SELECT` direto e analisa o resultado
@@ -41,6 +42,7 @@ claude mcp add github --env GITHUB_PERSONAL_ACCESS_TOKEN=ghp_xxx -- npx -y @mode
 ```
 
 **Por quê:**
+
 - Permite criar/ler issues, PRs, gerenciar releases
 - Útil para registrar bugs descobertos durante implementação como issues
 - O Claude Code pode validar que o push deu certo, ler logs do GitHub Actions (caso adicione algum)
@@ -57,6 +59,7 @@ claude mcp add context7 -- npx -y @upstash/context7-mcp
 ```
 
 **Por quê é importante:**
+
 - Astro, Tailwind, python-telegram-bot e httpx mudam de versão para versão
 - Training data do Claude Code pode estar desatualizada (especialmente para Astro 4 → 5)
 - Context7 puxa docs versionadas direto da fonte, sob demanda
@@ -73,11 +76,13 @@ claude mcp add playwright -- npx -y @playwright/mcp
 ```
 
 **Por quê pode valer:**
+
 - Tirar screenshots do site durante desenvolvimento
 - Validar que mobile não quebra
 - Debugar layout sem você precisar abrir o browser
 
 **Por quê pode não valer:**
+
 - Você abre o navegador de qualquer jeito durante dev
 - Adiciona dependência pesada (browsers headless) só para conveniência
 
@@ -85,16 +90,16 @@ claude mcp add playwright -- npx -y @playwright/mcp
 
 ### 🔴 Não instalar
 
-| MCP | Por quê não |
-|---|---|
-| **Filesystem** | Claude Code já tem acesso ao diretório atual. Só ajudaria se precisasse mexer em `~/.config/systemd/` — e isso é uma vez só, melhor fazer manual |
-| **Brave Search** | Web search já é nativo |
-| **PostgreSQL** | Você não usa Postgres |
-| **Sentry/DataDog/Slack/Jira/Linear** | Projeto de uma pessoa, sem necessidade |
-| **Sequential Thinking** | Marketing puro; o Claude Code já raciocina passo a passo no thinking nativo |
-| **Memory MCP** | CLAUDE.md já cobre |
-| **Vercel MCP** | Deploy é por git push. Vercel UI cobre o resto |
-| **Telegram MCP** | Você vai testar o bot pelo próprio Telegram. Não há ganho |
+| MCP                                  | Por quê não                                                                                                                                      |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Filesystem**                       | Claude Code já tem acesso ao diretório atual. Só ajudaria se precisasse mexer em `~/.config/systemd/` — e isso é uma vez só, melhor fazer manual |
+| **Brave Search**                     | Web search já é nativo                                                                                                                           |
+| **PostgreSQL**                       | Você não usa Postgres                                                                                                                            |
+| **Sentry/DataDog/Slack/Jira/Linear** | Projeto de uma pessoa, sem necessidade                                                                                                           |
+| **Sequential Thinking**              | Marketing puro; o Claude Code já raciocina passo a passo no thinking nativo                                                                      |
+| **Memory MCP**                       | CLAUDE.md já cobre                                                                                                                               |
+| **Vercel MCP**                       | Deploy é por git push. Vercel UI cobre o resto                                                                                                   |
+| **Telegram MCP**                     | Você vai testar o bot pelo próprio Telegram. Não há ganho                                                                                        |
 
 ### Importante: Tool Search está ligado por padrão
 
@@ -129,6 +134,7 @@ Quando recebe o nome de um indicador (ex: "INPC", "IGP-M"):
 4. Confirme via amostragem da API: GET https://api.bcb.gov.br/dados/serie/bcdata.sgs.{id}/dados/ultimos/3?formato=json
 
 Devolva apenas:
+
 - series_id confirmado
 - nome oficial da série
 - frequência
@@ -157,12 +163,14 @@ Você busca documentação técnica e devolve o necessário para resolver a tare
 Recebe: nome da biblioteca + tópico específico (ex: "Astro: como definir getStaticPaths").
 
 Faz:
+
 1. Tenta primeiro via Context7 MCP (mais confiável e versionado)
 2. Se faltar, busca na doc oficial da biblioteca
 3. Para Astro especificamente, prefere docs.astro.build
 4. Para python-telegram-bot, prefere docs.python-telegram-bot.org
 
 Devolve:
+
 - API/sintaxe relevante
 - Exemplo de código mínimo funcionando
 - Link da fonte
@@ -189,7 +197,7 @@ Skills são workflows reutilizáveis com auto-invocação. Crie quando você se 
 
 `.claude/skills/add-indicator/SKILL.md`:
 
-```markdown
+````markdown
 ---
 name: add-indicator
 description: Adiciona um novo indicador econômico ao sistema. Use quando o usuário pedir para adicionar IGP-M, SELIC, INPC, ou qualquer outro indicador novo ao catálogo.
@@ -224,15 +232,17 @@ Workflow para adicionar um indicador novo. Não pular etapas.
    python -m pipeline.cli backfill <CODE>
    python -m pipeline.cli build
    ```
+````
 
 8. **Validação final**:
    - Conta de valores no SQLite > 0
    - JSON gerado em `site/data/<slug>.json`
    - PNGs gerados em `site/public/charts/`
-   - Página local renderiza: `cd site && npm run dev`
+   - Página local renderiza: `cd site && pnpm dev`
 
 9. **Deploy**: `python -m pipeline.cli deploy`
-```
+
+````
 
 #### 2. **`smoke-test-milestone`** — validar fim de milestone
 
@@ -258,21 +268,25 @@ description: Executa smoke test de um milestone do plano de implementação. Use
 
 5. Devolva relatório estruturado:
 
-   ```
-   ## Milestone N — <título>
+````
 
-   Entregas:
-   - ✅ ...
-   - ❌ ... (motivo)
+## Milestone N — <título>
 
-   Smoke test:
-   - Comando: <cmd>
-     Resultado: <pass/fail>
-     Output: <relevant lines>
+Entregas:
 
-   Status: PASS | PARTIAL | FAIL
-   Próximos passos: <se PARTIAL ou FAIL>
-   ```
+- ✅ ...
+- ❌ ... (motivo)
+
+Smoke test:
+
+- Comando: <cmd>
+  Resultado: <pass/fail>
+  Output: <relevant lines>
+
+Status: PASS | PARTIAL | FAIL
+Próximos passos: <se PARTIAL ou FAIL>
+
+```
 
 6. Não avance para o próximo milestone sem PASS.
 ```
@@ -281,7 +295,7 @@ description: Executa smoke test de um milestone do plano de implementação. Use
 
 `.claude/skills/debug-collection/SKILL.md`:
 
-```markdown
+````markdown
 ---
 name: debug-collection
 description: Investiga erro de coleta de indicador. Use quando uma execução de `pipeline collect` retornar erro ou notificação Telegram de erro chegar.
@@ -295,15 +309,19 @@ description: Investiga erro de coleta de indicador. Use quando uma execução de
    WHERE status = 'error'
    ORDER BY started_at DESC LIMIT 5;
    ```
-   (use o SQLite MCP)
+````
+
+(use o SQLite MCP)
 
 2. **Inspecione a configuração**:
+
    ```sql
    SELECT code, connector_type, connector_config, last_collected_at
    FROM indicators WHERE code = ?;
    ```
 
 3. **Reproduza isoladamente** o erro com Python REPL — chamar o connector diretamente, sem o pipeline:
+
    ```python
    from pipeline.connectors.bcb import BCBSGSConnector
    from datetime import date
@@ -321,7 +339,8 @@ description: Investiga erro de coleta de indicador. Use quando uma execução de
    - Aguardar e retry mais tarde
    - Atualizar config do indicador
    - Reportar mudança de formato (issue)
-```
+
+````
 
 ### 🔴 Não criar
 
@@ -347,14 +366,14 @@ python3 -m venv .venv
 .venv/bin/pip install -r pipeline/requirements.txt
 
 cd site
-npm install
+pnpm install
 cd ..
 
 mkdir -p data pipeline/logs site/data site/public/charts
 
 cp -n pipeline/.env.example pipeline/.env || true
 echo "✓ Setup completo. Edite pipeline/.env com suas credenciais."
-```
+````
 
 ### `scripts/inspect-db.sh`
 
@@ -582,29 +601,29 @@ mkdir -p .claude/agents .claude/skills/{add-indicator,smoke-test-milestone,debug
 
 ## Estimativa de impacto
 
-| Item | Tokens economizados/mês* | Erros evitados |
-|---|---|---|
-| SQLite MCP | ~25k | Decisões com base em dado errado |
-| Context7 MCP | ~15k | Erros por API desatualizada |
-| Subagent bcb-research | ~10k por indicador novo | series_id errado |
-| Skill add-indicator | ~5k por indicador | Esquecer migration ou seed |
-| Skill smoke-test | ~3k por milestone | Avançar com bug |
-| Hook git push | — | Deploy acidental |
+| Item                  | Tokens economizados/mês\* | Erros evitados                   |
+| --------------------- | ------------------------- | -------------------------------- |
+| SQLite MCP            | ~25k                      | Decisões com base em dado errado |
+| Context7 MCP          | ~15k                      | Erros por API desatualizada      |
+| Subagent bcb-research | ~10k por indicador novo   | series_id errado                 |
+| Skill add-indicator   | ~5k por indicador         | Esquecer migration ou seed       |
+| Skill smoke-test      | ~3k por milestone         | Avançar com bug                  |
+| Hook git push         | —                         | Deploy acidental                 |
 
-*estimativas grossas, baseadas em assumir uso médio de Claude Code durante implementação dos 9 milestones e operação subsequente.
+\*estimativas grossas, baseadas em assumir uso médio de Claude Code durante implementação dos 9 milestones e operação subsequente.
 
 ---
 
 ## O que NÃO instalar (resumo dos principais "vampiros de tempo")
 
-| Item popular | Por quê pular |
-|---|---|
-| Filesystem MCP | Já temos acesso ao projeto |
-| Brave Search MCP | Web search é nativo |
-| Memory MCP | CLAUDE.md cumpre o papel |
-| Sentry/Datadog MCP | Sem observabilidade nesse projeto |
-| Vercel MCP | Deploy é git push |
-| Telegram MCP | Você testa o bot direto no app |
+| Item popular                    | Por quê pular                            |
+| ------------------------------- | ---------------------------------------- |
+| Filesystem MCP                  | Já temos acesso ao projeto               |
+| Brave Search MCP                | Web search é nativo                      |
+| Memory MCP                      | CLAUDE.md cumpre o papel                 |
+| Sentry/Datadog MCP              | Sem observabilidade nesse projeto        |
+| Vercel MCP                      | Deploy é git push                        |
+| Telegram MCP                    | Você testa o bot direto no app           |
 | 50+ subagents prontos de "kits" | Genéricos demais, não conhecem o projeto |
-| Plugins de "AI persona" | Marketing |
-| Sequential Thinking MCP | Thinking nativo já cobre |
+| Plugins de "AI persona"         | Marketing                                |
+| Sequential Thinking MCP         | Thinking nativo já cobre                 |

@@ -7,7 +7,7 @@ python3 -m venv .venv
 .venv/bin/pip install -r pipeline/requirements.txt
 
 cd site
-npm install
+pnpm install
 cd ..
 
 mkdir -p data pipeline/logs site/data site/public/charts

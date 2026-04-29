@@ -17,14 +17,14 @@ Sequência de milestones para o Claude Code. Cada milestone é uma sessão ideal
 
 **Entregas:**
 
-- [ ] `pipeline/` com `requirements.txt` (httpx, python-telegram-bot, matplotlib, pandas, python-dateutil, python-dotenv)
-- [ ] `pipeline/.env.example` com todas as variáveis
-- [ ] `site/` com `package.json` e Astro inicializado (`npm create astro@latest`)
-- [ ] `site/` com Tailwind configurado (`npm install @astrojs/tailwind tailwindcss`)
-- [ ] `data/` (vazio, com `.gitkeep`)
-- [ ] `.gitignore` correto (ignorar `.env`, `__pycache__`, `node_modules`, `dist`, `site/dist`, `pipeline/logs/`)
-- [ ] `pipeline/cli.py` com argparse esqueleto e comandos no-op
-- [ ] `Makefile` ou `scripts/` com atalhos: `make install`, `make collect`, `make build`
+- [x] `pipeline/` com `requirements.txt` (httpx, python-telegram-bot, matplotlib, pandas, python-dateutil, python-dotenv)
+- [x] `pipeline/.env.example` com todas as variáveis
+- [x] `site/` com `package.json` e Astro inicializado (`pnpm create astro@latest`)
+- [x] `site/` com Tailwind configurado (`pnpm install @astrojs/tailwind tailwindcss`)
+- [x] `data/` (vazio, com `.gitkeep`)
+- [x] `.gitignore` correto (ignorar `.env`, `__pycache__`, `node_modules`, `dist`, `site/dist`, `pipeline/logs/`)
+- [x] `pipeline/cli.py` com argparse esqueleto e comandos no-op
+- [x] `Makefile` ou `scripts/` com atalhos: `make install`, `make collect`, `make build`
 
 **Smoke test:** `python -m pipeline.cli status` roda sem erro (mesmo que vazio).
 
@@ -174,7 +174,7 @@ cat site/data/indicators.json | jq '.indicators[].code'  # IPCA, CDI, TR
 **Smoke test:**
 
 ```bash
-cd site && npm run dev
+cd site && pnpm dev
 # Abrir http://localhost:4321 e validar:
 # - Home tem os 3 indicadores
 # - /ipca/ /cdi/ /tr/ funcionam e mostram dados
@@ -201,7 +201,7 @@ cd site && npm run dev
 **Smoke test:**
 
 ```bash
-cd site && npm run build && npx serve dist
+cd site && pnpm build && pnpm preview
 # Rodar Lighthouse mobile na home e em /ipca/
 # Performance, Accessibility, Best Practices, SEO ≥ 95 cada
 ```

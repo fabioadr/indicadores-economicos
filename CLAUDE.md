@@ -58,6 +58,7 @@ Antes de qualquer trabalho, leia `docs/00-README.md` e os documentos relevantes 
 Scopes: `pipeline`, `connectors`, `db`, `bot`, `site`, `docs`, `infra`, `data`
 
 Exemplos:
+
 - `connectors: add BCB SGS connector with pagination`
 - `data: update IPCA, CDI (2026-04-28)` (auto-gerado pelo pipeline)
 - `site: add JSON-LD Dataset schema to indicator pages`
@@ -78,7 +79,7 @@ Detalhes em `docs/02-architecture.md`.
 
 ```bash
 # Setup inicial
-make install                          # cria venv + instala deps + npm install
+make install                          # cria venv + instala deps + pnpm install
 
 # Desenvolvimento
 python -m pipeline.cli migrate        # aplica migrations
@@ -87,13 +88,13 @@ python -m pipeline.cli collect --all  # coleta scheduled
 python -m pipeline.cli build          # gera JSON+PNG
 python -m pipeline.cli publish        # build + git push
 
-cd site && npm run dev                # dev server Astro (porta 4321)
-cd site && npm run build              # build de produção
-cd site && npm run preview            # preview do build
+cd site && pnpm dev                   # dev server Astro (porta 4321)
+cd site && pnpm build                 # build de produção
+cd site && pnpm preview               # preview do build
 
 # Testes
 pytest pipeline/                      # testes Python
-cd site && npm run check              # type check Astro
+cd site && pnpm check                 # type check Astro
 
 # Bot (em foreground para debug)
 python -m pipeline.bot
@@ -135,10 +136,10 @@ LOG_LEVEL=INFO
 
 ## Indicadores Fase 1
 
-| Code | Slug | Categoria | Fonte | Série SGS |
-|---|---|---|---|---|
-| IPCA | ipca | inflacao | BCB | 433 |
-| CDI | cdi | juros | BCB | 4391 |
-| TR | tr | correcao_monetaria | BCB | 226 |
+| Code | Slug | Categoria          | Fonte | Série SGS |
+| ---- | ---- | ------------------ | ----- | --------- |
+| IPCA | ipca | inflacao           | BCB   | 433       |
+| CDI  | cdi  | juros              | BCB   | 4391      |
+| TR   | tr   | correcao_monetaria | BCB   | 226       |
 
 Detalhes completos em `docs/08-indicators-catalog.md`.

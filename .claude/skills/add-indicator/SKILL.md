@@ -36,6 +36,6 @@ Workflow para adicionar um indicador novo. Não pular etapas.
    - Conta de valores no SQLite > 0
    - JSON gerado em `site/data/<slug>.json`
    - PNGs gerados em `site/public/charts/`
-   - Página local renderiza: `cd site && npm run dev`
+   - Página local renderiza: `cd site && pnpm dev`
 
 9. **Deploy**: `python -m pipeline.cli deploy`
