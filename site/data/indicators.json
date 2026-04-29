@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-04-29T13:37:14-03:00",
+  "categories": {
+    "juros": {
+      "label": "Juros",
+      "indicators": [
+        "cdi"
+      ]
+    },
+    "inflacao": {
+      "label": "Inflação",
+      "indicators": [
+        "ipca"
+      ]
+    },
+    "correcao_monetaria": {
+      "label": "Correção Monetária",
+      "indicators": [
+        "tr"
+      ]
+    }
+  },
+  "indicators": [
+    {
+      "code": "CDI",
+      "slug": "cdi",
+      "name": "CDI - Certificado de Depósito Interbancário",
+      "category": "juros",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-04-01",
+        "value": 0.98,
+        "ytd": 4.42127354832802,
+        "last_12m": 14.706566529374898
+      }
+    },
+    {
+      "code": "IPCA",
+      "slug": "ipca",
+      "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-03-01",
+        "value": 0.88,
+        "ytd": 1.9213943279999812,
+        "last_12m": 4.142846991219562
+      }
+    },
+    {
+      "code": "TR",
+      "slug": "tr",
+      "name": "TR - Taxa Referencial",
+      "category": "correcao_monetaria",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-04-28",
+        "value": 0.1706,
+        "ytd": 20.445053497159638,
+        "last_12m": 1.892392373552454
+      }
+    }
+  ]
+}

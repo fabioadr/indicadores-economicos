@@ -10,7 +10,7 @@ import argparse
 import sys
 
 from pipeline import config
-from pipeline.core import scheduler
+from pipeline.core import builder, scheduler
 from pipeline.db.connection import (
     apply_pending_migrations,
     get_connection,
@@ -107,7 +107,20 @@ def cmd_backfill(args: argparse.Namespace) -> int:
 
 
 def cmd_build(args: argparse.Namespace) -> int:
-    return _not_implemented("build")
+    _ensure_db_ready()
+    conn = get_connection(config.DB_PATH)
+    try:
+        result = builder.build(conn, triggered_by="cli")
+    finally:
+        conn.close()
+
+    if result.status == "no_changes":
+        print("build: no changes")
+        return 0
+    print(f"build: {result.status} ({result.files_generated} files)")
+    for code in result.changed:
+        print(f"  rebuilt: {code}")
+    return 0 if result.status == "success" else 1
 
 
 def cmd_deploy(args: argparse.Namespace) -> int:

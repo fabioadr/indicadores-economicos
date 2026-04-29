@@ -139,11 +139,11 @@ sqlite3 data/indicadores.db "SELECT i.code, COUNT(v.id) FROM indicators i LEFT J
 
 **Entregas:**
 
-- [ ] `pipeline/core/builder.py` — `build()` gera JSONs em `site/data/`
-- [ ] `pipeline/core/charts.py` — `generate_chart_current_year`, `generate_chart_history`
-- [ ] PNGs em `site/public/charts/`
-- [ ] `pipeline/cli.py` — comando `build` plugado
-- [ ] Estrutura dos JSONs exatamente como em `05-pipeline.md`
+- [✅] `pipeline/core/builder.py` — `build()` gera JSONs em `site/data/`
+- [✅] `pipeline/core/charts.py` — `generate_chart_current_year`, `generate_chart_history`
+- [✅] PNGs em `site/public/charts/`
+- [✅] `pipeline/cli.py` — comando `build` plugado
+- [✅] Estrutura dos JSONs exatamente como em `05-pipeline.md`
 
 **Smoke test:**
 

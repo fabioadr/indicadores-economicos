@@ -199,12 +199,23 @@ class Indicator:
     expected_release_day: int | None
     active: bool
     last_collected_at: str | None
+    short_description: str = ""
+    long_description: str = ""
+    unit: str = "percent"
+    source_name: str = ""
+    source_url: str = ""
+    meta_title: str = ""
+    meta_description: str = ""
+    last_built_at: str | None = None
 
 
 _INDICATOR_COLUMNS = (
     "id, code, slug, name, category, frequency, "
     "connector_type, connector_config, inception_date, "
-    "expected_release_day, active, last_collected_at"
+    "expected_release_day, active, last_collected_at, "
+    "short_description, long_description, unit, "
+    "source_name, source_url, meta_title, meta_description, "
+    "last_built_at"
 )
 
 
@@ -222,6 +233,14 @@ def _row_to_indicator(row: sqlite3.Row) -> Indicator:
         expected_release_day=row["expected_release_day"],
         active=bool(row["active"]),
         last_collected_at=row["last_collected_at"],
+        short_description=row["short_description"],
+        long_description=row["long_description"],
+        unit=row["unit"],
+        source_name=row["source_name"],
+        source_url=row["source_url"],
+        meta_title=row["meta_title"],
+        meta_description=row["meta_description"],
+        last_built_at=row["last_built_at"],
     )
 
 
@@ -318,6 +337,102 @@ def record_skipped_collection(
     log_id = start_collection_log(conn, indicator_id, triggered_by)
     finish_collection_log(conn, log_id, status="skipped")
     return log_id
+
+
+def update_indicator_last_built_at(
+    conn: sqlite3.Connection, indicator_id: str, ts: str
+) -> None:
+    with conn:
+        conn.execute(
+            "UPDATE indicators SET last_built_at = ?, updated_at = datetime('now') WHERE id = ?",
+            (ts, indicator_id),
+        )
+
+
+@dataclass
+class BuildLog:
+    id: str
+    triggered_by: str
+    started_at: str
+    finished_at: str | None
+    status: str
+    indicators_updated: str | None
+    files_generated: int | None
+    git_commit_sha: str | None
+    error_message: str | None
+
+
+def start_build_log(conn: sqlite3.Connection, triggered_by: str) -> str:
+    log_id = str(uuid.uuid4())
+    with conn:
+        conn.execute(
+            """
+            INSERT INTO build_logs (
+                id, triggered_by, started_at, status
+            ) VALUES (?, ?, ?, 'running')
+            """,
+            (log_id, triggered_by, _utc_now_iso()),
+        )
+    return log_id
+
+
+def finish_build_log(
+    conn: sqlite3.Connection,
+    log_id: str,
+    status: str,
+    *,
+    indicators_updated: list[str] | None = None,
+    files_generated: int | None = None,
+    error_message: str | None = None,
+) -> None:
+    payload = ",".join(indicators_updated) if indicators_updated else None
+    with conn:
+        conn.execute(
+            """
+            UPDATE build_logs
+               SET finished_at        = ?,
+                   status             = ?,
+                   indicators_updated = ?,
+                   files_generated    = ?,
+                   error_message      = ?
+             WHERE id = ?
+            """,
+            (
+                _utc_now_iso(),
+                status,
+                payload,
+                files_generated,
+                error_message,
+                log_id,
+            ),
+        )
+
+
+def get_last_successful_build(conn: sqlite3.Connection) -> BuildLog | None:
+    row = fetch_one(
+        conn,
+        """
+        SELECT id, triggered_by, started_at, finished_at, status,
+               indicators_updated, files_generated, git_commit_sha, error_message
+          FROM build_logs
+         WHERE status = 'success'
+         ORDER BY started_at DESC
+         LIMIT 1
+        """,
+    )
+    if row is None:
+        return None
+    return BuildLog(
+        id=row["id"],
+        triggered_by=row["triggered_by"],
+        started_at=row["started_at"],
+        finished_at=row["finished_at"],
+        status=row["status"],
+        indicators_updated=row["indicators_updated"],
+        files_generated=row["files_generated"],
+        git_commit_sha=row["git_commit_sha"],
+        error_message=row["error_message"],
+    )
 
 
 def apply_pending_migrations(
