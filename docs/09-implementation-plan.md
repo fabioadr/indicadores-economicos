@@ -87,9 +87,9 @@ print(f'Último: {points[-1]}')
 
 **Entregas:**
 
-- [ ] `pipeline/db/connection.py` — métodos `upsert_value`, `list_values`, `get_last_value_date`, `batch_update_aggregations`
-- [ ] `pipeline/core/aggregations.py` com `recompute_aggregations(indicator_id)` e `accumulate(percentages)`
-- [ ] Testes unitários em `pipeline/core/tests/test_aggregations.py`:
+- [✅] `pipeline/db/connection.py` — métodos `upsert_value`, `list_values`, `get_last_value_date`, `batch_update_aggregations`
+- [✅] `pipeline/core/aggregations.py` com `recompute_aggregations(indicator_id)` e `accumulate(percentages)`
+- [✅] Testes unitários em `pipeline/core/tests/test_aggregations.py`:
   - YTD funciona corretamente
   - last_12m retorna NULL com menos de 12 valores
   - since_inception está correto

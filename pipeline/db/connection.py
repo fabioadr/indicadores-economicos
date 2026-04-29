@@ -1,15 +1,20 @@
-"""SQLite connection helpers and migration runner.
+"""SQLite connection helpers, migration runner, and domain accessors.
 
-Minimal surface area for Milestone 1: open connections, run scripts, and apply
-pending migrations from `pipeline/db/migrations/`. Domain helpers (upsert_value,
-list_values, etc.) come in M3.
+M1 brought connection/migration plumbing; M3 layers on the domain helpers used
+by the collector and the aggregation logic (`upsert_value`, `list_values`,
+`get_last_value_date`, `batch_update_aggregations`).
 """
 
 from __future__ import annotations
 
 import sqlite3
+import uuid
 from collections.abc import Iterable
+from dataclasses import dataclass
+from datetime import date
 from pathlib import Path
+
+from pipeline.connectors.base import RawDataPoint
 
 _MIGRATIONS_TABLE_DDL = """
 CREATE TABLE IF NOT EXISTS _migrations (
@@ -53,6 +58,131 @@ def fetch_all(
 
 def executescript(conn: sqlite3.Connection, sql: str) -> None:
     conn.executescript(sql)
+
+
+@dataclass
+class IndicatorValue:
+    id: str
+    indicator_id: str
+    reference_date: date
+    value: float
+    ytd: float | None
+    last_12m: float | None
+    last_24m: float | None
+    since_inception: float | None
+    raw_value: str | None
+
+
+def upsert_value(
+    conn: sqlite3.Connection,
+    indicator_id: str,
+    point: RawDataPoint,
+) -> bool:
+    """Insert or update a value for `(indicator_id, reference_date)`.
+
+    Returns True when a row already existed (i.e. the call was an update),
+    False when a new row was inserted.
+    """
+    ref = point.reference_date.isoformat()
+    existing = fetch_one(
+        conn,
+        "SELECT id FROM indicator_values WHERE indicator_id = ? AND reference_date = ?",
+        (indicator_id, ref),
+    )
+    with conn:
+        if existing is None:
+            conn.execute(
+                """
+                INSERT INTO indicator_values (
+                    id, indicator_id, reference_date, value, raw_value
+                ) VALUES (?, ?, ?, ?, ?)
+                """,
+                (str(uuid.uuid4()), indicator_id, ref, point.value, point.raw_value),
+            )
+            return False
+        conn.execute(
+            """
+            UPDATE indicator_values
+               SET value        = ?,
+                   raw_value    = ?,
+                   collected_at = datetime('now')
+             WHERE id = ?
+            """,
+            (point.value, point.raw_value, existing["id"]),
+        )
+        return True
+
+
+def list_values(
+    conn: sqlite3.Connection,
+    indicator_id: str,
+    order: str = "asc",
+) -> list[IndicatorValue]:
+    direction = "ASC" if order.lower() == "asc" else "DESC"
+    rows = fetch_all(
+        conn,
+        f"""
+        SELECT id, indicator_id, reference_date, value,
+               ytd, last_12m, last_24m, since_inception, raw_value
+          FROM indicator_values
+         WHERE indicator_id = ?
+         ORDER BY reference_date {direction}
+        """,
+        (indicator_id,),
+    )
+    return [
+        IndicatorValue(
+            id=row["id"],
+            indicator_id=row["indicator_id"],
+            reference_date=date.fromisoformat(row["reference_date"]),
+            value=row["value"],
+            ytd=row["ytd"],
+            last_12m=row["last_12m"],
+            last_24m=row["last_24m"],
+            since_inception=row["since_inception"],
+            raw_value=row["raw_value"],
+        )
+        for row in rows
+    ]
+
+
+def get_last_value_date(
+    conn: sqlite3.Connection,
+    indicator_id: str,
+) -> date | None:
+    row = fetch_one(
+        conn,
+        "SELECT MAX(reference_date) AS d FROM indicator_values WHERE indicator_id = ?",
+        (indicator_id,),
+    )
+    if row is None or row["d"] is None:
+        return None
+    return date.fromisoformat(row["d"])
+
+
+def batch_update_aggregations(
+    conn: sqlite3.Connection,
+    updates: list[tuple[str, float | None, float | None, float | None, float]],
+) -> None:
+    """Apply ytd / last_12m / last_24m / since_inception updates in one tx.
+
+    Each tuple is `(id, ytd, last_12m, last_24m, since_inception)`.
+    """
+    if not updates:
+        return
+    payload = [(ytd, l12, l24, si, vid) for (vid, ytd, l12, l24, si) in updates]
+    with conn:
+        conn.executemany(
+            """
+            UPDATE indicator_values
+               SET ytd             = ?,
+                   last_12m        = ?,
+                   last_24m        = ?,
+                   since_inception = ?
+             WHERE id = ?
+            """,
+            payload,
+        )
 
 
 def apply_pending_migrations(
