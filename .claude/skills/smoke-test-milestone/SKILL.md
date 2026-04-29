@@ -16,3 +16,23 @@ description: Executa smoke test de um milestone do plano de implementação. Use
 4. Capture stdout e stderr de cada comando.
 
 5. Devolva relatório estruturado:
+
+```markdown
+## Milestone N — <título>
+
+Entregas:
+
+- ✅ ...
+- ❌ ... (motivo)
+
+Smoke test:
+
+- Comando: <cmd>
+  Resultado: <pass/fail>
+  Output: <relevant lines>
+
+Status: PASS | PARTIAL | FAIL
+Próximos passos: <se PARTIAL ou FAIL>
+```
+
+6. Não avance para o próximo milestone sem PASS.
