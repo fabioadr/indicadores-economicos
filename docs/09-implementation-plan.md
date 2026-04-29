@@ -17,14 +17,14 @@ Sequência de milestones para o Claude Code. Cada milestone é uma sessão ideal
 
 **Entregas:**
 
-- [x] `pipeline/` com `requirements.txt` (httpx, python-telegram-bot, matplotlib, pandas, python-dateutil, python-dotenv)
-- [x] `pipeline/.env.example` com todas as variáveis
-- [x] `site/` com `package.json` e Astro inicializado (`pnpm create astro@latest`)
-- [x] `site/` com Tailwind configurado (`pnpm install @astrojs/tailwind tailwindcss`)
-- [x] `data/` (vazio, com `.gitkeep`)
-- [x] `.gitignore` correto (ignorar `.env`, `__pycache__`, `node_modules`, `dist`, `site/dist`, `pipeline/logs/`)
-- [x] `pipeline/cli.py` com argparse esqueleto e comandos no-op
-- [x] `Makefile` ou `scripts/` com atalhos: `make install`, `make collect`, `make build`
+- [✅] `pipeline/` com `requirements.txt` (httpx, python-telegram-bot, matplotlib, pandas, python-dateutil, python-dotenv)
+- [✅] `pipeline/.env.example` com todas as variáveis
+- [✅] `site/` com `package.json` e Astro inicializado (`pnpm create astro@latest`)
+- [✅] `site/` com Tailwind configurado (`pnpm install @astrojs/tailwind tailwindcss`)
+- [✅] `data/` (vazio, com `.gitkeep`)
+- [✅] `.gitignore` correto (ignorar `.env`, `__pycache__`, `node_modules`, `dist`, `site/dist`, `pipeline/logs/`)
+- [✅] `pipeline/cli.py` com argparse esqueleto e comandos no-op
+- [✅] `Makefile` ou `scripts/` com atalhos: `make install`, `make collect`, `make build`
 
 **Smoke test:** `python -m pipeline.cli status` roda sem erro (mesmo que vazio).
 
@@ -36,12 +36,12 @@ Sequência de milestones para o Claude Code. Cada milestone é uma sessão ideal
 
 **Entregas:**
 
-- [ ] `pipeline/db/connection.py` — wrapper sqlite3 com helper para fetch_one, fetch_all, execute
-- [ ] `pipeline/db/migrations/001_initial_schema.sql` — schema completo do `03-data-model.md`
-- [ ] `pipeline/db/migrations/002_seed_phase1_indicators.sql` — IPCA, CDI, TR
-- [ ] `pipeline/cli.py migrate` — aplica migrations pendentes
-- [ ] Tabela `_migrations` controla estado
-- [ ] Reaplicar migrations é idempotente
+- [✅] `pipeline/db/connection.py` — wrapper sqlite3 com helper para fetch_one, fetch_all, execute
+- [✅] `pipeline/db/migrations/001_initial_schema.sql` — schema completo do `03-data-model.md`
+- [✅] `pipeline/db/migrations/002_seed_phase1_indicators.sql` — IPCA, CDI, TR
+- [✅] `pipeline/cli.py migrate` — aplica migrations pendentes
+- [✅] Tabela `_migrations` controla estado
+- [✅] Reaplicar migrations é idempotente
 
 **Smoke test:**
 

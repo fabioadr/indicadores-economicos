@@ -1,7 +1,7 @@
 """Pipeline CLI — entry point for collect, build, deploy, status, etc.
 
-Milestone 0: argparse skeleton with no-op handlers. Real implementations land
-in subsequent milestones (M1: migrate; M2: collect/backfill; M5: build; M9: deploy).
+M1 implements `migrate`. Other subcommands remain no-op until their milestones
+(M2: collect/backfill; M5: build; M9: deploy).
 """
 
 from __future__ import annotations
@@ -10,8 +10,12 @@ import argparse
 import sys
 from pathlib import Path
 
+from pipeline.db.connection import apply_pending_migrations, get_connection
+
 VERSION = "0.0.1"
 REPO_ROOT = Path(__file__).resolve().parent.parent
+MIGRATIONS_DIR = REPO_ROOT / "pipeline" / "db" / "migrations"
+DEFAULT_DB_PATH = REPO_ROOT / "data" / "indicadores.db"
 
 
 def _not_implemented(name: str) -> int:
@@ -20,7 +24,18 @@ def _not_implemented(name: str) -> int:
 
 
 def cmd_migrate(args: argparse.Namespace) -> int:
-    return _not_implemented("migrate")
+    conn = get_connection(DEFAULT_DB_PATH)
+    try:
+        applied = apply_pending_migrations(conn, MIGRATIONS_DIR)
+    finally:
+        conn.close()
+
+    if not applied:
+        print("no pending migrations")
+    else:
+        for name in applied:
+            print(f"applied: {name}")
+    return 0
 
 
 def cmd_collect(args: argparse.Namespace) -> int:
