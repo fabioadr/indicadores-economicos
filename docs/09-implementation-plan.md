@@ -190,13 +190,13 @@ cd site && pnpm dev
 
 **Entregas:**
 
-- [ ] Meta tags por página (title, description, OG)
-- [ ] Schema.org JSON-LD em cada página de indicador
-- [ ] `sitemap.xml` via `@astrojs/sitemap`
-- [ ] `robots.txt`
-- [ ] Lazy loading de imagens
-- [ ] Preload de fontes
-- [ ] Width/height nos PNGs (zero CLS)
+- [✅] Meta tags por página (title, description, OG)
+- [✅] Schema.org JSON-LD em cada página de indicador
+- [✅] `sitemap.xml` via `@astrojs/sitemap`
+- [✅] `robots.txt`
+- [✅] Lazy loading de imagens
+- [✅] Preload de fontes
+- [✅] Width/height nos PNGs (zero CLS)
 
 **Smoke test:**
 

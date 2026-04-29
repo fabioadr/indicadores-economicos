@@ -46,9 +46,32 @@ const meta = {
 };
 
 const longHtml = renderMarkdown(detail.long_description);
+
+const firstDate = detail.values[0]?.reference_date ?? detail.latest.reference_date;
+const lastDate = detail.latest.reference_date;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: detail.name,
+  description: detail.short_description,
+  url: new URL(`/${detail.slug}/`, Astro.site).toString(),
+  creator: {
+    '@type': 'Organization',
+    name: detail.source.name,
+    url: detail.source.url,
+  },
+  temporalCoverage: `${firstDate.slice(0, 7)}/${lastDate.slice(0, 7)}`,
+  variableMeasured: {
+    '@type': 'PropertyValue',
+    name: detail.name,
+    unitText: 'percent',
+  },
+  isAccessibleForFree: true,
+  inLanguage: 'pt-BR',
+};
 ---
 
-<BaseLayout title={meta.title} description={meta.description}>
+<BaseLayout title={meta.title} description={meta.description} jsonLd={jsonLd}>
   <div class="space-y-12">
     <IndicatorHero indicator={detail} />
 
