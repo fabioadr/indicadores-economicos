@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git push.*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '⚠️  git push pendente. Confirme antes de aprovar a aprovação manual no Claude Code.'"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/inspect-db.sh indicators 2>/dev/null && echo '---' && bash scripts/inspect-db.sh builds 2>/dev/null | head -3"
+          }
+        ]
+      }
+    ]
+  }
+}

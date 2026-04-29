@@ -1,0 +1,38 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Node / Astro
+node_modules/
+site/dist/
+site/.astro/
+
+# Env and secrets
+.env
+.env.*.local
+pipeline/.env
+
+# Logs
+pipeline/logs/
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Build / deploy
+.vercel
+dist/
+
+# Local Claude Code (machine-specific)
+.claude/settings.local.json

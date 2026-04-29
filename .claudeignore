@@ -1,0 +1,19 @@
+# Dependencies and build output (save context)
+node_modules/
+.venv/
+venv/
+site/dist/
+site/.astro/
+**/__pycache__/
+
+# Generated assets (large / redundant for reasoning)
+site/public/charts/
+
+# Logs
+pipeline/logs/
+*.log
+
+# Local / credentials
+.env
+pipeline/.env
+.claude/settings.local.json
