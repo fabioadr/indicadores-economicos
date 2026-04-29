@@ -1,0 +1,27 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  loading?: 'eager' | 'lazy';
+  caption?: string;
+}
+
+const { src, alt, loading = 'lazy', caption } = Astro.props;
+---
+
+<figure class="space-y-2">
+  <div class="bg-bg-elevated border border-border rounded-md overflow-hidden">
+    <img
+      src={src}
+      alt={alt}
+      width="1200"
+      height="600"
+      loading={loading}
+      decoding="async"
+      class="w-full h-auto block"
+    />
+  </div>
+  {caption && (
+    <figcaption class="text-xs text-ink-faint text-center">{caption}</figcaption>
+  )}
+</figure>

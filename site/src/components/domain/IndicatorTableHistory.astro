@@ -1,0 +1,68 @@
+---
+import type { IndicatorDetail } from '../../lib/data';
+import DataTable from '../ui/DataTable.astro';
+import {
+  formatPercent,
+  formatMonthShort,
+  groupByYearDesc,
+  reduceToMonthly,
+  yearOf,
+} from '../../lib/format';
+
+interface Props {
+  indicator: IndicatorDetail;
+}
+
+const { indicator } = Astro.props;
+
+const monthlyValues = reduceToMonthly(indicator.values);
+
+const years = monthlyValues.map((v) => yearOf(v.reference_date));
+const currentYear = years.length ? Math.max(...years) : new Date().getFullYear();
+const groups = groupByYearDesc(monthlyValues);
+---
+
+<section class="space-y-3">
+  <header class="flex items-baseline justify-between">
+    <h2 class="font-display text-xl font-semibold text-ink">Tabela histórica</h2>
+    <p class="text-xs text-ink-faint">Selecione um ano para abrir</p>
+  </header>
+  <div class="space-y-2">
+    {groups.map((group) => (
+      <details
+        class="bg-bg-elevated border border-border rounded-md group"
+        open={group.year === currentYear}
+      >
+        <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between font-medium text-ink hover:bg-bg">
+          <span>{group.year}</span>
+          <span class="text-xs text-ink-faint group-open:hidden">+ ver mês a mês</span>
+          <span class="text-xs text-ink-faint hidden group-open:inline">– recolher</span>
+        </summary>
+        <div class="border-t border-border">
+          <DataTable caption={`Valores de ${indicator.code} em ${group.year}`}>
+            <thead>
+              <tr>
+                <th scope="col">Mês</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Acum. ano</th>
+                <th scope="col">12 meses</th>
+              </tr>
+            </thead>
+            <tbody>
+              {group.values.map((row) => (
+                <tr>
+                  <th scope="row" class="capitalize">
+                    {formatMonthShort(row.reference_date)}
+                  </th>
+                  <td>{formatPercent(row.value)}</td>
+                  <td>{formatPercent(row.ytd)}</td>
+                  <td>{formatPercent(row.last_12m)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </DataTable>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

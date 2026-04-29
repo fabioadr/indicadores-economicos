@@ -1,0 +1,40 @@
+---
+import type { IndicatorSummary } from '../../lib/data';
+import Card from '../ui/Card.astro';
+import CategoryPill from '../ui/CategoryPill.astro';
+import ValueDisplay from '../ui/ValueDisplay.astro';
+import { formatMonthYear, formatPercent } from '../../lib/format';
+
+interface Props {
+  indicator: IndicatorSummary;
+}
+
+const { indicator } = Astro.props;
+const { latest } = indicator;
+---
+
+<Card as="article" class="hover:border-ink/30 transition-colors">
+  <a href={`/${indicator.slug}/`} class="no-underline block space-y-4">
+    <div class="flex items-center justify-between gap-2">
+      <span class="font-display text-lg font-semibold text-ink">
+        {indicator.code}
+      </span>
+      <CategoryPill category={indicator.category} />
+    </div>
+    <p class="text-sm text-ink-muted leading-snug">{indicator.name}</p>
+    <div class="flex items-baseline gap-2">
+      <ValueDisplay value={latest.value} size="lg" />
+      <span class="text-xs text-ink-faint">{formatMonthYear(latest.reference_date)}</span>
+    </div>
+    <dl class="grid grid-cols-2 gap-2 text-xs text-ink-muted">
+      <div>
+        <dt class="uppercase tracking-wide text-ink-faint">Acum. ano</dt>
+        <dd class="font-mono tabular-nums text-ink">{formatPercent(latest.ytd)}</dd>
+      </div>
+      <div>
+        <dt class="uppercase tracking-wide text-ink-faint">12 meses</dt>
+        <dd class="font-mono tabular-nums text-ink">{formatPercent(latest.last_12m)}</dd>
+      </div>
+    </dl>
+  </a>
+</Card>

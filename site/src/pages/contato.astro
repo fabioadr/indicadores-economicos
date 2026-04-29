@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const email = 'contato@indicadoreseconomicoshoje.com.br';
+
+const meta = {
+  title: 'Contato — Indicadores Econômicos Hoje',
+  description: `Entre em contato com a equipe do Indicadores Econômicos Hoje pelo e-mail ${email}.`,
+};
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <article class="prose max-w-3xl text-ink-muted">
+    <h1 class="font-display text-3xl md:text-4xl font-semibold text-ink mb-6">
+      Contato
+    </h1>
+    <p>
+      Para sugestões, correções ou dúvidas sobre os dados publicados aqui,
+      escreva para:
+    </p>
+    <p class="text-lg">
+      <a class="font-mono text-ink" href={`mailto:${email}`}>{email}</a>
+    </p>
+    <p class="text-sm">
+      Para correções de valores oficiais, recomendamos verificar diretamente
+      no site do Banco Central do Brasil antes de nos contatar — a discrepância
+      pode estar na fonte original.
+    </p>
+  </article>
+</BaseLayout>

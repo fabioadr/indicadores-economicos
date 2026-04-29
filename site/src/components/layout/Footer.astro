@@ -1,0 +1,28 @@
+---
+import Disclaimer from '../ui/Disclaimer.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border bg-bg-elevated mt-24">
+  <div class="max-w-[1100px] mx-auto px-6 py-10 grid gap-8 md:grid-cols-[2fr_1fr]">
+    <div class="space-y-3">
+      <p class="font-display text-lg font-semibold text-ink">
+        Indicadores Econômicos Hoje
+      </p>
+      <Disclaimer variant="inline" />
+    </div>
+    <nav aria-label="Rodapé">
+      <ul class="space-y-2 text-sm">
+        <li><a class="text-ink-muted hover:text-ink no-underline" href="/sobre/">Sobre</a></li>
+        <li><a class="text-ink-muted hover:text-ink no-underline" href="/politica-de-privacidade/">Política de privacidade</a></li>
+        <li><a class="text-ink-muted hover:text-ink no-underline" href="/contato/">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="border-t border-border">
+    <p class="max-w-[1100px] mx-auto px-6 py-4 text-xs text-ink-faint">
+      &copy; {year} Indicadores Econômicos Hoje
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,40 @@
+---
+import { formatPercent } from '../../lib/format';
+
+interface Props {
+  value: number | null | undefined;
+  unit?: 'percent' | 'raw';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  fractionDigits?: number;
+  class?: string;
+}
+
+const {
+  value,
+  unit = 'percent',
+  size = 'md',
+  fractionDigits = 2,
+  class: extraClass = '',
+} = Astro.props;
+
+const sizeClass = {
+  sm: 'text-base',
+  md: 'text-2xl',
+  lg: 'text-4xl',
+  xl: 'text-6xl',
+}[size];
+
+const formatted =
+  unit === 'percent'
+    ? formatPercent(value, fractionDigits)
+    : value === null || value === undefined
+      ? '—'
+      : value.toLocaleString('pt-BR', {
+          minimumFractionDigits: fractionDigits,
+          maximumFractionDigits: fractionDigits,
+        });
+---
+
+<span class={`font-display font-semibold tabular-nums ${sizeClass} ${extraClass}`}>
+  {formatted}
+</span>

@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const meta = {
+  title: 'Política de privacidade — Indicadores Econômicos Hoje',
+  description:
+    'Política de privacidade do Indicadores Econômicos Hoje. Site estático, sem cookies, sem rastreamento e sem coleta de dados pessoais.',
+};
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <article class="prose max-w-3xl text-ink-muted">
+    <h1 class="font-display text-3xl md:text-4xl font-semibold text-ink mb-6">
+      Política de privacidade
+    </h1>
+
+    <p>
+      Esta página descreve como o site
+      <strong>Indicadores Econômicos Hoje</strong> trata as informações dos
+      visitantes.
+    </p>
+
+    <h2>Coleta de dados</h2>
+    <p>
+      Não coletamos, armazenamos ou processamos dados pessoais dos visitantes.
+      O site é composto por arquivos HTML estáticos servidos por uma rede de
+      distribuição de conteúdo (CDN). Não há formulários, contas de usuário,
+      newsletter ou qualquer mecanismo de identificação.
+    </p>
+
+    <h2>Cookies e rastreamento</h2>
+    <p>
+      Não utilizamos cookies, pixels de rastreamento, ferramentas de análise
+      de audiência (como Google Analytics) ou scripts de terceiros para
+      remarketing.
+    </p>
+
+    <h2>Logs do servidor</h2>
+    <p>
+      O provedor de hospedagem pode manter registros automáticos de acesso
+      (endereço IP, agente do navegador, horário) por motivos operacionais e
+      de segurança. Esses registros não são acessados nem compartilhados
+      pelo Indicadores Econômicos Hoje.
+    </p>
+
+    <h2>Contato</h2>
+    <p>
+      Em caso de dúvidas sobre esta política, escreva para
+      <a href="mailto:contato@indicadoreseconomicoshoje.com.br">
+        contato@indicadoreseconomicoshoje.com.br
+      </a>.
+    </p>
+  </article>
+</BaseLayout>

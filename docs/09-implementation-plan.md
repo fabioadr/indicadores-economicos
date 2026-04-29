@@ -162,14 +162,14 @@ cat site/data/indicators.json | jq '.indicators[].code'  # IPCA, CDI, TR
 
 **Entregas:**
 
-- [ ] Layout base (`BaseLayout.astro`, `Header`, `Footer`)
-- [ ] Tipografia (Fraunces + Inter via @fontsource)
-- [ ] Tailwind com paleta do `06-site.md`
-- [ ] Página home `/` listando indicadores da `indicators.json`
-- [ ] Página `[slug].astro` lendo `site/data/{slug}.json` e renderizando hero, gráficos, tabela
-- [ ] Página `[category]/index.astro` com cards
-- [ ] Páginas estáticas: `/sobre/`, `/politica-de-privacidade/`, `/contato/`
-- [ ] Disclaimer presente em todas as páginas
+- [✅] Layout base (`BaseLayout.astro`, `Header`, `Footer`)
+- [✅] Tipografia (Fraunces + Inter via @fontsource)
+- [✅] Tailwind com paleta do `06-site.md`
+- [✅] Página home `/` listando indicadores da `indicators.json`
+- [✅] Página `[slug].astro` lendo `site/data/{slug}.json` e renderizando hero, gráficos, tabela
+- [✅] Página `[category]/index.astro` com cards
+- [✅] Páginas estáticas: `/sobre/`, `/politica-de-privacidade/`, `/contato/`
+- [✅] Disclaimer presente em todas as páginas
 
 **Smoke test:**
 

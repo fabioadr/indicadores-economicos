@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IndicatorCard from '../../components/domain/IndicatorCard.astro';
+import Disclaimer from '../../components/ui/Disclaimer.astro';
+import { loadIndex } from '../../lib/data';
+import type { CategoryKey } from '../../lib/data';
+import { categoryLabel, categorySlug } from '../../lib/format';
+
+const CATEGORY_DESCRIPTIONS: Record<CategoryKey, string> = {
+  inflacao:
+    'Indicadores que medem a variação de preços ao consumidor no Brasil. Usados como referência para metas de inflação, reajustes salariais e correção de contratos.',
+  juros:
+    'Taxas que servem de referência para o custo do dinheiro no Brasil. Base para empréstimos, financiamentos e remuneração de aplicações de renda fixa.',
+  correcao_monetaria:
+    'Índices usados para corrigir saldos no tempo, em poupança, FGTS e contratos com prazo longo. Refletem a variação do poder de compra ou do valor da moeda.',
+};
+
+export async function getStaticPaths() {
+  const index = loadIndex();
+  return (Object.keys(index.categories) as CategoryKey[]).map((key) => ({
+    params: { category: categorySlug(key) },
+    props: { categoryKey: key },
+  }));
+}
+
+interface Props {
+  categoryKey: CategoryKey;
+}
+
+const { categoryKey } = Astro.props as Props;
+const index = loadIndex();
+const indicators = index.indicators.filter((i) => i.category === categoryKey);
+const label = categoryLabel(categoryKey);
+const description = CATEGORY_DESCRIPTIONS[categoryKey];
+
+const meta = {
+  title: `${label} — Indicadores Econômicos Hoje`,
+  description: `${label}: ${description}`,
+};
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <div class="space-y-10">
+    <header class="space-y-4">
+      <p class="text-xs uppercase tracking-wide text-ink-faint">Categoria</p>
+      <h1 class="font-display text-4xl font-semibold text-ink">{label}</h1>
+      <p class="text-base text-ink-muted leading-relaxed max-w-2xl">{description}</p>
+    </header>
+
+    {indicators.length > 0 ? (
+      <section class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {indicators.map((ind) => <IndicatorCard indicator={ind} />)}
+      </section>
+    ) : (
+      <p class="text-sm text-ink-muted">Sem indicadores nesta categoria ainda.</p>
+    )}
+
+    <Disclaimer variant="card" />
+  </div>
+</BaseLayout>

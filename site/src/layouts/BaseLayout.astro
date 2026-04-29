@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="bg-bg text-ink">
+    <Header />
+    <main class="max-w-[1100px] mx-auto px-6 py-12 md:py-16">
+      <slot />
+    </main>
+    <Footer />
+    <style is:global>
+      a { text-decoration: underline; text-underline-offset: 3px; }
+      a.no-underline { text-decoration: none; }
+      h1, h2, h3 { font-family: var(--font-display); }
+      .prose h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+      }
+      .prose p { margin-bottom: 1rem; line-height: 1.7; }
+      .prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+      .prose li { margin-bottom: 0.25rem; line-height: 1.7; }
+      .prose strong { font-weight: 600; color: var(--color-ink); }
+    </style>
+  </body>
+</html>

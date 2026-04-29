@@ -37,6 +37,7 @@
       "Bash(npm:*)",
       "Bash(npx:*)",
       "Bash(node:*)",
+      "Bash(pnpm:*)",
 
       "Bash(git status:*)",
       "Bash(git diff:*)",

@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/fraunces/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+@theme {
+  --color-bg: #fafaf7;
+  --color-bg-elevated: #ffffff;
+  --color-ink: #1a1a1a;
+  --color-ink-muted: #525252;
+  --color-ink-faint: #a3a3a3;
+  --color-border: #e5e5e0;
+
+  --color-cat-inflacao: #b91c1c;
+  --color-cat-juros: #1e3a8a;
+  --color-cat-correcao: #166534;
+
+  --color-positive: #166534;
+  --color-negative: #b91c1c;
+  --color-neutral: #525252;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+a {
+  color: inherit;
+}

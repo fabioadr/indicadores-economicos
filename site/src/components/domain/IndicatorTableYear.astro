@@ -1,0 +1,53 @@
+---
+import type { IndicatorDetail } from '../../lib/data';
+import DataTable from '../ui/DataTable.astro';
+import {
+  formatPercent,
+  formatMonthShort,
+  reduceToMonthly,
+  yearOf,
+} from '../../lib/format';
+
+interface Props {
+  indicator: IndicatorDetail;
+}
+
+const { indicator } = Astro.props;
+
+const monthlyValues = reduceToMonthly(indicator.values);
+
+const years = monthlyValues.map((v) => yearOf(v.reference_date));
+const targetYear = years.length ? Math.max(...years) : new Date().getFullYear();
+const yearRows = monthlyValues
+  .filter((v) => yearOf(v.reference_date) === targetYear)
+  .sort((a, b) => a.reference_date.localeCompare(b.reference_date));
+---
+
+<section class="space-y-3">
+  <header class="flex items-baseline justify-between">
+    <h2 class="font-display text-xl font-semibold text-ink">
+      Tabela {targetYear}
+    </h2>
+    <p class="text-xs text-ink-faint">Mensal</p>
+  </header>
+  <DataTable caption={`Valores de ${indicator.code} em ${targetYear}`}>
+    <thead>
+      <tr>
+        <th scope="col">Mês</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Acum. ano</th>
+        <th scope="col">12 meses</th>
+      </tr>
+    </thead>
+    <tbody>
+      {yearRows.map((row) => (
+        <tr>
+          <th scope="row" class="capitalize">{formatMonthShort(row.reference_date)}</th>
+          <td>{formatPercent(row.value)}</td>
+          <td>{formatPercent(row.ytd)}</td>
+          <td>{formatPercent(row.last_12m)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </DataTable>
+</section>

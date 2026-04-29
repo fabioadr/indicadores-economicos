@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Disclaimer from '../components/ui/Disclaimer.astro';
+
+const meta = {
+  title: 'Sobre — Indicadores Econômicos Hoje',
+  description:
+    'Conheça o projeto Indicadores Econômicos Hoje: agregador automatizado de IPCA, CDI e TR a partir de fontes oficiais do Banco Central.',
+};
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <article class="prose max-w-3xl text-ink-muted">
+    <h1 class="font-display text-3xl md:text-4xl font-semibold text-ink mb-6">
+      Sobre o projeto
+    </h1>
+    <p>
+      <strong>Indicadores Econômicos Hoje</strong> é um agregador estático de
+      indicadores econômicos brasileiros, construído com o objetivo de oferecer
+      tabelas atualizadas e séries históricas completas dos principais índices.
+    </p>
+
+    <h2>Como os dados são coletados</h2>
+    <p>
+      As séries são obtidas diretamente da API do
+      <strong>Sistema Gerenciador de Séries Temporais (SGS)</strong> do Banco
+      Central do Brasil. Um pipeline executa diariamente e publica os dados
+      neste site sem intervenção manual.
+    </p>
+
+    <h2>Indicadores disponíveis</h2>
+    <ul>
+      <li><strong>IPCA</strong> — Índice Nacional de Preços ao Consumidor Amplo (série 433 do SGS).</li>
+      <li><strong>CDI</strong> — Certificado de Depósito Interbancário (série 4391 do SGS).</li>
+      <li><strong>TR</strong> — Taxa Referencial (série 226 do SGS).</li>
+    </ul>
+
+    <h2>Por que estático</h2>
+    <p>
+      O site é 100% HTML estático servido por uma CDN. Isso significa
+      carregamento rápido, custo zero de infraestrutura e ausência de cookies
+      ou rastreamento do usuário.
+    </p>
+  </article>
+
+  <div class="mt-12">
+    <Disclaimer variant="card" />
+  </div>
+</BaseLayout>

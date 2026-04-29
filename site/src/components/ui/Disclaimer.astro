@@ -1,0 +1,21 @@
+---
+interface Props {
+  variant?: 'card' | 'inline';
+}
+
+const { variant = 'card' } = Astro.props;
+
+const text =
+  'Os dados apresentados neste site são coletados de fontes públicas oficiais (Banco Central do Brasil, IBGE, FGV) e replicados de forma automatizada. Indicadores Econômicos Hoje não é uma instituição financeira nem fonte primária de dados. Sempre confirme valores na fonte oficial antes de tomar decisões financeiras ou jurídicas.';
+---
+
+{
+  variant === 'card' ? (
+    <aside class="bg-bg-elevated border-l-4 border-cat-inflacao rounded-md p-6 text-sm leading-relaxed text-ink-muted">
+      <p class="font-display text-base font-semibold text-ink mb-2">Aviso</p>
+      <p>{text}</p>
+    </aside>
+  ) : (
+    <p class="text-xs leading-relaxed text-ink-faint">{text}</p>
+  )
+}

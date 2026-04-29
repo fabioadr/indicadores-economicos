@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IndicatorHero from '../components/domain/IndicatorHero.astro';
+import IndicatorChart from '../components/domain/IndicatorChart.astro';
+import IndicatorTableYear from '../components/domain/IndicatorTableYear.astro';
+import IndicatorTableHistory from '../components/domain/IndicatorTableHistory.astro';
+import IndicatorCard from '../components/domain/IndicatorCard.astro';
+import Disclaimer from '../components/ui/Disclaimer.astro';
+import { loadIndex, loadDetail } from '../lib/data';
+import { formatMonthYear, formatPercent, yearOf } from '../lib/format';
+import { renderMarkdown } from '../lib/markdown';
+
+export async function getStaticPaths() {
+  const index = loadIndex();
+  return index.indicators.map((ind) => ({
+    params: { slug: ind.slug },
+    props: { code: ind.code },
+  }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const detail = loadDetail(slug);
+const index = loadIndex();
+
+const related = index.indicators.filter(
+  (i) => i.category === detail.category && i.slug !== detail.slug
+);
+
+const refDate = detail.latest.reference_date;
+const monthName = formatMonthYear(refDate).split('/')[0];
+const year = yearOf(refDate);
+const valueStr = (detail.latest.value ?? 0)
+  .toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const last12mStr = formatPercent(detail.latest.last_12m);
+
+const fillMeta = (template: string) =>
+  template
+    .replace('{month_name}', monthName)
+    .replace('{year}', String(year))
+    .replace('{value}', valueStr)
+    .replace('{last_12m}', last12mStr.replace('%', ''));
+
+const meta = {
+  title: fillMeta(detail.meta.title),
+  description: fillMeta(detail.meta.description),
+};
+
+const longHtml = renderMarkdown(detail.long_description);
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <div class="space-y-12">
+    <IndicatorHero indicator={detail} />
+
+    <IndicatorChart
+      src={detail.charts.current_year}
+      alt={`Gráfico de ${detail.code} no ano corrente`}
+      loading="eager"
+      caption={`${detail.code} mês a mês — ano corrente`}
+    />
+
+    <IndicatorTableYear indicator={detail} />
+
+    <IndicatorTableHistory indicator={detail} />
+
+    <IndicatorChart
+      src={detail.charts.history}
+      alt={`Gráfico histórico completo de ${detail.code}`}
+      loading="lazy"
+      caption={`${detail.code} — série histórica completa`}
+    />
+
+    <section class="space-y-4">
+      <h2 class="font-display text-xl font-semibold text-ink">Sobre o indicador</h2>
+      <article class="prose max-w-3xl text-ink-muted" set:html={longHtml} />
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="font-display text-xl font-semibold text-ink">Fonte</h2>
+      <p class="text-sm text-ink-muted">
+        Dados obtidos de
+        <a class="text-ink hover:opacity-80" href={detail.source.url} rel="external nofollow">
+          {detail.source.name}
+        </a>.
+      </p>
+    </section>
+
+    {related.length > 0 && (
+      <section class="space-y-4">
+        <h2 class="font-display text-xl font-semibold text-ink">Indicadores relacionados</h2>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {related.map((ind) => <IndicatorCard indicator={ind} />)}
+        </div>
+      </section>
+    )}
+
+    <Disclaimer variant="card" />
+  </div>
+</BaseLayout>

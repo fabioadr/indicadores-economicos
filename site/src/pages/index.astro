@@ -1,17 +1,99 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IndicatorCard from '../components/domain/IndicatorCard.astro';
+import Disclaimer from '../components/ui/Disclaimer.astro';
+import DataTable from '../components/ui/DataTable.astro';
+import { loadIndex } from '../lib/data';
+import type { CategoryKey } from '../lib/data';
+import {
+  categoryLabel,
+  categorySlug,
+  formatMonthYear,
+  formatPercent,
+} from '../lib/format';
 
+const index = loadIndex();
+
+const categoryOrder: CategoryKey[] = ['inflacao', 'juros', 'correcao_monetaria'];
+
+const indicatorBySlug = new Map(index.indicators.map((i) => [i.slug, i]));
+
+const meta = {
+  title: 'Indicadores Econômicos Hoje — IPCA, CDI, TR atualizados',
+  description:
+    'Tabelas atualizadas e séries históricas de IPCA, CDI e TR. Dados oficiais do Banco Central, agregação automática diária.',
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={meta.title} description={meta.description}>
+  <section class="space-y-4">
+    <p class="text-xs uppercase tracking-wide text-ink-faint">Indicadores</p>
+    <h1 class="font-display text-4xl md:text-5xl font-semibold leading-tight max-w-3xl">
+      Indicadores econômicos do Brasil, sempre atualizados.
+    </h1>
+    <p class="text-base md:text-lg text-ink-muted max-w-2xl leading-relaxed">
+      Acompanhe IPCA, CDI e TR com séries históricas completas, acumulado no
+      ano e variação em 12 meses. Dados coletados automaticamente das fontes
+      oficiais.
+    </p>
+  </section>
+
+  <section class="mt-12 space-y-4">
+    <h2 class="font-display text-xl font-semibold text-ink">
+      Resumo dos indicadores
+    </h2>
+    <DataTable>
+      <thead>
+        <tr>
+          <th scope="col">Indicador</th>
+          <th scope="col">Referência</th>
+          <th scope="col">Último</th>
+          <th scope="col">Acum. ano</th>
+          <th scope="col">12 meses</th>
+        </tr>
+      </thead>
+      <tbody>
+        {index.indicators.map((ind) => (
+          <tr>
+            <th scope="row">
+              <a class="text-ink no-underline font-sans font-medium" href={`/${ind.slug}/`}>
+                {ind.code} <span class="text-ink-faint font-normal">— {categoryLabel(ind.category)}</span>
+              </a>
+            </th>
+            <td>{formatMonthYear(ind.latest.reference_date)}</td>
+            <td>{formatPercent(ind.latest.value)}</td>
+            <td>{formatPercent(ind.latest.ytd)}</td>
+            <td>{formatPercent(ind.latest.last_12m)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </DataTable>
+  </section>
+
+  {categoryOrder.map((catKey) => {
+    const section = index.categories[catKey];
+    if (!section || section.indicators.length === 0) return null;
+    return (
+      <section class="mt-16 space-y-4">
+        <header class="flex items-baseline justify-between">
+          <h2 class="font-display text-xl font-semibold text-ink">
+            {categoryLabel(catKey)}
+          </h2>
+          <a class="text-sm text-ink-muted no-underline hover:text-ink" href={`/${categorySlug(catKey)}/`}>
+            Ver categoria →
+          </a>
+        </header>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {section.indicators.map((slug) => {
+            const ind = indicatorBySlug.get(slug);
+            return ind ? <IndicatorCard indicator={ind} /> : null;
+          })}
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="mt-16">
+    <Disclaimer variant="card" />
+  </section>
+</BaseLayout>

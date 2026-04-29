@@ -1,0 +1,39 @@
+---
+const navItems = [
+  { href: '/', label: 'Início' },
+  { href: '/inflacao/', label: 'Inflação' },
+  { href: '/juros/', label: 'Juros' },
+  { href: '/correcao-monetaria/', label: 'Correção Monetária' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-border bg-bg-elevated">
+  <div class="max-w-[1100px] mx-auto px-6 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <a href="/" class="font-display text-xl font-semibold text-ink no-underline">
+      Indicadores Econômicos <span class="text-ink-faint">Hoje</span>
+    </a>
+    <nav>
+      <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+        {
+          navItems.map((item) => {
+            const active = currentPath === item.href;
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class={`no-underline hover:text-ink ${
+                    active ? 'text-ink font-medium' : 'text-ink-muted'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

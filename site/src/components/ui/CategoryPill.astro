@@ -1,0 +1,29 @@
+---
+import type { CategoryKey } from '../../lib/data';
+import { categoryLabel, categorySlug } from '../../lib/format';
+
+interface Props {
+  category: CategoryKey;
+  asLink?: boolean;
+}
+
+const { category, asLink = false } = Astro.props;
+
+const colorClass: Record<CategoryKey, string> = {
+  inflacao: 'bg-cat-inflacao/10 text-cat-inflacao border-cat-inflacao/20',
+  juros: 'bg-cat-juros/10 text-cat-juros border-cat-juros/20',
+  correcao_monetaria: 'bg-cat-correcao/10 text-cat-correcao border-cat-correcao/20',
+};
+
+const baseClass = `inline-flex items-center gap-1 px-2 py-1 text-xs font-medium border rounded-full uppercase tracking-wide ${colorClass[category]}`;
+const label = categoryLabel(category);
+const href = `/${categorySlug(category)}/`;
+---
+
+{
+  asLink ? (
+    <a href={href} class={baseClass}>{label}</a>
+  ) : (
+    <span class={baseClass}>{label}</span>
+  )
+}
