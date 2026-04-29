@@ -36,3 +36,6 @@ dist/
 
 # Local Claude Code (machine-specific)
 .claude/settings.local.json
+
+# Database
+data/
