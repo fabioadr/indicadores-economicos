@@ -1,32 +1,43 @@
-"""Pipeline CLI — entry point for collect, build, deploy, status, etc.
+"""Pipeline CLI — entry point para collect, build, deploy, status, etc.
 
-M1 implements `migrate`. Other subcommands remain no-op until their milestones
-(M2: collect/backfill; M5: build; M9: deploy).
+M1 implementou `migrate`. M4 plugou `collect` e `backfill`. Os demais comandos
+ainda são stubs até seus milestones (M5: build, M9: deploy/publish).
 """
 
 from __future__ import annotations
 
 import argparse
 import sys
-from pathlib import Path
 
-from pipeline.db.connection import apply_pending_migrations, get_connection
+from pipeline import config
+from pipeline.core import scheduler
+from pipeline.db.connection import (
+    apply_pending_migrations,
+    get_connection,
+    get_indicator_by_code,
+)
 
 VERSION = "0.0.1"
-REPO_ROOT = Path(__file__).resolve().parent.parent
-MIGRATIONS_DIR = REPO_ROOT / "pipeline" / "db" / "migrations"
-DEFAULT_DB_PATH = REPO_ROOT / "data" / "indicadores.db"
 
 
 def _not_implemented(name: str) -> int:
-    print(f"{name}: not implemented yet (Milestone 0 skeleton)")
+    print(f"{name}: not implemented yet")
     return 0
 
 
+def _ensure_db_ready() -> None:
+    if not config.DB_PATH.exists():
+        print(
+            f"db not found at {config.DB_PATH}. Run `python -m pipeline.cli migrate` first.",
+            file=sys.stderr,
+        )
+        sys.exit(2)
+
+
 def cmd_migrate(args: argparse.Namespace) -> int:
-    conn = get_connection(DEFAULT_DB_PATH)
+    conn = get_connection(config.DB_PATH)
     try:
-        applied = apply_pending_migrations(conn, MIGRATIONS_DIR)
+        applied = apply_pending_migrations(conn, config.MIGRATIONS_DIR)
     finally:
         conn.close()
 
@@ -38,6 +49,19 @@ def cmd_migrate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _print_results(results: list[scheduler.CollectResult]) -> int:
+    if not results:
+        print("nothing to collect")
+        return 0
+    exit_code = 0
+    for r in results:
+        status = "ok" if r.ok else f"ERROR ({r.error})"
+        print(f"  {r.code}: added={r.added} updated={r.updated} {status}")
+        if not r.ok:
+            exit_code = 1
+    return exit_code
+
+
 def cmd_collect(args: argparse.Namespace) -> int:
     if not args.all and not args.code:
         print("collect: provide a code (e.g. IPCA) or --all", file=sys.stderr)
@@ -45,12 +69,41 @@ def cmd_collect(args: argparse.Namespace) -> int:
     if args.all and args.code:
         print("collect: --all and a code are mutually exclusive", file=sys.stderr)
         return 2
-    target = "--all" if args.all else args.code
-    return _not_implemented(f"collect {target}")
+
+    _ensure_db_ready()
+    conn = get_connection(config.DB_PATH)
+    try:
+        if args.all:
+            print("collect --all (running scheduler)")
+            results = scheduler.run_all(conn, triggered_by="cli")
+        else:
+            indicator = get_indicator_by_code(conn, args.code)
+            if indicator is None:
+                print(f"collect: unknown indicator '{args.code}'", file=sys.stderr)
+                return 2
+            if not indicator.active:
+                print(f"collect: indicator '{args.code}' is inactive", file=sys.stderr)
+                return 2
+            print(f"collect {indicator.code} (forced)")
+            results = [scheduler.collect_single(conn, indicator, triggered_by="cli")]
+        return _print_results(results)
+    finally:
+        conn.close()
 
 
 def cmd_backfill(args: argparse.Namespace) -> int:
-    return _not_implemented(f"backfill {args.code}")
+    _ensure_db_ready()
+    conn = get_connection(config.DB_PATH)
+    try:
+        indicator = get_indicator_by_code(conn, args.code)
+        if indicator is None:
+            print(f"backfill: unknown indicator '{args.code}'", file=sys.stderr)
+            return 2
+        print(f"backfill {indicator.code} (this may take a few seconds)")
+        result = scheduler.backfill_indicator(conn, indicator, triggered_by="backfill")
+        return _print_results([result])
+    finally:
+        conn.close()
 
 
 def cmd_build(args: argparse.Namespace) -> int:
@@ -66,16 +119,12 @@ def cmd_publish(args: argparse.Namespace) -> int:
 
 
 def cmd_status(args: argparse.Namespace) -> int:
-    db_path = REPO_ROOT / "data" / "indicadores.db"
-    site_data = REPO_ROOT / "site" / "data"
-    site_charts = REPO_ROOT / "site" / "public" / "charts"
-
     print(f"indicadores-economicos pipeline v{VERSION}")
-    print(f"  repo root:   {REPO_ROOT}")
-    print(f"  db path:     {db_path} ({'exists' if db_path.exists() else 'not created yet'})")
-    print(f"  site data:   {site_data} ({'exists' if site_data.exists() else 'not created yet'})")
-    print(f"  site charts: {site_charts} ({'exists' if site_charts.exists() else 'not created yet'})")
-    print("  indicators:  none registered yet (run migrations in M1)")
+    print(f"  repo root:   {config.REPO_ROOT}")
+    print(f"  db path:     {config.DB_PATH} ({'exists' if config.DB_PATH.exists() else 'not created yet'})")
+    print(f"  site data:   {config.SITE_DATA_DIR} ({'exists' if config.SITE_DATA_DIR.exists() else 'not created yet'})")
+    print(f"  site charts: {config.SITE_CHARTS_DIR} ({'exists' if config.SITE_CHARTS_DIR.exists() else 'not created yet'})")
+    print("  indicators:  run `sqlite3 data/indicadores.db 'SELECT code FROM indicators;'`")
     return 0
 
 
@@ -106,6 +155,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
+    config.setup_logging()
     parser = build_parser()
     args = parser.parse_args(argv)
     return args.func(args)

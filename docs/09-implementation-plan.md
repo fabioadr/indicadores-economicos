@@ -114,10 +114,10 @@ ORDER BY reference_date DESC LIMIT 5;
 
 **Entregas:**
 
-- [ ] `pipeline/core/scheduler.py` com `should_collect`, `run_all`, `collect_single`
-- [ ] `pipeline/db/connection.py` — métodos para `collection_logs`
-- [ ] `pipeline/cli.py` — comandos `collect`, `backfill` plugados
-- [ ] Logging configurado em `pipeline/config.py`
+- [✅] `pipeline/core/scheduler.py` com `should_collect`, `run_all`, `collect_single`
+- [✅] `pipeline/db/connection.py` — métodos para `collection_logs`
+- [✅] `pipeline/cli.py` — comandos `collect`, `backfill` plugados
+- [✅] Logging configurado em `pipeline/config.py`
 
 **Smoke test:**
 

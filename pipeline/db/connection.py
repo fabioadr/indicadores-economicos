@@ -1,8 +1,8 @@
 """SQLite connection helpers, migration runner, and domain accessors.
 
-M1 brought connection/migration plumbing; M3 layers on the domain helpers used
-by the collector and the aggregation logic (`upsert_value`, `list_values`,
-`get_last_value_date`, `batch_update_aggregations`).
+M1 brought connection/migration plumbing; M3 added value persistence and
+aggregation helpers; M4 layers on indicator lookups and `collection_logs`
+helpers used by the scheduler.
 """
 
 from __future__ import annotations
@@ -11,7 +11,7 @@ import sqlite3
 import uuid
 from collections.abc import Iterable
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 from pipeline.connectors.base import RawDataPoint
@@ -183,6 +183,141 @@ def batch_update_aggregations(
             """,
             payload,
         )
+
+
+@dataclass
+class Indicator:
+    id: str
+    code: str
+    slug: str
+    name: str
+    category: str
+    frequency: str
+    connector_type: str
+    connector_config: str
+    inception_date: date
+    expected_release_day: int | None
+    active: bool
+    last_collected_at: str | None
+
+
+_INDICATOR_COLUMNS = (
+    "id, code, slug, name, category, frequency, "
+    "connector_type, connector_config, inception_date, "
+    "expected_release_day, active, last_collected_at"
+)
+
+
+def _row_to_indicator(row: sqlite3.Row) -> Indicator:
+    return Indicator(
+        id=row["id"],
+        code=row["code"],
+        slug=row["slug"],
+        name=row["name"],
+        category=row["category"],
+        frequency=row["frequency"],
+        connector_type=row["connector_type"],
+        connector_config=row["connector_config"],
+        inception_date=date.fromisoformat(row["inception_date"]),
+        expected_release_day=row["expected_release_day"],
+        active=bool(row["active"]),
+        last_collected_at=row["last_collected_at"],
+    )
+
+
+def list_active_indicators(conn: sqlite3.Connection) -> list[Indicator]:
+    rows = fetch_all(
+        conn,
+        f"SELECT {_INDICATOR_COLUMNS} FROM indicators WHERE active = 1 ORDER BY code",
+    )
+    return [_row_to_indicator(r) for r in rows]
+
+
+def get_indicator_by_code(
+    conn: sqlite3.Connection, code: str
+) -> Indicator | None:
+    row = fetch_one(
+        conn,
+        f"SELECT {_INDICATOR_COLUMNS} FROM indicators WHERE code = ?",
+        (code,),
+    )
+    return _row_to_indicator(row) if row is not None else None
+
+
+def update_indicator_last_collected_at(
+    conn: sqlite3.Connection, indicator_id: str, ts: str
+) -> None:
+    with conn:
+        conn.execute(
+            "UPDATE indicators SET last_collected_at = ?, updated_at = datetime('now') WHERE id = ?",
+            (ts, indicator_id),
+        )
+
+
+def _utc_now_iso() -> str:
+    return datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def start_collection_log(
+    conn: sqlite3.Connection,
+    indicator_id: str | None,
+    triggered_by: str,
+) -> str:
+    log_id = str(uuid.uuid4())
+    with conn:
+        conn.execute(
+            """
+            INSERT INTO collection_logs (
+                id, indicator_id, triggered_by, started_at, status
+            ) VALUES (?, ?, ?, ?, 'running')
+            """,
+            (log_id, indicator_id, triggered_by, _utc_now_iso()),
+        )
+    return log_id
+
+
+def finish_collection_log(
+    conn: sqlite3.Connection,
+    log_id: str,
+    status: str,
+    *,
+    added: int = 0,
+    updated: int = 0,
+    error_message: str | None = None,
+    raw_response: str | None = None,
+) -> None:
+    with conn:
+        conn.execute(
+            """
+            UPDATE collection_logs
+               SET finished_at     = ?,
+                   status          = ?,
+                   records_added   = ?,
+                   records_updated = ?,
+                   error_message   = ?,
+                   raw_response    = ?
+             WHERE id = ?
+            """,
+            (
+                _utc_now_iso(),
+                status,
+                added,
+                updated,
+                error_message,
+                raw_response,
+                log_id,
+            ),
+        )
+
+
+def record_skipped_collection(
+    conn: sqlite3.Connection,
+    indicator_id: str | None,
+    triggered_by: str,
+) -> str:
+    log_id = start_collection_log(conn, indicator_id, triggered_by)
+    finish_collection_log(conn, log_id, status="skipped")
+    return log_id
 
 
 def apply_pending_migrations(
