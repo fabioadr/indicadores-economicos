@@ -37,5 +37,7 @@ dist/
 # Local Claude Code (machine-specific)
 .claude/settings.local.json
 
-# Database
-data/
+# Database — only ignore SQLite transient sidecar files; the .db itself is versioned
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
