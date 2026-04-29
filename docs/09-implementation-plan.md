@@ -59,12 +59,12 @@ sqlite3 data/indicadores.db "SELECT code FROM indicators;"
 
 **Entregas:**
 
-- [ ] `pipeline/connectors/base.py` com `BaseConnector`, `RawDataPoint`, `register`, `get_connector`
-- [ ] `pipeline/connectors/bcb.py` com `BCBSGSConnector` registrado como `bcb_sgs`
-- [ ] Paginação por janelas de 10 anos
-- [ ] Tratamento de erros com `FetchError` e `ParseError`
-- [ ] Testes em `pipeline/connectors/tests/test_bcb.py` com `respx` mockando httpx
-- [ ] Pelo menos 4 casos de teste: janela única, paginação, erro HTTP, JSON malformado
+- [✅] `pipeline/connectors/base.py` com `BaseConnector`, `RawDataPoint`, `register`, `get_connector`
+- [✅] `pipeline/connectors/bcb.py` com `BCBSGSConnector` registrado como `bcb_sgs`
+- [✅] Paginação por janelas de 10 anos
+- [✅] Tratamento de erros com `FetchError` e `ParseError`
+- [✅] Testes em `pipeline/connectors/tests/test_bcb.py` com `respx` mockando httpx
+- [✅] Pelo menos 4 casos de teste: janela única, paginação, erro HTTP, JSON malformado
 
 **Smoke test:**
 
