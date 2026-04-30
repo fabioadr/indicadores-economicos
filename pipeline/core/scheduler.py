@@ -161,7 +161,12 @@ def _run_collection(
             conn, log_id, status="error", error_message=message
         )
         logger.warning("collect %s falhou: %s", indicator.code, message)
-        # TODO(M8): bot.notify_error(indicator, exc)
+        try:
+            from pipeline.bot import notifications
+
+            notifications.send_collect_error(indicator, message)
+        except Exception:  # noqa: BLE001 — notificação nunca derruba pipeline
+            logger.exception("Falha ao notificar erro de coleta")
         return CollectResult(
             code=indicator.code, added=0, updated=0, error=message
         )
@@ -195,4 +200,12 @@ def run_all(
             logger.info("skip %s (should_collect=False)", indicator.code)
             continue
         results.append(collect_single(conn, indicator, triggered_by))
+
+    if results and triggered_by != "telegram":
+        try:
+            from pipeline.bot import notifications
+
+            notifications.send_collect_success(results)
+        except Exception:  # noqa: BLE001
+            logger.exception("Falha ao notificar resumo de coleta")
     return results

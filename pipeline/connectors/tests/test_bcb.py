@@ -116,6 +116,20 @@ def test_malformed_json_raises_parse_error():
 
 
 @respx.mock
+def test_404_returns_empty_list():
+    """BCB returns 404 when there is no data for the requested date range (e.g. future month)."""
+    respx.get(URL).mock(return_value=httpx.Response(404, text="Not Found"))
+
+    points = BCBSGSConnector().fetch(
+        {"series_id": SERIES_ID},
+        since=date(2026, 4, 1),
+        until=date(2026, 4, 30),
+    )
+
+    assert points == []
+
+
+@respx.mock
 def test_decimal_with_comma_is_parsed():
     payload = [{"data": "01/01/2024", "valor": "0,44"}]
     respx.get(URL).mock(return_value=httpx.Response(200, json=payload))

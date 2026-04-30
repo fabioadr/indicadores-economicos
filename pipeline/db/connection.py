@@ -339,6 +339,74 @@ def record_skipped_collection(
     return log_id
 
 
+@dataclass
+class CollectionLog:
+    id: str
+    indicator_id: str | None
+    indicator_code: str | None
+    triggered_by: str
+    started_at: str
+    finished_at: str | None
+    status: str
+    records_added: int
+    records_updated: int
+    error_message: str | None
+
+
+def _row_to_collection_log(row: sqlite3.Row) -> CollectionLog:
+    return CollectionLog(
+        id=row["id"],
+        indicator_id=row["indicator_id"],
+        indicator_code=row["indicator_code"],
+        triggered_by=row["triggered_by"],
+        started_at=row["started_at"],
+        finished_at=row["finished_at"],
+        status=row["status"],
+        records_added=row["records_added"] or 0,
+        records_updated=row["records_updated"] or 0,
+        error_message=row["error_message"],
+    )
+
+
+def list_recent_collection_logs(
+    conn: sqlite3.Connection, limit: int = 10
+) -> list[CollectionLog]:
+    rows = fetch_all(
+        conn,
+        """
+        SELECT cl.id, cl.indicator_id, i.code AS indicator_code,
+               cl.triggered_by, cl.started_at, cl.finished_at, cl.status,
+               cl.records_added, cl.records_updated, cl.error_message
+          FROM collection_logs cl
+          LEFT JOIN indicators i ON i.id = cl.indicator_id
+         ORDER BY cl.started_at DESC
+         LIMIT ?
+        """,
+        (limit,),
+    )
+    return [_row_to_collection_log(r) for r in rows]
+
+
+def list_recent_collection_errors(
+    conn: sqlite3.Connection, since: datetime
+) -> list[CollectionLog]:
+    rows = fetch_all(
+        conn,
+        """
+        SELECT cl.id, cl.indicator_id, i.code AS indicator_code,
+               cl.triggered_by, cl.started_at, cl.finished_at, cl.status,
+               cl.records_added, cl.records_updated, cl.error_message
+          FROM collection_logs cl
+          LEFT JOIN indicators i ON i.id = cl.indicator_id
+         WHERE cl.status = 'error'
+           AND cl.started_at >= ?
+         ORDER BY cl.started_at DESC
+        """,
+        (since.strftime("%Y-%m-%dT%H:%M:%SZ"),),
+    )
+    return [_row_to_collection_log(r) for r in rows]
+
+
 def update_indicator_last_built_at(
     conn: sqlite3.Connection, indicator_id: str, ts: str
 ) -> None:

@@ -214,12 +214,12 @@ cd site && pnpm build && pnpm preview
 
 **Entregas:**
 
-- [ ] `pipeline/bot/handlers.py` — comandos do `07-telegram-bot.md`
-- [ ] `pipeline/bot/notifications.py` — funções `send_*`
-- [ ] `pipeline/bot/auth.py` — decorator `@authorized_only`
-- [ ] `pipeline/bot/__main__.py` — entry point para `python -m pipeline.bot`
-- [ ] Pipeline chama `bot.notifications.send_*` em pontos relevantes
-- [ ] `scripts/install_systemd.sh` — instala o user service
+- [✅] `pipeline/bot/handlers.py` — comandos do `07-telegram-bot.md`
+- [✅] `pipeline/bot/notifications.py` — funções `send_*`
+- [✅] `pipeline/bot/auth.py` — decorator `@authorized_only`
+- [✅] `pipeline/bot/__main__.py` — entry point para `python -m pipeline.bot`
+- [✅] Pipeline chama `bot.notifications.send_*` em pontos relevantes
+- [✅] `scripts/install_systemd.sh` — instala o user service
 
 **Smoke test:**
 

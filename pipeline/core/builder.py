@@ -266,10 +266,25 @@ def build(
             indicators_updated=changed_codes,
             files_generated=files_generated,
         )
-        return BuildResult("success", changed_codes, files_generated, log_id)
+        result = BuildResult("success", changed_codes, files_generated, log_id)
+        if triggered_by != "telegram":
+            try:
+                from pipeline.bot import notifications
+
+                notifications.send_build_success(result)
+            except Exception:  # noqa: BLE001
+                logger.exception("Falha ao notificar sucesso de build")
+        return result
     except Exception as exc:  # noqa: BLE001
         logger.exception("build failed")
         finish_build_log(
             conn, log_id, status="error", error_message=str(exc),
         )
+        if triggered_by != "telegram":
+            try:
+                from pipeline.bot import notifications
+
+                notifications.send_build_error(exc)
+            except Exception:  # noqa: BLE001
+                logger.exception("Falha ao notificar erro de build")
         raise

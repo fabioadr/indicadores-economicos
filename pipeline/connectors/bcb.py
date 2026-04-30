@@ -70,6 +70,10 @@ class BCBSGSConnector(BaseConnector):
         }
         try:
             response = httpx.get(url, params=params, timeout=HTTP_TIMEOUT_SECONDS)
+            if response.status_code == 404:
+                # BCB returns 404 when there is no data in the requested window
+                # (e.g. querying a future month). Treat as empty, not an error.
+                return []
             response.raise_for_status()
         except httpx.HTTPError as e:
             raise FetchError(f"Erro HTTP ao buscar série {series_id}: {e}") from e
