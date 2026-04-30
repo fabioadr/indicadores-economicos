@@ -11,7 +11,7 @@ from html import escape
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from pipeline.core.builder import BuildResult
+    from pipeline.core.builder import BuildResult, DeployResult
     from pipeline.core.scheduler import CollectResult
     from pipeline.db.connection import (
         BuildLog,
@@ -19,6 +19,8 @@ if TYPE_CHECKING:
         Indicator,
         IndicatorValue,
     )
+
+SITE_URL = "https://indicadoreseconomicoshoje.com.br/"
 
 CATEGORY_ICON = {
     "inflacao": "🏛",
@@ -59,7 +61,7 @@ def help_message() -> str:
         "/status — resumo do sistema\n"
         "/indicadores — lista indicadores ativos\n"
         "/coletar &lt;CODE|all&gt; — roda coleta imediata\n"
-        "/publicar — gera build (deploy chega no M9)\n"
+        "/publicar — gera build + deploy\n"
         "/logs [n] — últimas n entradas do log\n"
         "/erros — erros das últimas 24h\n"
         "/help — esta mensagem"
@@ -183,10 +185,9 @@ def collect_error_message(indicator: "Indicator", error: str) -> str:
 def build_success_message(result: "BuildResult") -> str:
     codes = ", ".join(escape(c) for c in result.changed)
     return (
-        "🚀 <b>Build concluído</b>\n\n"
+        "🛠 <b>Build concluído</b>\n\n"
         f"Indicadores atualizados: {codes}\n"
-        f"Arquivos gerados: {result.files_generated}\n\n"
-        "Deploy automático entra no M9."
+        f"Arquivos gerados: {result.files_generated}"
     )
 
 
@@ -195,6 +196,44 @@ def build_error_message(exc: BaseException) -> str:
         "❌ <b>ERRO no build</b>\n\n"
         f"{escape(type(exc).__name__)}: {escape(str(exc))}"
     )
+
+
+def deploy_success_message(
+    deploy_result: "DeployResult", build_result: "BuildResult"
+) -> str:
+    codes = ", ".join(escape(c) for c in build_result.changed) or "—"
+    sha = (deploy_result.commit_sha or "")[:7]
+    sha_line = f"Commit: <code>{escape(sha)}</code>\n" if sha else ""
+    return (
+        "🚀 <b>Deploy concluído</b>\n\n"
+        f"Indicadores: {codes}\n"
+        f"{sha_line}"
+        f"{escape(SITE_URL)}\n\n"
+        "Vercel detecta o push em ~1–2min."
+    )
+
+
+def deploy_error_message(exc: BaseException) -> str:
+    return (
+        "❌ <b>ERRO no deploy</b>\n\n"
+        f"{escape(type(exc).__name__)}: {escape(str(exc))}"
+    )
+
+
+def publish_summary_message(
+    build_result: "BuildResult", deploy_result: "DeployResult | None"
+) -> str:
+    if build_result.status == "no_changes":
+        return "ℹ️ Nenhum indicador precisava de rebuild."
+    if deploy_result is None or deploy_result.status == "no_changes":
+        codes = ", ".join(escape(c) for c in build_result.changed) or "—"
+        return (
+            "🛠 <b>Build concluído</b>\n\n"
+            f"Indicadores atualizados: {codes}\n"
+            f"Arquivos gerados: {build_result.files_generated}\n\n"
+            "ℹ️ Working tree limpo — nada para commitar."
+        )
+    return deploy_success_message(deploy_result, build_result)
 
 
 def logs_message(logs: list["CollectionLog"]) -> str:

@@ -18,7 +18,7 @@ import httpx
 from pipeline import config
 
 if TYPE_CHECKING:
-    from pipeline.core.builder import BuildResult
+    from pipeline.core.builder import BuildResult, DeployResult
     from pipeline.core.scheduler import CollectResult
     from pipeline.db.connection import Indicator
 
@@ -97,3 +97,19 @@ def send_build_error(exc: BaseException) -> None:
     from pipeline.bot import formatters
 
     send_message(formatters.build_error_message(exc))
+
+
+def send_deploy_success(
+    deploy_result: "DeployResult", build_result: "BuildResult"
+) -> None:
+    if deploy_result.status != "success":
+        return
+    from pipeline.bot import formatters
+
+    send_message(formatters.deploy_success_message(deploy_result, build_result))
+
+
+def send_deploy_error(exc: BaseException) -> None:
+    from pipeline.bot import formatters
+
+    send_message(formatters.deploy_error_message(exc))

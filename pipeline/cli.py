@@ -15,14 +15,10 @@ from pipeline.db.connection import (
     apply_pending_migrations,
     get_connection,
     get_indicator_by_code,
+    get_last_successful_build,
 )
 
 VERSION = "0.0.1"
-
-
-def _not_implemented(name: str) -> int:
-    print(f"{name}: not implemented yet")
-    return 0
 
 
 def _ensure_db_ready() -> None:
@@ -123,12 +119,74 @@ def cmd_build(args: argparse.Namespace) -> int:
     return 0 if result.status == "success" else 1
 
 
+def _print_deploy(result: builder.DeployResult) -> None:
+    if result.status == "no_changes":
+        print("deploy: working tree limpo (nada para commitar)")
+        return
+    sha = (result.commit_sha or "")[:8]
+    print(f"deploy: success ({sha}) — {len(result.files_changed)} arquivo(s)")
+
+
+def _build_result_from_log(log) -> builder.BuildResult:
+    codes = [c for c in (log.indicators_updated or "").split(",") if c]
+    return builder.BuildResult(
+        status="success",
+        changed=codes,
+        files_generated=log.files_generated or 0,
+        log_id=log.id,
+    )
+
+
 def cmd_deploy(args: argparse.Namespace) -> int:
-    return _not_implemented("deploy")
+    _ensure_db_ready()
+    conn = get_connection(config.DB_PATH)
+    try:
+        last = get_last_successful_build(conn)
+        if last is None:
+            print(
+                "deploy: nenhum build bem-sucedido no histórico — rode `pipeline build` primeiro.",
+                file=sys.stderr,
+            )
+            return 2
+        build_result = _build_result_from_log(last)
+        try:
+            result = builder.deploy(conn, build_result, triggered_by="cli")
+        except Exception as exc:  # noqa: BLE001
+            print(f"deploy: falhou ({type(exc).__name__}: {exc})", file=sys.stderr)
+            return 1
+        _print_deploy(result)
+        return 0
+    finally:
+        conn.close()
 
 
 def cmd_publish(args: argparse.Namespace) -> int:
-    return _not_implemented("publish")
+    _ensure_db_ready()
+    conn = get_connection(config.DB_PATH)
+    try:
+        try:
+            build_result = builder.build(conn, triggered_by="cli")
+        except Exception as exc:  # noqa: BLE001
+            print(f"publish: build falhou ({type(exc).__name__}: {exc})", file=sys.stderr)
+            return 1
+
+        if build_result.status == "no_changes":
+            print("publish: build sem mudanças — nada a deployar")
+            return 0
+
+        print(f"publish: build {build_result.status} ({build_result.files_generated} arquivos)")
+        for code in build_result.changed:
+            print(f"  rebuilt: {code}")
+
+        try:
+            deploy_result = builder.deploy(conn, build_result, triggered_by="cli")
+        except Exception as exc:  # noqa: BLE001
+            print(f"publish: deploy falhou ({type(exc).__name__}: {exc})", file=sys.stderr)
+            return 1
+        _print_deploy(deploy_result)
+        return 0
+    finally:
+        conn.close()
 
 
 def cmd_status(args: argparse.Namespace) -> int:

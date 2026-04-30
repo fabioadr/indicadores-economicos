@@ -150,26 +150,41 @@ async def cmd_coletar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
 
 @authorized_only
 async def cmd_publicar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await _reply(update, "🛠 Rodando build...")
+    await _reply(update, "🛠 Rodando build + deploy...")
 
-    def work() -> builder.BuildResult:
+    def work() -> tuple[builder.BuildResult, builder.DeployResult | None, BaseException | None]:
         conn = get_connection(config.DB_PATH)
         try:
-            return builder.build(conn, triggered_by="telegram")
+            build_result = builder.build(conn, triggered_by="telegram")
+            if build_result.status != "success":
+                return build_result, None, None
+            try:
+                deploy_result = builder.deploy(
+                    conn, build_result, triggered_by="telegram"
+                )
+            except Exception as exc:  # noqa: BLE001
+                return build_result, None, exc
+            return build_result, deploy_result, None
         finally:
             conn.close()
 
     try:
-        result = await asyncio.to_thread(work)
+        build_result, deploy_result, deploy_exc = await asyncio.to_thread(work)
     except Exception as exc:  # noqa: BLE001
         logger.exception("publicar falhou")
         await _reply(update, formatters.build_error_message(exc))
         return
 
-    if result.status == "no_changes":
+    if build_result.status == "no_changes":
         await _reply(update, "ℹ️ Nenhum indicador precisava de rebuild.")
         return
-    await _reply(update, formatters.build_success_message(result))
+
+    if deploy_exc is not None:
+        await _reply(update, formatters.build_success_message(build_result))
+        await _reply(update, formatters.deploy_error_message(deploy_exc))
+        return
+
+    await _reply(update, formatters.publish_summary_message(build_result, deploy_result))
 
 
 @authorized_only

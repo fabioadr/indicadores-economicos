@@ -11,8 +11,9 @@ from __future__ import annotations
 import json
 import logging
 import sqlite3
+import subprocess
 from collections import defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -26,6 +27,7 @@ from pipeline.db.connection import (
     list_active_indicators,
     list_values,
     start_build_log,
+    update_build_log_commit,
     update_indicator_last_built_at,
 )
 
@@ -46,6 +48,17 @@ class BuildResult:
     changed: list[str]
     files_generated: int
     log_id: str | None
+
+
+@dataclass
+class DeployResult:
+    status: str  # "success" | "no_changes" | "error"
+    commit_sha: str | None = None
+    files_changed: list[str] = field(default_factory=list)
+    pushed: bool = False
+
+
+DEPLOY_PATHS = ("site/data", "site/public/charts", "data/indicadores.db")
 
 
 def _now_sp_iso() -> str:
@@ -287,4 +300,119 @@ def build(
                 notifications.send_build_error(exc)
             except Exception:  # noqa: BLE001
                 logger.exception("Falha ao notificar erro de build")
+        raise
+
+
+def _run_git(args: list[str], *, cwd: Path) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        ["git", *args],
+        cwd=cwd,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+
+def _build_commit_message(
+    build_result: BuildResult, *, today: str | None = None
+) -> str:
+    today = today or datetime.now(tz=SP_TZ).date().isoformat()
+    codes = ", ".join(build_result.changed)
+    bullet_lines = "\n".join(f"- {c}" for c in build_result.changed)
+    log_line = f"\n\nBuild log: {build_result.log_id}" if build_result.log_id else ""
+    return (
+        f"data: update {codes} ({today})\n\n"
+        f"Indicadores atualizados:\n{bullet_lines}"
+        f"{log_line}"
+    )
+
+
+def _porcelain_paths(output: str) -> list[str]:
+    """Parse `git status --porcelain` output into a flat list of paths."""
+    paths: list[str] = []
+    for line in output.splitlines():
+        if not line.strip():
+            continue
+        # Format: "XY path" (rename: "XY old -> new"). We only care about the destination.
+        rest = line[3:]
+        if " -> " in rest:
+            rest = rest.split(" -> ", 1)[1]
+        paths.append(rest.strip())
+    return paths
+
+
+def deploy(
+    conn: sqlite3.Connection,
+    build_result: BuildResult,
+    *,
+    repo_path: Path | None = None,
+    triggered_by: str = "cli",
+) -> DeployResult:
+    """git add + commit + push para os 3 paths derivados do build.
+
+    Idempotente: se nada mudou nos paths alvo, retorna no_changes sem commit.
+    Push real falha se o remote não estiver acessível — erro é notificado e
+    re-lançado para o caller.
+    """
+    repo = repo_path or config.GITHUB_REPO_PATH
+
+    try:
+        status = _run_git(
+            ["status", "--porcelain", "--", *DEPLOY_PATHS],
+            cwd=repo,
+        )
+        files_changed = _porcelain_paths(status.stdout)
+
+        if not files_changed:
+            logger.info("deploy: working tree clean for %s", DEPLOY_PATHS)
+            return DeployResult(status="no_changes")
+
+        _run_git(["add", "--", *DEPLOY_PATHS], cwd=repo)
+        message = _build_commit_message(build_result)
+        _run_git(["commit", "-m", message], cwd=repo)
+        _run_git(["push", "origin", "main"], cwd=repo)
+        sha = _run_git(["rev-parse", "HEAD"], cwd=repo).stdout.strip()
+
+        if build_result.log_id:
+            update_build_log_commit(conn, build_result.log_id, sha)
+
+        result = DeployResult(
+            status="success",
+            commit_sha=sha,
+            files_changed=files_changed,
+            pushed=True,
+        )
+        logger.info("deploy: pushed %s (%d files)", sha[:7], len(files_changed))
+
+        if triggered_by != "telegram":
+            try:
+                from pipeline.bot import notifications
+
+                notifications.send_deploy_success(result, build_result)
+            except Exception:  # noqa: BLE001
+                logger.exception("Falha ao notificar sucesso de deploy")
+        return result
+    except subprocess.CalledProcessError as exc:
+        stderr = (exc.stderr or "").strip()
+        logger.exception("deploy failed: %s", stderr)
+        if triggered_by != "telegram":
+            try:
+                from pipeline.bot import notifications
+
+                wrapped = RuntimeError(
+                    f"git {' '.join(exc.cmd[1:])} falhou: {stderr or exc}"
+                )
+                notifications.send_deploy_error(wrapped)
+            except Exception:  # noqa: BLE001
+                logger.exception("Falha ao notificar erro de deploy")
+        raise
+    except Exception as exc:  # noqa: BLE001
+        logger.exception("deploy failed")
+        if triggered_by != "telegram":
+            try:
+                from pipeline.bot import notifications
+
+                notifications.send_deploy_error(exc)
+            except Exception:  # noqa: BLE001
+                logger.exception("Falha ao notificar erro de deploy")
         raise

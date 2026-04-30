@@ -8,7 +8,7 @@ from datetime import date
 import pytest
 
 from pipeline.bot import formatters
-from pipeline.core.builder import BuildResult
+from pipeline.core.builder import BuildResult, DeployResult
 from pipeline.core.scheduler import CollectResult
 
 
@@ -116,13 +116,60 @@ def test_build_success_message():
     result = BuildResult("success", ["IPCA", "CDI"], 6, "log-1")
     msg = formatters.build_success_message(result)
     assert "IPCA" in msg and "CDI" in msg
-    assert "M9" in msg
+    # M9 já implementado — deploy mention removido daqui (vai em deploy_success_message).
+    assert "M9" not in msg
+    assert "Build concluído" in msg
 
 
 def test_build_error_message():
     msg = formatters.build_error_message(RuntimeError("disk full"))
     assert "RuntimeError" in msg
     assert "disk full" in msg
+
+
+def test_deploy_success_message():
+    build = BuildResult("success", ["IPCA", "CDI"], 6, "log-1")
+    deploy = DeployResult(
+        status="success",
+        commit_sha="abcdef0123456789",
+        files_changed=["site/data/ipca.json"],
+        pushed=True,
+    )
+    msg = formatters.deploy_success_message(deploy, build)
+    assert "Deploy concluído" in msg
+    assert "IPCA, CDI" in msg
+    assert "abcdef0" in msg  # SHA encurtado em 7 chars
+    assert "indicadoreseconomicoshoje.com.br" in msg
+
+
+def test_deploy_error_message():
+    msg = formatters.deploy_error_message(RuntimeError("git push falhou: remote rejected"))
+    assert "ERRO no deploy" in msg
+    assert "remote rejected" in msg
+
+
+def test_publish_summary_message_no_changes_in_build():
+    build = BuildResult("no_changes", [], 0, None)
+    msg = formatters.publish_summary_message(build, None)
+    assert "Nenhum indicador" in msg
+
+
+def test_publish_summary_message_no_changes_in_deploy():
+    build = BuildResult("success", ["IPCA"], 4, "log-1")
+    deploy = DeployResult(status="no_changes")
+    msg = formatters.publish_summary_message(build, deploy)
+    assert "Build concluído" in msg
+    assert "Working tree limpo" in msg
+
+
+def test_publish_summary_message_full_success():
+    build = BuildResult("success", ["IPCA"], 4, "log-1")
+    deploy = DeployResult(
+        status="success", commit_sha="0123456789abcdef", files_changed=["x"], pushed=True,
+    )
+    msg = formatters.publish_summary_message(build, deploy)
+    assert "Deploy concluído" in msg
+    assert "0123456" in msg
 
 
 def test_logs_message_empty():

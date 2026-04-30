@@ -476,6 +476,16 @@ def finish_build_log(
         )
 
 
+def update_build_log_commit(
+    conn: sqlite3.Connection, log_id: str, git_commit_sha: str
+) -> None:
+    with conn:
+        conn.execute(
+            "UPDATE build_logs SET git_commit_sha = ? WHERE id = ?",
+            (git_commit_sha, log_id),
+        )
+
+
 def get_last_successful_build(conn: sqlite3.Connection) -> BuildLog | None:
     row = fetch_one(
         conn,

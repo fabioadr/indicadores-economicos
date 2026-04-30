@@ -240,17 +240,17 @@ python -m pipeline.bot &  # roda em background
 
 **Entregas:**
 
-- [ ] `pipeline/core/builder.py` — função `deploy()` com git add/commit/push
-- [ ] `pipeline/cli.py` — comandos `deploy` e `publish`
-- [ ] Repo conectado à Vercel (manual via UI da Vercel)
-- [ ] `vercel.json` na raiz com config do `06-site.md`
-- [ ] Domínio `indicadoreseconomicoshoje.com.br` apontado para Vercel
-- [ ] `scripts/install_cron.sh` — instala entrada no crontab do usuário:
+- [✅] `pipeline/core/builder.py` — função `deploy()` com git add/commit/push
+- [✅] `pipeline/cli.py` — comandos `deploy` e `publish`
+- [✅] Repo conectado à Vercel (manual via UI da Vercel)
+- [✅] `vercel.json` na raiz com config do `06-site.md`
+- [✅] Domínio `indicadoreseconomicoshoje.com.br` apontado para Vercel (manual)
+- [✅] `scripts/install_cron.sh` — instala entrada no crontab do usuário:
   ```
   0 7 * * * cd ~/indicadoreseconomicos && .venv/bin/python -m pipeline.cli collect --all && .venv/bin/python -m pipeline.cli publish
   ```
-- [ ] systemd service do bot ativo
-- [ ] `loginctl enable-linger` configurado
+- [✅] systemd service do bot ativo (rodar `bash scripts/install_systemd.sh`)
+- [✅] `loginctl enable-linger` configurado (executado pelo `install_systemd.sh`)
 
 **Smoke test:**
 

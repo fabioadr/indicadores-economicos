@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from datetime import date
 from pathlib import Path
 
@@ -169,6 +170,146 @@ def test_build_no_changes_skips_charts(db_conn, site_dirs, monkeypatch):
     assert second.status == "no_changes"
     assert second.changed == []
     assert calls == {"current_year": 0, "history": 0}
+
+
+def test_build_commit_message_format():
+    result = builder.BuildResult(
+        status="success",
+        changed=["IPCA", "CDI"],
+        files_generated=8,
+        log_id="abc-123",
+    )
+    msg = builder._build_commit_message(result, today="2026-04-30")
+    assert msg.startswith("data: update IPCA, CDI (2026-04-30)\n\n")
+    assert "Indicadores atualizados:\n- IPCA\n- CDI" in msg
+    assert msg.endswith("Build log: abc-123")
+
+
+def _git_calls_recorder(porcelain_output: str, *, push_should_fail: bool = False):
+    calls: list[list[str]] = []
+
+    def fake_run(args, cwd, check, capture_output, text):  # noqa: ARG001
+        calls.append(list(args))
+        cmd = args[1] if len(args) > 1 else ""
+        if cmd == "status":
+            return subprocess.CompletedProcess(args, 0, stdout=porcelain_output, stderr="")
+        if cmd == "push" and push_should_fail:
+            raise subprocess.CalledProcessError(
+                1, args, output="", stderr="remote rejected"
+            )
+        if cmd == "rev-parse":
+            return subprocess.CompletedProcess(
+                args, 0, stdout="deadbeefcafebabe1234567890\n", stderr=""
+            )
+        return subprocess.CompletedProcess(args, 0, stdout="", stderr="")
+
+    return calls, fake_run
+
+
+def test_deploy_no_changes(db_conn, monkeypatch, tmp_path):
+    calls, fake_run = _git_calls_recorder(porcelain_output="")
+    monkeypatch.setattr(subprocess, "run", fake_run)
+
+    build_result = builder.BuildResult(
+        status="success", changed=["IPCA"], files_generated=4, log_id=None,
+    )
+    result = builder.deploy(db_conn, build_result, repo_path=tmp_path, triggered_by="cli")
+
+    assert result.status == "no_changes"
+    assert result.commit_sha is None
+    assert result.pushed is False
+    # Apenas o status foi consultado — nem add, commit ou push.
+    assert len(calls) == 1
+    assert calls[0][1] == "status"
+
+
+def test_deploy_success(db_conn, monkeypatch, tmp_path):
+    porcelain = " M site/data/indicators.json\n M site/data/ipca.json\n"
+    calls, fake_run = _git_calls_recorder(porcelain_output=porcelain)
+    monkeypatch.setattr(subprocess, "run", fake_run)
+
+    sent: list[tuple] = []
+
+    def fake_send_success(deploy_result, build_result):
+        sent.append((deploy_result, build_result))
+
+    monkeypatch.setattr(
+        "pipeline.bot.notifications.send_deploy_success", fake_send_success
+    )
+
+    # Cria um build_log real para podermos validar update_build_log_commit.
+    log_id = start_build_log(db_conn, triggered_by="test")
+    finish_build_log(
+        db_conn, log_id, status="success",
+        indicators_updated=["IPCA"], files_generated=4,
+    )
+    build_result = builder.BuildResult(
+        status="success", changed=["IPCA"], files_generated=4, log_id=log_id,
+    )
+
+    result = builder.deploy(db_conn, build_result, repo_path=tmp_path, triggered_by="cli")
+
+    assert result.status == "success"
+    assert result.pushed is True
+    assert result.commit_sha == "deadbeefcafebabe1234567890"
+    assert result.files_changed == [
+        "site/data/indicators.json", "site/data/ipca.json",
+    ]
+
+    cmds = [c[1] for c in calls]
+    assert cmds == ["status", "add", "commit", "push", "rev-parse"]
+
+    # SHA persistido no build_log.
+    log = get_last_successful_build(db_conn)
+    assert log is not None
+    assert log.git_commit_sha == "deadbeefcafebabe1234567890"
+
+    # Notificação disparada com os dois resultados.
+    assert len(sent) == 1
+    assert sent[0][0] is result
+    assert sent[0][1] is build_result
+
+
+def test_deploy_skips_telegram_notification(db_conn, monkeypatch, tmp_path):
+    porcelain = " M data/indicadores.db\n"
+    _, fake_run = _git_calls_recorder(porcelain_output=porcelain)
+    monkeypatch.setattr(subprocess, "run", fake_run)
+
+    sent: list = []
+    monkeypatch.setattr(
+        "pipeline.bot.notifications.send_deploy_success",
+        lambda *a, **kw: sent.append(a),
+    )
+
+    build_result = builder.BuildResult(
+        status="success", changed=["IPCA"], files_generated=4, log_id=None,
+    )
+    result = builder.deploy(
+        db_conn, build_result, repo_path=tmp_path, triggered_by="telegram"
+    )
+    assert result.status == "success"
+    # Quando origem é telegram, deploy não notifica o bot (handler já fala com o usuário).
+    assert sent == []
+
+
+def test_deploy_push_failure_notifies_and_reraises(db_conn, monkeypatch, tmp_path):
+    porcelain = " M site/data/ipca.json\n"
+    _, fake_run = _git_calls_recorder(porcelain_output=porcelain, push_should_fail=True)
+    monkeypatch.setattr(subprocess, "run", fake_run)
+
+    errors: list[BaseException] = []
+    monkeypatch.setattr(
+        "pipeline.bot.notifications.send_deploy_error", lambda exc: errors.append(exc)
+    )
+
+    build_result = builder.BuildResult(
+        status="success", changed=["IPCA"], files_generated=4, log_id=None,
+    )
+    with pytest.raises(subprocess.CalledProcessError):
+        builder.deploy(db_conn, build_result, repo_path=tmp_path, triggered_by="cli")
+
+    assert len(errors) == 1
+    assert "git push" in str(errors[0])
 
 
 def test_build_logs_recorded(db_conn, site_dirs):
