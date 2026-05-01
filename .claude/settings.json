@@ -1,4 +1,6 @@
 {
+  "logLevel": "info",
+  "verbose": true,
   "permissions": {
     "allow": [
       "mcp__sqlite",
@@ -24,12 +26,11 @@
       "Bash(mv:*)",
       "Bash(chmod:*)",
 
-      "Bash(python:*)",
-      "Bash(python3:*)",
-      "Bash(pip:*)",
+      "Bash(.venv/bin/python *)",
+      "Bash(.venv/bin/pytest *)",
+      "Bash(.venv/bin/pip *)",
       "Bash(uv:*)",
       "Bash(uvx:*)",
-      "Bash(pytest:*)",
       "Bash(ruff:*)",
       "Bash(source:*)",
       "Bash(. .venv/bin/activate:*)",
@@ -117,7 +118,9 @@
       "Read(**/*secret*)",
       "Read(**/*token*)",
       "Read(~/.ssh/**)",
-      "Read(~/.aws/**)"
+      "Read(~/.aws/**)",
+      "Read(node_modules/**)",
+      "Read(**/dist/**)"
     ]
   },
   "hooks": {
@@ -127,7 +130,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '⚠️  git push pendente. Isso vai disparar deploy na Vercel. Confirme antes de aprovar.'"
+            "command": "echo '⚠️ git push pendente. Isso vai disparar deploy na Vercel. Confirme antes de aprovar.'"
           }
         ]
       }
@@ -137,7 +140,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "test -f scripts/inspect-db.sh && bash scripts/inspect-db.sh indicators 2>/dev/null; test -f data/indicadores.db || echo '(banco ainda não inicializado — Milestone 1)'"
+            "command": "test -f data/indicadores.db && echo 'DB ok' || echo 'DB não iniciado'"
           }
         ]
       }
