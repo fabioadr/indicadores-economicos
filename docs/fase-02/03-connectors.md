@@ -16,7 +16,7 @@ https://servicodados.ibge.gov.br/api/v3/agregados/{tabela}/periodos/{periodos}/v
 
 | Parâmetro | Descrição | Exemplo |
 |---|---|---|
-| `{tabela}` | Código numérico da tabela agregada IBGE | `7060` (IPCA-15) |
+| `{tabela}` | Código numérico da tabela agregada IBGE | `3065` (IPCA-15) |
 | `{periodos}` | Períodos no formato YYYYMM, separados por vírgula. Aceita `all` ou intervalos `YYYYMM-YYYYMM` | `202401-202403` |
 | `{variaveis}` | Códigos das variáveis | `355` (variação mensal %) |
 | `{localidades}` | Código da localidade. Para Brasil agregado: `BR` ou `N1[all]` | `N1[all]` |
@@ -213,17 +213,17 @@ class IBGESIDRAConnector(BaseConnector):
 
 ```json
 {
-  "tabela": 7060,
+  "tabela": 3065,
   "variavel": 355,
   "localidade": "N1[all]"
 }
 ```
 
-- Tabela 7060: IPCA-15 - Variação Mensal, Acumulada no Ano e Acumulada em 12 Meses
+- Tabela 3065: IPCA-15 - Série Histórica - Variação Mensal
 - Variável 355: variação mensal (%)
 - N1[all]: agregado Brasil
 
-> Os IDs acima devem ser validados via subagent `bcb-research` adaptado para SIDRA, ou via consulta manual em https://sidra.ibge.gov.br/tabela/7060 antes da implementação.
+> Os IDs acima devem ser validados via subagent `bcb-research` adaptado para SIDRA, ou via consulta manual em https://sidra.ibge.gov.br/tabela/3065 antes da implementação.
 
 ## Testes
 

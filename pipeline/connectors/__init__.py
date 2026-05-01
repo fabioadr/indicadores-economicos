@@ -10,6 +10,7 @@ from .base import (
     register,
 )
 from . import bcb  # noqa: F401  — populates CONNECTORS registry
+from . import ibge_sidra  # noqa: F401  — populates CONNECTORS registry
 
 __all__ = [
     "BaseConnector",

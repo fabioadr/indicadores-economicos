@@ -54,7 +54,7 @@ A Fase 1 entregou um MVP funcional com 3 indicadores (IPCA, CDI, TR) servidos a 
 
 **Contexto**: BCB espelha IPCA (série 433) e INPC (série 188). Poderíamos pular o conector IBGE.
 
-**Decisão**: **construir** o conector IBGE SIDRA na Fase 2, ainda que ele inicialmente colete apenas IPCA-15 (série SIDRA 7060) e o INPC (tabela 1736). IPCA permanece via BCB SGS para não quebrar a Fase 1.
+**Decisão**: **construir** o conector IBGE SIDRA na Fase 2, ainda que ele inicialmente colete apenas IPCA-15 (série SIDRA 3065) e o INPC (tabela 1736). IPCA permanece via BCB SGS para não quebrar a Fase 1.
 
 **Motivo**:
 - Validar empiricamente que o plugin pattern funciona com fonte heterogênea (estrutura de URL, paginação e formato bem diferentes do BCB)
@@ -94,7 +94,7 @@ A Fase 1 entregou um MVP funcional com 3 indicadores (IPCA, CDI, TR) servidos a 
 | IGPDI | igp-di | inflacao | BCB SGS (espelhando FGV) | 190 |
 | INPC | inpc | inflacao | BCB SGS (espelhando IBGE) | 188 |
 | INCCM | incc-m | construcao_civil | BCB SGS (espelhando FGV) | 192 |
-| IPCA15 | ipca-15 | inflacao | IBGE SIDRA | tabela 7060 |
+| IPCA15 | ipca-15 | inflacao | IBGE SIDRA | tabela 3065 |
 
 > Os `series_id` do BCB devem ser **confirmados via subagent `bcb-research`** antes de cada implementação; valores acima são referência consolidada mas a fonte oficial deve sempre ser consultada.
 

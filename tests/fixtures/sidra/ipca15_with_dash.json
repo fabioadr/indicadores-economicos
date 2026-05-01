@@ -1,0 +1,30 @@
+[
+    {
+        "id": "355",
+        "variavel": "IPCA15 - Variação mensal",
+        "unidade": "%",
+        "resultados": [
+            {
+                "classificacoes": [],
+                "series": [
+                    {
+                        "localidade": {
+                            "id": "1",
+                            "nivel": {
+                                "id": "N1",
+                                "nome": "Brasil"
+                            },
+                            "nome": "Brasil"
+                        },
+                        "serie": {
+                            "202401": "0.31",
+                            "202402": "-",
+                            "202403": "0.36",
+                            "202404": "..."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]

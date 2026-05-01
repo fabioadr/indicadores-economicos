@@ -59,18 +59,20 @@ sqlite3 data/indicadores.db "SELECT cron_expression, enabled FROM schedule_overr
 
 **Entregas:**
 
-- [ ] `pipeline/connectors/ibge_sidra.py` com `IBGESIDRAConnector` registrado como `ibge_sidra`
-- [ ] Suporte a paginação por janelas (60 períodos por chamada)
-- [ ] Tratamento de `"-"`, `"..."` e ausentes
-- [ ] Tratamento de múltiplas localidades (filtro pela configurada)
-- [ ] Testes em `pipeline/connectors/tests/test_ibge_sidra.py` cobrindo:
-  - [ ] Janela única com resposta válida
-  - [ ] Múltiplas janelas (paginação)
-  - [ ] Períodos faltantes (`"-"`)
-  - [ ] HTTP 404
-  - [ ] JSON malformado
-  - [ ] Período não-mensal (rejeitar)
-- [ ] Fixtures em `tests/fixtures/sidra/` com respostas reais capturadas uma vez
+- [✅] `pipeline/connectors/ibge_sidra.py` com `IBGESIDRAConnector` registrado como `ibge_sidra`
+- [✅] Suporte a paginação por janelas (60 períodos por chamada)
+- [✅] Tratamento de `"-"`, `"..."` e ausentes
+- [✅] Tratamento de múltiplas localidades (filtro pela configurada)
+- [✅] Testes em `pipeline/connectors/tests/test_ibge_sidra.py` cobrindo:
+  - [✅] Janela única com resposta válida
+  - [✅] Múltiplas janelas (paginação)
+  - [✅] Períodos faltantes (`"-"`)
+  - [✅] HTTP 404
+  - [✅] JSON malformado
+  - [✅] Período não-mensal (rejeitar)
+- [✅] Fixtures em `tests/fixtures/sidra/` com respostas reais capturadas uma vez
+
+**Correção lateral aplicada no M11:** seed M10 do IPCA-15 estava com `tabela=7060` (HTTP 500). Corrigido para `tabela=3065` em [pipeline/db/migrations/004_seed_phase2_indicators.sql](../../pipeline/db/migrations/004_seed_phase2_indicators.sql) e via `UPDATE` no `data/indicadores.db`.
 
 **Smoke test:**
 
@@ -79,7 +81,7 @@ python -c "
 from datetime import date
 from pipeline.connectors.ibge_sidra import IBGESIDRAConnector
 points = IBGESIDRAConnector().fetch(
-    {'tabela': 7060, 'variavel': 355, 'localidade': 'N1[all]'},
+    {'tabela': 3065, 'variavel': 355, 'localidade': 'N1[all]'},
     since=date(2024, 1, 1),
 )
 print(f'{len(points)} pontos coletados')

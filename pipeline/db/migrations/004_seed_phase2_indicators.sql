@@ -267,14 +267,14 @@ A diferença entre IPCA-15 e IPCA do mesmo mês costuma ser pequena (frações d
 
 ## Fonte
 
-Dados obtidos da tabela 7060 do SIDRA/IBGE, variável 355 (variação mensal), agregado Brasil.',
+Dados obtidos da tabela 3065 do SIDRA/IBGE, variável 355 (variação mensal), agregado Brasil.',
     'inflacao',
     'percent',
     'monthly',
     'IBGE',
     'https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9256-indice-nacional-de-precos-ao-consumidor-amplo-15.html',
     'ibge_sidra',
-    '{"tabela": 7060, "variavel": 355, "localidade": "N1[all]"}',
+    '{"tabela": 3065, "variavel": 355, "localidade": "N1[all]"}',
     '2000-05-01',
     25,
     1,

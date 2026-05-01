@@ -153,7 +153,7 @@ A Fase 2 está descrita em `docs/fase2/`. Antes de qualquer trabalho relacionado
 | IGPDI  | igp-di  | inflacao         | bcb_sgs    | series_id 190             |
 | INPC   | inpc    | inflacao         | bcb_sgs    | series_id 188             |
 | INCCM  | incc-m  | construcao_civil | bcb_sgs    | series_id 192             |
-| IPCA15 | ipca-15 | inflacao         | ibge_sidra | tabela 7060, variavel 355 |
+| IPCA15 | ipca-15 | inflacao         | ibge_sidra | tabela 3065, variavel 355 |
 
 Detalhes completos em `docs/fase2/04-indicators-catalog.md`.
 
@@ -243,6 +243,6 @@ Antes de implementar features de Fase 2, valide nesta ordem:
 | IGPDI  | BCB SGS 190    | 1944-02   |
 | INPC   | BCB SGS 188    | 1979-04   |
 | INCCM  | BCB SGS 192    | 1989-06   |
-| IPCA15 | SIDRA 7060/355 | 2000-05   |
+| IPCA15 | SIDRA 3065/355 | 2000-05   |
 
 > Sempre confirmar via subagent (`bcb-research` ou `sidra-research`) antes de aplicar mudanças no DB.

@@ -299,7 +299,7 @@ Esta página obtém os dados pelo espelho do Banco Central do Brasil (série SGS
 | `source_name` | IBGE |
 | `source_url` | https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9256-indice-nacional-de-precos-ao-consumidor-amplo-15.html |
 | `connector_type` | `ibge_sidra` |
-| `connector_config` | `{"tabela": 7060, "variavel": 355, "localidade": "N1[all]"}` |
+| `connector_config` | `{"tabela": 3065, "variavel": 355, "localidade": "N1[all]"}` |
 | `inception_date` | `2000-05-01` |
 | `expected_release_day` | 25 |
 
@@ -329,7 +329,7 @@ A diferença entre IPCA-15 e IPCA do mesmo mês costuma ser pequena (frações d
 
 ## Fonte
 
-Dados obtidos da tabela 7060 do SIDRA/IBGE, variável 355 (variação mensal), agregado Brasil.
+Dados obtidos da tabela 3065 do SIDRA/IBGE, variável 355 (variação mensal), agregado Brasil.
 ```
 
 **SEO:**
@@ -465,7 +465,7 @@ INSERT OR IGNORE INTO indicators (
     'IBGE',
     'https://www.ibge.gov.br/estatisticas/economicas/precos-e-custos/9256-indice-nacional-de-precos-ao-consumidor-amplo-15.html',
     'ibge_sidra',
-    '{"tabela": 7060, "variavel": 355, "localidade": "N1[all]"}',
+    '{"tabela": 3065, "variavel": 355, "localidade": "N1[all]"}',
     '2000-05-01',
     25,
     1,
