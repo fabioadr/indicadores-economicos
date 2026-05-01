@@ -96,11 +96,15 @@ def test_build_writes_indicators_index_and_detail(db_conn, site_dirs):
     # Index has the spec shape
     index = json.loads((data_dir / "indicators.json").read_text())
     assert "generated_at" in index
-    assert set(index["categories"].keys()) == {"inflacao", "juros", "correcao_monetaria"}
+    assert set(index["categories"].keys()) == {
+        "inflacao", "juros", "correcao_monetaria", "construcao_civil"
+    }
     assert index["categories"]["inflacao"]["label"] == "Inflação"
     assert "ipca" in index["categories"]["inflacao"]["indicators"]
     codes = {i["code"] for i in index["indicators"]}
-    assert codes == {"IPCA", "CDI", "TR"}
+    assert codes == {
+        "IPCA", "CDI", "TR", "SELIC", "IGPM", "IGPDI", "INPC", "INCCM", "IPCA15"
+    }
 
     ipca_entry = next(i for i in index["indicators"] if i["code"] == "IPCA")
     assert set(ipca_entry["latest"].keys()) == {"reference_date", "value", "ytd", "last_12m"}

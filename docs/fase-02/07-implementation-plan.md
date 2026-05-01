@@ -17,14 +17,15 @@ Sequência de milestones a partir de M10 (continuando da Fase 1, que vai até M9
 
 **Entregas:**
 
-- [ ] Migration `003_schedule_overrides.sql` com a tabela e seed da configuração padrão
-- [ ] Migration `004_seed_phase2_indicators.sql` com SELIC, IGP-M, IGP-DI, INPC, INCC-M, IPCA-15
-- [ ] Atualização do `08-indicators-catalog.md` da raiz com os 6 novos indicadores (mover/copiar de `fase2/04-indicators-catalog.md` para o catálogo principal)
-- [ ] UUIDs v4 reais (não os placeholders) gerados e fixados nas seeds
-- [ ] Long descriptions completas no SQL (markdown escapado)
-- [ ] `pipeline.cli migrate` aplicada com sucesso
+- [✅] Migration `003_schedule_overrides.sql` com a tabela e seed da configuração padrão
+- [✅] Migration `004_seed_phase2_indicators.sql` com SELIC, IGP-M, IGP-DI, INPC, INCC-M, IPCA-15
+- [✅] Atualização do `08-indicators-catalog.md` da raiz com os 6 novos indicadores (mover/copiar de `fase2/04-indicators-catalog.md` para o catálogo principal)
+- [✅] UUIDs v4 reais (não os placeholders) gerados e fixados nas seeds
+- [✅] Long descriptions completas no SQL (markdown escapado)
+- [✅] `pipeline.cli migrate` aplicada com sucesso
 
 **Não implementar nesta milestone:**
+
 - Conector IBGE SIDRA (próximo milestone)
 - Coletas dos novos indicadores
 
@@ -294,14 +295,14 @@ Permanece o mesmo do plano original, com pequenos ajustes baseados no que ficou:
 ## Estimativa de esforço
 
 | Milestone | Complexidade | Tempo de uma sessão de Claude Code |
-|---|---|---|
-| M10 | Baixa | 1–2h |
-| M11 | Média–Alta | 3–5h |
-| M12 | Baixa | 1–2h |
-| M13 | Média | 2–3h |
-| M14 | Média | 3–4h |
-| M15 | Média | 3–4h |
-| M16 | Baixa | 1h |
+| --------- | ------------ | ---------------------------------- |
+| M10       | Baixa        | 1–2h                               |
+| M11       | Média–Alta   | 3–5h                               |
+| M12       | Baixa        | 1–2h                               |
+| M13       | Média        | 2–3h                               |
+| M14       | Média        | 3–4h                               |
+| M15       | Média        | 3–4h                               |
+| M16       | Baixa        | 1h                                 |
 
 Total estimado: 14–21 horas distribuídas em 7 sessões.
 
