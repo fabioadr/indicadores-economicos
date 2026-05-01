@@ -52,8 +52,6 @@
       "Bash(git pull:*)",
       "Bash(git fetch:*)",
 
-      "Bash(sqlite3:*)",
-
       "Bash(make:*)",
       "Bash(bash scripts/*)",
       "Bash(./scripts/*)",
@@ -79,12 +77,13 @@
 
       "WebFetch(domain:api.bcb.gov.br)",
       "WebFetch(domain:dadosabertos.bcb.gov.br)",
-      "WebFetch(domain:www3.bcb.gov.br)",
       "WebFetch(domain:docs.astro.build)",
-      "WebFetch(domain:tailwindcss.com)",
       "WebFetch(domain:docs.python-telegram-bot.org)",
-      "WebFetch(domain:python-bcb.readthedocs.io)",
       "WebFetch(domain:matplotlib.org)",
+      "WebFetch(domain:python-bcb.readthedocs.io)",
+      "WebFetch(domain:servicodados.ibge.gov.br)",
+      "WebFetch(domain:tailwindcss.com)",
+      "WebFetch(domain:www3.bcb.gov.br)",
       "WebSearch"
     ],
     "ask": [

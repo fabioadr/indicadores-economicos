@@ -14,17 +14,17 @@ Workflow para adicionar um indicador novo. Não pular etapas.
 2. **Validação** — confirme com o usuário:
    - Code (ex: "IGPM")
    - Slug URL (ex: "igp-m")
-   - Categoria (ver `docs/03-data-model.md`)
+   - Categoria (ver `docs/fase-01/03-data-model.md`)
    - Frequência confirmada
    - Source URL institucional
 
-3. **Long description** — escreva ou peça ao usuário um markdown explicando o que é o indicador (3 seções: O que é, Para que serve, Fonte). Use os existentes em `docs/08-indicators-catalog.md` como template.
+3. **Long description** — escreva ou peça ao usuário um markdown explicando o que é o indicador (3 seções: O que é, Para que serve, Fonte). Use os existentes em `docs/fase-01/08-indicators-catalog.md` como template.
 
 4. **SEO templates** — gere meta_title e meta_description seguindo o padrão dos existentes.
 
 5. **Migration** — crie `pipeline/db/migrations/NNN_add_<code>.sql` com `INSERT OR IGNORE`. Use UUID v4 fixo (gere uma vez, não muda em re-execuções).
 
-6. **Atualizar catálogo** — adicione entrada em `docs/08-indicators-catalog.md`.
+6. **Atualizar catálogo** — adicione entrada em `docs/fase-01/08-indicators-catalog.md`.
 
 7. **Aplicar e backfill** — da raiz do repositório:
 
