@@ -14,14 +14,14 @@ import {
 
 const index = loadIndex();
 
-const categoryOrder: CategoryKey[] = ['inflacao', 'juros', 'correcao_monetaria'];
+const categoryOrder: CategoryKey[] = ['inflacao', 'juros', 'correcao_monetaria', 'construcao_civil'];
 
 const indicatorBySlug = new Map(index.indicators.map((i) => [i.slug, i]));
 
 const meta = {
-  title: 'Indicadores Econômicos Hoje — IPCA, CDI, TR atualizados',
+  title: 'Indicadores Econômicos Hoje — IPCA, SELIC, IGP-M e mais 6 atualizados',
   description:
-    'Tabelas atualizadas e séries históricas de IPCA, CDI e TR. Dados oficiais do Banco Central, agregação automática diária.',
+    'Tabelas atualizadas e séries históricas dos principais indicadores brasileiros: IPCA, IPCA-15, IGP-M, IGP-DI, INPC, INCC-M, SELIC, CDI e TR. Dados oficiais do BCB, IBGE e FGV.',
 };
 ---
 
@@ -32,9 +32,9 @@ const meta = {
       Indicadores econômicos do Brasil, sempre atualizados.
     </h1>
     <p class="text-base md:text-lg text-ink-muted max-w-2xl leading-relaxed">
-      Acompanhe IPCA, CDI e TR com séries históricas completas, acumulado no
-      ano e variação em 12 meses. Dados coletados automaticamente das fontes
-      oficiais.
+      Acompanhe IPCA, IPCA-15, IGP-M, IGP-DI, INPC, INCC-M, SELIC, CDI e TR
+      com séries históricas completas, acumulado no ano e variação em 12 meses.
+      Dados coletados automaticamente das fontes oficiais.
     </p>
   </section>
 

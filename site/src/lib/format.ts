@@ -50,18 +50,21 @@ const CATEGORY_LABEL: Record<CategoryKey, string> = {
   inflacao: 'Inflação',
   juros: 'Juros',
   correcao_monetaria: 'Correção Monetária',
+  construcao_civil: 'Construção Civil',
 };
 
 const CATEGORY_SLUG: Record<CategoryKey, string> = {
   inflacao: 'inflacao',
   juros: 'juros',
   correcao_monetaria: 'correcao-monetaria',
+  construcao_civil: 'construcao-civil',
 };
 
 const SLUG_TO_CATEGORY: Record<string, CategoryKey> = {
   'inflacao': 'inflacao',
   'juros': 'juros',
   'correcao-monetaria': 'correcao_monetaria',
+  'construcao-civil': 'construcao_civil',
 };
 
 export function categoryLabel(key: CategoryKey): string {

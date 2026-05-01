@@ -1,0 +1,3576 @@
+{
+  "code": "IGPM",
+  "slug": "igp-m",
+  "name": "IGP-M - Índice Geral de Preços do Mercado",
+  "short_description": "Índice de inflação calculado pela FGV. Conhecido como \"inflação do aluguel\", é amplamente usado para reajuste de contratos, especialmente imobiliários.",
+  "long_description": "## O que é o IGP-M\n\nO IGP-M — Índice Geral de Preços do Mercado — é um indicador de inflação calculado e divulgado pela Fundação Getulio Vargas (FGV). É composto pela média ponderada de três outros índices:\n\n- **IPA-M** (Índice de Preços por Atacado, peso 60%)\n- **IPC-M** (Índice de Preços ao Consumidor, peso 30%)\n- **INCC-M** (Índice Nacional do Custo da Construção, peso 10%)\n\n## Como é calculado\n\nA pesquisa ocorre entre o dia 21 do mês anterior e o dia 20 do mês de referência. O resultado costuma ser divulgado nos últimos dias do próprio mês de referência.\n\nPor isso, o IGP-M tende a antecipar movimentos que o IPCA captura no mês seguinte — o IGP-M de um mês X reflete preços coletados antes do IPCA do mesmo mês X.\n\n## Para que serve\n\n- **Reajuste de aluguéis**: por décadas foi a referência padrão; ainda muito usado, ainda que muitos contratos tenham migrado para IPCA\n- **Contratos privados**: planos de saúde, mensalidades, energia elétrica\n- **Concessões e serviços públicos**: tarifas como pedágios e telecomunicações\n- **Análise macroeconômica**: por incluir preços no atacado, é um termômetro mais sensível a choques de oferta\n\n## IGP-M vs IPCA\n\n- **IGP-M**: mais sensível a oscilações cambiais e preços de commodities (peso alto do atacado)\n- **IPCA**: foca apenas no consumidor final, mais estável\n\nEm períodos de desvalorização do real, o IGP-M sobe mais rápido que o IPCA.\n\n## Fonte\n\nEsta página obtém os dados pelo espelho do Banco Central do Brasil (série SGS 189), que replica os valores oficiais publicados pela FGV.",
+  "category": "inflacao",
+  "unit": "percent",
+  "frequency": "monthly",
+  "source": {
+    "name": "Banco Central do Brasil (espelhando FGV)",
+    "url": "https://portalibre.fgv.br/"
+  },
+  "meta": {
+    "title": "IGP-M - Tabela atualizada {month_name}/{year} | Indicadores Econômicos Hoje",
+    "description": "IGP-M de {month_name}/{year}: {value}%. Acumulado 12 meses: {last_12m}%. Histórico completo do IGP-M desde 1989."
+  },
+  "latest": {
+    "reference_date": "2026-04-01",
+    "value": 2.73,
+    "ytd": 2.9306598754137436,
+    "last_12m": 0.6196229606622472,
+    "last_24m": 9.182772994466614
+  },
+  "values": [
+    {
+      "reference_date": "1989-06-01",
+      "value": 19.68,
+      "ytd": 19.680000000000007,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 19.680000000000007
+    },
+    {
+      "reference_date": "1989-07-01",
+      "value": 35.9,
+      "ytd": 62.64512000000002,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 62.64512000000002
+    },
+    {
+      "reference_date": "1989-08-01",
+      "value": 36.92,
+      "ytd": 122.69369830400004,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 122.69369830400004
+    },
+    {
+      "reference_date": "1989-09-01",
+      "value": 39.92,
+      "ytd": 211.59302266695684,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 211.59302266695684
+    },
+    {
+      "reference_date": "1989-10-01",
+      "value": 40.64,
+      "ytd": 338.22442707880816,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 338.22442707880816
+    },
+    {
+      "reference_date": "1989-11-01",
+      "value": 40.48,
+      "ytd": 515.6176751603098,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 515.6176751603098
+    },
+    {
+      "reference_date": "1989-12-01",
+      "value": 47.13,
+      "ytd": 805.7582854633637,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 805.7582854633637
+    },
+    {
+      "reference_date": "1990-01-01",
+      "value": 61.46,
+      "ytd": 61.46,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 1362.437327709147
+    },
+    {
+      "reference_date": "1990-02-01",
+      "value": 81.29,
+      "ytd": 192.71083400000003,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 2551.2526314039123
+    },
+    {
+      "reference_date": "1990-03-01",
+      "value": 83.95,
+      "ytd": 438.441579143,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 4776.979215467498
+    },
+    {
+      "reference_date": "1990-04-01",
+      "value": 28.35,
+      "ytd": 591.0897668300405,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": 6159.6028230525335
+    },
+    {
+      "reference_date": "1990-05-01",
+      "value": 5.93,
+      "ytd": 632.0713900030619,
+      "last_12m": 6530.797270459549,
+      "last_24m": null,
+      "since_inception": 6530.797270459549
+    },
+    {
+      "reference_date": "1990-06-01",
+      "value": 9.94,
+      "ytd": 704.8392861693662,
+      "last_12m": 5991.158522011384,
+      "last_24m": null,
+      "since_inception": 7189.8985191432275
+    },
+    {
+      "reference_date": "1990-07-01",
+      "value": 12.01,
+      "ytd": 801.5004844383071,
+      "last_12m": 4920.387535323733,
+      "last_24m": null,
+      "since_inception": 8065.41533129233
+    },
+    {
+      "reference_date": "1990-08-01",
+      "value": 13.62,
+      "ytd": 924.2848504188046,
+      "last_12m": 4066.056323133821,
+      "last_24m": null,
+      "since_inception": 9177.544899414346
+    },
+    {
+      "reference_date": "1990-09-01",
+      "value": 12.8,
+      "ytd": 1055.3933112724117,
+      "last_12m": 3258.5702776550525,
+      "last_24m": null,
+      "since_inception": 10365.070646539383
+    },
+    {
+      "reference_date": "1990-10-01",
+      "value": 12.97,
+      "ytd": 1205.2478237444434,
+      "last_12m": 2597.793545696041,
+      "last_24m": null,
+      "since_inception": 11722.390309395541
+    },
+    {
+      "reference_date": "1990-11-01",
+      "value": 16.86,
+      "ytd": 1425.3126068277566,
+      "last_12m": 2144.1924384256786,
+      "last_24m": null,
+      "since_inception": 13715.64531555963
+    },
+    {
+      "reference_date": "1990-12-01",
+      "value": 18.0,
+      "ytd": 1699.868876056753,
+      "last_12m": 1699.868876056753,
+      "last_24m": null,
+      "since_inception": 16202.461472360363
+    },
+    {
+      "reference_date": "1991-01-01",
+      "value": 17.7,
+      "ytd": 17.700000000000003,
+      "last_12m": 1212.0560306693906,
+      "last_24m": null,
+      "since_inception": 19087.99715296815
+    },
+    {
+      "reference_date": "1991-02-01",
+      "value": 21.02,
+      "ytd": 42.44053999999999,
+      "last_12m": 775.8619936654511,
+      "last_24m": null,
+      "since_inception": 23121.31415452205
+    },
+    {
+      "reference_date": "1991-03-01",
+      "value": 9.19,
+      "ytd": 55.530825626,
+      "last_12m": 419.89872839538253,
+      "last_24m": null,
+      "since_inception": 25255.35292532263
+    },
+    {
+      "reference_date": "1991-04-01",
+      "value": 7.81,
+      "ytd": 67.67778310739061,
+      "last_12m": 336.69872932065596,
+      "last_24m": null,
+      "since_inception": 27235.605988790325
+    },
+    {
+      "reference_date": "1991-05-01",
+      "value": 7.48,
+      "ytd": 80.22008128382343,
+      "last_12m": 343.0886380381771,
+      "last_24m": 29280.30931675184,
+      "since_inception": 29280.30931675184
+    },
+    {
+      "reference_date": "1991-06-01",
+      "value": 8.48,
+      "ytd": 95.50274417669165,
+      "last_12m": 337.20443382191615,
+      "last_24m": 26530.815129355273,
+      "since_inception": 31771.759546812395
+    },
+    {
+      "reference_date": "1991-07-01",
+      "value": 13.22,
+      "ytd": 121.34820695685029,
+      "last_12m": 341.92738145984595,
+      "last_24m": 22086.46717399267,
+      "since_inception": 35985.206158901
+    },
+    {
+      "reference_date": "1991-08-01",
+      "value": 15.25,
+      "ytd": 155.10380851776998,
+      "last_12m": 348.2673007678863,
+      "last_24m": 18575.06822818183,
+      "since_inception": 41488.2000981334
+    },
+    {
+      "reference_date": "1991-09-01",
+      "value": 14.93,
+      "ytd": 193.190807129473,
+      "last_12m": 356.7319226706841,
+      "last_24m": 15239.66260338006,
+      "since_inception": 47697.31837278471
+    },
+    {
+      "reference_date": "1991-10-01",
+      "value": 22.63,
+      "ytd": 259.5398867828727,
+      "last_12m": 395.7868077994691,
+      "last_24m": 13275.304501226507,
+      "since_inception": 58513.85152054589
+    },
+    {
+      "reference_date": "1991-11-01",
+      "value": 25.62,
+      "ytd": 351.65400577664474,
+      "last_12m": 432.9517268164409,
+      "last_24m": 11860.462353673645,
+      "since_inception": 73530.72028010974
+    },
+    {
+      "reference_date": "1991-12-01",
+      "value": 23.63,
+      "ytd": 458.3798473416659,
+      "last_12m": 458.3798473416659,
+      "last_24m": 9950.105082475855,
+      "since_inception": 90929.65948229968
+    },
+    {
+      "reference_date": "1992-01-01",
+      "value": 23.56,
+      "ytd": 23.560000000000002,
+      "last_12m": 486.180237362245,
+      "last_24m": 7591.013154903483,
+      "since_inception": 112376.24725632947
+    },
+    {
+      "reference_date": "1992-02-01",
+      "value": 27.86,
+      "ytd": 57.983816,
+      "last_12m": 519.3109002572851,
+      "last_24m": 5324.308797980912,
+      "since_inception": 143712.12974194286
+    },
+    {
+      "reference_date": "1992-03-01",
+      "value": 21.39,
+      "ytd": 91.77655424239998,
+      "last_12m": 588.5076488893841,
+      "last_24m": 3479.542511480853,
+      "since_inception": 174473.54429374443
+    },
+    {
+      "reference_date": "1992-04-01",
+      "value": 19.94,
+      "ytd": 130.01679915833452,
+      "last_12m": 665.9735405601773,
+      "last_24m": 3244.996718558734,
+      "since_inception": 209283.50902591707
+    },
+    {
+      "reference_date": "1992-05-01",
+      "value": 20.43,
+      "ytd": 177.00923122638224,
+      "last_12m": 758.2638024717359,
+      "last_24m": 3702.8693931466846,
+      "since_inception": 252060.55991991187
+    },
+    {
+      "reference_date": "1992-06-01",
+      "value": 23.61,
+      "ytd": 242.41111071893107,
+      "last_12m": 877.968184213968,
+      "last_24m": 4175.720262751152,
+      "since_inception": 311595.66811700305
+    },
+    {
+      "reference_date": "1992-07-01",
+      "value": 21.84,
+      "ytd": 317.1936972999456,
+      "last_12m": 952.4257513215847,
+      "last_24m": 4550.95756462459,
+      "since_inception": 379670.0020337565
+    },
+    {
+      "reference_date": "1992-08-01",
+      "value": 24.63,
+      "ytd": 419.94850494492215,
+      "last_12m": 1038.0808797154805,
+      "last_24m": 5001.6444400559985,
+      "since_inception": 473207.3535346707
+    },
+    {
+      "reference_date": "1992-09-01",
+      "value": 25.27,
+      "ytd": 551.3394921445039,
+      "last_12m": 1140.4715200727242,
+      "last_24m": 5565.629423810416,
+      "since_inception": 592812.121772882
+    },
+    {
+      "reference_date": "1992-10-01",
+      "value": 26.76,
+      "ytd": 725.6379402423732,
+      "last_12m": 1182.2487962522919,
+      "last_24m": 6257.220374986357,
+      "since_inception": 751475.4055593052
+    },
+    {
+      "reference_date": "1992-11-01",
+      "value": 23.43,
+      "ytd": 919.0849096411613,
+      "last_12m": 1159.8946737893677,
+      "last_24m": 6614.630420028803,
+      "since_inception": 927569.5230818505
+    },
+    {
+      "reference_date": "1992-12-01",
+      "value": 25.08,
+      "ytd": 1174.6714049791644,
+      "last_12m": 1174.6714049791644,
+      "last_24m": 7017.508245230526,
+      "since_inception": 1160229.0394707785
+    },
+    {
+      "reference_date": "1993-01-01",
+      "value": 25.83,
+      "ytd": 25.83,
+      "last_12m": 1198.089210816836,
+      "last_24m": 7509.142417139825,
+      "since_inception": 1459942.0303660806
+    },
+    {
+      "reference_date": "1993-02-01",
+      "value": 28.41,
+      "ytd": 61.578303,
+      "last_12m": 1203.6730452134361,
+      "last_24m": 7973.789272722894,
+      "since_inception": 1874739.971193084
+    },
+    {
+      "reference_date": "1993-03-01",
+      "value": 26.25,
+      "ytd": 103.99260753749999,
+      "last_12m": 1255.8672210082898,
+      "last_24m": 9235.249525426008,
+      "since_inception": 2366885.4636312686
+    },
+    {
+      "reference_date": "1993-04-01",
+      "value": 28.83,
+      "ytd": 162.8036762905612,
+      "last_12m": 1356.364633003985,
+      "last_24m": 11055.367742886861,
+      "since_inception": 3049287.3727961634
+    },
+    {
+      "reference_date": "1993-05-01",
+      "value": 29.7,
+      "ytd": 240.85636814885788,
+      "last_12m": 1468.4671003953908,
+      "last_24m": 13361.585376371659,
+      "since_inception": 3954955.4225166235
+    },
+    {
+      "reference_date": "1993-06-01",
+      "value": 31.5,
+      "ytd": 348.2261241157481,
+      "last_12m": 1568.5820216972243,
+      "last_24m": 16218.201299713068,
+      "since_inception": 5200797.88060936
+    },
+    {
+      "reference_date": "1993-07-01",
+      "value": 31.25,
+      "ytd": 488.2967879019194,
+      "last_12m": 1697.4506758680288,
+      "last_24m": 18816.833780139008,
+      "since_inception": 6826078.468299786
+    },
+    {
+      "reference_date": "1993-08-01",
+      "value": 31.79,
+      "ytd": 675.3163367759396,
+      "last_12m": 1800.7143109415676,
+      "last_24m": 21531.666150841822,
+      "since_inception": 8996120.603372287
+    },
+    {
+      "reference_date": "1993-09-01",
+      "value": 35.28,
+      "ytd": 948.8479403904911,
+      "last_12m": 1952.5954497020457,
+      "last_24m": 25361.861975862543,
+      "since_inception": 12169987.232242031
+    },
+    {
+      "reference_date": "1993-10-01",
+      "value": 35.04,
+      "ytd": 1316.3642587033194,
+      "last_12m": 2086.6715803704983,
+      "last_24m": 27938.57001729167,
+      "since_inception": 16434385.79841964
+    },
+    {
+      "reference_date": "1993-11-01",
+      "value": 36.15,
+      "ytd": 1828.3799382245693,
+      "last_12m": 2312.017626731291,
+      "last_24m": 30288.881610048255,
+      "since_inception": 22375452.414548337
+    },
+    {
+      "reference_date": "1993-12-01",
+      "value": 38.32,
+      "ytd": 2567.335130552224,
+      "last_12m": 2567.335130552224,
+      "last_24m": 33899.75818411288,
+      "since_inception": 30949764.099803265
+    },
+    {
+      "reference_date": "1994-01-01",
+      "value": 39.07,
+      "ytd": 39.07000000000001,
+      "last_12m": 2847.9956815218766,
+      "last_24m": 38167.613877181735,
+      "since_inception": 43041876.0035964
+    },
+    {
+      "reference_date": "1994-02-01",
+      "value": 40.78,
+      "ytd": 95.782746,
+      "last_12m": 3131.9821824207606,
+      "last_24m": 42034.4805383204,
+      "since_inception": 60594393.81786301
+    },
+    {
+      "reference_date": "1994-03-01",
+      "value": 45.71,
+      "ytd": 185.27503919660003,
+      "last_12m": 3630.155436043795,
+      "last_24m": 50475.95484997664,
+      "since_inception": 88292136.9420082
+    },
+    {
+      "reference_date": "1994-04-01",
+      "value": 40.91,
+      "ytd": 301.9810577319292,
+      "last_12m": 3979.920845245138,
+      "last_24m": 59318.52424470743,
+      "since_inception": 124412491.07498375
+    },
+    {
+      "reference_date": "1994-05-01",
+      "value": 42.58,
+      "ytd": 473.14459211418455,
+      "last_12m": 4385.0818358909155,
+      "last_24m": 70247.03302175862,
+      "since_inception": 177387372.35471183
+    },
+    {
+      "reference_date": "1994-06-01",
+      "value": 45.21,
+      "ytd": 732.2632622090074,
+      "last_12m": 4852.689987754523,
+      "last_24m": 82539.69472607045,
+      "since_inception": 257584248.60627702
+    },
+    {
+      "reference_date": "1994-07-01",
+      "value": 4.33,
+      "ytd": 768.3002614626573,
+      "last_12m": 3836.8696870280337,
+      "last_24m": 70663.29079752894,
+      "since_inception": 268737650.9009288
+    },
+    {
+      "reference_date": "1994-08-01",
+      "value": 3.94,
+      "ytd": 802.5112917642862,
+      "last_12m": 3004.926286286469,
+      "last_24m": 58915.77826763347,
+      "since_inception": 279325918.2864254
+    },
+    {
+      "reference_date": "1994-09-01",
+      "value": 1.75,
+      "ytd": 818.3052393701612,
+      "last_12m": 2235.3507512540527,
+      "last_24m": 47835.30325482323,
+      "since_inception": 284214123.60643786
+    },
+    {
+      "reference_date": "1994-10-01",
+      "value": 1.82,
+      "ytd": 835.018394726698,
+      "last_12m": 1660.851699442296,
+      "last_24m": 38404.04368417563,
+      "since_inception": 289386822.47607505
+    },
+    {
+      "reference_date": "1994-11-01",
+      "value": 2.85,
+      "ytd": 861.6664189764089,
+      "last_12m": 1230.1769907281687,
+      "last_24m": 31984.103483087285,
+      "since_inception": 297634349.76664317
+    },
+    {
+      "reference_date": "1994-12-01",
+      "value": 0.84,
+      "ytd": 869.7444168958107,
+      "last_12m": 869.7444168958107,
+      "last_24m": 25766.333508430773,
+      "since_inception": 300134479.14468294
+    },
+    {
+      "reference_date": "1995-01-01",
+      "value": 0.92,
+      "ytd": 0.9200000000000097,
+      "last_12m": 603.7219138068973,
+      "last_24m": 20645.691628950433,
+      "since_inception": 302895717.2728141
+    },
+    {
+      "reference_date": "1995-02-01",
+      "value": 1.39,
+      "ytd": 2.322788000000009,
+      "last_12m": 406.8217420150683,
+      "last_24m": 16280.388398561525,
+      "since_inception": 307105969.1329062
+    },
+    {
+      "reference_date": "1995-03-01",
+      "value": 1.12,
+      "ytd": 3.4688032256000145,
+      "last_12m": 251.72475844186204,
+      "last_24m": 13019.88019693102,
+      "since_inception": 310545557.1071948
+    },
+    {
+      "reference_date": "1995-04-01",
+      "value": 2.1,
+      "ytd": 5.641648093337603,
+      "last_12m": 154.8513081890149,
+      "last_24m": 10297.731647183555,
+      "since_inception": 317067015.90644586
+    },
+    {
+      "reference_date": "1995-05-01",
+      "value": 0.58,
+      "ytd": 6.254369652278968,
+      "last_12m": 79.77938404861224,
+      "last_24m": 7963.252498640877,
+      "since_inception": 318906005.17870325
+    },
+    {
+      "reference_date": "1995-06-01",
+      "value": 2.46,
+      "ytd": 8.868227145725015,
+      "last_12m": 26.852115485302754,
+      "last_24m": 6182.592022895394,
+      "since_inception": 326751095.36609936
+    },
+    {
+      "reference_date": "1995-07-01",
+      "value": 1.82,
+      "ytd": 10.849628879777207,
+      "last_12m": 23.80027220083891,
+      "last_24m": 4773.855388733022,
+      "since_inception": 332697967.1217624
+    },
+    {
+      "reference_date": "1995-08-01",
+      "value": 2.2,
+      "ytd": 13.288320715132308,
+      "last_12m": 21.72780276049393,
+      "last_24m": 3679.5585456295207,
+      "since_inception": 340017324.5984412
+    },
+    {
+      "reference_date": "1995-09-01",
+      "value": -0.71,
+      "ytd": 12.483973638054868,
+      "last_12m": 18.78480133748832,
+      "last_24m": 2674.0417504106686,
+      "since_inception": 337603200.8837922
+    },
+    {
+      "reference_date": "1995-10-01",
+      "value": 0.52,
+      "ytd": 13.068890300972758,
+      "last_12m": 17.26820104541671,
+      "last_24m": 1964.9191110136285,
+      "since_inception": 339358738.048388
+    },
+    {
+      "reference_date": "1995-11-01",
+      "value": 1.2,
+      "ytd": 14.425716984584437,
+      "last_12m": 15.386893007254955,
+      "last_24m": 1434.8499010986359,
+      "since_inception": 343431044.10496867
+    },
+    {
+      "reference_date": "1995-12-01",
+      "value": 0.71,
+      "ytd": 15.23813957517499,
+      "last_12m": 15.23813957517499,
+      "last_24m": 1017.5154246648611,
+      "since_inception": 345869405.228114
+    },
+    {
+      "reference_date": "1996-01-01",
+      "value": 1.73,
+      "ytd": 1.7300000000000093,
+      "last_12m": 16.16305924477366,
+      "last_24m": 717.4649036539613,
+      "since_inception": 351852947.6685604
+    },
+    {
+      "reference_date": "1996-02-01",
+      "value": 0.97,
+      "ytd": 2.7167810000000125,
+      "last_12m": 15.681863023422359,
+      "last_24m": 486.3008333707943,
+      "since_inception": 355265922.23094547
+    },
+    {
+      "reference_date": "1996-03-01",
+      "value": 0.4,
+      "ytd": 3.1276481240000154,
+      "last_12m": 14.858178872147999,
+      "last_24m": 303.98465218878437,
+      "since_inception": 356686986.3198692
+    },
+    {
+      "reference_date": "1996-04-01",
+      "value": 0.32,
+      "ytd": 3.4576565979968166,
+      "last_12m": 12.855754206208525,
+      "last_24m": 187.61436596110158,
+      "since_inception": 357828384.99609286
+    },
+    {
+      "reference_date": "1996-05-01",
+      "value": 1.55,
+      "ytd": 5.061250275265783,
+      "last_12m": 13.944142370654976,
+      "last_24m": 104.84807731343726,
+      "since_inception": 363374726.51353234
+    },
+    {
+      "reference_date": "1996-06-01",
+      "value": 1.02,
+      "ytd": 6.132875028073492,
+      "last_12m": 12.342741189572148,
+      "last_24m": 42.509143793150805,
+      "since_inception": 367081149.7439704
+    },
+    {
+      "reference_date": "1996-07-01",
+      "value": 1.35,
+      "ytd": 7.565668840952489,
+      "last_12m": 11.824168331989181,
+      "last_24m": 38.438624781326915,
+      "since_inception": 372036746.61551404
+    },
+    {
+      "reference_date": "1996-08-01",
+      "value": 0.28,
+      "ytd": 7.866852713707151,
+      "last_12m": 9.723362038472349,
+      "last_24m": 33.56383772437428,
+      "since_inception": 373078449.78603745
+    },
+    {
+      "reference_date": "1996-09-01",
+      "value": 0.1,
+      "ytd": 7.97471956642084,
+      "last_12m": 10.618476584259051,
+      "last_24m": 31.397937653168164,
+      "since_inception": 373451528.3358234
+    },
+    {
+      "reference_date": "1996-10-01",
+      "value": 0.19,
+      "ytd": 8.17987153359705,
+      "last_12m": 10.255324004943445,
+      "last_24m": 29.29443501739264,
+      "since_inception": 374161086.4296615
+    },
+    {
+      "reference_date": "1996-11-01",
+      "value": 0.2,
+      "ytd": 8.396231276664246,
+      "last_12m": 9.165844518728573,
+      "last_24m": 25.963076215291636,
+      "since_inception": 374909408.8025209
+    },
+    {
+      "reference_date": "1996-12-01",
+      "value": 0.73,
+      "ytd": 9.187523764983908,
+      "last_12m": 9.187523764983908,
+      "last_24m": 25.82567103496949,
+      "since_inception": 377646248.2167793
+    },
+    {
+      "reference_date": "1997-01-01",
+      "value": 1.77,
+      "ytd": 1.770000000000005,
+      "last_12m": 9.230456046027836,
+      "last_24m": 26.88543937008374,
+      "since_inception": 384330588.58021635
+    },
+    {
+      "reference_date": "1997-02-01",
+      "value": 0.43,
+      "ytd": 2.207610999999998,
+      "last_12m": 8.646278109364891,
+      "last_24m": 25.684038622521975,
+      "since_inception": 385983210.54111123
+    },
+    {
+      "reference_date": "1997-03-01",
+      "value": 1.15,
+      "ytd": 3.382998526500014,
+      "last_12m": 9.457878792452812,
+      "last_24m": 25.721326213094375,
+      "since_inception": 390422018.612334
+    },
+    {
+      "reference_date": "1997-04-01",
+      "value": 0.68,
+      "ytd": 4.0860029164802025,
+      "last_12m": 9.850670223526148,
+      "last_24m": 23.972802381335367,
+      "since_inception": 393076889.0188979
+    },
+    {
+      "reference_date": "1997-05-01",
+      "value": 0.21,
+      "ytd": 4.30458352260481,
+      "last_12m": 8.401138976854327,
+      "last_24m": 23.51674812719844,
+      "since_inception": 393902350.69583756
+    },
+    {
+      "reference_date": "1997-06-01",
+      "value": 0.74,
+      "ytd": 5.076437440672099,
+      "last_12m": 8.100680464544684,
+      "last_24m": 21.443267678449818,
+      "since_inception": 396817228.8309868
+    },
+    {
+      "reference_date": "1997-07-01",
+      "value": 0.09,
+      "ytd": 5.171006234368702,
+      "last_12m": 6.756754886001759,
+      "last_24m": 19.379853289491678,
+      "since_inception": 397174364.4269346
+    },
+    {
+      "reference_date": "1997-08-01",
+      "value": 0.09,
+      "ytd": 5.265660139979622,
+      "last_12m": 6.554483411845946,
+      "last_24m": 16.915161602203742,
+      "since_inception": 397531821.4449188
+    },
+    {
+      "reference_date": "1997-09-01",
+      "value": 0.48,
+      "ytd": 5.770935308651515,
+      "last_12m": 6.958985946276552,
+      "last_24m": 18.31640082374284,
+      "since_inception": 399439974.66785437
+    },
+    {
+      "reference_date": "1997-10-01",
+      "value": 0.37,
+      "ytd": 6.1622877692935285,
+      "last_12m": 7.1511470149494105,
+      "last_24m": 18.139844316345723,
+      "since_inception": 400917902.9441255
+    },
+    {
+      "reference_date": "1997-11-01",
+      "value": 0.64,
+      "ytd": 6.841726411017013,
+      "last_12m": 7.621671013817433,
+      "last_24m": 17.486106047401485,
+      "since_inception": 403483778.16296786
+    },
+    {
+      "reference_date": "1997-12-01",
+      "value": 0.84,
+      "ytd": 7.73919691286955,
+      "last_12m": 7.73919691286955,
+      "last_24m": 17.637761233442227,
+      "since_inception": 406873042.73953676
+    },
+    {
+      "reference_date": "1998-01-01",
+      "value": 0.96,
+      "ytd": 0.9600000000000053,
+      "last_12m": 6.8816873373617415,
+      "last_24m": 16.747354508289813,
+      "since_inception": 410779024.90983635
+    },
+    {
+      "reference_date": "1998-02-01",
+      "value": 0.18,
+      "ytd": 1.1417280000000085,
+      "last_12m": 6.615627177704897,
+      "last_24m": 15.833910811532892,
+      "since_inception": 411518427.334674
+    },
+    {
+      "reference_date": "1998-03-01",
+      "value": 0.19,
+      "ytd": 1.333897283200014,
+      "last_12m": 5.6037537017721295,
+      "last_24m": 15.591628727166151,
+      "since_inception": 412300312.5366099
+    },
+    {
+      "reference_date": "1998-04-01",
+      "value": 0.13,
+      "ytd": 1.4656313496681728,
+      "last_12m": 5.0268559610493035,
+      "last_24m": 15.372705187910118,
+      "since_inception": 412836303.07290757
+    },
+    {
+      "reference_date": "1998-05-01",
+      "value": 0.14,
+      "ytd": 1.6076832335577107,
+      "last_12m": 4.953491227816431,
+      "last_24m": 13.770779886925876,
+      "since_inception": 413414274.03720963
+    },
+    {
+      "reference_date": "1998-06-01",
+      "value": 0.38,
+      "ytd": 1.9937924298452314,
+      "last_12m": 4.578434082273253,
+      "last_24m": 13.04999886210274,
+      "since_inception": 414985248.65855104
+    },
+    {
+      "reference_date": "1998-07-01",
+      "value": -0.17,
+      "ytd": 1.8204029827144863,
+      "last_12m": 4.306774647150968,
+      "last_24m": 11.354527739553188,
+      "since_inception": 414279773.5658315
+    },
+    {
+      "reference_date": "1998-08-01",
+      "value": -0.16,
+      "ytd": 1.6574903379421357,
+      "last_12m": 4.046242189744786,
+      "last_24m": 10.865935874720666,
+      "since_inception": 413616925.7681262
+    },
+    {
+      "reference_date": "1998-09-01",
+      "value": -0.08,
+      "ytd": 1.5761643456717822,
+      "last_12m": 3.4663666361395062,
+      "last_24m": 10.666576549471474,
+      "since_inception": 413286032.14751166
+    },
+    {
+      "reference_date": "1998-10-01",
+      "value": 0.08,
+      "ytd": 1.6574252771483167,
+      "last_12m": 3.167420274432997,
+      "last_24m": 10.54507416978845,
+      "since_inception": 413616661.05322963
+    },
+    {
+      "reference_date": "1998-11-01",
+      "value": -0.32,
+      "ytd": 1.332121516261453,
+      "last_12m": 2.1833113369980506,
+      "last_24m": 9.971387158128863,
+      "since_inception": 412293087.4178593
+    },
+    {
+      "reference_date": "1998-12-01",
+      "value": 0.45,
+      "ytd": 1.7881160630846216,
+      "last_12m": 1.7881160630846216,
+      "last_24m": 9.665698799106949,
+      "since_inception": 414148406.76123965
+    },
+    {
+      "reference_date": "1999-01-01",
+      "value": 0.84,
+      "ytd": 0.8399999999999963,
+      "last_12m": 1.667131772993824,
+      "last_24m": 8.663545906474779,
+      "since_inception": 417627254.2180341
+    },
+    {
+      "reference_date": "1999-02-01",
+      "value": 3.61,
+      "ytd": 4.480324000000002,
+      "last_12m": 5.148048742262823,
+      "last_24m": 12.104251631682272,
+      "since_inception": 432703601.7053051
+    },
+    {
+      "reference_date": "1999-03-01",
+      "value": 2.83,
+      "ytd": 7.4371171691999916,
+      "last_12m": 7.918693004959421,
+      "last_24m": 13.966190759128905,
+      "since_inception": 444949116.4635653
+    },
+    {
+      "reference_date": "1999-04-01",
+      "value": 0.71,
+      "ytd": 8.199920701101316,
+      "last_12m": 8.543808773888584,
+      "last_24m": 14.000149695588737,
+      "since_inception": 448108255.90045667
+    },
+    {
+      "reference_date": "1999-05-01",
+      "value": -0.29,
+      "ytd": 7.88614093106812,
+      "last_12m": 8.077722916361374,
+      "last_24m": 13.43134344024708,
+      "since_inception": 446808741.66834533
+    },
+    {
+      "reference_date": "1999-06-01",
+      "value": 0.36,
+      "ytd": 8.274531038419974,
+      "last_12m": 8.056189199900675,
+      "last_24m": 13.003470594234567,
+      "since_inception": 448417253.4983514
+    },
+    {
+      "reference_date": "1999-07-01",
+      "value": 1.55,
+      "ytd": 9.952786269515501,
+      "last_12m": 9.917920597514929,
+      "last_24m": 14.651837734484197,
+      "since_inception": 455367722.47757584
+    },
+    {
+      "reference_date": "1999-08-01",
+      "value": 1.56,
+      "ytd": 11.66804973531994,
+      "last_12m": 11.811538620629157,
+      "last_24m": 16.335704269299868,
+      "since_inception": 462471460.50822604
+    },
+    {
+      "reference_date": "1999-09-01",
+      "value": 1.45,
+      "ytd": 13.287236456482066,
+      "last_12m": 13.523624830492675,
+      "last_24m": 17.458769885753036,
+      "since_inception": 469177298.1355953
+    },
+    {
+      "reference_date": "1999-10-01",
+      "value": 1.7,
+      "ytd": 15.213119476242243,
+      "last_12m": 15.361237462640887,
+      "last_24m": 19.015212686869365,
+      "since_inception": 477153313.90390044
+    },
+    {
+      "reference_date": "1999-11-01",
+      "value": 2.39,
+      "ytd": 17.966713031724435,
+      "last_12m": 18.49756324036722,
+      "last_24m": 21.084733972660597,
+      "since_inception": 488557280.4962036
+    },
+    {
+      "reference_date": "1999-12-01",
+      "value": 1.81,
+      "ytd": 20.101910537598645,
+      "last_12m": 20.101910537598645,
+      "last_24m": 22.24947209199297,
+      "since_inception": 497400169.08318496
+    },
+    {
+      "reference_date": "2000-01-01",
+      "value": 1.24,
+      "ytd": 1.2399999999999967,
+      "last_12m": 20.578316370750628,
+      "last_24m": 22.58851579430834,
+      "since_inception": 503567932.4198164
+    },
+    {
+      "reference_date": "2000-02-01",
+      "value": 0.35,
+      "ytd": 1.5943400000000052,
+      "last_12m": 16.7844228144467,
+      "last_24m": 22.796541824304704,
+      "since_inception": 505330420.53328574
+    },
+    {
+      "reference_date": "2000-03-01",
+      "value": 0.15,
+      "ytd": 1.7467315100000214,
+      "last_12m": 13.740736602808878,
+      "last_24m": 22.74751635596479,
+      "since_inception": 506088416.3140858
+    },
+    {
+      "reference_date": "2000-04-01",
+      "value": 0.23,
+      "ytd": 1.9807489924730248,
+      "last_12m": 13.198630023826151,
+      "last_24m": 22.87010450772351,
+      "since_inception": 507252419.9016081
+    },
+    {
+      "reference_date": "2000-05-01",
+      "value": 0.31,
+      "ytd": 2.296889314349704,
+      "last_12m": 13.87979718874741,
+      "last_24m": 23.078691663368733,
+      "since_inception": 508824902.71330315
+    },
+    {
+      "reference_date": "2000-06-01",
+      "value": 0.85,
+      "ytd": 3.1664128735216623,
+      "last_12m": 14.435806561231267,
+      "last_24m": 23.65497165023647,
+      "since_inception": 513149915.2363663
+    },
+    {
+      "reference_date": "2000-07-01",
+      "value": 1.57,
+      "ytd": 4.786125555635956,
+      "last_12m": 14.45834438625566,
+      "last_24m": 25.810232099714693,
+      "since_inception": 521206370.4755772
+    },
+    {
+      "reference_date": "2000-08-01",
+      "value": 2.39,
+      "ytd": 7.290513956415667,
+      "last_12m": 15.393756220054344,
+      "last_24m": 29.023534301780728,
+      "since_inception": 533663205.1199435
+    },
+    {
+      "reference_date": "2000-09-01",
+      "value": 1.16,
+      "ytd": 8.535083918310104,
+      "last_12m": 15.06389728162345,
+      "last_24m": 30.624707065333645,
+      "since_inception": 539853699.459335
+    },
+    {
+      "reference_date": "2000-10-01",
+      "value": 0.38,
+      "ytd": 8.947517237199687,
+      "last_12m": 13.570442567643681,
+      "last_24m": 31.01626793783161,
+      "since_inception": 541905143.8972803
+    },
+    {
+      "reference_date": "2000-11-01",
+      "value": 0.29,
+      "ytd": 9.263465037187558,
+      "last_12m": 11.241133754360622,
+      "last_24m": 31.818032819874965,
+      "since_inception": 543476669.1045824
+    },
+    {
+      "reference_date": "2000-12-01",
+      "value": 0.63,
+      "ytd": 9.951824866921832,
+      "last_12m": 9.951824866921832,
+      "last_24m": 32.054242336127544,
+      "since_inception": 546900572.7499413
+    },
+    {
+      "reference_date": "2001-01-01",
+      "value": 0.62,
+      "ytd": 0.6199999999999983,
+      "last_12m": 9.278473114477205,
+      "last_24m": 31.76614303709997,
+      "since_inception": 550291356.920991
+    },
+    {
+      "reference_date": "2001-02-01",
+      "value": 0.23,
+      "ytd": 0.8514259999999885,
+      "last_12m": 9.147796315536105,
+      "last_24m": 27.46762394178681,
+      "since_inception": 551557027.2719092
+    },
+    {
+      "reference_date": "2001-03-01",
+      "value": 0.56,
+      "ytd": 1.4161939856000005,
+      "last_12m": 9.59463202686286,
+      "last_24m": 24.653741744491686,
+      "since_inception": 554645747.184632
+    },
+    {
+      "reference_date": "2001-04-01",
+      "value": 1.0,
+      "ytd": 2.430355925455996,
+      "last_12m": 10.43657422641071,
+      "last_24m": 25.01268906954277,
+      "since_inception": 560192205.6564783
+    },
+    {
+      "reference_date": "2001-05-01",
+      "value": 0.86,
+      "ytd": 3.311256986414901,
+      "last_12m": 11.042098260151366,
+      "last_24m": 26.45451629279001,
+      "since_inception": 565009859.485124
+    },
+    {
+      "reference_date": "2001-06-01",
+      "value": 0.98,
+      "ytd": 4.323707304881763,
+      "last_12m": 11.185236314428181,
+      "last_24m": 27.23572195342694,
+      "since_inception": 570546957.0880781
+    },
+    {
+      "reference_date": "2001-07-01",
+      "value": 1.48,
+      "ytd": 5.867698172993996,
+      "last_12m": 11.086716364951998,
+      "last_24m": 27.14801638437976,
+      "since_inception": 578991053.5329816
+    },
+    {
+      "reference_date": "2001-08-01",
+      "value": 1.38,
+      "ytd": 7.328672407781323,
+      "last_12m": 9.990929827901462,
+      "last_24m": 26.92266542977968,
+      "since_inception": 586981131.4517368
+    },
+    {
+      "reference_date": "2001-09-01",
+      "value": 0.31,
+      "ytd": 7.661391292245456,
+      "last_12m": 9.066727669402885,
+      "last_24m": 25.49642749394976,
+      "since_inception": 588800773.2692373
+    },
+    {
+      "reference_date": "2001-10-01",
+      "value": 1.18,
+      "ytd": 8.931795709493962,
+      "last_12m": 9.93595841392889,
+      "last_24m": 24.8547545116798,
+      "since_inception": 595748623.5738144
+    },
+    {
+      "reference_date": "2001-11-01",
+      "value": 1.1,
+      "ytd": 10.130045462298387,
+      "last_12m": 10.823864748710864,
+      "last_24m": 23.28172361686518,
+      "since_inception": 602301859.5331262
+    },
+    {
+      "reference_date": "2001-12-01",
+      "value": 0.22,
+      "ytd": 10.372331562315452,
+      "last_12m": 10.372331562315452,
+      "last_24m": 21.356392700935388,
+      "since_inception": 603626923.844099
+    },
+    {
+      "reference_date": "2002-01-01",
+      "value": 0.36,
+      "ytd": 0.36000000000000476,
+      "last_12m": 10.087131739157007,
+      "last_24m": 20.301536660073793,
+      "since_inception": 605799981.1299378
+    },
+    {
+      "reference_date": "2002-02-01",
+      "value": 0.06,
+      "ytd": 0.4202159999999955,
+      "last_12m": 9.90041306814382,
+      "last_24m": 19.953879005550434,
+      "since_inception": 606163461.1786157
+    },
+    {
+      "reference_date": "2002-03-01",
+      "value": 0.09,
+      "ytd": 0.5105941943999825,
+      "last_12m": 9.386757597359896,
+      "last_24m": 19.882014474942977,
+      "since_inception": 606709008.3836764
+    },
+    {
+      "reference_date": "2002-04-01",
+      "value": 0.56,
+      "ytd": 1.0734535218886343,
+      "last_12m": 8.910221227628835,
+      "last_24m": 20.2767173061984,
+      "since_inception": 610106579.390625
+    },
+    {
+      "reference_date": "2002-05-01",
+      "value": 0.83,
+      "ytd": 1.9123631861203139,
+      "last_12m": 8.877826753736006,
+      "last_24m": 20.900223367400915,
+      "since_inception": 615170464.8295672
+    },
+    {
+      "reference_date": "2002-06-01",
+      "value": 1.54,
+      "ytd": 3.4818135791865767,
+      "last_12m": 9.481625357242574,
+      "last_24m": 21.727403874327102,
+      "since_inception": 624644091.5279425
+    },
+    {
+      "reference_date": "2002-07-01",
+      "value": 1.95,
+      "ytd": 5.49970894398073,
+      "last_12m": 9.98868452080095,
+      "last_24m": 22.182818007164062,
+      "since_inception": 636824653.2627375
+    },
+    {
+      "reference_date": "2002-08-01",
+      "value": 2.32,
+      "ytd": 7.947302191481098,
+      "last_12m": 11.008504637683526,
+      "last_24m": 22.099286439037225,
+      "since_inception": 651598987.5384331
+    },
+    {
+      "reference_date": "2002-09-01",
+      "value": 2.4,
+      "ytd": 10.538037444076643,
+      "last_12m": 13.321412370638953,
+      "last_24m": 23.5959562214058,
+      "since_inception": 667237365.6393555
+    },
+    {
+      "reference_date": "2002-10-01",
+      "value": 3.87,
+      "ytd": 14.815859493162398,
+      "last_12m": 16.334207382271803,
+      "last_24m": 27.893125848948163,
+      "since_inception": 693059455.5595986
+    },
+    {
+      "reference_date": "2002-11-01",
+      "value": 5.19,
+      "ytd": 20.774802600857534,
+      "last_12m": 21.04050716657946,
+      "last_24m": 34.14176795344366,
+      "since_inception": 729029246.4931418
+    },
+    {
+      "reference_date": "2002-12-01",
+      "value": 3.75,
+      "ytd": 25.3038576983897,
+      "last_12m": 25.3038576983897,
+      "last_24m": 38.300789279238614,
+      "since_inception": 756367846.9866346
+    },
+    {
+      "reference_date": "2003-01-01",
+      "value": 2.33,
+      "ytd": 2.33000000000001,
+      "last_12m": 27.763489022281963,
+      "last_24m": 40.651160474502944,
+      "since_inception": 773991220.1514232
+    },
+    {
+      "reference_date": "2003-02-01",
+      "value": 2.28,
+      "ytd": 4.663123999999996,
+      "last_12m": 30.59813768937638,
+      "last_24m": 43.52789277992785,
+      "since_inception": 791638222.2508756
+    },
+    {
+      "reference_date": "2003-03-01",
+      "value": 1.53,
+      "ytd": 6.264469797200012,
+      "last_12m": 32.47705984216584,
+      "last_24m": 44.91236032165942,
+      "since_inception": 803750288.5813141
+    },
+    {
+      "reference_date": "2003-04-01",
+      "value": 0.92,
+      "ytd": 7.24210291933427,
+      "last_12m": 32.95132139291348,
+      "last_24m": 44.79757825407793,
+      "since_inception": 811144792.1562623
+    },
+    {
+      "reference_date": "2003-05-01",
+      "value": -0.26,
+      "ytd": 6.96327345174399,
+      "last_12m": 31.51408108429228,
+      "last_24m": 43.189673359723635,
+      "since_inception": 809035815.4366559
+    },
+    {
+      "reference_date": "2003-06-01",
+      "value": -1.0,
+      "ytd": 5.893640717226556,
+      "last_12m": 28.224286264968825,
+      "last_24m": 40.38203270561145,
+      "since_inception": 800945456.2822893
+    },
+    {
+      "reference_date": "2003-07-01",
+      "value": -0.42,
+      "ytd": 5.448887426214211,
+      "last_12m": 25.243496088922,
+      "last_24m": 37.75367379606611,
+      "since_inception": 797581484.9459038
+    },
+    {
+      "reference_date": "2003-08-01",
+      "value": 0.38,
+      "ytd": 5.849593198433833,
+      "last_12m": 22.86886373539867,
+      "last_24m": 36.39488829797908,
+      "since_inception": 800612294.9686981
+    },
+    {
+      "reference_date": "2003-09-01",
+      "value": 1.18,
+      "ytd": 7.09861839817536,
+      "last_12m": 21.404996413551114,
+      "last_24m": 37.57785662435968,
+      "since_inception": 810059521.2293289
+    },
+    {
+      "reference_date": "2003-10-01",
+      "value": 0.38,
+      "ytd": 7.50559314808843,
+      "last_12m": 17.325825936191986,
+      "last_24m": 36.490069657572846,
+      "since_inception": 813137747.7900003
+    },
+    {
+      "reference_date": "2003-11-01",
+      "value": 0.49,
+      "ytd": 8.032370554514046,
+      "last_12m": 12.083584450308305,
+      "last_24m": 35.66653906913453,
+      "since_inception": 817122123.2441713
+    },
+    {
+      "reference_date": "2003-12-01",
+      "value": 0.61,
+      "ytd": 8.691368014896582,
+      "last_12m": 8.691368014896582,
+      "last_24m": 36.194477107819026,
+      "since_inception": 822106568.8059607
+    },
+    {
+      "reference_date": "2004-01-01",
+      "value": 0.88,
+      "ytd": 0.8799999999999919,
+      "last_12m": 7.151228430985679,
+      "last_24m": 36.900147973662655,
+      "since_inception": 829341107.491453
+    },
+    {
+      "reference_date": "2004-02-01",
+      "value": 0.69,
+      "ytd": 1.576071999999984,
+      "last_12m": 5.485502451270552,
+      "last_24m": 37.76210173364074,
+      "since_inception": 835063561.823144
+    },
+    {
+      "reference_date": "2004-03-01",
+      "value": 1.13,
+      "ytd": 2.723881613599999,
+      "last_12m": 5.069918870254941,
+      "last_24m": 39.1935392978628,
+      "since_inception": 844499781.2017455
+    },
+    {
+      "reference_date": "2004-04-01",
+      "value": 1.21,
+      "ytd": 3.9668405811245533,
+      "last_12m": 5.371843924479802,
+      "last_24m": 40.093258873674365,
+      "since_inception": 854718229.7642866
+    },
+    {
+      "reference_date": "2004-05-01",
+      "value": 1.31,
+      "ytd": 5.328806192737301,
+      "last_12m": 7.030494365240125,
+      "last_24m": 40.76017114442081,
+      "since_inception": 865915039.8841988
+    },
+    {
+      "reference_date": "2004-06-01",
+      "value": 1.38,
+      "ytd": 6.782343718197081,
+      "last_12m": 9.603550694424712,
+      "last_24m": 40.538370598989346,
+      "since_inception": 877864668.8146008
+    },
+    {
+      "reference_date": "2004-07-01",
+      "value": 1.31,
+      "ytd": 8.18119242090547,
+      "last_12m": 11.507689504440322,
+      "last_24m": 39.656128743341036,
+      "since_inception": 889364697.2860721
+    },
+    {
+      "reference_date": "2004-08-01",
+      "value": 1.22,
+      "ytd": 9.50100296844052,
+      "last_12m": 12.44080824506324,
+      "last_24m": 38.1547434656077,
+      "since_inception": 900214947.8129623
+    },
+    {
+      "reference_date": "2004-09-01",
+      "value": 0.69,
+      "ytd": 10.256559888922755,
+      "last_12m": 11.896273791217826,
+      "last_24m": 35.847667183125374,
+      "since_inception": 906426431.6428717
+    },
+    {
+      "reference_date": "2004-10-01",
+      "value": 0.39,
+      "ytd": 10.686560472489548,
+      "last_12m": 11.907421058979395,
+      "last_24m": 31.296306041339662,
+      "since_inception": 909961495.1162789
+    },
+    {
+      "reference_date": "2004-11-01",
+      "value": 0.82,
+      "ytd": 11.594190268363969,
+      "last_12m": 12.274914829001006,
+      "last_24m": 25.841748978875035,
+      "since_inception": 917423180.1962323
+    },
+    {
+      "reference_date": "2004-12-01",
+      "value": 0.74,
+      "ytd": 12.419987276349875,
+      "last_12m": 12.419987276349875,
+      "last_24m": 22.190822092837315,
+      "since_inception": 924212112.4696845
+    },
+    {
+      "reference_date": "2005-01-01",
+      "value": 0.39,
+      "ytd": 0.39000000000000146,
+      "last_12m": 11.873934602228008,
+      "last_24m": 19.8742952203649,
+      "since_inception": 927816540.0983162
+    },
+    {
+      "reference_date": "2005-02-01",
+      "value": 0.3,
+      "ytd": 0.6911699999999854,
+      "last_12m": 11.440616154568195,
+      "last_24m": 17.553693885438037,
+      "since_inception": 930599990.0186111
+    },
+    {
+      "reference_date": "2005-03-01",
+      "value": 0.85,
+      "ytd": 1.5470449449999757,
+      "last_12m": 11.132069012045909,
+      "last_24m": 16.76637474979237,
+      "since_inception": 938510090.7837692
+    },
+    {
+      "reference_date": "2005-04-01",
+      "value": 0.86,
+      "ytd": 2.4203495315269663,
+      "last_12m": 10.747756946496857,
+      "last_24m": 16.69695359952492,
+      "since_inception": 946581278.4245096
+    },
+    {
+      "reference_date": "2005-05-01",
+      "value": -0.22,
+      "ytd": 2.195024762557618,
+      "last_12m": 9.075226415175731,
+      "last_24m": 16.743754062167593,
+      "since_inception": 944498799.3919756
+    },
+    {
+      "reference_date": "2005-06-01",
+      "value": -0.44,
+      "ytd": 1.7453666536023649,
+      "last_12m": 7.117079718829111,
+      "last_24m": 17.40412277201422,
+      "since_inception": 940343004.234651
+    },
+    {
+      "reference_date": "2005-07-01",
+      "value": -0.34,
+      "ytd": 1.3994324069801278,
+      "last_12m": 5.372501873245583,
+      "last_24m": 17.49844221187924,
+      "since_inception": 937145837.6802531
+    },
+    {
+      "reference_date": "2005-08-01",
+      "value": -0.65,
+      "ytd": 0.7403360963347705,
+      "last_12m": 3.4257860216059033,
+      "last_24m": 16.2927897365033,
+      "since_inception": 931054389.0853316
+    },
+    {
+      "reference_date": "2005-09-01",
+      "value": -0.53,
+      "ytd": 0.20641231502420698,
+      "last_12m": 2.172638152439599,
+      "last_24m": 14.327374926764103,
+      "since_inception": 926119800.2931794
+    },
+    {
+      "reference_date": "2005-10-01",
+      "value": 0.6,
+      "ytd": 0.8076507889143603,
+      "last_12m": 2.386367149471269,
+      "last_24m": 14.577942992951343,
+      "since_inception": 931676519.6949385
+    },
+    {
+      "reference_date": "2005-11-01",
+      "value": 0.4,
+      "ytd": 1.2108813920700179,
+      "last_12m": 1.959841914371352,
+      "last_24m": 14.475325669144446,
+      "since_inception": 935403226.1737182
+    },
+    {
+      "reference_date": "2005-12-01",
+      "value": -0.01,
+      "ytd": 1.2007603039308146,
+      "last_12m": 1.2007603039308146,
+      "last_24m": 13.769881857248345,
+      "since_inception": 935309685.8411008
+    },
+    {
+      "reference_date": "2006-01-01",
+      "value": 0.92,
+      "ytd": 0.9200000000000097,
+      "last_12m": 1.7350406402300234,
+      "last_24m": 13.814992833401064,
+      "since_inception": 943914535.8708391
+    },
+    {
+      "reference_date": "2006-02-01",
+      "value": 0.01,
+      "ytd": 0.9300920000000046,
+      "last_12m": 1.4408914698844644,
+      "last_24m": 13.046354486726042,
+      "since_inception": 944008927.3344262
+    },
+    {
+      "reference_date": "2006-03-01",
+      "value": -0.23,
+      "ytd": 0.6979527884000136,
+      "last_12m": 0.3545636286601095,
+      "last_24m": 11.526102908540082,
+      "since_inception": 941837706.571557
+    },
+    {
+      "reference_date": "2006-04-01",
+      "value": -0.42,
+      "ytd": 0.2750213866887341,
+      "last_12m": -0.9190219498118712,
+      "last_24m": 9.729960751234245,
+      "since_inception": 937881987.7839565
+    },
+    {
+      "reference_date": "2006-05-01",
+      "value": 0.38,
+      "ytd": 0.6560664679581496,
+      "last_12m": -0.3232253289448317,
+      "last_24m": 8.722667655797945,
+      "since_inception": 941445939.7175357
+    },
+    {
+      "reference_date": "2006-06-01",
+      "value": 0.75,
+      "ytd": 1.410986966467842,
+      "last_12m": 0.8681704309843941,
+      "last_24m": 8.04703853148201,
+      "since_inception": 948506785.0154172
+    },
+    {
+      "reference_date": "2006-07-01",
+      "value": 0.18,
+      "ytd": 1.5935267430074784,
+      "last_12m": 1.394474350552044,
+      "last_24m": 6.841894384402991,
+      "since_inception": 950214097.408445
+    },
+    {
+      "reference_date": "2006-08-01",
+      "value": 0.37,
+      "ytd": 1.9694227919565988,
+      "last_12m": 2.435464424407763,
+      "last_24m": 5.944684245826237,
+      "since_inception": 953729889.9388562
+    },
+    {
+      "reference_date": "2006-09-01",
+      "value": 0.29,
+      "ytd": 2.265134118053269,
+      "last_12m": 3.279910798470409,
+      "last_24m": 5.523809544283531,
+      "since_inception": 956495706.9096789
+    },
+    {
+      "reference_date": "2006-10-01",
+      "value": 0.47,
+      "ytd": 2.745780248408103,
+      "last_12m": 3.146447693064802,
+      "last_24m": 5.60790063665868,
+      "since_inception": 960991237.2021543
+    },
+    {
+      "reference_date": "2006-11-01",
+      "value": 0.75,
+      "ytd": 3.516373600271172,
+      "last_12m": 3.50602196291121,
+      "last_24m": 5.5345763652387525,
+      "since_inception": 968198672.2311705
+    },
+    {
+      "reference_date": "2006-12-01",
+      "value": 0.32,
+      "ytd": 3.847625995792048,
+      "last_12m": 3.847625995792048,
+      "last_24m": 5.0945870653240855,
+      "since_inception": 971296908.3023103
+    },
+    {
+      "reference_date": "2007-01-01",
+      "value": 0.5,
+      "ytd": 0.49999999999998934,
+      "last_12m": 3.4154420588297096,
+      "last_24m": 5.209742006824025,
+      "since_inception": 976153393.3438218
+    },
+    {
+      "reference_date": "2007-02-01",
+      "value": 0.27,
+      "ytd": 0.7713499999999707,
+      "last_12m": 3.6842953228563236,
+      "last_24m": 5.1782734897731775,
+      "since_inception": 978789007.77585
+    },
+    {
+      "reference_date": "2007-03-01",
+      "value": 0.34,
+      "ytd": 1.1139725899999675,
+      "last_12m": 4.276658240908104,
+      "last_24m": 4.646385344212578,
+      "since_inception": 982116890.742288
+    },
+    {
+      "reference_date": "2007-04-01",
+      "value": 0.04,
+      "ytd": 1.1544181790359653,
+      "last_12m": 4.7583539909665795,
+      "last_24m": 3.7956017235279305,
+      "since_inception": 982509737.5385848
+    },
+    {
+      "reference_date": "2007-05-01",
+      "value": 0.04,
+      "ytd": 1.194879946307581,
+      "last_12m": 4.403523941584897,
+      "last_24m": 4.066065307894706,
+      "since_inception": 982902741.4736003
+    },
+    {
+      "reference_date": "2007-06-01",
+      "value": 0.26,
+      "ytd": 1.4579866341679848,
+      "last_12m": 3.8957549417697246,
+      "last_24m": 4.79774716522221,
+      "since_inception": 985458288.8614316
+    },
+    {
+      "reference_date": "2007-07-01",
+      "value": 0.28,
+      "ytd": 1.742068996743651,
+      "last_12m": 3.999464020370036,
+      "last_24m": 5.449709870845676,
+      "since_inception": 988217572.3502434
+    },
+    {
+      "reference_date": "2007-08-01",
+      "value": 0.98,
+      "ytd": 2.7391412729117492,
+      "last_12m": 4.631522135866906,
+      "last_24m": 7.179785634202318,
+      "since_inception": 997902105.5392759
+    },
+    {
+      "reference_date": "2007-09-01",
+      "value": 1.29,
+      "ytd": 4.0644761953323005,
+      "last_12m": 5.674811817149905,
+      "last_24m": 9.140851381203841,
+      "since_inception": 1010775043.9907326
+    },
+    {
+      "reference_date": "2007-10-01",
+      "value": 1.05,
+      "ytd": 5.157153195383279,
+      "last_12m": 6.284858506250646,
+      "last_24m": 9.62905598479773,
+      "since_inception": 1021388183.0026352
+    },
+    {
+      "reference_date": "2007-11-01",
+      "value": 0.69,
+      "ytd": 5.882737552431405,
+      "last_12m": 6.221562312599205,
+      "last_24m": 9.945713616626373,
+      "since_inception": 1028435762.1553533
+    },
+    {
+      "reference_date": "2007-12-01",
+      "value": 1.76,
+      "ytd": 7.746273733354214,
+      "last_12m": 7.746273733354214,
+      "last_24m": 11.891947371015954,
+      "since_inception": 1046536233.3292875
+    },
+    {
+      "reference_date": "2008-01-01",
+      "value": 1.09,
+      "ytd": 1.089999999999991,
+      "last_12m": 8.378814046813687,
+      "last_24m": 12.080429644629431,
+      "since_inception": 1057943479.3625766
+    },
+    {
+      "reference_date": "2008-02-01",
+      "value": 0.53,
+      "ytd": 1.625776999999995,
+      "last_12m": 8.659840192741441,
+      "last_24m": 12.663189602785785,
+      "since_inception": 1063550580.3331984
+    },
+    {
+      "reference_date": "2008-03-01",
+      "value": 0.74,
+      "ytd": 2.3778077498000094,
+      "last_12m": 9.09300678709155,
+      "last_24m": 13.758541852106209,
+      "since_inception": 1071420855.3676642
+    },
+    {
+      "reference_date": "2008-04-01",
+      "value": 0.69,
+      "ytd": 3.084214623273618,
+      "last_12m": 9.80182780280141,
+      "last_24m": 15.026587458210239,
+      "since_inception": 1078813659.959701
+    },
+    {
+      "reference_date": "2008-05-01",
+      "value": 1.61,
+      "ytd": 4.743870478708323,
+      "last_12m": 11.525027219538696,
+      "last_24m": 16.43605849401011,
+      "since_inception": 1096182561.4950523
+    },
+    {
+      "reference_date": "2008-06-01",
+      "value": 1.98,
+      "ytd": 6.817799114186762,
+      "last_12m": 13.438283222108073,
+      "last_24m": 17.857560746592082,
+      "since_inception": 1117886978.1926544
+    },
+    {
+      "reference_date": "2008-07-01",
+      "value": 1.76,
+      "ytd": 8.697792378596446,
+      "last_12m": 15.112482057057441,
+      "last_24m": 19.716364359884373,
+      "since_inception": 1137561790.768845
+    },
+    {
+      "reference_date": "2008-08-01",
+      "value": -0.32,
+      "ytd": 8.349959442984932,
+      "last_12m": 13.630542795083066,
+      "last_24m": 18.893366537743027,
+      "since_inception": 1133921592.718385
+    },
+    {
+      "reference_date": "2008-09-01",
+      "value": 0.11,
+      "ytd": 8.46914439837223,
+      "last_12m": 12.306778943782891,
+      "last_24m": 18.67997730674511,
+      "since_inception": 1135168906.5803754
+    },
+    {
+      "reference_date": "2008-10-01",
+      "value": 0.98,
+      "ytd": 9.532142013476275,
+      "last_12m": 12.228981076132595,
+      "last_24m": 19.282413739774306,
+      "since_inception": 1146293562.844863
+    },
+    {
+      "reference_date": "2008-11-01",
+      "value": 0.38,
+      "ytd": 9.948364153127498,
+      "last_12m": 11.88345536222255,
+      "last_24m": 18.844354255072293,
+      "since_inception": 1150649478.7636735
+    },
+    {
+      "reference_date": "2008-12-01",
+      "value": -0.13,
+      "ytd": 9.805431279728438,
+      "last_12m": 9.805431279728438,
+      "last_24m": 18.311260560746344,
+      "since_inception": 1149153634.3112807
+    },
+    {
+      "reference_date": "2009-01-01",
+      "value": -0.44,
+      "ytd": -0.43999999999999595,
+      "last_12m": 8.143522981598217,
+      "last_24m": 17.204667675899543,
+      "since_inception": 1144097357.8803113
+    },
+    {
+      "reference_date": "2009-02-01",
+      "value": 0.26,
+      "ytd": -0.18114399999999975,
+      "last_12m": 7.853074844673613,
+      "last_24m": 17.19297876918011,
+      "since_inception": 1147072011.2708
+    },
+    {
+      "reference_date": "2009-03-01",
+      "value": -0.74,
+      "ytd": -0.9198035343999988,
+      "last_12m": 6.268574638498126,
+      "last_24m": 15.931583342922195,
+      "since_inception": 1138583677.647396
+    },
+    {
+      "reference_date": "2009-04-01",
+      "value": -0.15,
+      "ytd": -1.0684238290983972,
+      "last_12m": 5.382035730003332,
+      "last_24m": 15.711401407344994,
+      "since_inception": 1136875801.980925
+    },
+    {
+      "reference_date": "2009-05-01",
+      "value": -0.07,
+      "ytd": -1.1376759324180363,
+      "last_12m": 3.6396696240452053,
+      "last_24m": 15.584169758456445,
+      "since_inception": 1136079988.8495386
+    },
+    {
+      "reference_date": "2009-06-01",
+      "value": -0.1,
+      "ytd": -1.2365382564856198,
+      "last_12m": 1.525818743303775,
+      "last_24m": 15.16914580959301,
+      "since_inception": 1134943908.760689
+    },
+    {
+      "reference_date": "2009-07-01",
+      "value": -0.43,
+      "ytd": -1.6612211419827272,
+      "last_12m": -0.659141388848683,
+      "last_24m": 14.353728044088365,
+      "since_inception": 1130063649.5230181
+    },
+    {
+      "reference_date": "2009-08-01",
+      "value": -0.36,
+      "ytd": -2.0152407458715937,
+      "last_12m": -0.699005296798616,
+      "last_24m": 12.836259282164452,
+      "since_inception": 1125995420.0247352
+    },
+    {
+      "reference_date": "2009-09-01",
+      "value": 0.42,
+      "ytd": -1.603704757004254,
+      "last_12m": -0.3915104575418993,
+      "last_24m": 11.86708615968952,
+      "since_inception": 1130724601.208839
+    },
+    {
+      "reference_date": "2009-10-01",
+      "value": 0.05,
+      "ytd": -1.5545066093827664,
+      "last_12m": -1.308879196643542,
+      "last_24m": 10.760039290222068,
+      "since_inception": 1131289963.5594432
+    },
+    {
+      "reference_date": "2009-11-01",
+      "value": 0.1,
+      "ytd": -1.4560611159921577,
+      "last_12m": -1.584168236541339,
+      "last_24m": 10.111033200429297,
+      "since_inception": 1132421253.6230025
+    },
+    {
+      "reference_date": "2009-12-01",
+      "value": -0.26,
+      "ytd": -1.7122753570905869,
+      "last_12m": -1.7122753570905869,
+      "last_24m": 7.9252599391786305,
+      "since_inception": 1129476958.1035826
+    },
+    {
+      "reference_date": "2010-01-01",
+      "value": 0.63,
+      "ytd": 0.6299999999999972,
+      "last_12m": -0.6559488668544056,
+      "last_24m": 7.434156768024014,
+      "since_inception": 1136592663.5696352
+    },
+    {
+      "reference_date": "2010-02-01",
+      "value": 1.18,
+      "ytd": 1.8174340000000067,
+      "last_12m": 0.25564625625045245,
+      "last_24m": 8.128797192765024,
+      "since_inception": 1150004458.1797569
+    },
+    {
+      "reference_date": "2010-03-01",
+      "value": 0.94,
+      "ytd": 2.7745178796000136,
+      "last_12m": 1.9524978148893979,
+      "last_24m": 8.343466236228902,
+      "since_inception": 1160814501.0266466
+    },
+    {
+      "reference_date": "2010-04-01",
+      "value": 0.77,
+      "ytd": 3.565881667272941,
+      "last_12m": 2.8918698528433096,
+      "last_24m": 8.42954705159189,
+      "since_inception": 1169752773.4545517
+    },
+    {
+      "reference_date": "2010-05-01",
+      "value": 1.19,
+      "ytd": 4.7983156591134835,
+      "last_12m": 4.189215554980641,
+      "last_24m": 7.981358785066295,
+      "since_inception": 1183672832.648661
+    },
+    {
+      "reference_date": "2010-06-01",
+      "value": 0.85,
+      "ytd": 5.689101342215941,
+      "last_12m": 5.180003891089058,
+      "last_24m": 6.784860104666968,
+      "since_inception": 1193734052.5761745
+    },
+    {
+      "reference_date": "2010-07-01",
+      "value": 0.15,
+      "ytd": 5.847634994229267,
+      "last_12m": 5.792682431380625,
+      "last_24m": 5.095359075102168,
+      "since_inception": 1195524653.805039
+    },
+    {
+      "reference_date": "2010-08-01",
+      "value": 0.77,
+      "ytd": 6.662661783684842,
+      "last_12m": 6.992458938280066,
+      "last_24m": 6.244575983126421,
+      "since_inception": 1204730194.4093378
+    },
+    {
+      "reference_date": "2010-09-01",
+      "value": 1.15,
+      "ytd": 7.889282394197217,
+      "last_12m": 7.770237219747411,
+      "last_24m": 7.3483054709143625,
+      "since_inception": 1218584592.7950454
+    },
+    {
+      "reference_date": "2010-10-01",
+      "value": 1.01,
+      "ytd": 8.978964146378598,
+      "last_12m": 8.804314458437634,
+      "last_24m": 7.380197421440493,
+      "since_inception": 1230892298.1922753
+    },
+    {
+      "reference_date": "2010-11-01",
+      "value": 1.45,
+      "ytd": 10.559159126501093,
+      "last_12m": 10.271705312772195,
+      "last_24m": 8.524815983314827,
+      "since_inception": 1248740237.9660633
+    },
+    {
+      "reference_date": "2010-12-01",
+      "value": 0.69,
+      "ytd": 11.322017324473933,
+      "last_12m": 11.322017324473933,
+      "last_24m": 9.415877854810905,
+      "since_inception": 1257356546.298029
+    },
+    {
+      "reference_date": "2011-01-01",
+      "value": 0.79,
+      "ytd": 0.7900000000000018,
+      "last_12m": 11.499017451393524,
+      "last_24m": 10.767640909867326,
+      "since_inception": 1267289663.8037834
+    },
+    {
+      "reference_date": "2011-02-01",
+      "value": 1.0,
+      "ytd": 1.7978999999999967,
+      "last_12m": 11.300659839797799,
+      "last_24m": 11.585195809860348,
+      "since_inception": 1279962561.4418213
+    },
+    {
+      "reference_date": "2011-03-01",
+      "value": 0.62,
+      "ytd": 2.4290469799999936,
+      "last_12m": 10.947814474742001,
+      "last_24m": 13.114068128028888,
+      "since_inception": 1287898329.9427605
+    },
+    {
+      "reference_date": "2011-04-01",
+      "value": 0.45,
+      "ytd": 2.889977691409995,
+      "last_12m": 10.595494333510281,
+      "last_24m": 13.793772092744106,
+      "since_inception": 1293693872.877503
+    },
+    {
+      "reference_date": "2011-05-01",
+      "value": 0.43,
+      "ytd": 3.3324045954830517,
+      "last_12m": 9.764853205993095,
+      "last_24m": 14.363139510400181,
+      "since_inception": 1299256756.960876
+    },
+    {
+      "reference_date": "2011-06-01",
+      "value": -0.18,
+      "ytd": 3.146406267211188,
+      "last_12m": 8.643804135074173,
+      "last_24m": 14.271557416698165,
+      "since_inception": 1296918094.6183465
+    },
+    {
+      "reference_date": "2011-07-01",
+      "value": -0.12,
+      "ytd": 3.022630579690544,
+      "last_12m": 8.350905212293602,
+      "last_24m": 14.627329062768002,
+      "since_inception": 1295361792.7848046
+    },
+    {
+      "reference_date": "2011-08-01",
+      "value": 0.44,
+      "ytd": 3.475930154241169,
+      "last_12m": 7.996079383971111,
+      "last_24m": 15.547660889847648,
+      "since_inception": 1301061385.1130576
+    },
+    {
+      "reference_date": "2011-09-01",
+      "value": 0.65,
+      "ytd": 4.1485237002437225,
+      "last_12m": 7.4622381611140876,
+      "last_24m": 15.812308987882616,
+      "since_inception": 1309518284.7662923
+    },
+    {
+      "reference_date": "2011-10-01",
+      "value": 0.53,
+      "ytd": 4.700510875855013,
+      "last_12m": 6.951577094711436,
+      "last_24m": 16.367930260388164,
+      "since_inception": 1316458732.205554
+    },
+    {
+      "reference_date": "2011-11-01",
+      "value": 0.5,
+      "ytd": 5.224013430234287,
+      "last_12m": 5.950059122902918,
+      "last_24m": 16.832936974715352,
+      "since_inception": 1323041026.3665817
+    },
+    {
+      "reference_date": "2011-12-01",
+      "value": -0.12,
+      "ytd": 5.097744614118005,
+      "last_12m": 5.097744614118005,
+      "last_24m": 16.99692946695983,
+      "since_inception": 1321453377.0149417
+    },
+    {
+      "reference_date": "2012-01-01",
+      "value": 0.25,
+      "ytd": 0.24999999999999467,
+      "last_12m": 4.534665121195869,
+      "last_24m": 16.555124506237906,
+      "since_inception": 1324757010.707479
+    },
+    {
+      "reference_date": "2012-02-01",
+      "value": -0.06,
+      "ytd": 0.1898499999999803,
+      "last_12m": 3.4375686357654534,
+      "last_24m": 15.126696413850693,
+      "since_inception": 1323962156.4410546
+    },
+    {
+      "reference_date": "2012-03-01",
+      "value": 0.43,
+      "ytd": 0.6206663549999769,
+      "last_12m": 3.242248241800083,
+      "last_24m": 14.545018038864965,
+      "since_inception": 1329655194.1437511
+    },
+    {
+      "reference_date": "2012-04-01",
+      "value": 0.85,
+      "ytd": 1.4759420190174621,
+      "last_12m": 3.6533671994578354,
+      "last_24m": 14.635953847568995,
+      "since_inception": 1340957264.1439729
+    },
+    {
+      "reference_date": "2012-05-01",
+      "value": 1.02,
+      "ytd": 2.510996627611428,
+      "last_12m": 4.262303639243581,
+      "last_24m": 14.443364538802484,
+      "since_inception": 1354635029.2582414
+    },
+    {
+      "reference_date": "2012-06-01",
+      "value": 0.66,
+      "ytd": 3.1875692053536575,
+      "last_12m": 5.139686278563982,
+      "last_24m": 14.227754828714524,
+      "since_inception": 1363575621.1113458
+    },
+    {
+      "reference_date": "2012-07-01",
+      "value": 1.34,
+      "ytd": 4.5702826327054025,
+      "last_12m": 6.6765699586471605,
+      "last_24m": 15.585029199619838,
+      "since_inception": 1381847535.7742379
+    },
+    {
+      "reference_date": "2012-08-01",
+      "value": 1.43,
+      "ytd": 6.065637674353086,
+      "last_12m": 7.728041526339902,
+      "last_24m": 16.342061245583416,
+      "since_inception": 1401607956.9658096
+    },
+    {
+      "reference_date": "2012-09-01",
+      "value": 0.97,
+      "ytd": 7.094474359794312,
+      "last_12m": 8.070544986731608,
+      "last_24m": 16.135026435655476,
+      "since_inception": 1415203555.118378
+    },
+    {
+      "reference_date": "2012-10-01",
+      "value": 0.02,
+      "ytd": 7.115893254666261,
+      "last_12m": 7.522290953674493,
+      "last_24m": 14.996785903319122,
+      "since_inception": 1415486595.8494015
+    },
+    {
+      "reference_date": "2012-11-01",
+      "value": -0.03,
+      "ytd": 7.083758486689873,
+      "last_12m": 6.955257976505891,
+      "last_24m": 13.319159061161345,
+      "since_inception": 1415061949.8406467
+    },
+    {
+      "reference_date": "2012-12-01",
+      "value": 0.68,
+      "ytd": 7.811928044399363,
+      "last_12m": 7.811928044399363,
+      "last_24m": 13.307904799659532,
+      "since_inception": 1424684371.7795632
+    },
+    {
+      "reference_date": "2013-01-01",
+      "value": 0.34,
+      "ytd": 0.34000000000000696,
+      "last_12m": 7.908716807731042,
+      "last_24m": 12.802015751541273,
+      "since_inception": 1429528298.9836137
+    },
+    {
+      "reference_date": "2013-02-01",
+      "value": 0.29,
+      "ytd": 0.630986,
+      "last_12m": 8.286624060910007,
+      "last_24m": 12.009051086357125,
+      "since_inception": 1433673931.340666
+    },
+    {
+      "reference_date": "2013-03-01",
+      "value": 0.21,
+      "ytd": 0.8423110705999992,
+      "last_12m": 8.049413493416235,
+      "last_24m": 11.55264370268181,
+      "since_inception": 1436684646.8064814
+    },
+    {
+      "reference_date": "2013-04-01",
+      "value": 0.15,
+      "ytd": 0.993574537205899,
+      "last_12m": 7.299442353650343,
+      "last_24m": 11.219484985799744,
+      "since_inception": 1438839673.9266913
+    },
+    {
+      "reference_date": "2013-05-01",
+      "value": 0.0,
+      "ytd": 0.993574537205899,
+      "last_12m": 6.216038758315534,
+      "last_24m": 10.74328884377158,
+      "since_inception": 1438839673.9266913
+    },
+    {
+      "reference_date": "2013-06-01",
+      "value": 0.75,
+      "ytd": 1.7510263462349407,
+      "last_12m": 6.311006406718556,
+      "last_24m": 11.775058615607946,
+      "since_inception": 1449630972.2311416
+    },
+    {
+      "reference_date": "2013-07-01",
+      "value": 0.26,
+      "ytd": 2.015579014735147,
+      "last_12m": 5.178029429027053,
+      "last_24m": 12.200314144982505,
+      "since_inception": 1453400013.0189426
+    },
+    {
+      "reference_date": "2013-08-01",
+      "value": 0.15,
+      "ytd": 2.1686023832572454,
+      "last_12m": 3.8507310195904365,
+      "last_24m": 11.87635863819201,
+      "since_inception": 1455580113.188471
+    },
+    {
+      "reference_date": "2013-09-01",
+      "value": 1.5,
+      "ytd": 3.7011314190060984,
+      "last_12m": 4.395852218366159,
+      "last_24m": 12.821166435931254,
+      "since_inception": 1477413816.3862982
+    },
+    {
+      "reference_date": "2013-10-01",
+      "value": 0.86,
+      "ytd": 4.592961149209551,
+      "last_12m": 5.272602027038675,
+      "last_24m": 13.191513446016344,
+      "since_inception": 1490119576.0672202
+    },
+    {
+      "reference_date": "2013-11-01",
+      "value": 0.29,
+      "ytd": 4.896280736542247,
+      "last_12m": 5.609575445550696,
+      "last_24m": 12.954993865681374,
+      "since_inception": 1494440923.127815
+    },
+    {
+      "reference_date": "2013-12-01",
+      "value": 0.6,
+      "ytd": 5.52565842096151,
+      "last_12m": 5.52565842096151,
+      "last_24m": 13.769246925185685,
+      "since_inception": 1503407569.266582
+    },
+    {
+      "reference_date": "2014-01-01",
+      "value": 0.48,
+      "ytd": 0.47999999999999154,
+      "last_12m": 5.6728937426570925,
+      "last_24m": 14.030263651298359,
+      "since_inception": 1510623926.0790615
+    },
+    {
+      "reference_date": "2014-02-01",
+      "value": 0.38,
+      "ytd": 0.8618239999999888,
+      "last_12m": 5.76772433829813,
+      "last_24m": 14.532298031992518,
+      "since_inception": 1516364297.378162
+    },
+    {
+      "reference_date": "2014-03-01",
+      "value": 1.67,
+      "ytd": 2.546216460799977,
+      "last_12m": 7.308697070898806,
+      "last_24m": 15.946417812532943,
+      "since_inception": 1541687582.814377
+    },
+    {
+      "reference_date": "2014-04-01",
+      "value": 0.78,
+      "ytd": 3.346076949194221,
+      "last_12m": 7.983729314080712,
+      "last_24m": 15.865939386683792,
+      "since_inception": 1553712746.7403295
+    },
+    {
+      "reference_date": "2014-05-01",
+      "value": -0.13,
+      "ytd": 3.2117270491602623,
+      "last_12m": 7.843350465972421,
+      "last_24m": 14.546934929203314,
+      "since_inception": 1551692920.0395672
+    },
+    {
+      "reference_date": "2014-06-01",
+      "value": -0.74,
+      "ytd": 2.447960268996474,
+      "last_12m": 6.2484463250860545,
+      "last_24m": 12.953792579701107,
+      "since_inception": 1540210391.6912744
+    },
+    {
+      "reference_date": "2014-07-01",
+      "value": -0.61,
+      "ytd": 1.823027711355607,
+      "last_12m": 5.326481949434547,
+      "last_24m": 10.780318181335048,
+      "since_inception": 1530815107.6919577
+    },
+    {
+      "reference_date": "2014-08-01",
+      "value": -0.27,
+      "ytd": 1.5481055365349494,
+      "last_12m": 4.884773288238686,
+      "last_24m": 8.923603788075996,
+      "since_inception": 1526681906.631189
+    },
+    {
+      "reference_date": "2014-09-01",
+      "value": 0.2,
+      "ytd": 1.751201747608011,
+      "last_12m": 3.5414215121331916,
+      "last_24m": 8.0929493866021,
+      "since_inception": 1529735270.6444516
+    },
+    {
+      "reference_date": "2014-10-01",
+      "value": 0.28,
+      "ytd": 2.0361051125012963,
+      "last_12m": 2.9460018762315077,
+      "last_24m": 8.373934857912978,
+      "since_inception": 1534018529.682256
+    },
+    {
+      "reference_date": "2014-11-01",
+      "value": 0.98,
+      "ytd": 3.0360589426038143,
+      "last_12m": 3.6542752962595015,
+      "last_24m": 9.468840071541917,
+      "since_inception": 1549051912.2531424
+    },
+    {
+      "reference_date": "2014-12-01",
+      "value": 0.62,
+      "ytd": 3.6748825080479497,
+      "last_12m": 3.6748825080479497,
+      "last_24m": 9.403602383775866,
+      "since_inception": 1558656034.7291117
+    },
+    {
+      "reference_date": "2015-01-01",
+      "value": 0.76,
+      "ytd": 0.7600000000000051,
+      "last_12m": 3.963785444973267,
+      "last_24m": 9.861540524110591,
+      "since_inception": 1570501821.353053
+    },
+    {
+      "reference_date": "2015-02-01",
+      "value": 0.27,
+      "ytd": 1.0320520000000055,
+      "last_12m": 3.8498582044976137,
+      "last_24m": 9.83963175144651,
+      "since_inception": 1574742176.5407064
+    },
+    {
+      "reference_date": "2015-03-01",
+      "value": 0.98,
+      "ytd": 2.0221661095999988,
+      "last_12m": 3.14506424205927,
+      "last_24m": 10.683624531095415,
+      "since_inception": 1590174650.8508053
+    },
+    {
+      "reference_date": "2015-04-01",
+      "value": 1.17,
+      "ytd": 3.2158254530823216,
+      "last_12m": 3.544216604178785,
+      "last_24m": 11.810906578241909,
+      "since_inception": 1608779695.4357598
+    },
+    {
+      "reference_date": "2015-05-01",
+      "value": 0.41,
+      "ytd": 3.639010337439963,
+      "last_12m": 4.104083200416486,
+      "last_24m": 12.269331295212705,
+      "since_inception": 1615375692.5970464
+    },
+    {
+      "reference_date": "2015-06-01",
+      "value": 0.67,
+      "ytd": 4.333391706700795,
+      "last_12m": 5.582893973261394,
+      "last_24m": 12.18018443165314,
+      "since_inception": 1626198710.4074464
+    },
+    {
+      "reference_date": "2015-07-01",
+      "value": 0.69,
+      "ytd": 5.053292109477026,
+      "last_12m": 6.963895705480261,
+      "last_24m": 12.661308302644713,
+      "since_inception": 1637419482.1992576
+    },
+    {
+      "reference_date": "2015-08-01",
+      "value": 0.28,
+      "ytd": 5.347441327383562,
+      "last_12m": 7.55378984603996,
+      "last_24m": 12.80754864292768,
+      "since_inception": 1642004257.0294154
+    },
+    {
+      "reference_date": "2015-09-01",
+      "value": 0.95,
+      "ytd": 6.348242019993711,
+      "last_12m": 8.358833183210933,
+      "last_24m": 12.19627621185766,
+      "since_inception": 1657603298.421195
+    },
+    {
+      "reference_date": "2015-10-01",
+      "value": 1.89,
+      "ytd": 8.358223794171593,
+      "last_12m": 10.09853922055608,
+      "last_24m": 13.342044251697093,
+      "since_inception": 1688932002.6513555
+    },
+    {
+      "reference_date": "2015-11-01",
+      "value": 1.52,
+      "ytd": 10.005268795843003,
+      "last_12m": 10.687301462377174,
+      "last_24m": 14.732120175813158,
+      "since_inception": 1714603770.6116562
+    },
+    {
+      "reference_date": "2015-12-01",
+      "value": 0.49,
+      "ytd": 10.544294612942618,
+      "last_12m": 10.544294612942618,
+      "last_24m": 14.606667559318677,
+      "since_inception": 1723005329.5776532
+    },
+    {
+      "reference_date": "2016-01-01",
+      "value": 1.14,
+      "ytd": 1.1400000000000077,
+      "last_12m": 10.961194493380443,
+      "last_24m": 15.359458170277573,
+      "since_inception": 1742647591.4748385
+    },
+    {
+      "reference_date": "2016-02-01",
+      "value": 1.29,
+      "ytd": 2.4447059999999965,
+      "last_12m": 12.08995103455175,
+      "last_24m": 16.405255210872838,
+      "since_inception": 1765127746.694864
+    },
+    {
+      "reference_date": "2016-03-01",
+      "value": 0.51,
+      "ytd": 2.9671740006000036,
+      "last_12m": 11.568241022804537,
+      "last_24m": 15.077133876707304,
+      "since_inception": 1774129898.713008
+    },
+    {
+      "reference_date": "2016-04-01",
+      "value": 0.33,
+      "ytd": 3.306965674801998,
+      "last_12m": 10.64190591892833,
+      "last_24m": 14.563294719686827,
+      "since_inception": 1779984527.708761
+    },
+    {
+      "reference_date": "2016-05-01",
+      "value": 0.82,
+      "ytd": 4.1540827933353786,
+      "last_12m": 11.093685437171086,
+      "last_24m": 15.653062717921573,
+      "since_inception": 1794580401.6559727
+    },
+    {
+      "reference_date": "2016-06-01",
+      "value": 1.69,
+      "ytd": 5.914286792542733,
+      "last_12m": 12.219299414978991,
+      "last_24m": 18.484383918853986,
+      "since_inception": 1824908812.1339586
+    },
+    {
+      "reference_date": "2016-07-01",
+      "value": 0.18,
+      "ytd": 6.104932508769312,
+      "last_12m": 11.650902923752039,
+      "last_24m": 19.42615535758918,
+      "since_inception": 1828193648.1757998
+    },
+    {
+      "reference_date": "2016-08-01",
+      "value": 0.15,
+      "ytd": 6.264089907532466,
+      "last_12m": 11.506162024469146,
+      "last_24m": 19.929103169182415,
+      "since_inception": 1830935938.7980635
+    },
+    {
+      "reference_date": "2016-09-01",
+      "value": 0.2,
+      "ytd": 6.476618087347541,
+      "last_12m": 10.677735857868376,
+      "last_24m": 19.929103169182394,
+      "since_inception": 1834597810.8756597
+    },
+    {
+      "reference_date": "2016-10-01",
+      "value": 0.16,
+      "ytd": 6.646980676287306,
+      "last_12m": 8.798528055001453,
+      "last_24m": 19.785590082023518,
+      "since_inception": 1837533167.533061
+    },
+    {
+      "reference_date": "2016-11-01",
+      "value": -0.03,
+      "ytd": 6.6149865820844145,
+      "last_12m": 7.137400016336626,
+      "last_24m": 18.587496935035407,
+      "since_inception": 1836981907.5528011
+    },
+    {
+      "reference_date": "2016-12-01",
+      "value": 0.54,
+      "ytd": 7.19070750962767,
+      "last_12m": 7.19070750962767,
+      "last_24m": 18.49321150714043,
+      "since_inception": 1846901610.3935864
+    },
+    {
+      "reference_date": "2017-01-01",
+      "value": 0.64,
+      "ytd": 0.6399999999999961,
+      "last_12m": 6.66079497497456,
+      "last_24m": 18.352092160367306,
+      "since_inception": 1858721781.340105
+    },
+    {
+      "reference_date": "2017-02-01",
+      "value": 0.08,
+      "ytd": 0.7205119999999843,
+      "last_12m": 5.386636006471046,
+      "last_24m": 18.12782869661469,
+      "since_inception": 1860208758.845177
+    },
+    {
+      "reference_date": "2017-03-01",
+      "value": 0.01,
+      "ytd": 0.7305840511999895,
+      "last_12m": 4.862376549668368,
+      "last_24m": 16.993109011174923,
+      "since_inception": 1860394779.7310612
+    },
+    {
+      "reference_date": "2017-04-01",
+      "value": -1.1,
+      "ytd": -0.37745237336320736,
+      "last_12m": 3.367776744365636,
+      "last_24m": 14.368078295988894,
+      "since_inception": 1839930436.0540197
+    },
+    {
+      "reference_date": "2017-05-01",
+      "value": -0.93,
+      "ytd": -1.3039420662909307,
+      "last_12m": 1.5735532837165556,
+      "last_24m": 12.841803772369452,
+      "since_inception": 1822819082.0687175
+    },
+    {
+      "reference_date": "2017-06-01",
+      "value": -0.67,
+      "ytd": -1.9652056544467889,
+      "last_12m": -0.7837442455347676,
+      "last_24m": 11.339787113434618,
+      "since_inception": 1810606193.548857
+    },
+    {
+      "reference_date": "2017-07-01",
+      "value": -0.72,
+      "ytd": -2.671056173734765,
+      "last_12m": -1.6750861319294819,
+      "last_24m": 9.78065413270226,
+      "since_inception": 1797569828.2353055
+    },
+    {
+      "reference_date": "2017-08-01",
+      "value": 0.1,
+      "ytd": -2.5737272299085068,
+      "last_12m": -1.724174955627955,
+      "last_24m": 9.583600704861283,
+      "since_inception": 1799367398.1635406
+    },
+    {
+      "reference_date": "2017-09-01",
+      "value": 0.47,
+      "ytd": -2.1158237478890785,
+      "last_12m": -1.4593598582030465,
+      "last_24m": 9.062549408790655,
+      "since_inception": 1807824425.4049091
+    },
+    {
+      "reference_date": "2017-10-01",
+      "value": 0.2,
+      "ytd": -1.9200553953848565,
+      "last_12m": -1.4200065674115803,
+      "last_24m": 7.2535818113733,
+      "since_inception": 1811440074.455719
+    },
+    {
+      "reference_date": "2017-11-01",
+      "value": 0.52,
+      "ytd": -1.4100396834408446,
+      "last_12m": -0.8776538977314563,
+      "last_24m": 6.197104449165103,
+      "since_inception": 1820859563.362889
+    },
+    {
+      "reference_date": "2017-12-01",
+      "value": 0.89,
+      "ytd": -0.5325890366234765,
+      "last_12m": -0.5325890366234765,
+      "last_24m": 6.619821553152194,
+      "since_inception": 1837065214.3668187
+    },
+    {
+      "reference_date": "2018-01-01",
+      "value": 0.76,
+      "ytd": 0.7600000000000051,
+      "last_12m": -0.41398719525220784,
+      "last_24m": 6.2192329414239245,
+      "since_inception": 1851026910.7560065
+    },
+    {
+      "reference_date": "2018-02-01",
+      "value": 0.07,
+      "ytd": 0.830532000000006,
+      "last_12m": -0.42393783602007185,
+      "last_24m": 4.93986218233089,
+      "since_inception": 1852322629.6635356
+    },
+    {
+      "reference_date": "2018-03-01",
+      "value": 0.64,
+      "ytd": 1.4758474048000014,
+      "last_12m": 0.20332862896650372,
+      "last_24m": 5.075591782208488,
+      "since_inception": 1864177495.133382
+    },
+    {
+      "reference_date": "2018-04-01",
+      "value": 0.57,
+      "ytd": 2.054259735007369,
+      "last_12m": 1.8953363014677205,
+      "last_24m": 5.3269437410217835,
+      "since_inception": 1874803307.4256425
+    },
+    {
+      "reference_date": "2018-05-01",
+      "value": 1.38,
+      "ytd": 3.462608519350474,
+      "last_12m": 4.27121423481176,
+      "last_24m": 5.911977350374786,
+      "since_inception": 1900675594.4481163
+    },
+    {
+      "reference_date": "2018-06-01",
+      "value": 1.87,
+      "ytd": 5.397359298662319,
+      "last_12m": 6.937567644219045,
+      "last_24m": 6.099450611492618,
+      "since_inception": 1936218229.9342961
+    },
+    {
+      "reference_date": "2018-07-01",
+      "value": 0.51,
+      "ytd": 5.934885831085501,
+      "last_12m": 8.26243879855415,
+      "last_24m": 6.448949700150908,
+      "since_inception": 1946092943.4169612
+    },
+    {
+      "reference_date": "2018-08-01",
+      "value": 0.7,
+      "ytd": 6.67643003190308,
+      "last_12m": 8.911364505638343,
+      "last_24m": 7.033542034999485,
+      "since_inception": 1959715594.72088
+    },
+    {
+      "reference_date": "2018-09-01",
+      "value": 1.52,
+      "ytd": 8.297911768388012,
+      "last_12m": 10.049584200382311,
+      "last_24m": 8.443564744442543,
+      "since_inception": 1989503273.2806373
+    },
+    {
+      "reference_date": "2018-10-01",
+      "value": 0.89,
+      "ytd": 9.261763183126659,
+      "last_12m": 10.807410678408914,
+      "last_24m": 9.233938169596723,
+      "since_inception": 2007209853.302835
+    },
+    {
+      "reference_date": "2018-11-01",
+      "value": -0.49,
+      "ytd": 8.726380543529345,
+      "last_12m": 9.69404533036673,
+      "last_24m": 8.731311265945463,
+      "since_inception": 1997374524.531651
+    },
+    {
+      "reference_date": "2018-12-01",
+      "value": -1.08,
+      "ytd": 7.552135633659218,
+      "last_12m": 7.552135633659218,
+      "last_24m": 6.979324750619931,
+      "since_inception": 1975802878.586709
+    },
+    {
+      "reference_date": "2019-01-01",
+      "value": 0.01,
+      "ytd": 0.009999999999998899,
+      "last_12m": 6.75157884797799,
+      "last_24m": 6.309640980817766,
+      "since_inception": 1976000458.8845677
+    },
+    {
+      "reference_date": "2019-02-01",
+      "value": 0.88,
+      "ytd": 0.8900879999999889,
+      "last_12m": 7.6156617785951175,
+      "last_24m": 7.159438270832252,
+      "since_inception": 1993389263.802752
+    },
+    {
+      "reference_date": "2019-03-01",
+      "value": 1.26,
+      "ytd": 2.1613031087999834,
+      "last_12m": 8.27863584758095,
+      "last_24m": 8.498797313313444,
+      "since_inception": 2018505969.7866664
+    },
+    {
+      "reference_date": "2019-04-01",
+      "value": 0.92,
+      "ytd": 3.101187097400948,
+      "last_12m": 8.655463157381593,
+      "last_24m": 10.714849594131358,
+      "since_inception": 2037076225.6287038
+    },
+    {
+      "reference_date": "2019-05-01",
+      "value": 0.45,
+      "ytd": 3.565142439339253,
+      "last_12m": 7.658722372844551,
+      "last_24m": 12.257057047849962,
+      "since_inception": 2046243069.0940328
+    },
+    {
+      "reference_date": "2019-06-01",
+      "value": 0.8,
+      "ytd": 4.393663578853957,
+      "last_12m": 6.5279200469493315,
+      "last_24m": 13.918366560186058,
+      "since_inception": 2062613014.446785
+    },
+    {
+      "reference_date": "2019-07-01",
+      "value": 0.4,
+      "ytd": 4.811238233169379,
+      "last_12m": 6.411333924124141,
+      "last_24m": 15.203505264329987,
+      "since_inception": 2070863466.904572
+    },
+    {
+      "reference_date": "2019-08-01",
+      "value": -0.67,
+      "ytd": 4.1090029370071335,
+      "last_12m": 4.96363255892005,
+      "last_24m": 14.317324454604275,
+      "since_inception": 2056988681.0063112
+    },
+    {
+      "reference_date": "2019-09-01",
+      "value": -0.01,
+      "ytd": 4.098592036713433,
+      "last_12m": 3.3817338412767572,
+      "last_24m": 13.771168231470977,
+      "since_inception": 2056782982.1282108
+    },
+    {
+      "reference_date": "2019-10-01",
+      "value": 0.68,
+      "ytd": 4.806462462563066,
+      "last_12m": 3.166547359894367,
+      "last_24m": 14.316179815813367,
+      "since_inception": 2070769107.0866823
+    },
+    {
+      "reference_date": "2019-11-01",
+      "value": 0.3,
+      "ytd": 5.1208818499507425,
+      "last_12m": 3.985576325971296,
+      "last_24m": 14.065985232054068,
+      "since_inception": 2076981414.7079422
+    },
+    {
+      "reference_date": "2019-12-01",
+      "value": 2.09,
+      "ytd": 7.317908280614693,
+      "last_12m": 7.317908280614693,
+      "last_24m": 15.422702273172773,
+      "since_inception": 2120390328.3653383
+    },
+    {
+      "reference_date": "2020-01-01",
+      "value": 0.48,
+      "ytd": 0.47999999999999154,
+      "last_12m": 7.82225201516018,
+      "last_24m": 15.101956375629255,
+      "since_inception": 2130568202.4214916
+    },
+    {
+      "reference_date": "2020-02-01",
+      "value": -0.04,
+      "ytd": 0.439807999999986,
+      "last_12m": 6.838940438495356,
+      "last_24m": 14.975432790125875,
+      "since_inception": 2129715975.1005232
+    },
+    {
+      "reference_date": "2020-03-01",
+      "value": 1.24,
+      "ytd": 1.6852616191999736,
+      "last_12m": 6.8178385343992565,
+      "last_24m": 15.660898406919177,
+      "since_inception": 2156124454.43177
+    },
+    {
+      "reference_date": "2020-04-01",
+      "value": 0.8,
+      "ytd": 2.4987437121535727,
+      "last_12m": 6.690825646724563,
+      "last_24m": 15.925410752883074,
+      "since_inception": 2173373450.8672237
+    },
+    {
+      "reference_date": "2020-05-01",
+      "value": 0.28,
+      "ytd": 2.7857401945476035,
+      "last_12m": 6.5102637715633405,
+      "last_24m": 14.667589172411887,
+      "since_inception": 2179458896.809652
+    },
+    {
+      "reference_date": "2020-06-01",
+      "value": 1.56,
+      "ytd": 4.389197741582551,
+      "last_12m": 7.313317347618797,
+      "last_24m": 14.318644903800415,
+      "since_inception": 2213458457.1598825
+    },
+    {
+      "reference_date": "2020-07-01",
+      "value": 2.23,
+      "ytd": 6.71707685121985,
+      "last_12m": 9.269327016405082,
+      "last_24m": 16.274948448070027,
+      "since_inception": 2262818582.9845476
+    },
+    {
+      "reference_date": "2020-08-01",
+      "value": 2.74,
+      "ytd": 9.641124756943276,
+      "last_12m": 13.020544222948383,
+      "last_24m": 18.630468754267238,
+      "since_inception": 2324819814.8983245
+    },
+    {
+      "reference_date": "2020-09-01",
+      "value": 4.34,
+      "ytd": 14.39954957139462,
+      "last_12m": 17.93742958518285,
+      "last_24m": 21.925759552996915,
+      "since_inception": 2425716999.204912
+    },
+    {
+      "reference_date": "2020-10-01",
+      "value": 3.23,
+      "ytd": 18.094655022550675,
+      "last_12m": 20.924521812459563,
+      "last_24m": 24.753654065376818,
+      "since_inception": 2504067661.5092306
+    },
+    {
+      "reference_date": "2020-11-01",
+      "value": 3.28,
+      "ytd": 21.968159707290337,
+      "last_12m": 24.517294245172682,
+      "last_24m": 29.48002604634834,
+      "since_inception": 2586201084.0867333
+    },
+    {
+      "reference_date": "2020-12-01",
+      "value": 0.96,
+      "ytd": 23.13905404048033,
+      "last_12m": 23.13905404048033,
+      "last_24m": 32.150257072779254,
+      "since_inception": 2611028615.453966
+    },
+    {
+      "reference_date": "2021-01-01",
+      "value": 2.58,
+      "ytd": 2.5800000000000045,
+      "last_12m": 25.71262105366714,
+      "last_24m": 35.54617908734829,
+      "since_inception": 2678393156.3126783
+    },
+    {
+      "reference_date": "2021-02-01",
+      "value": 2.53,
+      "ytd": 5.175274000000019,
+      "last_12m": 28.944728257627993,
+      "last_24m": 37.763181421746836,
+      "since_inception": 2746156505.697389
+    },
+    {
+      "reference_date": "2021-03-01",
+      "value": 2.94,
+      "ytd": 8.267427055600018,
+      "last_12m": 31.10994001225038,
+      "last_24m": 40.04880402483331,
+      "since_inception": 2826893509.904893
+    },
+    {
+      "reference_date": "2021-04-01",
+      "value": 1.51,
+      "ytd": 9.902265204139571,
+      "last_12m": 32.033432645273116,
+      "last_24m": 40.86755941895388,
+      "since_inception": 2869579603.4144564
+    },
+    {
+      "reference_date": "2021-05-01",
+      "value": 4.1,
+      "ytd": 14.408258077509295,
+      "last_12m": 37.0630269083859,
+      "last_24m": 45.98619149341061,
+      "since_inception": 2987232371.2544484
+    },
+    {
+      "reference_date": "2021-06-01",
+      "value": 0.6,
+      "ytd": 15.094707625974358,
+      "last_12m": 35.767433113269156,
+      "last_24m": 45.69653635155857,
+      "since_inception": 3005155766.0819755
+    },
+    {
+      "reference_date": "2021-07-01",
+      "value": 0.78,
+      "ytd": 15.992446345456957,
+      "last_12m": 33.84174810872802,
+      "last_24m": 46.24797742539921,
+      "since_inception": 3028595981.8374147
+    },
+    {
+      "reference_date": "2021-08-01",
+      "value": 0.66,
+      "ytd": 16.757996491336957,
+      "last_12m": 31.13208453012033,
+      "last_24m": 48.206195586838675,
+      "since_inception": 3048584715.977542
+    },
+    {
+      "reference_date": "2021-09-01",
+      "value": -0.64,
+      "ytd": 16.010745313792405,
+      "last_12m": 24.873336389809797,
+      "last_24m": 47.2724031754004,
+      "since_inception": 3029073773.1552854
+    },
+    {
+      "reference_date": "2021-10-01",
+      "value": 0.64,
+      "ytd": 16.753214083800682,
+      "last_12m": 21.740313613004503,
+      "last_24m": 47.21389208951432,
+      "since_inception": 3048459845.943479
+    },
+    {
+      "reference_date": "2021-11-01",
+      "value": 0.02,
+      "ytd": 16.776564726617437,
+      "last_12m": 17.897619747992977,
+      "last_24m": 46.80292608966325,
+      "since_inception": 3049069537.9326677
+    },
+    {
+      "reference_date": "2021-12-01",
+      "value": 0.87,
+      "ytd": 17.792520839739012,
+      "last_12m": 17.792520839739012,
+      "last_24m": 45.04859589249022,
+      "since_inception": 3075596443.782682
+    },
+    {
+      "reference_date": "2022-01-01",
+      "value": 1.82,
+      "ytd": 1.8199999999999994,
+      "last_12m": 16.919813529949558,
+      "last_24m": 46.9829621195597,
+      "since_inception": 3131572300.879527
+    },
+    {
+      "reference_date": "2022-02-01",
+      "value": 1.83,
+      "ytd": 3.6833059999999973,
+      "last_12m": 16.121570386762496,
+      "last_24m": 49.73264338370112,
+      "since_inception": 3188880075.8156223
+    },
+    {
+      "reference_date": "2022-03-01",
+      "value": 1.74,
+      "ytd": 5.487395524400007,
+      "last_12m": 14.767909181554462,
+      "last_24m": 50.47213688125007,
+      "since_inception": 3244366590.874814
+    },
+    {
+      "reference_date": "2022-04-01",
+      "value": 1.41,
+      "ytd": 6.974767801294046,
+      "last_12m": 14.654848488833029,
+      "last_24m": 51.382732154043275,
+      "since_inception": 3290112161.2161493
+    },
+    {
+      "reference_date": "2022-05-01",
+      "value": 0.52,
+      "ytd": 7.531036593860785,
+      "last_12m": 10.71186714791066,
+      "last_24m": 51.7450362597172,
+      "since_inception": 3307220744.9744735
+    },
+    {
+      "reference_date": "2022-06-01",
+      "value": 0.59,
+      "ytd": 8.165469709764572,
+      "last_12m": 10.700861992130516,
+      "last_24m": 50.29571876097818,
+      "since_inception": 3326733347.9598227
+    },
+    {
+      "reference_date": "2022-07-01",
+      "value": 0.21,
+      "ytd": 8.392617196155072,
+      "last_12m": 10.074750746491379,
+      "last_24m": 47.32597062542923,
+      "since_inception": 3333719488.200538
+    },
+    {
+      "reference_date": "2022-08-01",
+      "value": -0.7,
+      "ytd": 7.633868875781991,
+      "last_12m": 8.587549663486914,
+      "last_24m": 42.393117413910076,
+      "since_inception": 3310383451.0831347
+    },
+    {
+      "reference_date": "2022-09-01",
+      "value": -0.95,
+      "ytd": 6.6113471214620745,
+      "last_12m": 8.248760005720413,
+      "last_24m": 35.17383821974116,
+      "since_inception": 3278934807.347845
+    },
+    {
+      "reference_date": "2022-10-01",
+      "value": -0.97,
+      "ytd": 5.577217054383898,
+      "last_12m": 6.517037990525565,
+      "last_24m": 29.67417610094898,
+      "since_inception": 3247129138.7465706
+    },
+    {
+      "reference_date": "2022-11-01",
+      "value": -0.56,
+      "ytd": 4.985984638879337,
+      "last_12m": 5.899362705237543,
+      "last_24m": 24.852827957768888,
+      "since_inception": 3228945215.0095897
+    },
+    {
+      "reference_date": "2022-12-01",
+      "value": 0.45,
+      "ytd": 5.45842156975429,
+      "last_12m": 5.45842156975429,
+      "last_24m": 24.222133204812636,
+      "since_inception": 3243475468.9271326
+    },
+    {
+      "reference_date": "2023-01-01",
+      "value": 0.21,
+      "ytd": 0.20999999999999908,
+      "last_12m": 3.7908900560310155,
+      "last_24m": 21.35211511458639,
+      "since_inception": 3250286767.6218796
+    },
+    {
+      "reference_date": "2023-02-01",
+      "value": -0.06,
+      "ytd": 0.1498739999999943,
+      "last_12m": 1.8644952587620445,
+      "last_24m": 18.286651561023692,
+      "since_inception": 3248336595.501306
+    },
+    {
+      "reference_date": "2023-03-01",
+      "value": 0.05,
+      "ytd": 0.19994893699999405,
+      "last_12m": 0.1724272718610198,
+      "last_24m": 14.96580035632813,
+      "since_inception": 3249960763.8490567
+    },
+    {
+      "reference_date": "2023-04-01",
+      "value": -0.95,
+      "ytd": -0.7519505779015057,
+      "last_12m": -2.1587721006031457,
+      "last_24m": 12.179711607667265,
+      "since_inception": 3219086135.642491
+    },
+    {
+      "reference_date": "2023-05-01",
+      "value": -1.84,
+      "ytd": -2.578114687268118,
+      "last_12m": -4.455880117341882,
+      "last_24m": 5.778679072128945,
+      "since_inception": 3159854948.906669
+    },
+    {
+      "reference_date": "2023-06-01",
+      "value": -1.93,
+      "ytd": -4.4583570738038425,
+      "last_12m": -6.8494697594961735,
+      "last_24m": 3.118439926477934,
+      "since_inception": 3098869746.46277
+    },
+    {
+      "reference_date": "2023-07-01",
+      "value": -0.72,
+      "ytd": -5.146256902872448,
+      "last_12m": -7.713954273253954,
+      "last_24m": 1.5836348075087603,
+      "since_inception": 3076557883.5682383
+    },
+    {
+      "reference_date": "2023-08-01",
+      "value": -0.14,
+      "ytd": -5.279052143208418,
+      "last_12m": -7.193509302388135,
+      "last_24m": 0.7762941772086807,
+      "since_inception": 3072250702.391243
+    },
+    {
+      "reference_date": "2023-09-01",
+      "value": 0.37,
+      "ytd": -4.9285846361382895,
+      "last_12m": -5.956714070476476,
+      "last_24m": 1.8006908873433813,
+      "since_inception": 3083618030.3600907
+    },
+    {
+      "reference_date": "2023-10-01",
+      "value": 0.5,
+      "ytd": -4.453227559318995,
+      "last_12m": -4.560736787669262,
+      "last_24m": 1.6590762537560089,
+      "since_inception": 3099036121.011891
+    },
+    {
+      "reference_date": "2023-11-01",
+      "value": 0.59,
+      "ytd": -3.8895016019189765,
+      "last_12m": -3.4570043591276245,
+      "last_24m": 2.238417120229097,
+      "since_inception": 3117320434.7158613
+    },
+    {
+      "reference_date": "2023-12-01",
+      "value": 0.74,
+      "ytd": -3.178283913773172,
+      "last_12m": -3.178283913773172,
+      "last_24m": 2.1066535212836968,
+      "since_inception": 3140388606.6727586
+    },
+    {
+      "reference_date": "2024-01-01",
+      "value": 0.07,
+      "ytd": 0.06999999999999229,
+      "last_12m": -3.3135502569731745,
+      "last_24m": 0.35172675186463387,
+      "since_inception": 3142586878.7674294
+    },
+    {
+      "reference_date": "2024-02-01",
+      "value": -0.52,
+      "ytd": -0.4503640000000031,
+      "last_12m": -3.758574940601267,
+      "last_24m": -1.9641581334037372,
+      "since_inception": 3126245426.4778385
+    },
+    {
+      "reference_date": "2024-03-01",
+      "value": -0.47,
+      "ytd": -0.9182472892000026,
+      "last_12m": -4.2587802482563,
+      "last_24m": -4.09369627499191,
+      "since_inception": 3111552072.5033927
+    },
+    {
+      "reference_date": "2024-04-01",
+      "value": 0.31,
+      "ytd": -0.6110938557965073,
+      "last_12m": -3.0408707390468304,
+      "last_24m": -5.133997370520039,
+      "since_inception": 3121197884.2381535
+    },
+    {
+      "reference_date": "2024-05-01",
+      "value": 0.89,
+      "ytd": 0.273467408886896,
+      "last_12m": -0.3442690389408698,
+      "last_24m": -4.784808940626428,
+      "since_inception": 3148976546.297873
+    },
+    {
+      "reference_date": "2024-06-01",
+      "value": 0.81,
+      "ytd": 1.0856824948988875,
+      "last_12m": 2.440035058472234,
+      "last_24m": -4.576564164475128,
+      "since_inception": 3174483257.1328855
+    },
+    {
+      "reference_date": "2024-07-01",
+      "value": 0.61,
+      "ytd": 1.7023051581177784,
+      "last_12m": 3.812368324263593,
+      "last_24m": -4.195670298252086,
+      "since_inception": 3193847605.6113963
+    },
+    {
+      "reference_date": "2024-08-01",
+      "value": 0.29,
+      "ytd": 1.9972418430763028,
+      "last_12m": 4.25938733467246,
+      "last_24m": -3.2405213918600517,
+      "since_inception": 3203109763.957669
+    },
+    {
+      "reference_date": "2024-09-01",
+      "value": 0.62,
+      "ytd": 2.629624742503367,
+      "last_12m": 4.51907495879984,
+      "last_24m": -1.706827485602791,
+      "since_inception": 3222969045.1142063
+    },
+    {
+      "reference_date": "2024-10-01",
+      "value": 1.52,
+      "ytd": 4.189595038589422,
+      "last_12m": 5.57986557032204,
+      "last_24m": 0.7646458008846224,
+      "since_inception": 3271958176.1199427
+    },
+    {
+      "reference_date": "2024-11-01",
+      "value": 1.3,
+      "ytd": 5.54405977409107,
+      "last_12m": 6.325085816419351,
+      "last_24m": 2.6494229648995393,
+      "since_inception": 3314493633.7095013
+    },
+    {
+      "reference_date": "2024-12-01",
+      "value": 0.94,
+      "ytd": 6.536173935967526,
+      "last_12m": 6.536173935967526,
+      "last_24m": 3.150151857411254,
+      "since_inception": 3345649874.8063707
+    },
+    {
+      "reference_date": "2025-01-01",
+      "value": 0.27,
+      "ytd": 0.26999999999999247,
+      "last_12m": 6.74909723752839,
+      "last_24m": 3.211912251697724,
+      "since_inception": 3354683129.738348
+    },
+    {
+      "reference_date": "2025-02-01",
+      "value": 1.06,
+      "ytd": 1.3328619999999791,
+      "last_12m": 8.444549324734796,
+      "last_24m": 4.368579669367323,
+      "since_inception": 3390242771.973574
+    },
+    {
+      "reference_date": "2025-03-01",
+      "value": -0.34,
+      "ytd": 0.9883302691999774,
+      "last_12m": 8.586192963961302,
+      "last_24m": 3.9617456256786587,
+      "since_inception": 3378715946.208864
+    },
+    {
+      "reference_date": "2025-04-01",
+      "value": 0.24,
+      "ytd": 1.2307022618460506,
+      "last_12m": 8.51041753272337,
+      "last_24m": 5.210755997153216,
+      "since_inception": 3386824864.7197657
+    },
+    {
+      "reference_date": "2025-05-01",
+      "value": -0.49,
+      "ytd": 0.734671820763011,
+      "last_12m": 7.026183454071755,
+      "last_24m": 6.657725440879392,
+      "since_inception": 3370229422.3926387
+    },
+    {
+      "reference_date": "2025-06-01",
+      "value": -1.67,
+      "ytd": -0.9475971986437348,
+      "last_12m": 4.393260778086261,
+      "last_24m": 6.940492939753917,
+      "since_inception": 3313946589.3686814
+    },
+    {
+      "reference_date": "2025-07-01",
+      "value": -0.77,
+      "ytd": -1.7103007002141846,
+      "last_12m": 2.9613683233228105,
+      "last_24m": 6.886634915509471,
+      "since_inception": 3288429199.860543
+    },
+    {
+      "reference_date": "2025-08-01",
+      "value": 0.36,
+      "ytd": -1.3564577827349544,
+      "last_12m": 3.0332328739522296,
+      "last_24m": 7.421817345488946,
+      "since_inception": 3300267545.3400407
+    },
+    {
+      "reference_date": "2025-09-01",
+      "value": 0.42,
+      "ytd": -0.9421549054224432,
+      "last_12m": 2.8284361479057996,
+      "last_24m": 7.475330256391333,
+      "since_inception": 3314128669.450469
+    },
+    {
+      "reference_date": "2025-10-01",
+      "value": -0.36,
+      "ytd": -1.298763147762927,
+      "last_12m": 0.9242058488705407,
+      "last_24m": 6.555640863152612,
+      "since_inception": 3302197805.880447
+    },
+    {
+      "reference_date": "2025-11-01",
+      "value": 0.27,
+      "ytd": -1.0322698082618986,
+      "last_12m": -0.10197314445954397,
+      "last_24m": 6.2166627830630095,
+      "since_inception": 3311113740.226324
+    },
+    {
+      "reference_date": "2025-12-01",
+      "value": -0.01,
+      "ytd": -1.0421665812810676,
+      "last_12m": -1.0421665812810676,
+      "last_24m": 5.425889534231421,
+      "since_inception": 3310782628.8423014
+    },
+    {
+      "reference_date": "2026-01-01",
+      "value": 0.41,
+      "ytd": 0.40999999999999925,
+      "last_12m": -0.9039986678610501,
+      "last_24m": 5.784086820547407,
+      "since_inception": 3324356838.030555
+    },
+    {
+      "reference_date": "2026-02-01",
+      "value": -0.73,
+      "ytd": -0.32299299999999365,
+      "last_12m": -2.659211832164743,
+      "last_24m": 5.560779037753738,
+      "since_inception": 3300089032.3829317
+    },
+    {
+      "reference_date": "2026-03-01",
+      "value": 0.52,
+      "ytd": 0.19532743640000572,
+      "last_12m": -1.8192250990286762,
+      "last_24m": 6.6107656874812015,
+      "since_inception": 3317249495.8713236
+    },
+    {
+      "reference_date": "2026-04-01",
+      "value": 2.73,
+      "ytd": 2.9306598754137436,
+      "last_12m": 0.6196229606622472,
+      "last_24m": 9.182772994466614,
+      "since_inception": 3407810409.8386106
+    }
+  ],
+  "charts": {
+    "current_year": "/charts/igp-m-2026.png",
+    "history": "/charts/igp-m-history.png"
+  },
+  "last_built_at": "2026-05-01T18:28:04-03:00"
+}

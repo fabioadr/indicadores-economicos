@@ -19,6 +19,7 @@ PALETTE = {
     "inflacao": "#b91c1c",
     "juros": "#1e3a8a",
     "correcao_monetaria": "#166534",
+    "construcao_civil": "#c2410c",
 }
 DEFAULT_COLOR = "#1a1a1a"
 ACCUM_COLOR = "#525252"

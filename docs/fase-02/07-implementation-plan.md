@@ -98,11 +98,11 @@ for p in points[:3]:
 
 **Entregas:**
 
-- [ ] Backfill executado para SELIC, IGPM, IGPDI, INPC, INCCM, IPCA15
-- [ ] Validação visual dos JSONs gerados em `site/data/`
-- [ ] PNGs individuais gerados em `site/public/charts/`
-- [ ] Categoria `construcao_civil` aparece na home com pelo menos INCC-M
-- [ ] Layout não quebra com 9 indicadores em vez de 3
+- [✅] Backfill executado para SELIC, IGPM, IGPDI, INPC, INCCM, IPCA15
+- [✅] Validação visual dos JSONs gerados em `site/data/`
+- [✅] PNGs individuais gerados em `site/public/charts/`
+- [✅] Categoria `construcao_civil` aparece na home com pelo menos INCC-M
+- [✅] Layout não quebra com 9 indicadores em vez de 3
 
 **Smoke test:**
 

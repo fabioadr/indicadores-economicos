@@ -1,16 +1,27 @@
 {
-  "generated_at": "2026-04-29T13:37:14-03:00",
+  "generated_at": "2026-05-01T18:28:04-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
       "indicators": [
-        "cdi"
+        "cdi",
+        "selic"
       ]
     },
     "inflacao": {
       "label": "Inflação",
       "indicators": [
-        "ipca"
+        "igp-di",
+        "igp-m",
+        "inpc",
+        "ipca",
+        "ipca-15"
+      ]
+    },
+    "construcao_civil": {
+      "label": "Construção Civil",
+      "indicators": [
+        "incc-m"
       ]
     },
     "correcao_monetaria": {
@@ -35,6 +46,58 @@
       }
     },
     {
+      "code": "IGPDI",
+      "slug": "igp-di",
+      "name": "IGP-DI - Índice Geral de Preços - Disponibilidade Interna",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-03-01",
+        "value": 1.14,
+        "ytd": 0.49100484799999844,
+        "last_12m": -1.3030375674901395
+      }
+    },
+    {
+      "code": "IGPM",
+      "slug": "igp-m",
+      "name": "IGP-M - Índice Geral de Preços do Mercado",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-04-01",
+        "value": 2.73,
+        "ytd": 2.9306598754137436,
+        "last_12m": 0.6196229606622472
+      }
+    },
+    {
+      "code": "INCCM",
+      "slug": "incc-m",
+      "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
+      "category": "construcao_civil",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-03-01",
+        "value": 0.54,
+        "ytd": 1.5474268864000162,
+        "last_12m": 5.858746062694498
+      }
+    },
+    {
+      "code": "INPC",
+      "slug": "inpc",
+      "name": "INPC - Índice Nacional de Preços ao Consumidor",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-03-01",
+        "value": 0.91,
+        "ytd": 1.870848874400033,
+        "last_12m": 3.7688068262918817
+      }
+    },
+    {
       "code": "IPCA",
       "slug": "ipca",
       "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
@@ -45,6 +108,32 @@
         "value": 0.88,
         "ytd": 1.9213943279999812,
         "last_12m": 4.142846991219562
+      }
+    },
+    {
+      "code": "IPCA15",
+      "slug": "ipca-15",
+      "name": "IPCA-15 - Índice de Preços ao Consumidor Amplo - 15",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-04-01",
+        "value": 0.89,
+        "ytd": 2.3894911361887816,
+        "last_12m": 4.370765328139337
+      }
+    },
+    {
+      "code": "SELIC",
+      "slug": "selic",
+      "name": "SELIC - Taxa Básica de Juros (anualizada)",
+      "category": "juros",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-04-01",
+        "value": 14.64,
+        "ytd": 73.74732335072002,
+        "last_12m": 425.4703721627071
       }
     },
     {

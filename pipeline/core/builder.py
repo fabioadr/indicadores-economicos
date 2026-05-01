@@ -37,6 +37,7 @@ CATEGORY_LABELS = {
     "inflacao": "Inflação",
     "juros": "Juros",
     "correcao_monetaria": "Correção Monetária",
+    "construcao_civil": "Construção Civil",
 }
 
 SP_TZ = ZoneInfo("America/Sao_Paulo")

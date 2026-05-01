@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-export type CategoryKey = 'inflacao' | 'juros' | 'correcao_monetaria';
+export type CategoryKey = 'inflacao' | 'juros' | 'correcao_monetaria' | 'construcao_civil';
 
 export type Frequency = 'monthly' | 'daily';
 
