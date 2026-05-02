@@ -1,0 +1,201 @@
+{
+  "generated_at": "2026-05-02T08:41:53-03:00",
+  "groups": [
+    {
+      "slug": "inflacao-oficial",
+      "title": "Inflação no Brasil: IPCA, IGP-M e INPC",
+      "description": "Os três principais índices de inflação brasileira lado a lado, no acumulado de 12 meses.",
+      "metric": "last_12m",
+      "indicators": [
+        {
+          "code": "IPCA",
+          "slug": "ipca",
+          "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
+          "metric": "last_12m",
+          "style": "line"
+        },
+        {
+          "code": "IGPM",
+          "slug": "igp-m",
+          "name": "IGP-M - Índice Geral de Preços do Mercado",
+          "metric": "last_12m",
+          "style": "line"
+        },
+        {
+          "code": "INPC",
+          "slug": "inpc",
+          "name": "INPC - Índice Nacional de Preços ao Consumidor",
+          "metric": "last_12m",
+          "style": "line"
+        }
+      ],
+      "chart": "/charts/compare-inflacao-oficial.png",
+      "latest": {
+        "reference_date": "2026-03-01",
+        "values": {
+          "IPCA": {
+            "reference_date": "2026-03-01",
+            "value": 0.88,
+            "last_12m": 4.142846991219562,
+            "ytd": 1.9213943279999812,
+            "last_24m": 9.846948219167917
+          },
+          "IGPM": {
+            "reference_date": "2026-03-01",
+            "value": 0.52,
+            "last_12m": -1.8192250990286762,
+            "ytd": 0.19532743640000572,
+            "last_24m": 6.6107656874812015
+          },
+          "INPC": {
+            "reference_date": "2026-03-01",
+            "value": 0.91,
+            "last_12m": 3.7688068262918817,
+            "ytd": 1.870848874400033,
+            "last_24m": 9.166279640191632
+          }
+        }
+      }
+    },
+    {
+      "slug": "indices-fgv",
+      "title": "Índices da FGV: IGP-M e IGP-DI",
+      "description": "Comparação entre os dois índices gerais de preços da FGV, no acumulado de 12 meses.",
+      "metric": "last_12m",
+      "indicators": [
+        {
+          "code": "IGPM",
+          "slug": "igp-m",
+          "name": "IGP-M - Índice Geral de Preços do Mercado",
+          "metric": "last_12m",
+          "style": "line"
+        },
+        {
+          "code": "IGPDI",
+          "slug": "igp-di",
+          "name": "IGP-DI - Índice Geral de Preços - Disponibilidade Interna",
+          "metric": "last_12m",
+          "style": "line"
+        }
+      ],
+      "chart": "/charts/compare-indices-fgv.png",
+      "latest": {
+        "reference_date": "2026-03-01",
+        "values": {
+          "IGPM": {
+            "reference_date": "2026-03-01",
+            "value": 0.52,
+            "last_12m": -1.8192250990286762,
+            "ytd": 0.19532743640000572,
+            "last_24m": 6.6107656874812015
+          },
+          "IGPDI": {
+            "reference_date": "2026-03-01",
+            "value": 1.14,
+            "last_12m": -1.3030375674901395,
+            "ytd": 0.49100484799999844,
+            "last_24m": 7.157930682137792
+          }
+        }
+      }
+    },
+    {
+      "slug": "juros-vs-inflacao",
+      "title": "Juros vs Inflação: SELIC e IPCA",
+      "description": "Como a SELIC se move em relação à inflação oficial. A SELIC é a taxa em vigor (% a.a.), definida pelo Copom em reuniões a cada 45 dias — pode haver mais de um valor no mesmo mês quando há mudança. A SELIC Acumulada e o IPCA são expressos como acumulado em 12 meses.",
+      "metric": "last_12m",
+      "indicators": [
+        {
+          "code": "SELICAC",
+          "slug": "selic-acumulada",
+          "name": "Selic acumulada no mês",
+          "metric": "last_12m",
+          "style": "line"
+        },
+        {
+          "code": "IPCA",
+          "slug": "ipca",
+          "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
+          "metric": "last_12m",
+          "style": "line"
+        },
+        {
+          "code": "SELIC",
+          "slug": "selic",
+          "name": "SELIC - Taxa Básica de Juros (anualizada)",
+          "metric": "value",
+          "style": "step"
+        }
+      ],
+      "chart": "/charts/compare-juros-vs-inflacao.png",
+      "latest": {
+        "reference_date": "2026-03-01",
+        "values": {
+          "SELICAC": {
+            "reference_date": "2026-03-01",
+            "value": 1.21,
+            "last_12m": 14.797441210721175,
+            "ytd": 3.4078763600000173,
+            "last_24m": 27.751698599158313
+          },
+          "IPCA": {
+            "reference_date": "2026-03-01",
+            "value": 0.88,
+            "last_12m": 4.142846991219562,
+            "ytd": 1.9213943279999812,
+            "last_24m": 9.846948219167917
+          },
+          "SELIC": {
+            "reference_date": "2026-03-01",
+            "value": 14.8,
+            "last_12m": null,
+            "ytd": null,
+            "last_24m": null
+          }
+        }
+      }
+    },
+    {
+      "slug": "construcao-civil",
+      "title": "Construção Civil: INCC-M e IGP-M",
+      "description": "Custos da construção civil comparados ao índice geral de preços, no acumulado de 12 meses.",
+      "metric": "last_12m",
+      "indicators": [
+        {
+          "code": "INCCM",
+          "slug": "incc-m",
+          "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
+          "metric": "last_12m",
+          "style": "line"
+        },
+        {
+          "code": "IGPM",
+          "slug": "igp-m",
+          "name": "IGP-M - Índice Geral de Preços do Mercado",
+          "metric": "last_12m",
+          "style": "line"
+        }
+      ],
+      "chart": "/charts/compare-construcao-civil.png",
+      "latest": {
+        "reference_date": "2026-03-01",
+        "values": {
+          "INCCM": {
+            "reference_date": "2026-03-01",
+            "value": 0.54,
+            "last_12m": 5.858746062694498,
+            "ytd": 1.5474268864000162,
+            "last_24m": 13.837282450516852
+          },
+          "IGPM": {
+            "reference_date": "2026-03-01",
+            "value": 0.52,
+            "last_12m": -1.8192250990286762,
+            "ytd": 0.19532743640000572,
+            "last_24m": 6.6107656874812015
+          }
+        }
+      }
+    }
+  ]
+}

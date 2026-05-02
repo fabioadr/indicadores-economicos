@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IndicatorChart from '../../components/domain/IndicatorChart.astro';
+import Disclaimer from '../../components/ui/Disclaimer.astro';
+import { loadGroups } from '../../lib/data';
+import type { Group } from '../../lib/data';
+import { formatMonthYear, formatPercent } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const { groups } = loadGroups();
+  return groups.map((group) => ({
+    params: { slug: group.slug },
+    props: { group },
+  }));
+}
+
+interface Props {
+  group: Group;
+}
+
+const { group } = Astro.props as Props;
+
+const meta = {
+  title: `${group.title} — Indicadores Econômicos Hoje`,
+  description: group.description,
+};
+
+const refDate = group.latest.reference_date;
+const temporalCoverage = refDate ? `${refDate.slice(0, 7)}` : undefined;
+
+const jsonLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: group.title,
+  description: group.description,
+  url: new URL(`/comparar/${group.slug}/`, Astro.site).toString(),
+  isAccessibleForFree: true,
+  inLanguage: 'pt-BR',
+};
+if (temporalCoverage) {
+  jsonLd.temporalCoverage = temporalCoverage;
+}
+
+const metricLabel = (m: string): string => {
+  const labels: Record<string, string> = {
+    last_12m: 'Acumulado 12 meses',
+    last_24m: 'Acumulado 24 meses',
+    value: 'Valor no período',
+    ytd: 'Acumulado no ano',
+    since_inception: 'Acumulado desde o início',
+  };
+  return labels[m] ?? m;
+};
+
+const valueForIndicator = (code: string, metric: string): number | null => {
+  const entry = group.latest.values[code];
+  if (!entry) return null;
+  if (metric === 'last_12m') return entry.last_12m;
+  if (metric === 'last_24m') return entry.last_24m;
+  if (metric === 'ytd') return entry.ytd;
+  return entry.value;
+};
+---
+
+<BaseLayout title={meta.title} description={meta.description} jsonLd={jsonLd}>
+  <article class="space-y-10">
+    <header class="space-y-4">
+      <p class="text-xs uppercase tracking-wide text-ink-faint">
+        <a href="/comparar/" class="text-ink-faint hover:text-ink">Comparações</a>
+      </p>
+      <h1 class="font-display text-4xl font-semibold text-ink">{group.title}</h1>
+      <p class="text-base text-ink-muted leading-relaxed max-w-2xl">{group.description}</p>
+    </header>
+
+    <IndicatorChart
+      src={group.chart}
+      alt={`Gráfico comparativo: ${group.title}`}
+      loading="eager"
+      caption={refDate ? `Atualizado em ${formatMonthYear(refDate)}` : undefined}
+    />
+
+    {refDate && Object.keys(group.latest.values).length > 0 && (
+      <section class="space-y-4">
+        <h2 class="font-display text-xl font-semibold text-ink">
+          Valores em {formatMonthYear(refDate)}
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border border-border rounded-md overflow-hidden">
+            <thead class="bg-bg-elevated">
+              <tr>
+                <th class="text-left px-4 py-3 font-medium text-ink">Indicador</th>
+                <th class="text-left px-4 py-3 font-medium text-ink">Métrica</th>
+                <th class="text-right px-4 py-3 font-medium text-ink">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              {group.indicators.map((ind) => {
+                const v = valueForIndicator(ind.code, ind.metric);
+                return (
+                  <tr class="border-t border-border">
+                    <td class="px-4 py-3">
+                      <a class="text-ink hover:opacity-80" href={`/${ind.slug}/`}>
+                        {ind.code} — {ind.name}
+                      </a>
+                    </td>
+                    <td class="px-4 py-3 text-ink-muted">{metricLabel(ind.metric)}</td>
+                    <td class="px-4 py-3 text-right font-mono tabular-nums text-ink">
+                      {formatPercent(v)}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )}
+
+    <section class="space-y-4">
+      <h2 class="font-display text-xl font-semibold text-ink">Indicadores incluídos</h2>
+      <ul class="space-y-2 text-sm">
+        {group.indicators.map((ind) => (
+          <li>
+            <a class="text-ink hover:opacity-80" href={`/${ind.slug}/`}>
+              {ind.code} — {ind.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <Disclaimer variant="card" />
+  </article>
+</BaseLayout>

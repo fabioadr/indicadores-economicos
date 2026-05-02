@@ -330,3 +330,90 @@ def test_build_logs_recorded(db_conn, site_dirs):
     assert log.status == "success"
     assert "IPCA" in (log.indicators_updated or "")
     assert log.files_generated and log.files_generated > 0
+
+
+def test_build_writes_groups_json(db_conn, site_dirs):
+    data_dir, charts_dir = site_dirs
+    _seed_ipca(db_conn)
+
+    builder.build(
+        db_conn, triggered_by="test",
+        site_data_dir=data_dir, site_charts_dir=charts_dir,
+    )
+    groups_path = data_dir / "groups.json"
+    assert groups_path.exists()
+    payload = json.loads(groups_path.read_text())
+    slugs = {g["slug"] for g in payload["groups"]}
+    assert slugs == {
+        "inflacao-oficial", "indices-fgv",
+        "juros-vs-inflacao", "construcao-civil",
+    }
+    for g in payload["groups"]:
+        assert g["chart"] == f"/charts/compare-{g['slug']}.png"
+
+
+def test_build_writes_compare_pngs_on_first_run(db_conn, site_dirs):
+    data_dir, charts_dir = site_dirs
+    _seed_ipca(db_conn)
+
+    builder.build(
+        db_conn, triggered_by="test",
+        site_data_dir=data_dir, site_charts_dir=charts_dir,
+    )
+    # Os 4 PNGs comparativos devem existir, mesmo que alguns sejam placeholders
+    # (ex: INPC sem dados → placeholder, mas arquivo ainda deve estar lá).
+    expected = {
+        "compare-inflacao-oficial.png",
+        "compare-indices-fgv.png",
+        "compare-juros-vs-inflacao.png",
+        "compare-construcao-civil.png",
+    }
+    found = {p.name for p in charts_dir.iterdir()}
+    assert expected.issubset(found)
+
+
+def test_build_no_changes_still_ensures_groups_json(db_conn, site_dirs):
+    data_dir, charts_dir = site_dirs
+    _seed_ipca(db_conn)
+
+    # Primeiro build: escreve tudo
+    first = builder.build(
+        db_conn, triggered_by="test",
+        site_data_dir=data_dir, site_charts_dir=charts_dir,
+    )
+    assert first.status == "success"
+    groups_path = data_dir / "groups.json"
+    assert groups_path.exists()
+
+    # Apaga groups.json para simular "no_changes" sem o arquivo presente
+    groups_path.unlink()
+
+    second = builder.build(
+        db_conn, triggered_by="test",
+        site_data_dir=data_dir, site_charts_dir=charts_dir,
+    )
+    assert second.status == "no_changes"
+    # Garante que groups.json foi reescrito mesmo no caminho no_changes
+    assert groups_path.exists()
+    assert second.files_generated == 1
+
+
+def test_build_no_changes_keeps_existing_groups_json(db_conn, site_dirs):
+    data_dir, charts_dir = site_dirs
+    _seed_ipca(db_conn)
+
+    builder.build(
+        db_conn, triggered_by="test",
+        site_data_dir=data_dir, site_charts_dir=charts_dir,
+    )
+    groups_path = data_dir / "groups.json"
+    mtime_before = groups_path.stat().st_mtime
+
+    second = builder.build(
+        db_conn, triggered_by="test",
+        site_data_dir=data_dir, site_charts_dir=charts_dir,
+    )
+    assert second.status == "no_changes"
+    assert second.files_generated == 0
+    # Idempotência: arquivo continua existindo, sem reescrita.
+    assert groups_path.stat().st_mtime == mtime_before

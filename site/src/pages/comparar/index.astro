@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/ui/Card.astro';
+import Disclaimer from '../../components/ui/Disclaimer.astro';
+import { loadGroups } from '../../lib/data';
+
+const { groups } = loadGroups();
+
+const meta = {
+  title: 'Comparações entre indicadores — Indicadores Econômicos Hoje',
+  description:
+    'Visualizações curadas comparando os principais indicadores econômicos brasileiros lado a lado: inflação, juros e construção civil.',
+};
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <div class="space-y-10">
+    <header class="space-y-4">
+      <p class="text-xs uppercase tracking-wide text-ink-faint">Comparações</p>
+      <h1 class="font-display text-4xl font-semibold text-ink">Comparações entre indicadores</h1>
+      <p class="text-base text-ink-muted leading-relaxed max-w-2xl">
+        Visualizações curadas dos principais indicadores brasileiros agrupados por tema.
+        Os gráficos comparam o acumulado em 12 meses de cada série, atualizados a cada coleta.
+      </p>
+    </header>
+
+    {groups.length > 0 ? (
+      <section class="grid gap-6 md:grid-cols-2">
+        {groups.map((group) => (
+          <Card as="article" class="hover:border-ink/30 transition-colors p-0 overflow-hidden">
+            <a href={`/comparar/${group.slug}/`} class="no-underline block">
+              <div class="bg-bg-elevated border-b border-border">
+                <img
+                  src={group.chart}
+                  alt={`Gráfico comparativo: ${group.title}`}
+                  width="1200"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-auto block"
+                />
+              </div>
+              <div class="p-6 space-y-3">
+                <h2 class="font-display text-xl font-semibold text-ink">{group.title}</h2>
+                <p class="text-sm text-ink-muted leading-relaxed">{group.description}</p>
+                <p class="text-sm text-ink font-medium">Ver comparação →</p>
+              </div>
+            </a>
+          </Card>
+        ))}
+      </section>
+    ) : (
+      <p class="text-sm text-ink-muted">Sem comparações disponíveis no momento.</p>
+    )}
+
+    <Disclaimer variant="card" />
+  </div>
+</BaseLayout>

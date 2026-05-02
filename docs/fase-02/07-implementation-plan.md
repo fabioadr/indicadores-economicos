@@ -172,14 +172,14 @@ cd site && npx serve dist
 
 **Entregas:**
 
-- [ ] `pipeline/config/indicator_groups.py` com 4 grupos definidos
-- [ ] `pipeline/core/comparison_charts.py` gera PNGs comparativos
-- [ ] Builder estende para gerar `groups.json` e os PNGs `compare-{slug}.png`
-- [ ] `site/src/pages/comparar/index.astro` lista os grupos
-- [ ] `site/src/pages/comparar/[slug].astro` renderiza cada grupo
-- [ ] Item "Comparar" no header de navegação
-- [ ] Schema.org Dataset em cada página de comparação
-- [ ] PNGs comparativos têm legenda com cores distintas
+- [✅] `pipeline/config/indicator_groups.py` com 4 grupos definidos
+- [✅] `pipeline/core/comparison_charts.py` gera PNGs comparativos
+- [✅] Builder estende para gerar `groups.json` e os PNGs `compare-{slug}.png`
+- [✅] `site/src/pages/comparar/index.astro` lista os grupos
+- [✅] `site/src/pages/comparar/[slug].astro` renderiza cada grupo
+- [✅] Item "Comparar" no header de navegação
+- [✅] Schema.org Dataset em cada página de comparação
+- [✅] PNGs comparativos têm legenda com cores distintas
 
 **Smoke test:**
 

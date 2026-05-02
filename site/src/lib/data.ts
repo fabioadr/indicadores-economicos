@@ -72,3 +72,45 @@ export function loadIndex(): IndicatorIndex {
 export function loadDetail(slug: string): IndicatorDetail {
   return readJson<IndicatorDetail>(`${slug}.json`);
 }
+
+export type GroupMetric = 'last_12m' | 'last_24m' | 'value' | 'ytd' | 'since_inception';
+
+export interface GroupIndicatorRef {
+  code: string;
+  slug: string;
+  name: string;
+  metric: GroupMetric | string;
+  style: 'line' | 'step';
+}
+
+export interface GroupLatestEntry {
+  reference_date: string;
+  value: number;
+  last_12m: number | null;
+  ytd: number | null;
+  last_24m: number | null;
+}
+
+export interface GroupLatest {
+  reference_date: string | null;
+  values: Record<string, GroupLatestEntry>;
+}
+
+export interface Group {
+  slug: string;
+  title: string;
+  description: string;
+  metric: GroupMetric | string;
+  indicators: GroupIndicatorRef[];
+  chart: string;
+  latest: GroupLatest;
+}
+
+export interface GroupsIndex {
+  generated_at: string;
+  groups: Group[];
+}
+
+export function loadGroups(): GroupsIndex {
+  return readJson<GroupsIndex>('groups.json');
+}

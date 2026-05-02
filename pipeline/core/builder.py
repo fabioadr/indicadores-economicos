@@ -19,7 +19,8 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from pipeline import config
-from pipeline.core import charts
+from pipeline.config_groups import INDICATOR_GROUPS, group_codes
+from pipeline.core import charts, comparison_charts
 from pipeline.db.connection import (
     Indicator,
     IndicatorValue,
@@ -121,6 +122,38 @@ def _build_categories(indicators: list[Indicator]) -> dict:
             "label": CATEGORY_LABELS.get(cat, cat),
             "indicators": sorted(slugs),
         }
+    return out
+
+
+def write_groups_index(
+    conn: sqlite3.Connection,
+    groups: list[dict],
+    out_dir: Path,
+    generated_at: str,
+    charts_url_prefix: str,
+) -> Path:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    payload = comparison_charts.build_groups_payload(
+        conn, groups, generated_at, charts_url_prefix=charts_url_prefix,
+    )
+    out_path = out_dir / "groups.json"
+    out_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    return out_path
+
+
+def _groups_to_rebuild(
+    groups: list[dict], changed_codes: set[str], charts_dir: Path
+) -> list[dict]:
+    """Grupos cujo PNG precisa ser regenerado: arquivo ausente OU code mudou."""
+    out: list[dict] = []
+    for group in groups:
+        png_path = charts_dir / f"compare-{group['slug']}.png"
+        codes = set(group_codes(group))
+        if not png_path.exists() or codes & changed_codes:
+            out.append(group)
     return out
 
 
@@ -227,12 +260,37 @@ def build(
 
         changed = [ind for ind in indicators if needs_rebuild(ind)]
         if not changed:
+            # Idempotência: garante groups.json e compare-*.png mesmo quando
+            # nenhum indicador mudou (primeiro build após adicionar M14, por
+            # exemplo). Só escreve se faltar — caso normal de no_changes.
+            no_change_files = 0
+            groups_path = data_dir / "groups.json"
+            if not groups_path.exists():
+                generated_at = _now_sp_iso()
+                write_groups_index(
+                    conn, INDICATOR_GROUPS, data_dir, generated_at,
+                    charts_url_prefix,
+                )
+                no_change_files += 1
+                logger.info("build: wrote %s (no_changes path)", groups_path)
+
+            for group in INDICATOR_GROUPS:
+                png_path = charts_dir / f"compare-{group['slug']}.png"
+                if not png_path.exists():
+                    comparison_charts.generate_comparison_chart(
+                        conn, group, png_path,
+                    )
+                    no_change_files += 1
+                    logger.info(
+                        "build: comparison chart %s (no_changes path)", png_path,
+                    )
+
             finish_build_log(
                 conn, log_id, status="no_changes",
-                indicators_updated=[], files_generated=0,
+                indicators_updated=[], files_generated=no_change_files,
             )
             logger.info("build: no indicators need rebuild")
-            return BuildResult("no_changes", [], 0, log_id)
+            return BuildResult("no_changes", [], no_change_files, log_id)
 
         generated_at = _now_sp_iso()
         year = _current_year()
@@ -281,6 +339,22 @@ def build(
             update_indicator_last_built_at(conn, ind.id, generated_at)
 
         changed_codes = [ind.code for ind in changed]
+
+        # Grupos de comparação (M14): groups.json sempre, PNGs por interseção.
+        groups_path = write_groups_index(
+            conn, INDICATOR_GROUPS, data_dir, generated_at, charts_url_prefix,
+        )
+        files_generated += 1
+        logger.info("build: wrote %s", groups_path)
+
+        groups_to_rebuild = _groups_to_rebuild(
+            INDICATOR_GROUPS, set(changed_codes), charts_dir,
+        )
+        for group in groups_to_rebuild:
+            png_path = charts_dir / f"compare-{group['slug']}.png"
+            comparison_charts.generate_comparison_chart(conn, group, png_path)
+            files_generated += 1
+            logger.info("build: comparison chart %s", png_path)
         finish_build_log(
             conn, log_id, status="success",
             indicators_updated=changed_codes,

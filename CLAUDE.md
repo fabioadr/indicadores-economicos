@@ -7,7 +7,7 @@
 
 ## MCPs
 
-**sqlite**: Use para listar tabelas, queries e escritas
+**sqlite**: Não use execução bash, use o MCP SEMPRE para listar tabelas, queries, escritas etc, ou seja, para qualquer tarefa que seja possível ser feita por ele.
 **context7**: Para consulta de documentação atualizada de bibliotecas e pacotes.
 
 ## Ambiente Python
