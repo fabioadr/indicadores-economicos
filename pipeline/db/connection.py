@@ -162,7 +162,9 @@ def get_last_value_date(
 
 def batch_update_aggregations(
     conn: sqlite3.Connection,
-    updates: list[tuple[str, float | None, float | None, float | None, float]],
+    updates: list[
+        tuple[str, float | None, float | None, float | None, float | None]
+    ],
 ) -> None:
     """Apply ytd / last_12m / last_24m / since_inception updates in one tx.
 
@@ -207,6 +209,7 @@ class Indicator:
     meta_title: str = ""
     meta_description: str = ""
     last_built_at: str | None = None
+    aggregation_mode: str = "compound_monthly"
 
 
 _INDICATOR_COLUMNS = (
@@ -215,7 +218,7 @@ _INDICATOR_COLUMNS = (
     "expected_release_day, active, last_collected_at, "
     "short_description, long_description, unit, "
     "source_name, source_url, meta_title, meta_description, "
-    "last_built_at"
+    "last_built_at, aggregation_mode"
 )
 
 
@@ -241,6 +244,7 @@ def _row_to_indicator(row: sqlite3.Row) -> Indicator:
         meta_title=row["meta_title"],
         meta_description=row["meta_description"],
         last_built_at=row["last_built_at"],
+        aggregation_mode=row["aggregation_mode"],
     )
 
 

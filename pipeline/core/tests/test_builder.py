@@ -103,7 +103,8 @@ def test_build_writes_indicators_index_and_detail(db_conn, site_dirs):
     assert "ipca" in index["categories"]["inflacao"]["indicators"]
     codes = {i["code"] for i in index["indicators"]}
     assert codes == {
-        "IPCA", "CDI", "TR", "SELIC", "IGPM", "IGPDI", "INPC", "INCCM", "IPCA15"
+        "IPCA", "CDI", "TR", "SELIC", "SELICAC",
+        "IGPM", "IGPDI", "INPC", "INCCM", "IPCA15",
     }
 
     ipca_entry = next(i for i in index["indicators"] if i["code"] == "IPCA")

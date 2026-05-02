@@ -200,3 +200,104 @@ def test_recompute_overwrites_previous_aggregations(db_conn):
     assert after[-1].since_inception > before[-1].since_inception
     # Sanity: floats are finite.
     assert math.isfinite(after[-1].since_inception)
+
+
+# ---------------------------------------------------------------------------
+# aggregation_mode = "none" (SELIC anualizada)
+# ---------------------------------------------------------------------------
+
+
+def test_aggregation_mode_none_writes_null(db_conn):
+    db_conn.execute(
+        "UPDATE indicators SET aggregation_mode = 'none' WHERE id = ?",
+        (DUMMY_INDICATOR_ID,),
+    )
+    db_conn.commit()
+
+    _insert_series(
+        db_conn,
+        [
+            (date(2025, 1, 1), 14.9),
+            (date(2025, 2, 1), 14.9),
+            (date(2025, 3, 1), 14.8),
+        ],
+    )
+    recompute_aggregations(db_conn, DUMMY_INDICATOR_ID)
+
+    rows = list_values(db_conn, DUMMY_INDICATOR_ID)
+    for r in rows:
+        assert r.ytd is None
+        assert r.last_12m is None
+        assert r.last_24m is None
+        assert r.since_inception is None
+
+
+# ---------------------------------------------------------------------------
+# aggregation_mode = "compound_daily_to_monthly" (TR diária)
+# ---------------------------------------------------------------------------
+
+
+def test_aggregation_mode_daily_to_monthly_reduces_to_last_of_month(db_conn):
+    """O último valor de cada mês é o que entra na composição mensal."""
+    db_conn.execute(
+        "UPDATE indicators SET aggregation_mode = 'compound_daily_to_monthly' "
+        "WHERE id = ?",
+        (DUMMY_INDICATOR_ID,),
+    )
+    db_conn.commit()
+
+    # Jan/2025: três valores diários, último = 0.20
+    # Fev/2025: dois valores, último = 0.30
+    series = [
+        (date(2025, 1, 5), 0.10),
+        (date(2025, 1, 15), 0.15),
+        (date(2025, 1, 28), 0.20),
+        (date(2025, 2, 10), 0.25),
+        (date(2025, 2, 27), 0.30),
+    ]
+    _insert_series(db_conn, series)
+    recompute_aggregations(db_conn, DUMMY_INDICATOR_ID)
+
+    rows = list_values(db_conn, DUMMY_INDICATOR_ID)
+    by_date = {r.reference_date: r for r in rows}
+
+    # YTD do final de jan/2025 = composição apenas do último de jan
+    expected_jan_ytd = accumulate([0.20])
+    assert by_date[date(2025, 1, 28)].ytd == pytest.approx(expected_jan_ytd)
+
+    # YTD do final de fev/2025 = composição (0.20, 0.30)
+    expected_feb_ytd = accumulate([0.20, 0.30])
+    assert by_date[date(2025, 2, 27)].ytd == pytest.approx(expected_feb_ytd)
+
+    # Os valores diários intermediários herdam o YTD do mês a que pertencem
+    assert by_date[date(2025, 1, 5)].ytd == pytest.approx(expected_jan_ytd)
+    assert by_date[date(2025, 1, 15)].ytd == pytest.approx(expected_jan_ytd)
+    assert by_date[date(2025, 2, 10)].ytd == pytest.approx(expected_feb_ytd)
+
+
+def test_aggregation_mode_daily_to_monthly_last_12m_uses_monthly_window(db_conn):
+    """last_12m precisa de 12 meses distintos, não 12 valores diários."""
+    db_conn.execute(
+        "UPDATE indicators SET aggregation_mode = 'compound_daily_to_monthly' "
+        "WHERE id = ?",
+        (DUMMY_INDICATOR_ID,),
+    )
+    db_conn.commit()
+
+    # 30 valores diários de jan/2025 — apenas 1 mês, last_12m deve ser None.
+    series = [(date(2025, 1, d), 0.10) for d in range(1, 31)]
+    _insert_series(db_conn, series)
+    recompute_aggregations(db_conn, DUMMY_INDICATOR_ID)
+
+    rows = list_values(db_conn, DUMMY_INDICATOR_ID)
+    assert all(r.last_12m is None for r in rows)
+
+    # Adiciona 11 meses cobrindo fev/2025..dez/2025 → 12 meses no total →
+    # last_12m do último valor passa a ser o produto dos 12 últimos de cada mês.
+    extra = [(date(2025, m, 15), 0.10) for m in range(2, 13)]
+    _insert_series(db_conn, extra)
+    recompute_aggregations(db_conn, DUMMY_INDICATOR_ID)
+
+    rows = list_values(db_conn, DUMMY_INDICATOR_ID)
+    last = rows[-1]
+    assert last.last_12m == pytest.approx(accumulate([0.10] * 12))

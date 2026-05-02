@@ -2,10 +2,21 @@
 
 Spec: docs/05-pipeline.md (1200x600 @ 100 dpi, white background, no seaborn)
 and docs/06-site.md (palette by category).
+
+Modos especiais (alinhados com `indicators.aggregation_mode`):
+
+- ``compound_monthly`` (default): barras mensais + linha YTD no anual; linha
+  mensal + linha 12m no histórico.
+- ``compound_daily_to_monthly``: a série tem múltiplos valores por mês (ex:
+  TR diária). Reduzimos ao último valor de cada mês antes de plotar — assim
+  a granularidade visual passa a ser mensal, igual aos demais.
+- ``none``: a série não admite composição (ex: SELIC anualizada). Plotamos
+  apenas uma linha de "taxa em vigor" — sem barras mensais, sem YTD.
 """
 
 from __future__ import annotations
 
+from datetime import date
 from pathlib import Path
 
 import matplotlib
@@ -48,6 +59,15 @@ def _accumulate_running(values: list[float]) -> list[float]:
     return out
 
 
+def _last_per_month(values: list[IndicatorValue]) -> list[IndicatorValue]:
+    """Mantém apenas o último valor de cada (ano, mês), preservando a ordem."""
+    by_month: dict[tuple[int, int], IndicatorValue] = {}
+    for v in values:
+        key = (v.reference_date.year, v.reference_date.month)
+        by_month[key] = v
+    return sorted(by_month.values(), key=lambda v: v.reference_date)
+
+
 def _style_axes(ax) -> None:
     ax.axhline(0, color=AXIS_COLOR, linewidth=0.8)
     ax.grid(axis="y", linestyle="-", linewidth=0.4, color=GRID_COLOR)
@@ -56,17 +76,61 @@ def _style_axes(ax) -> None:
     ax.spines["right"].set_visible(False)
 
 
+def _save_empty(out_path: Path, year_or_title: str) -> None:
+    fig, ax = plt.subplots(figsize=FIGSIZE, dpi=DPI)
+    fig.patch.set_facecolor("white")
+    ax.set_facecolor("white")
+    ax.set_title(year_or_title)
+    _style_axes(ax)
+    fig.tight_layout()
+    fig.savefig(out_path, format="png", facecolor="white")
+    plt.close(fig)
+
+
 def generate_chart_current_year(
     values: list[IndicatorValue],
     category: str,
     year: int,
     out_path: Path,
+    *,
+    aggregation_mode: str = "compound_monthly",
 ) -> None:
-    """Bars per month + YTD cumulative line for the given year."""
+    """Bars per month + YTD cumulative line for the given year.
+
+    Comportamento por modo:
+
+    - ``compound_monthly``: barras mensais + linha YTD calculada por composição.
+    - ``compound_daily_to_monthly``: reduz a 1 valor por mês (último do mês) antes
+      de plotar — assim TR diária fica visualmente igual aos mensais.
+    - ``none``: linha contínua da "taxa em vigor" (sem barras, sem YTD).
+    """
     out_path.parent.mkdir(parents=True, exist_ok=True)
     color = _category_color(category)
 
     year_values = [v for v in values if v.reference_date.year == year]
+
+    if aggregation_mode == "none":
+        fig, ax = plt.subplots(figsize=FIGSIZE, dpi=DPI)
+        fig.patch.set_facecolor("white")
+        ax.set_facecolor("white")
+        if year_values:
+            xs = [v.reference_date for v in year_values]
+            ys = [v.value for v in year_values]
+            ax.plot(
+                xs, ys, color=color, linewidth=2.0, marker="o",
+                label="Taxa em vigor (% a.a.)",
+            )
+            ax.legend(loc="best", frameon=False)
+        ax.set_title(str(year))
+        _style_axes(ax)
+        fig.tight_layout()
+        fig.savefig(out_path, format="png", facecolor="white")
+        plt.close(fig)
+        return
+
+    if aggregation_mode == "compound_daily_to_monthly":
+        year_values = _last_per_month(year_values)
+
     months = [v.reference_date.month for v in year_values]
     monthly = [v.value for v in year_values]
     ytd = _accumulate_running(monthly)
@@ -99,20 +163,46 @@ def generate_chart_history(
     values: list[IndicatorValue],
     category: str,
     out_path: Path,
+    *,
+    aggregation_mode: str = "compound_monthly",
 ) -> None:
-    """Monthly line + 12m cumulative line over the entire series."""
+    """Monthly line + 12m cumulative line over the entire series.
+
+    Para ``aggregation_mode='none'`` plota apenas uma linha da taxa em vigor.
+    Para ``compound_daily_to_monthly`` reduz a 1 valor por mês antes de plotar.
+    """
     out_path.parent.mkdir(parents=True, exist_ok=True)
     color = _category_color(category)
-
-    dates = [v.reference_date for v in values]
-    monthly = [v.value for v in values]
-    last_12m = [v.last_12m for v in values]
 
     fig, ax = plt.subplots(figsize=FIGSIZE, dpi=DPI)
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
 
-    if dates:
+    if aggregation_mode == "none":
+        if values:
+            dates = [v.reference_date for v in values]
+            monthly = [v.value for v in values]
+            ax.plot(
+                dates, monthly, color=color, linewidth=1.6,
+                label="Taxa em vigor (% a.a.)",
+            )
+            ax.legend(loc="best", frameon=False)
+        _style_axes(ax)
+        fig.tight_layout()
+        fig.savefig(out_path, format="png", facecolor="white")
+        plt.close(fig)
+        return
+
+    plot_values = (
+        _last_per_month(values)
+        if aggregation_mode == "compound_daily_to_monthly"
+        else values
+    )
+
+    if plot_values:
+        dates = [v.reference_date for v in plot_values]
+        monthly = [v.value for v in plot_values]
+        last_12m = [v.last_12m for v in plot_values]
         ax.plot(dates, monthly, color=color, linewidth=1.2, alpha=0.7, label="Mensal (%)")
         ax.plot(dates, last_12m, color=ACCUM_COLOR, linewidth=1.6, label="Acumulado 12m (%)")
         ax.legend(loc="best", frameon=False)

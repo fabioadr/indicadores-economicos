@@ -268,8 +268,14 @@ def build(
             vals = values_by_id[ind.id]
             cy_path = charts_dir / f"{ind.slug}-{year}.png"
             hi_path = charts_dir / f"{ind.slug}-history.png"
-            charts.generate_chart_current_year(vals, ind.category, year, cy_path)
-            charts.generate_chart_history(vals, ind.category, hi_path)
+            charts.generate_chart_current_year(
+                vals, ind.category, year, cy_path,
+                aggregation_mode=ind.aggregation_mode,
+            )
+            charts.generate_chart_history(
+                vals, ind.category, hi_path,
+                aggregation_mode=ind.aggregation_mode,
+            )
             files_generated += 2
             logger.info("build: charts %s, %s", cy_path, hi_path)
             update_indicator_last_built_at(conn, ind.id, generated_at)

@@ -1,11 +1,12 @@
 {
-  "generated_at": "2026-05-01T18:28:04-03:00",
+  "generated_at": "2026-05-01T23:53:32-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
       "indicators": [
         "cdi",
-        "selic"
+        "selic",
+        "selic-acumulada"
       ]
     },
     "inflacao": {
@@ -132,8 +133,21 @@
       "latest": {
         "reference_date": "2026-04-01",
         "value": 14.64,
-        "ytd": 73.74732335072002,
-        "last_12m": 425.4703721627071
+        "ytd": null,
+        "last_12m": null
+      }
+    },
+    {
+      "code": "SELICAC",
+      "slug": "selic-acumulada",
+      "name": "Selic acumulada no mês",
+      "category": "juros",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-04-01",
+        "value": 1.09,
+        "ytd": 4.5350222123240025,
+        "last_12m": 14.831519216226052
       }
     },
     {
@@ -145,8 +159,8 @@
       "latest": {
         "reference_date": "2026-04-28",
         "value": 0.1706,
-        "ytd": 20.445053497159638,
-        "last_12m": 1.892392373552454
+        "ytd": 0.632987799258955,
+        "last_12m": 2.0305437835837825
       }
     }
   ]
