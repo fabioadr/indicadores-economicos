@@ -1,6 +1,7 @@
 ---
 import type { IndicatorDetail } from '../../lib/data';
 import DataTable from '../ui/DataTable.astro';
+import PeriodFilter from '../ui/PeriodFilter.astro';
 import {
   formatPercent,
   formatMonthShort,
@@ -20,6 +21,11 @@ const monthlyValues = reduceToMonthly(indicator.values);
 const years = monthlyValues.map((v) => yearOf(v.reference_date));
 const currentYear = years.length ? Math.max(...years) : new Date().getFullYear();
 const groups = groupByYearDesc(monthlyValues);
+
+const monthIndexByDate = new Map<string, number>();
+[...monthlyValues]
+  .sort((a, b) => b.reference_date.localeCompare(a.reference_date))
+  .forEach((v, i) => monthIndexByDate.set(v.reference_date, i));
 ---
 
 <section class="space-y-3">
@@ -27,10 +33,12 @@ const groups = groupByYearDesc(monthlyValues);
     <h2 class="font-display text-xl font-semibold text-ink">Tabela histórica</h2>
     <p class="text-xs text-ink-faint">Selecione um ano para abrir</p>
   </header>
-  <div class="space-y-2">
+  <PeriodFilter slug={indicator.slug} totalRows={monthlyValues.length} />
+  <div class="space-y-2" data-history-root data-slug={indicator.slug}>
     {groups.map((group) => (
       <details
         class="bg-bg-elevated border border-border rounded-md group"
+        data-year={group.year}
         open={group.year === currentYear}
       >
         <summary class="cursor-pointer list-none px-4 py-3 flex items-center justify-between font-medium text-ink hover:bg-bg">
@@ -50,7 +58,7 @@ const groups = groupByYearDesc(monthlyValues);
             </thead>
             <tbody>
               {group.values.map((row) => (
-                <tr>
+                <tr data-month-index={monthIndexByDate.get(row.reference_date) ?? ''}>
                   <th scope="row" class="capitalize">
                     {formatMonthShort(row.reference_date)}
                   </th>

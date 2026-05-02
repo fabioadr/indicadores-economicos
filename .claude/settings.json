@@ -97,6 +97,7 @@
       "Bash(loginctl:*)",
       "Read(.venv/**)",
       "Read(venv/**)",
+      "Read(**/dist/**)",
       "Write(.env)"
     ],
     "deny": [
@@ -117,8 +118,7 @@
       "Read(node_modules/**)",
       "Read(**/__pycache__/)",
       "Read(pipeline/logs/)",
-      "Read(*.log)",
-      "Read(**/dist/**)"
+      "Read(*.log)"
     ]
   },
   "hooks": {

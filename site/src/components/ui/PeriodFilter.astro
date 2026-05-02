@@ -1,0 +1,118 @@
+---
+interface Props {
+  slug: string;
+  totalRows: number;
+}
+
+const { slug, totalRows } = Astro.props;
+
+const buttons = [
+  { period: '12', label: '12 meses' },
+  { period: '24', label: '24 meses' },
+  { period: '60', label: '5 anos' },
+  { period: '120', label: '10 anos' },
+  { period: 'all', label: 'Tudo' },
+] as const;
+---
+
+<div
+  class="period-filter inline-flex w-fit overflow-hidden rounded-md border border-border bg-bg-elevated"
+  data-slug={slug}
+  data-total={totalRows}
+  role="group"
+  aria-label="Filtrar período da tabela histórica"
+>
+  {buttons.map((btn, i) => (
+    <button
+      type="button"
+      data-period={btn.period}
+      aria-pressed={btn.period === '12' ? 'true' : 'false'}
+      class:list={[
+        'period-filter-btn px-3 py-1.5 text-sm font-medium transition-colors',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink',
+        i < buttons.length - 1 && 'border-r border-border',
+      ]}
+    >
+      {btn.label}
+    </button>
+  ))}
+</div>
+
+<style>
+  .period-filter-btn {
+    color: var(--color-ink-muted);
+    background: var(--color-bg-elevated);
+  }
+  .period-filter-btn:hover {
+    background: var(--color-bg);
+  }
+  .period-filter-btn[aria-pressed='true'] {
+    background: var(--color-ink);
+    color: var(--color-bg-elevated);
+  }
+</style>
+
+<script>
+  const STORAGE_PREFIX = 'period-filter:';
+  const VALID = new Set(['12', '24', '60', '120', 'all']);
+
+  document.querySelectorAll<HTMLDivElement>('.period-filter').forEach((root) => {
+    const slug = root.dataset.slug;
+    if (!slug) return;
+    const buttons = root.querySelectorAll<HTMLButtonElement>('button[data-period]');
+    const historyRoot = document.querySelector<HTMLElement>(
+      `[data-history-root][data-slug="${CSS.escape(slug)}"]`
+    );
+    if (!historyRoot) return;
+
+    const rows = Array.from(
+      historyRoot.querySelectorAll<HTMLTableRowElement>('tr[data-month-index]')
+    );
+    const detailsList = Array.from(
+      historyRoot.querySelectorAll<HTMLDetailsElement>('details[data-year]')
+    );
+
+    let stored = localStorage.getItem(STORAGE_PREFIX + slug);
+    if (!stored || !VALID.has(stored)) stored = '12';
+    apply(stored);
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const period = btn.dataset.period!;
+        localStorage.setItem(STORAGE_PREFIX + slug, period);
+        apply(period);
+      });
+    });
+
+    function apply(period: string) {
+      const limit = period === 'all' ? Infinity : parseInt(period, 10);
+
+      buttons.forEach((b) => {
+        const active = b.dataset.period === period;
+        b.setAttribute('aria-pressed', String(active));
+      });
+
+      rows.forEach((tr) => {
+        const idx = parseInt(tr.dataset.monthIndex || '0', 10);
+        tr.hidden = idx >= limit;
+      });
+
+      detailsList.forEach((det) => {
+        const yearRows = det.querySelectorAll<HTMLTableRowElement>('tr[data-month-index]');
+        let visibleCount = 0;
+        let containsLatest = false;
+        yearRows.forEach((tr) => {
+          if (!tr.hidden) visibleCount += 1;
+          if (tr.dataset.monthIndex === '0') containsLatest = true;
+        });
+        if (visibleCount === 0) {
+          det.hidden = true;
+          det.open = false;
+        } else {
+          det.hidden = false;
+          if (containsLatest) det.open = true;
+        }
+      });
+    }
+  });
+</script>

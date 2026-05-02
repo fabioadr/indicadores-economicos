@@ -139,14 +139,14 @@ cd site && npm run dev
 
 **Entregas:**
 
-- [ ] `site/src/components/PeriodFilter.astro` implementado
-- [ ] Tabelas históricas com `id="history-table-{slug}"` consistente
-- [ ] Persistência em `localStorage` por slug
-- [ ] Default 12 meses
-- [ ] Tabela continua renderizada cheia no SSR (hidden via `display:none`)
-- [ ] Acessível por teclado e com `aria-pressed`
-- [ ] Testes manuais em mobile e desktop
-- [ ] Bundle size do JS < 5KB gzipped
+- [✅] `site/src/components/PeriodFilter.astro` implementado
+- [✅] Tabelas históricas com `id="history-table-{slug}"` consistente
+- [✅] Persistência em `localStorage` por slug
+- [✅] Default 12 meses
+- [✅] Tabela continua renderizada cheia no SSR (hidden via `display:none`)
+- [✅] Acessível por teclado e com `aria-pressed`
+- [✅] Testes manuais em mobile e desktop
+- [✅] Bundle size do JS < 5KB gzipped
 
 **Smoke test:**
 
