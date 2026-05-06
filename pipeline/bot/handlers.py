@@ -18,7 +18,9 @@ from pipeline import config
 from pipeline.bot import formatters
 from pipeline.bot.auth import authorized_only
 from pipeline.core import builder, scheduler
+from pipeline.core.cron import next_run as _cron_next_run, validate_frequency
 from pipeline.db.connection import (
+    get_active_schedule,
     get_connection,
     get_indicator_by_code,
     get_last_successful_build,
@@ -26,6 +28,9 @@ from pipeline.db.connection import (
     list_recent_collection_errors,
     list_recent_collection_logs,
     list_values,
+    set_active_schedule,
+    set_schedule_enabled,
+    update_schedule_next_run,
 )
 
 logger = logging.getLogger(__name__)
@@ -56,10 +61,12 @@ async def cmd_status(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
             last_build = get_last_successful_build(conn)
             since = datetime.now(tz=timezone.utc) - timedelta(hours=24)
             errors = list_recent_collection_errors(conn, since)
+            schedule = get_active_schedule(conn)
             return formatters.status_message(
                 active_count=len(indicators),
                 last_build=last_build,
                 errors_24h=len(errors),
+                schedule=schedule,
             )
         finally:
             conn.close()
@@ -240,3 +247,128 @@ async def cmd_cancelar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         update,
         "ℹ️ Operações são síncronas e curtas — nada para cancelar no momento.",
     )
+
+
+@authorized_only
+async def cmd_agendamento(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    def work() -> str:
+        conn = get_connection(config.DB_PATH)
+        try:
+            cfg = get_active_schedule(conn)
+            if cfg is None:
+                return "⚠️ Nenhum agendamento configurado. Use /agendar para criar."
+            return formatters.format_schedule(cfg)
+        finally:
+            conn.close()
+
+    text = await asyncio.to_thread(work)
+    await _reply(update, text)
+
+
+@authorized_only
+async def cmd_agendar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    args: list[str] = list(context.args) if context.args else []
+    if not args:
+        await _reply(
+            update,
+            "Uso: /agendar &lt;expressão cron&gt;\n"
+            "Exemplo: /agendar 0 8 * * *\n\n"
+            "Exemplos válidos:\n"
+            "  0 7 * * *     (todo dia às 07:00)\n"
+            "  0 8,18 * * *  (08:00 e 18:00)\n"
+            "  0 9 * * 1-5   (seg a sex às 09:00)",
+        )
+        return
+
+    expression = " ".join(args)
+
+    try:
+        from croniter import croniter
+        croniter(expression, datetime.now())
+    except (ValueError, KeyError) as exc:
+        await _reply(
+            update,
+            f"❌ Expressão cron inválida\n\nErro: {exc}\n\n"
+            "Exemplos válidos:\n"
+            "  0 7 * * *     (todo dia às 07:00)\n"
+            "  0 8,18 * * *  (08:00 e 18:00)\n"
+            "  0 9 * * 1-5   (seg a sex às 09:00)",
+        )
+        return
+
+    if not validate_frequency(expression):
+        await _reply(
+            update,
+            "❌ Frequência muito alta. O campo de minutos deve ser um valor literal único.\n\n"
+            "Exemplos rejeitados: */15, *, 0,30\n"
+            "Exemplos aceitos: 0, 7, 30",
+        )
+        return
+
+    def work() -> str:
+        conn = get_connection(config.DB_PATH)
+        try:
+            cfg = set_active_schedule(conn, expression)
+            try:
+                nr = _cron_next_run(expression, datetime.now())
+                update_schedule_next_run(conn, cfg.id, nr.isoformat())
+                next_str = nr.strftime("%d/%m %H:%M")
+            except Exception:  # noqa: BLE001
+                next_str = "—"
+            return (
+                f"✅ Novo agendamento configurado\n\n"
+                f"Expressão: <code>{expression}</code>\n"
+                f"Próxima execução: {next_str}"
+            )
+        finally:
+            conn.close()
+
+    text = await asyncio.to_thread(work)
+    await _reply(update, text)
+
+
+@authorized_only
+async def cmd_pausar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    def work() -> None:
+        conn = get_connection(config.DB_PATH)
+        try:
+            set_schedule_enabled(conn, False)
+        finally:
+            conn.close()
+
+    await asyncio.to_thread(work)
+    await _reply(
+        update,
+        "⏸ Agendamento pausado.\n\n"
+        "A coleta automática está desativada. Use /retomar para reativar.\n"
+        "Você ainda pode coletar manualmente com /coletar all.",
+    )
+
+
+@authorized_only
+async def cmd_retomar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    def work() -> str:
+        conn = get_connection(config.DB_PATH)
+        try:
+            cfg = get_active_schedule(conn)
+            if cfg is None:
+                return "⚠️ Nenhum agendamento configurado. Use /agendar primeiro."
+            updated = set_schedule_enabled(conn, True)
+            if updated is None:
+                return "⚠️ Nenhum agendamento configurado. Use /agendar primeiro."
+            try:
+                nr = _cron_next_run(updated.cron_expression, datetime.now())
+                update_schedule_next_run(conn, updated.id, nr.isoformat())
+                next_str = nr.strftime("%d/%m %H:%M")
+            except Exception:  # noqa: BLE001
+                next_str = "—"
+            return (
+                f"▶️ Agendamento retomado\n\n"
+                f"Expressão atual: <code>{updated.cron_expression}</code>\n"
+                f"Próxima execução: {next_str}"
+            )
+        finally:
+            conn.close()
+
+    text = await asyncio.to_thread(work)
+    await _reply(update, text)

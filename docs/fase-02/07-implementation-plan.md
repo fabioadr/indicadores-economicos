@@ -204,13 +204,13 @@ cd site && npm run dev
 
 **Entregas:**
 
-- [ ] `croniter` adicionado ao requirements.txt
-- [ ] `pipeline/cli.py` ganha `scheduled-collect` (com gatekeeping via `is_cron_match`)
-- [ ] `pipeline/db/connection.py` métodos: `get_active_schedule`, `set_active_schedule`, `set_schedule_enabled`, `update_schedule_run`, `update_schedule_next_run`
-- [ ] `pipeline/bot/handlers.py` ganha 4 comandos: `/agendamento`, `/agendar`, `/pausar`, `/retomar`
-- [ ] `/status` atualizado para mostrar bloco de agendamento
-- [ ] `validate_frequency` rejeita `*/15`, `*`, listas
-- [ ] Testes unitários para `scheduled-collect` e handlers
+- [✅] `croniter` adicionado ao requirements.txt
+- [✅] `pipeline/cli.py` ganha `scheduled-collect` (com gatekeeping via `is_cron_match`)
+- [✅] `pipeline/db/connection.py` métodos: `get_active_schedule`, `set_active_schedule`, `set_schedule_enabled`, `update_schedule_run`, `update_schedule_next_run`
+- [✅] `pipeline/bot/handlers.py` ganha 4 comandos: `/agendamento`, `/agendar`, `/pausar`, `/retomar`
+- [✅] `/status` atualizado para mostrar bloco de agendamento
+- [✅] `validate_frequency` rejeita `*/15`, `*`, listas
+- [✅] Testes unitários para `scheduled-collect` e handlers
 
 **Smoke test:**
 

@@ -18,6 +18,7 @@ if TYPE_CHECKING:
         CollectionLog,
         Indicator,
         IndicatorValue,
+        ScheduleOverride,
     )
 
 SITE_URL = "https://indicadoreseconomicoshoje.com.br/"
@@ -64,6 +65,10 @@ def help_message() -> str:
         "/publicar — gera build + deploy\n"
         "/logs [n] — últimas n entradas do log\n"
         "/erros — erros das últimas 24h\n"
+        "/agendamento — mostra agendamento atual\n"
+        "/agendar &lt;cron&gt; — define novo horário (ex: 0 8 * * *)\n"
+        "/pausar — desativa coleta automática\n"
+        "/retomar — reativa coleta automática\n"
         "/help — esta mensagem"
     )
 
@@ -73,6 +78,7 @@ def status_message(
     active_count: int,
     last_build: "BuildLog | None",
     errors_24h: int,
+    schedule: "ScheduleOverride | None" = None,
 ) -> str:
     if last_build and last_build.finished_at:
         last_build_str = _fmt_iso_local(last_build.finished_at)
@@ -82,12 +88,49 @@ def status_message(
     else:
         deploy_line = "Último deploy: —"
 
+    schedule_block = ""
+    if schedule is not None:
+        status_label = "Ativo" if schedule.enabled else "Pausado"
+        schedule_block = f"\n📅 Agendamento: <code>{escape(schedule.cron_expression)}</code> ({status_label})"
+        if schedule.enabled and schedule.next_run_at:
+            schedule_block += f"\n   Próxima execução: {_fmt_iso_local(schedule.next_run_at)}"
+    elif schedule is None:
+        schedule_block = "\n📅 Agendamento: não configurado"
+
     return (
         "📊 <b>Indicadores Econômicos Hoje</b>\n\n"
         f"Indicadores ativos: {active_count}\n"
-        f"{deploy_line}\n\n"
+        f"{deploy_line}"
+        f"{schedule_block}\n\n"
         f"Erros nas últimas 24h: {errors_24h}"
     )
+
+
+def format_schedule(cfg: "ScheduleOverride") -> str:
+    """Mensagem detalhada para /agendamento."""
+    from pipeline.core.cron import next_run as _next_run
+
+    status_icon = "✅ Ativo" if cfg.enabled else "⏸ Pausado"
+    parts = [
+        "📅 <b>Agendamento atual</b>",
+        "",
+        f"Expressão: <code>{escape(cfg.cron_expression)}</code>",
+        f"Status: {status_icon}",
+    ]
+    if cfg.last_run_at:
+        parts.append(f"Última execução: {_fmt_iso_local(cfg.last_run_at)}")
+    if cfg.enabled:
+        try:
+            nr = _next_run(cfg.cron_expression, datetime.now())
+            parts.append(f"Próxima execução: {_fmt_iso_local(nr.isoformat())}")
+        except Exception:  # noqa: BLE001
+            pass
+    parts.extend([
+        "",
+        "Para alterar: /agendar &lt;expressão cron&gt;",
+        "Para pausar: /pausar",
+    ])
+    return "\n".join(parts)
 
 
 def indicators_message(

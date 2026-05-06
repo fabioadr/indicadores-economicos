@@ -36,6 +36,10 @@ def build_application() -> Application:
     app.add_handler(CommandHandler("logs", handlers.cmd_logs))
     app.add_handler(CommandHandler("erros", handlers.cmd_erros))
     app.add_handler(CommandHandler("cancelar", handlers.cmd_cancelar))
+    app.add_handler(CommandHandler("agendamento", handlers.cmd_agendamento))
+    app.add_handler(CommandHandler("agendar", handlers.cmd_agendar))
+    app.add_handler(CommandHandler("pausar", handlers.cmd_pausar))
+    app.add_handler(CommandHandler("retomar", handlers.cmd_retomar))
     return app
 
 

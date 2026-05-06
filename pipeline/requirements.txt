@@ -4,3 +4,4 @@ matplotlib
 pandas
 python-dateutil
 python-dotenv
+croniter>=2.0

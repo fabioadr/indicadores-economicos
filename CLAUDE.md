@@ -5,6 +5,8 @@
 **Regras**: Static-first, idempotente, fail loud via Telegram. Plugin pattern.
 **Antes de tasks complexas**: leia docs/00-README.md
 
+Mais detalhes do projeto, apenas se necessário, em docs/CLAUDE-DETAILS.md
+
 ## MCPs
 
 **sqlite**: Não use execução bash, use o MCP SEMPRE para listar tabelas, queries, escritas etc, ou seja, para qualquer tarefa que seja possível ser feita por ele.
@@ -21,6 +23,7 @@ NÃO procurar outros interpretadores.
 This project has a graphify knowledge graph at graphify-out/.
 
 Rules:
+
 - Before answering architecture or codebase questions, read graphify-out/GRAPH_REPORT.md for god nodes and community structure
 - If graphify-out/wiki/index.md exists, navigate it instead of reading raw files
 - For cross-module "how does X relate to Y" questions, prefer `graphify query "<question>"`, `graphify path "<A>" "<B>"`, or `graphify explain "<concept>"` over grep — these traverse the graph's EXTRACTED + INFERRED edges instead of scanning files

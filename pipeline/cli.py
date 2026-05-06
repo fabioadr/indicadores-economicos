@@ -7,16 +7,24 @@ ainda são stubs até seus milestones (M5: build, M9: deploy/publish).
 from __future__ import annotations
 
 import argparse
+import logging
 import sys
+from datetime import datetime
 
 from pipeline import config
 from pipeline.core import builder, scheduler
+from pipeline.core.cron import is_cron_match, next_run
 from pipeline.db.connection import (
     apply_pending_migrations,
+    get_active_schedule,
     get_connection,
     get_indicator_by_code,
     get_last_successful_build,
+    update_schedule_next_run,
+    update_schedule_run,
 )
+
+logger = logging.getLogger(__name__)
 
 VERSION = "0.0.1"
 
@@ -189,6 +197,58 @@ def cmd_publish(args: argparse.Namespace) -> int:
         conn.close()
 
 
+def cmd_scheduled_collect(args: argparse.Namespace) -> int:
+    _ensure_db_ready()
+    conn = get_connection(config.DB_PATH)
+    try:
+        cfg = get_active_schedule(conn)
+        if cfg is None or not cfg.enabled:
+            logger.debug("scheduled-collect: skip — %s", "no schedule" if cfg is None else "paused")
+            return 0
+
+        now = datetime.now()
+        try:
+            match = is_cron_match(cfg.cron_expression, now)
+        except Exception as exc:  # noqa: BLE001
+            logger.error("scheduled-collect: invalid cron expression %r: %s", cfg.cron_expression, exc)
+            return 1
+
+        if not match:
+            logger.debug("scheduled-collect: skip — out of window (%s)", cfg.cron_expression)
+            return 0
+
+        logger.info("scheduled-collect: running collect (cron=%s)", cfg.cron_expression)
+        results = scheduler.run_all(conn, triggered_by="cron")
+
+        has_changes = any(r.added or r.updated for r in results)
+        if has_changes:
+            try:
+                build_result = builder.build(conn, triggered_by="cron")
+            except Exception as exc:  # noqa: BLE001
+                logger.error("scheduled-collect: build failed: %s", exc)
+                update_schedule_run(conn, cfg.id, now.isoformat())
+                return 1
+
+            if build_result.status == "success":
+                try:
+                    builder.deploy(conn, build_result, triggered_by="cron")
+                except Exception as exc:  # noqa: BLE001
+                    logger.error("scheduled-collect: deploy failed: %s", exc)
+                    update_schedule_run(conn, cfg.id, now.isoformat())
+                    return 1
+
+        update_schedule_run(conn, cfg.id, now.isoformat())
+        try:
+            nr = next_run(cfg.cron_expression, now)
+            update_schedule_next_run(conn, cfg.id, nr.isoformat())
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("scheduled-collect: could not compute next_run: %s", exc)
+
+        return 0
+    finally:
+        conn.close()
+
+
 def cmd_status(args: argparse.Namespace) -> int:
     print(f"indicadores-economicos pipeline v{VERSION}")
     print(f"  repo root:   {config.REPO_ROOT}")
@@ -221,6 +281,10 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("deploy", help="git add + commit + push").set_defaults(func=cmd_deploy)
     sub.add_parser("publish", help="build + deploy").set_defaults(func=cmd_publish)
     sub.add_parser("status", help="Resumo do pipeline").set_defaults(func=cmd_status)
+    sub.add_parser(
+        "scheduled-collect",
+        help="Coleta automática via cron — executa apenas se a hora bater com a config do DB",
+    ).set_defaults(func=cmd_scheduled_collect)
 
     return parser
 

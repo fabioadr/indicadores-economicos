@@ -517,6 +517,150 @@ def get_last_successful_build(conn: sqlite3.Connection) -> BuildLog | None:
     )
 
 
+@dataclass(frozen=True)
+class ScheduleOverride:
+    id: str
+    cron_expression: str
+    enabled: bool
+    last_run_at: str | None
+    next_run_at: str | None
+    description: str | None
+    created_at: str
+    updated_at: str
+
+
+def _row_to_schedule(row: sqlite3.Row) -> ScheduleOverride:
+    return ScheduleOverride(
+        id=row["id"],
+        cron_expression=row["cron_expression"],
+        enabled=bool(row["enabled"]),
+        last_run_at=row["last_run_at"],
+        next_run_at=row["next_run_at"],
+        description=row["description"],
+        created_at=row["created_at"],
+        updated_at=row["updated_at"],
+    )
+
+
+def get_active_schedule(conn: sqlite3.Connection) -> ScheduleOverride | None:
+    """Linha ativa atual: enabled=1 mais recente; cai pra enabled=0 mais recente
+    se não houver ativa (preserva o histórico de configs anteriores)."""
+    row = fetch_one(
+        conn,
+        """
+        SELECT id, cron_expression, enabled, last_run_at, next_run_at,
+               description, created_at, updated_at
+          FROM schedule_overrides
+         ORDER BY enabled DESC, updated_at DESC
+         LIMIT 1
+        """,
+    )
+    return _row_to_schedule(row) if row else None
+
+
+def set_active_schedule(
+    conn: sqlite3.Connection,
+    cron_expression: str,
+    description: str | None = None,
+) -> ScheduleOverride:
+    """Desativa as linhas atuais (enabled=1 → 0) e insere uma nova com enabled=1.
+
+    Mantém histórico das configurações anteriores (decisão do doc 06).
+    """
+    new_id = str(uuid.uuid4())
+    with conn:
+        conn.execute(
+            """
+            UPDATE schedule_overrides
+               SET enabled = 0, updated_at = datetime('now')
+             WHERE enabled = 1
+            """
+        )
+        conn.execute(
+            """
+            INSERT INTO schedule_overrides (id, cron_expression, enabled, description)
+            VALUES (?, ?, 1, ?)
+            """,
+            (new_id, cron_expression, description),
+        )
+    row = fetch_one(
+        conn,
+        """
+        SELECT id, cron_expression, enabled, last_run_at, next_run_at,
+               description, created_at, updated_at
+          FROM schedule_overrides
+         WHERE id = ?
+        """,
+        (new_id,),
+    )
+    if row is None:
+        raise RuntimeError("set_active_schedule: linha recém-inserida não foi encontrada")
+    return _row_to_schedule(row)
+
+
+def set_schedule_enabled(
+    conn: sqlite3.Connection,
+    enabled: bool,
+) -> ScheduleOverride | None:
+    """Liga/desliga a linha mais recente. Retorna a linha atualizada, ou None
+    se a tabela está vazia."""
+    current = get_active_schedule(conn)
+    if current is None:
+        return None
+    with conn:
+        conn.execute(
+            """
+            UPDATE schedule_overrides
+               SET enabled = ?, updated_at = datetime('now')
+             WHERE id = ?
+            """,
+            (1 if enabled else 0, current.id),
+        )
+    row = fetch_one(
+        conn,
+        """
+        SELECT id, cron_expression, enabled, last_run_at, next_run_at,
+               description, created_at, updated_at
+          FROM schedule_overrides
+         WHERE id = ?
+        """,
+        (current.id,),
+    )
+    return _row_to_schedule(row) if row else None
+
+
+def update_schedule_run(
+    conn: sqlite3.Connection,
+    schedule_id: str,
+    last_run_at: str,
+) -> None:
+    with conn:
+        conn.execute(
+            """
+            UPDATE schedule_overrides
+               SET last_run_at = ?, updated_at = datetime('now')
+             WHERE id = ?
+            """,
+            (last_run_at, schedule_id),
+        )
+
+
+def update_schedule_next_run(
+    conn: sqlite3.Connection,
+    schedule_id: str,
+    next_run_at: str,
+) -> None:
+    with conn:
+        conn.execute(
+            """
+            UPDATE schedule_overrides
+               SET next_run_at = ?, updated_at = datetime('now')
+             WHERE id = ?
+            """,
+            (next_run_at, schedule_id),
+        )
+
+
 def apply_pending_migrations(
     conn: sqlite3.Connection,
     migrations_dir: Path,
