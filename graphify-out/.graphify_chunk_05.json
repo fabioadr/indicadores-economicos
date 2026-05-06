@@ -1,0 +1,217 @@
+{
+  "nodes": [
+    {
+      "id": "igp_di_2026",
+      "label": "IGP-DI 2026 (Mensal % e Acumulado YTD %)",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-di-2026.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "igp_di_history",
+      "label": "IGP-DI Historical (Mensal % e Acumulado 12m %, 1986-2026)",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-di-history.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "incc_m_2026",
+      "label": "INCC-M 2026 (Mensal % e Acumulado YTD %)",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/incc-m-2026.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "incc_m_history",
+      "label": "INCC-M Historical (Mensal % e Acumulado 12m %, 1986-2026)",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/incc-m-history.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "compare_inflacao_oficial",
+      "label": "Inflacao no Brasil: IPCA, IGP-M e INPC (Acumulado 12m)",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-inflacao-oficial.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "compare_juros_vs_inflacao",
+      "label": "Juros vs Inflacao: SELIC e IPCA",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-juros-vs-inflacao.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "compare_indices_fgv",
+      "label": "Indices da FGV: IGP-M e IGP-DI (Acumulado 12m)",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-indices-fgv.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "compare_construcao_civil",
+      "label": "Construcao Civil: INCC-M e IGP-M (Acumulado 12m)",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-construcao-civil.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "igp_di_2026",
+      "target": "igp_di_history",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-di-2026.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "incc_m_2026",
+      "target": "incc_m_history",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/incc-m-2026.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "compare_inflacao_oficial",
+      "target": "ipca_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-inflacao-oficial.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "compare_inflacao_oficial",
+      "target": "igp_m_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-inflacao-oficial.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "compare_inflacao_oficial",
+      "target": "inpc_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-inflacao-oficial.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "compare_juros_vs_inflacao",
+      "target": "selic_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-juros-vs-inflacao.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "compare_juros_vs_inflacao",
+      "target": "selic_acumulada_history",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-juros-vs-inflacao.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "compare_juros_vs_inflacao",
+      "target": "ipca_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-juros-vs-inflacao.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "compare_indices_fgv",
+      "target": "igp_m_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-indices-fgv.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "compare_indices_fgv",
+      "target": "igp_di_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-indices-fgv.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "compare_construcao_civil",
+      "target": "incc_m_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-construcao-civil.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "compare_construcao_civil",
+      "target": "igp_m_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-construcao-civil.png",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

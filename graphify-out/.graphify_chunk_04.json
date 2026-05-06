@@ -1,0 +1,413 @@
+{
+  "nodes": [
+    {
+      "id": "ipca_2026",
+      "label": "IPCA 2026 - YTD Monthly Bar Chart (Jan-Mar)",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-2026.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ipca_history",
+      "label": "IPCA Historical Series (1985-2026) - Monthly and 12m Accumulated",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-history.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ipca_15_2026",
+      "label": "IPCA-15 2026 - YTD Monthly Bar Chart (Jan-Abr)",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-15-2026.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ipca_15_history",
+      "label": "IPCA-15 Historical Series (2000-2024) - Monthly and 12m Accumulated",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-15-history.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "inpc_2026",
+      "label": "INPC 2026 - YTD Monthly Bar Chart (Jan-Mar)",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/inpc-2026.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "inpc_history",
+      "label": "INPC Historical Series (1985-2026) - Monthly and 12m Accumulated",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/inpc-history.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "igp_m_2026",
+      "label": "IGP-M 2026 - YTD Monthly Bar Chart (Jan-Abr) with negative Feb",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-m-2026.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "igp_m_history",
+      "label": "IGP-M Historical Series (1989-2028) - Monthly and 12m Accumulated",
+      "file_type": "image",
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-m-history.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "metric_ipca",
+      "label": "IPCA - Indice Nacional de Precos ao Consumidor Amplo (IBGE)",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "metric_ipca_15",
+      "label": "IPCA-15 - Indice Nacional de Precos ao Consumidor Amplo 15 (IBGE preview)",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "metric_inpc",
+      "label": "INPC - Indice Nacional de Precos ao Consumidor (IBGE)",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "metric_igp_m",
+      "label": "IGP-M - Indice Geral de Precos do Mercado (FGV)",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "source_ibge",
+      "label": "IBGE - Instituto Brasileiro de Geografia e Estatistica",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "source_fgv",
+      "label": "FGV - Fundacao Getulio Vargas",
+      "file_type": "concept",
+      "source_file": null,
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "ipca_2026",
+      "target": "metric_ipca",
+      "relation": "depicts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-2026.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ipca_history",
+      "target": "metric_ipca",
+      "relation": "depicts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-history.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ipca_15_2026",
+      "target": "metric_ipca_15",
+      "relation": "depicts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-15-2026.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ipca_15_history",
+      "target": "metric_ipca_15",
+      "relation": "depicts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-15-history.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "inpc_2026",
+      "target": "metric_inpc",
+      "relation": "depicts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/inpc-2026.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "inpc_history",
+      "target": "metric_inpc",
+      "relation": "depicts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/inpc-history.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "igp_m_2026",
+      "target": "metric_igp_m",
+      "relation": "depicts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-m-2026.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "igp_m_history",
+      "target": "metric_igp_m",
+      "relation": "depicts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-m-history.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "metric_ipca",
+      "target": "source_ibge",
+      "relation": "published_by",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": null,
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "metric_ipca_15",
+      "target": "source_ibge",
+      "relation": "published_by",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": null,
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "metric_inpc",
+      "target": "source_ibge",
+      "relation": "published_by",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": null,
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "metric_igp_m",
+      "target": "source_fgv",
+      "relation": "published_by",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": null,
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ipca_2026",
+      "target": "ipca_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": null,
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "ipca_15_2026",
+      "target": "ipca_15_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": null,
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "inpc_2026",
+      "target": "inpc_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": null,
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "igp_m_2026",
+      "target": "igp_m_history",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": null,
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "metric_ipca",
+      "target": "metric_ipca_15",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "source_location": null,
+      "weight": 0.95
+    },
+    {
+      "source": "metric_ipca",
+      "target": "metric_inpc",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": null,
+      "source_location": null,
+      "weight": 0.85
+    },
+    {
+      "source": "metric_ipca_15",
+      "target": "metric_inpc",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": null,
+      "source_location": null,
+      "weight": 0.85
+    },
+    {
+      "source": "metric_ipca",
+      "target": "metric_igp_m",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": null,
+      "source_location": null,
+      "weight": 0.75
+    },
+    {
+      "source": "metric_ipca_15",
+      "target": "metric_igp_m",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": null,
+      "source_location": null,
+      "weight": 0.75
+    },
+    {
+      "source": "metric_inpc",
+      "target": "metric_igp_m",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": null,
+      "source_location": null,
+      "weight": 0.75
+    },
+    {
+      "source": "ipca_history",
+      "target": "ipca_15_history",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "source_location": null,
+      "weight": 0.95
+    },
+    {
+      "source": "ipca_history",
+      "target": "inpc_history",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": null,
+      "source_location": null,
+      "weight": 0.85
+    },
+    {
+      "source": "ipca_history",
+      "target": "igp_m_history",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": null,
+      "source_location": null,
+      "weight": 0.75
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

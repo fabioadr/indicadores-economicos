@@ -1,0 +1,8 @@
+# .graphifyignore
+node_modules/
+.claude/
+.cursor/
+.pytest_cache/
+.vscode/
+docs/
+*.generated.py

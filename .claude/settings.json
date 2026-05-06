@@ -97,7 +97,6 @@
       "Bash(loginctl:*)",
       "Read(.venv/**)",
       "Read(venv/**)",
-      "Read(**/dist/**)",
       "Write(.env)"
     ],
     "deny": [
@@ -128,7 +127,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '⚠️ git push pendente. Isso vai disparar deploy na Vercel. Confirme antes de aprovar.'"
+            "command": "echo '\u26a0\ufe0f git push pendente. Isso vai disparar deploy na Vercel. Confirme antes de aprovar.'"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(python3 -c \"import json,sys; d=json.load(sys.stdin); print(d.get('tool_input',d).get('command',''))\" 2>/dev/null || true); case \"$CMD\" in *grep*|*rg\\ *|*ripgrep*|*find\\ *|*fd\\ *|*ack\\ *|*ag\\ *)   [ -f graphify-out/graph.json ] &&   echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"additionalContext\":\"graphify: Knowledge graph exists. Read graphify-out/GRAPH_REPORT.md for god nodes and community structure before searching raw files.\"}}'   || true ;; esac"
           }
         ]
       }
@@ -138,7 +146,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "test -f data/indicadores.db && echo 'DB ok' || echo 'DB não iniciado'"
+            "command": "test -f data/indicadores.db && echo 'DB ok' || echo 'DB n\u00e3o iniciado'"
           }
         ]
       }
