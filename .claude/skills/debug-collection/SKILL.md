@@ -5,24 +5,31 @@ description: Investiga erro de coleta de indicador. Use quando uma execução de
 
 # Debug de Coleta
 
-1. **Identifique a falha** — query em `.claude/skills/debug-collection/scripts/recent_collection_errors.sql` (use o SQLite MCP ou `sqlite3` com o arquivo SQL).
+Para volume de saída grande, prefira delegar aos subagents `log-triage` e `connector-smoke` em background — eles devolvem só sumário.
 
-2. **Inspecione a configuração** — `.claude/skills/debug-collection/scripts/indicator_config.sql` (substitua o código do indicador no `WHERE`).
+## Passos
 
-3. **Reproduza isoladamente** o erro sem o pipeline:
+1. **Identifique a falha** — invoque `log-triage` (idealmente em background) ou rode direto:
+   - SQL: `.claude/skills/debug-collection/scripts/recent_collection_errors.sql` via SQLite MCP, ou
+   - `bash scripts/inspect-db.sh errors`
 
-   `python .claude/skills/debug-collection/scripts/reproduce_bcb_fetch.py <series_id> [--since YYYY-MM-DD]`
+2. **Inspecione a configuração** do indicador afetado:
+   - SQL: `.claude/skills/debug-collection/scripts/indicator_config.sql` (substitua o `code` no `WHERE`).
 
-   (Alternativa: REPL com `BCBSGSConnector().fetch({"series_id": ...}, since=...)` como antes.)
+3. **Reproduza isoladamente** — invoque `connector-smoke` com o config, ou rode direto:
 
-4. **Categorize o erro**:
-   - HTTP 4xx → series_id inválido ou janela de datas vazia
-   - HTTP 5xx → BCB indisponível, agendar retry
-   - JSONDecodeError → BCB devolveu HTML (manutenção)
-   - ParseError → formato de dado mudou na fonte
+   - **BCB**: `python .claude/skills/debug-collection/scripts/reproduce_bcb_fetch.py <series_id> [--since YYYY-MM-DD]`
+   - **SIDRA**: `python .claude/skills/debug-collection/scripts/reproduce_sidra_fetch.py <tabela> <variavel> --localidade '<loc>' [--since YYYY-MM-DD]`
 
-5. **Recomende a ação**:
-   - Retry imediato
+4. **Categorize**:
+   - HTTP 4xx → `series_id`/`tabela` inválido ou janela vazia
+   - HTTP 5xx → fonte indisponível, retry mais tarde
+   - JSONDecodeError → fonte devolveu HTML (manutenção)
+   - ParseError → formato mudou na fonte
+   - SIDRA "-" / "..." nas células → comportamento esperado, connector já trata
+
+5. **Recomende**:
+   - Retry imediato (`python -m pipeline.cli collect <CODE>`)
    - Aguardar e retry mais tarde
-   - Atualizar config do indicador
-   - Reportar mudança de formato (issue)
+   - Atualizar `connector_config` (UPDATE em `indicators`)
+   - Reportar mudança de formato (issue + atualizar conector)

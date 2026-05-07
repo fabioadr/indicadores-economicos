@@ -29,6 +29,7 @@
       "Bash(.venv/bin/python *)",
       "Bash(.venv/bin/pytest *)",
       "Bash(.venv/bin/pip *)",
+      "Bash(.venv/bin/ruff:*)",
       "Bash(uv:*)",
       "Bash(uvx:*)",
       "Bash(ruff:*)",
@@ -132,6 +133,15 @@
         ]
       },
       {
+        "matcher": "mcp__sqlite__write_query",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "SQL=$(python3 -c \"import json,sys; d=json.load(sys.stdin); print(d.get('tool_input',d).get('query',''))\" 2>/dev/null || true); echo \"$SQL\" | grep -iqE 'DROP[[:space:]]+TABLE|TRUNCATE|DELETE[[:space:]]+FROM[[:space:]]+[a-zA-Z_]+([[:space:]]*;|[[:space:]]*$)' && echo '\u26a0\ufe0f DML destrutivo no SQLite (DROP/TRUNCATE/DELETE sem WHERE). Confirme manualmente.' || true"
+          }
+        ]
+      },
+      {
         "matcher": "Bash",
         "hooks": [
           {
@@ -146,7 +156,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "test -f data/indicadores.db && echo 'DB ok' || echo 'DB n\u00e3o iniciado'"
+            "command": "test -f data/indicadores.db && (echo 'DB ok'; bash scripts/inspect-db.sh status 2>/dev/null; git status -s 2>/dev/null | head -3) || echo 'DB n\u00e3o iniciado'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FP=$(python3 -c \"import json,sys; d=json.load(sys.stdin); print(d.get('tool_input',d).get('file_path',''))\" 2>/dev/null || true); case \"$FP\" in *.astro|*.ts|*.tsx) [ -d site/dist ] && SIZE=$(find site/dist -name '*.js' -exec gzip -c {} \\; 2>/dev/null | wc -c) && [ \"${SIZE:-0}\" -gt 5120 ] && echo \"\u26a0\ufe0f JS bundle gzipped: ${SIZE} bytes (>5KB budget)\" || true ;; esac"
           }
         ]
       }
