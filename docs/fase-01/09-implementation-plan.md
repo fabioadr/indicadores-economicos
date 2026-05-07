@@ -285,16 +285,17 @@ Para considerar o projeto Fase 1 concluído:
 
 ---
 
-## Backlog Fase 2 (referência apenas)
+## Fase 2 — concluída (ver `docs/fase-02/`)
 
-Não implementar agora, mas registrar:
+Entregue em 2026-05-07. Escopo, milestones e DoD em
+`docs/fase-02/07-implementation-plan.md`.
 
-- IBGE SIDRA connector
-- FGV connector
-- Indicadores: SELIC, IGP-M, IGP-DI, INPC, INCC-M
-- Filtros de período na tabela histórica (12m, 24m, 5a, total)
-- Comparação entre indicadores no mesmo gráfico
-- Telegram: agendamento configurável de coleta
+- ✅ IBGE SIDRA connector
+- ⏭️ FGV connector — adiado para Fase 3 (BCB segue suficiente como mirror)
+- ✅ Indicadores: SELIC, IGP-M, IGP-DI, INPC, INCC-M (e IPCA-15 via SIDRA)
+- ✅ Filtros de período na tabela histórica (12m, 24m, 5a, total)
+- ✅ Comparação entre indicadores no mesmo gráfico (página `/comparar/`)
+- ✅ Telegram: agendamento configurável de coleta (`/agendamento`, `/agendar`, `/pausar`, `/retomar`)
 
 ## Backlog Fase 3 (referência apenas)
 

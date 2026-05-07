@@ -237,12 +237,12 @@ python -m pipeline.cli scheduled-collect
 
 **Entregas:**
 
-- [ ] `scripts/install_cron.sh` atualizado para usar `scheduled-collect` de hora em hora
-- [ ] Crontab do notebook atualizado
-- [ ] systemd do bot reiniciado (carrega novos handlers)
-- [ ] Documentação `09-implementation-plan.md` da raiz: marcar Fase 2 como concluída
-- [ ] README atualizado com features novas
-- [ ] CHANGELOG.md (se existir) com entrada de Fase 2
+- [✅] `scripts/install_cron.sh` atualizado para usar `scheduled-collect` de hora em hora
+- [✅] Crontab do notebook atualizado
+- [✅] systemd do bot reiniciado (carrega novos handlers)
+- [✅] Documentação `09-implementation-plan.md` da raiz: marcar Fase 2 como concluída
+- [✅] README atualizado com features novas
+- [—] CHANGELOG.md (se existir) com entrada de Fase 2 (não existe; pulado)
 
 **Smoke test:**
 
@@ -266,16 +266,16 @@ systemctl --user status indicadores-bot
 
 ## Definition of Done global da Fase 2
 
-- [ ] 9 indicadores no ar (3 da Fase 1 + 6 da Fase 2)
-- [ ] Conector IBGE SIDRA funcionando para IPCA-15
-- [ ] Página `/comparar/` com pelo menos 3 grupos curados, charts atualizados a cada build
-- [ ] Filtros de período funcionando em todas as páginas de detalhe
-- [ ] Telegram com `/agendamento`, `/agendar`, `/pausar`, `/retomar`
-- [ ] `scheduled-collect` rodando como cron de hora em hora, gatekeeping funcionando
-- [ ] Lighthouse mobile ≥ 95 nas 4 categorias para todas as páginas
-- [ ] JS no cliente < 5KB gzipped
-- [ ] 7 dias de operação sem incidentes graves após o deploy
-- [ ] README atualizado refletindo Fase 2
+- [✅] 9+ indicadores no ar — 10 atualmente: IPCA, CDI, TR (Fase 1) + SELIC, IGP-M, IGP-DI, INPC, INCC-M, IPCA-15 (Fase 2) + Selic Acumulada (derivado da SELIC)
+- [✅] Conector IBGE SIDRA funcionando para IPCA-15
+- [✅] Página `/comparar/` com pelo menos 3 grupos curados, charts atualizados a cada build
+- [✅] Filtros de período funcionando em todas as páginas de detalhe
+- [✅] Telegram com `/agendamento`, `/agendar`, `/pausar`, `/retomar`
+- [✅] `scheduled-collect` rodando como cron de hora em hora, gatekeeping funcionando
+- [ ] Lighthouse mobile ≥ 95 nas 4 categorias para todas as páginas (validação externa)
+- [ ] JS no cliente < 5KB gzipped (verificado em M13; revalidar pós-build)
+- [ ] 7 dias de operação sem incidentes graves após o deploy (temporal)
+- [✅] README atualizado refletindo Fase 2
 
 ---
 
