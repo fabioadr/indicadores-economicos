@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-01T23:53:32-03:00",
+  "generated_at": "2026-05-12T07:39:32-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -53,10 +53,10 @@
       "category": "inflacao",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-03-01",
-        "value": 1.14,
-        "ytd": 0.49100484799999844,
-        "last_12m": -1.3030375674901395
+        "reference_date": "2026-04-01",
+        "value": 2.41,
+        "ytd": 2.912838064836798,
+        "last_12m": 0.7732395086075261
       }
     },
     {
@@ -79,10 +79,10 @@
       "category": "construcao_civil",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-03-01",
-        "value": 0.54,
-        "ytd": 1.5474268864000162,
-        "last_12m": 5.858746062694498
+        "reference_date": "2026-04-01",
+        "value": 1.0,
+        "ytd": 2.562901155264008,
+        "last_12m": 6.364239478035638
       }
     },
     {

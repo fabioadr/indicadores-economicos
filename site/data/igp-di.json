@@ -16,11 +16,11 @@
     "description": "IGP-DI de {month_name}/{year}: {value}%. Acumulado 12 meses: {last_12m}%. Histórico completo do IGP-DI desde 1944."
   },
   "latest": {
-    "reference_date": "2026-03-01",
-    "value": 1.14,
-    "ytd": 0.49100484799999844,
-    "last_12m": -1.3030375674901395,
-    "last_24m": 7.157930682137792
+    "reference_date": "2026-04-01",
+    "value": 2.41,
+    "ytd": 2.912838064836798,
+    "last_12m": 0.7732395086075261,
+    "last_24m": 8.955953943186334
   },
   "values": [
     {
@@ -3886,11 +3886,19 @@
       "last_12m": -1.3030375674901395,
       "last_24m": 7.157930682137792,
       "since_inception": 650303838816.4658
+    },
+    {
+      "reference_date": "2026-04-01",
+      "value": 2.41,
+      "ytd": 2.912838064836798,
+      "last_12m": 0.7732395086075261,
+      "last_24m": 8.955953943186334,
+      "since_inception": 665976161334.3525
     }
   ],
   "charts": {
     "current_year": "/charts/igp-di-2026.png",
     "history": "/charts/igp-di-history.png"
   },
-  "last_built_at": "2026-05-01T23:53:32-03:00"
+  "last_built_at": "2026-05-12T07:39:32-03:00"
 }
