@@ -170,6 +170,15 @@
             "command": "FP=$(python3 -c \"import json,sys; d=json.load(sys.stdin); print(d.get('tool_input',d).get('file_path',''))\" 2>/dev/null || true); case \"$FP\" in *.astro|*.ts|*.tsx) [ -d site/dist ] && SIZE=$(find site/dist -name '*.js' -exec gzip -c {} \\; 2>/dev/null | wc -c) && [ \"${SIZE:-0}\" -gt 5120 ] && echo \"\u26a0\ufe0f JS bundle gzipped: ${SIZE} bytes (>5KB budget)\" || true ;; esac"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [[ \"$CLAUDE_HOOK_TOOL_INPUT\" == *\"npm run build\"* ]] || [[ \"$CLAUDE_HOOK_TOOL_INPUT\" == *\"astro build\"* ]]; then total=$(find ./site/dist -name \"*.js\" -exec gzip -c {} \\; | wc -c); if [ \"$total\" -gt 51200 ]; then echo \"WARN: JS bundle gzipped ${total}B excede 50KB\"; fi; fi'"
+          }
+        ]
       }
     ]
   }

@@ -246,3 +246,122 @@ Antes de implementar features de Fase 2, valide nesta ordem:
 | IPCA15 | SIDRA 3065/355 | 2000-05   |
 
 > Sempre confirmar via subagent (`bcb-research` ou `sidra-research`) antes de aplicar mudanças no DB.
+
+## Fase 3 — Adições e ajustes
+
+A Fase 3 está descrita em `docs/fase-03/`. Antes de qualquer trabalho relacionado, leia `docs/fase-03/00-README.md` e os docs específicos do escopo.
+
+### Indicadores adicionais
+
+| Code | Slug | Categoria | Conector | Calculator | Config |
+|---|---|---|---|---|---|
+| IPCFIPE | ipc-fipe | inflacao | bcb_sgs | 0 | series_id 193 |
+| PIMPFG | pim-pf | atividade | ibge_sidra | 0 | tabela/var a confirmar |
+
+Detalhes completos em `docs/fase-03/05-indicators-catalog.md`.
+
+### Categoria nova: `atividade`
+
+URL: `/atividade/`. Apenas PIM-PF na Fase 3. Receberá PIB, PNAD, etc. em fases futuras.
+
+### Coluna nova no schema
+
+`indicators.calculator_enabled` (INTEGER, default 0). Marca se o indicador tem calculadora dedicada de correção monetária.
+
+Indicadores com `calculator_enabled = 1` na Fase 3:
+IPCA, IPCA-15, IGP-M, IGP-DI, INPC, INCC-M, TR.
+
+Indicadores com `calculator_enabled = 0`:
+SELIC, CDI (calculadora de investimento é Fase 4 candidata), IPC-Fipe, PIM-PF (não são índices de correção monetária).
+
+Migration: `pipeline/db/migrations/003_calculator_flag.sql`.
+
+### Calculadora de correção monetária
+
+Implementada em `site/src/components/calculator/`. Lógica pura testável em `calculator-logic.ts`. UI em `calculator-ui.ts` (vanilla TS, sem framework).
+
+Páginas geradas via `getStaticPaths` baseado em `calculator_enabled = 1`. **Não criar páginas manualmente** — adicionar/remover é via flag no DB.
+
+JSONs `calc-{slug}.json` gerados pelo pipeline em `site/public/data/`. Carregados sob demanda (lazy) pelo cliente via `fetch()`.
+
+Para adicionar uma calculadora futura, use a skill `add-calculator`.
+
+### Chart.js como padrão de chart interativo
+
+Wrapper único em `site/src/components/charts/chartjs-setup.ts` com import minimal (~25KB gzipped).
+
+**NÃO importar `chart.js/auto`** — traz ~70KB. Usar registro explícito dos componentes utilizados.
+
+Para componentes de chart novos, sempre passar pelo wrapper. Cores por indicador são fixas em `colors.ts` — manter consistência entre páginas.
+
+### Sparklines via SVG server-side
+
+Geradas pelo pipeline em `pipeline/sparklines.py`. Saída inline no `sparklines.json`. Componente Astro lê o JSON e injeta via `set:html`. **Sem JS no cliente** para sparklines.
+
+Para mudar visual da sparkline, alterar `pipeline/sparklines.py` e rebuildar.
+
+### matplotlib continua existindo
+
+Escopo reduzido a:
+- OG images (1200x630, para compartilhamento social)
+- Fallback `<noscript>` nas páginas com chart
+- Geração on-demand via comandos do bot Telegram
+
+**NÃO remover matplotlib.** A função foi reduzida, não eliminada.
+
+### Política revisada de JS no cliente
+
+A regra "JS mínimo no cliente, justificado por feature, sem framework" continua. **O threshold passa de 5KB para ~50KB gzipped por página.**
+
+Permitido:
+- Chart.js no padrão wrapper (~25KB gzipped por página, com cache)
+- Calculadora client-side (~5KB)
+- Filtros de período da Fase 2
+
+Não permitido:
+- Frameworks (React/Vue/Svelte) no cliente — manter Astro puro
+- Bundle gzipped acima de 50KB por página
+- Importar `chart.js/auto` ou builds completos
+- JS para conteúdo principal (HTML deve continuar útil sem JS — sempre garantir fallback noscript ou tabela como fonte)
+
+### Nova página: `/comparar/` interativo
+
+Substitui PNGs combinatórios da Fase 2 por Chart.js multi-linha com toggle. **Mantém os grupos curados** (não abrir para escolha livre).
+
+Configuração de grupos continua em `pipeline/config/indicator_groups.py`. Saída agora é `comparisons.json` em vez de PNGs. Pipeline não gera mais PNGs comparativos (matplotlib deixa de gerar comparações).
+
+### Comandos novos do bot Telegram
+
+- `/calc <CODE> <valor> <YYYY-MM-início> <YYYY-MM-fim>` — calcula correção e retorna texto + PNG
+- `/grafico <CODE> [12m|24m|5a|total]` — envia PNG do gráfico (gerado on-demand via matplotlib)
+
+### Comandos de pipeline adicionados
+
+```bash
+# Já existem da Fase 2
+python -m pipeline.cli scheduled-collect
+python -m pipeline.cli build
+python -m pipeline.cli publish
+
+# Novos da Fase 3
+python -m pipeline.cli build           # agora também gera calc-*, sparklines, comparisons
+bash scripts/validate-fase3-build.sh   # validação de bundle, JSONs, OG images, sparklines
+```
+
+### Dependências adicionadas
+
+Em `pipeline/requirements.txt`: nenhuma nova (sparklines em puro Python).
+
+Em `site/package.json`:
+```
+chart.js
+vitest (devDependency)
+```
+
+### Subagent novo: `chartjs-research`
+
+Use para consultar API/options do Chart.js sem poluir contexto principal. Especialmente útil ao configurar tooltips, scales e plugins.
+
+### Skill nova: `add-calculator`
+
+Use para adicionar calculadora a um indicador novo (futuro pós-Fase 3). Não usado nas calculadoras iniciais — essas são geradas em lote no M19.
