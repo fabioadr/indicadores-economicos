@@ -16,11 +16,11 @@
     "description": "INPC de {month_name}/{year}: {value}%. Acumulado 12 meses: {last_12m}%. Histórico completo do INPC desde 1979."
   },
   "latest": {
-    "reference_date": "2026-03-01",
-    "value": 0.91,
-    "ytd": 1.870848874400033,
-    "last_12m": 3.7688068262918817,
-    "last_24m": 9.166279640191632
+    "reference_date": "2026-04-01",
+    "value": 0.81,
+    "ytd": 2.6960027502826778,
+    "last_12m": 4.109608042978574,
+    "last_24m": 9.644840595075443
   },
   "values": [
     {
@@ -3886,11 +3886,19 @@
       "last_12m": 3.7688068262918817,
       "last_24m": 9.166279640191632,
       "since_inception": 408646885533.9087
+    },
+    {
+      "reference_date": "2026-04-01",
+      "value": 0.81,
+      "ytd": 2.6960027502826778,
+      "last_12m": 4.109608042978574,
+      "last_24m": 9.644840595075443,
+      "since_inception": 411956925307.5434
     }
   ],
   "charts": {
     "current_year": "/charts/inpc-2026.png",
     "history": "/charts/inpc-history.png"
   },
-  "last_built_at": "2026-05-12T07:39:32-03:00"
+  "last_built_at": "2026-05-16T12:31:28-03:00"
 }

@@ -16,11 +16,11 @@
     "description": "IPCA de {month_name}/{year}: {value}%. Acumulado 12 meses: {last_12m}%. Tabela histórica completa desde 1980."
   },
   "latest": {
-    "reference_date": "2026-03-01",
-    "value": 0.88,
-    "ytd": 1.9213943279999812,
-    "last_12m": 4.142846991219562,
-    "last_24m": 9.846948219167917
+    "reference_date": "2026-04-01",
+    "value": 0.67,
+    "ytd": 2.604267669997573,
+    "last_12m": 4.39171967147336,
+    "last_24m": 10.164298438171194
   },
   "values": [
     {
@@ -3886,11 +3886,19 @@
       "last_12m": 4.142846991219562,
       "last_24m": 9.846948219167917,
       "since_inception": 435567306642.65796
+    },
+    {
+      "reference_date": "2026-04-01",
+      "value": 0.67,
+      "ytd": 2.604267669997573,
+      "last_12m": 4.39171967147336,
+      "last_24m": 10.164298438171194,
+      "since_inception": 438485607597.83374
     }
   ],
   "charts": {
     "current_year": "/charts/ipca-2026.png",
     "history": "/charts/ipca-history.png"
   },
-  "last_built_at": "2026-05-12T07:39:32-03:00"
+  "last_built_at": "2026-05-16T12:31:28-03:00"
 }
