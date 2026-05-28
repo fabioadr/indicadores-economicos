@@ -16,11 +16,11 @@
     "description": "CDI mensal de {month_name}/{year}: {value}%. Acumulado 12 meses: {last_12m}%. Histórico completo do CDI desde 1986."
   },
   "latest": {
-    "reference_date": "2026-04-01",
-    "value": 0.98,
-    "ytd": 4.42127354832802,
-    "last_12m": 14.706566529374898,
-    "last_24m": 27.865660863742757
+    "reference_date": "2026-05-01",
+    "value": 0.97,
+    "ytd": 5.4341599017468045,
+    "last_12m": 14.513763322829544,
+    "last_24m": 28.043199220590154
   },
   "values": [
     {
@@ -3838,11 +3838,19 @@
       "last_12m": 14.706566529374898,
       "last_24m": 27.865660863742757,
       "since_inception": 10255362788228.445
+    },
+    {
+      "reference_date": "2026-05-01",
+      "value": 0.97,
+      "ytd": 5.4341599017468045,
+      "last_12m": 14.513763322829544,
+      "last_24m": 28.043199220590154,
+      "since_inception": 10354839807275.232
     }
   ],
   "charts": {
     "current_year": "/charts/cdi-2026.png",
     "history": "/charts/cdi-history.png"
   },
-  "last_built_at": "2026-05-16T12:31:28-03:00"
+  "last_built_at": "2026-05-28T13:57:33-03:00"
 }
