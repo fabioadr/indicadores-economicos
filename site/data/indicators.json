@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-28T13:57:33-03:00",
+  "generated_at": "2026-05-30T16:56:33-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -66,10 +66,10 @@
       "category": "inflacao",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-04-01",
-        "value": 2.73,
-        "ytd": 2.9306598754137436,
-        "last_12m": 0.6196229606622472
+        "reference_date": "2026-05-01",
+        "value": 0.84,
+        "ytd": 3.7952774183672044,
+        "last_12m": 1.9644536162514603
       }
     },
     {
@@ -118,10 +118,10 @@
       "category": "inflacao",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-04-01",
-        "value": 0.89,
-        "ytd": 2.3894911361887816,
-        "last_12m": 4.370765328139337
+        "reference_date": "2026-05-01",
+        "value": 0.62,
+        "ytd": 3.024305981233155,
+        "last_12m": 4.641155911890982
       }
     },
     {
@@ -131,8 +131,8 @@
       "category": "juros",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-04-01",
-        "value": 14.64,
+        "reference_date": "2026-05-01",
+        "value": 14.4,
         "ytd": null,
         "last_12m": null
       }
@@ -144,10 +144,10 @@
       "category": "juros",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-04-01",
-        "value": 1.09,
-        "ytd": 4.5350222123240025,
-        "last_12m": 14.831519216226052
+        "reference_date": "2026-05-01",
+        "value": 1.07,
+        "ytd": 5.653546949995869,
+        "last_12m": 14.752043179592288
       }
     },
     {
@@ -157,10 +157,10 @@
       "category": "correcao_monetaria",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-04-28",
-        "value": 0.1706,
-        "ytd": 0.632987799258955,
-        "last_12m": 2.0305437835837825
+        "reference_date": "2026-05-28",
+        "value": 0.1709,
+        "ytd": 0.8049695754078767,
+        "last_12m": 2.0315623584629794
       }
     }
   ]

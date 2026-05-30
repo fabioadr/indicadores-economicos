@@ -16,8 +16,8 @@
     "description": "SELIC de {month_name}/{year}: {value}% ao ano. Taxa básica de juros do Banco Central, anualizada base 252. Histórico completo da Selic desde 1986."
   },
   "latest": {
-    "reference_date": "2026-04-01",
-    "value": 14.64,
+    "reference_date": "2026-05-01",
+    "value": 14.4,
     "ytd": null,
     "last_12m": null,
     "last_24m": null
@@ -3838,11 +3838,19 @@
       "last_12m": null,
       "last_24m": null,
       "since_inception": null
+    },
+    {
+      "reference_date": "2026-05-01",
+      "value": 14.4,
+      "ytd": null,
+      "last_12m": null,
+      "last_24m": null,
+      "since_inception": null
     }
   ],
   "charts": {
     "current_year": "/charts/selic-2026.png",
     "history": "/charts/selic-history.png"
   },
-  "last_built_at": "2026-05-28T13:57:33-03:00"
+  "last_built_at": "2026-05-30T16:56:33-03:00"
 }

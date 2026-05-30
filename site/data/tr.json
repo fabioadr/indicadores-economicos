@@ -16,11 +16,11 @@
     "description": "TR de {month_name}/{year}: {value}%. Acumulado 12 meses: {last_12m}%. Histórico da Taxa Referencial desde 1991."
   },
   "latest": {
-    "reference_date": "2026-04-28",
-    "value": 0.1706,
-    "ytd": 0.632987799258955,
-    "last_12m": 2.0305437835837825,
-    "last_24m": 3.2950635666653794
+    "reference_date": "2026-05-28",
+    "value": 0.1709,
+    "ytd": 0.8049695754078767,
+    "last_12m": 2.0315623584629794,
+    "last_24m": 3.4063454263367543
   },
   "values": [
     {
@@ -102990,11 +102990,19 @@
       "last_12m": 2.0305437835837825,
       "last_24m": 3.2950635666653794,
       "since_inception": 3426906.0529208
+    },
+    {
+      "reference_date": "2026-05-28",
+      "value": 0.1709,
+      "ytd": 0.8049695754078767,
+      "last_12m": 2.0315623584629794,
+      "last_24m": 3.4063454263367543,
+      "since_inception": 3432762.8062652415
     }
   ],
   "charts": {
     "current_year": "/charts/tr-2026.png",
     "history": "/charts/tr-history.png"
   },
-  "last_built_at": "2026-05-28T13:57:33-03:00"
+  "last_built_at": "2026-05-30T16:56:33-03:00"
 }
