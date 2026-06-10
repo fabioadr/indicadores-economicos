@@ -12,8 +12,8 @@
     "url": "https://portalibre.fgv.br/"
   },
   "meta": {
-    "title": "IGP-M - Tabela atualizada {month_name}/{year} | Indicadores Econômicos Hoje",
-    "description": "IGP-M de {month_name}/{year}: {value}%. Acumulado 12 meses: {last_12m}%. Histórico completo do IGP-M desde 1989."
+    "title": "IGP-M hoje: {value}% em {month_name}/{year} — tabela e histórico | Indicadores Econômicos Hoje",
+    "description": "IGP-M hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e histórico completo do IGP-M desde 1989."
   },
   "latest": {
     "reference_date": "2026-05-01",
@@ -3585,5 +3585,5 @@
     "date": "2026-07-30",
     "source": "estimated"
   },
-  "last_built_at": "2026-06-10T08:14:23-03:00"
+  "last_built_at": "2026-06-10T10:45:07-03:00"
 }

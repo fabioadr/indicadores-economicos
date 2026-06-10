@@ -1,7 +1,7 @@
 # Graph Report - indicadores-economicos  (2026-06-10)
 
 ## Corpus Check
-- 54 files · ~51,895 words
+- 55 files · ~52,649 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary

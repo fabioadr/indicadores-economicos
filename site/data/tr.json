@@ -12,8 +12,8 @@
     "url": "https://www.bcb.gov.br/"
   },
   "meta": {
-    "title": "TR - Taxa Referencial - Tabela atualizada {month_name}/{year} | Indicadores Econômicos Hoje",
-    "description": "TR de {month_name}/{year}: {value}%. Acumulado 12 meses: {last_12m}%. Histórico da Taxa Referencial desde 1991."
+    "title": "TR hoje: {value}% em {month_name}/{year} — tabela e histórico | Indicadores Econômicos Hoje",
+    "description": "TR (Taxa Referencial) hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e histórico da TR desde 1991."
   },
   "latest": {
     "reference_date": "2026-05-28",
@@ -103009,5 +103009,5 @@
     "date": "2026-07-01",
     "source": "estimated"
   },
-  "last_built_at": "2026-06-10T08:14:23-03:00"
+  "last_built_at": "2026-06-10T10:45:07-03:00"
 }

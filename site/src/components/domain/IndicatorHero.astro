@@ -13,6 +13,10 @@ const { latest, frequency, last_collected_at, next_release } = indicator;
 const refLabel = frequency === 'monthly'
   ? formatMonthYear(latest.reference_date)
   : formatDateLong(latest.reference_date);
+// Rótulo curto e legível derivado do nome ("CDI - Certificado..." -> "CDI",
+// "Selic acumulada no mês" -> idem). Usado na linha-líder "X hoje", que responde
+// à intenção de busca "<indicador> hoje" logo no topo (ver docs/SEO.md).
+const shortLabel = indicator.name.split(' - ')[0];
 const nextReleaseLabel = next_release ? formatDateLong(next_release.date) : null;
 const isEstimated = next_release?.source === 'estimated';
 ---
@@ -27,6 +31,10 @@ const isEstimated = next_release?.source === 'estimated';
   <h1 class="font-display text-3xl md:text-4xl font-semibold text-ink leading-tight">
     {indicator.name}
   </h1>
+  <p class="text-lg text-ink-muted max-w-3xl">
+    <strong class="text-ink">{shortLabel} hoje</strong> ({refLabel}):
+    <span class="font-mono tabular-nums text-ink">{formatPercent(latest.value)}</span>
+  </p>
   <p class="text-base text-ink-muted leading-relaxed max-w-3xl">
     {indicator.short_description}
   </p>

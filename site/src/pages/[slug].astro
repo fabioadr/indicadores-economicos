@@ -35,10 +35,10 @@ const last12mStr = formatPercent(detail.latest.last_12m);
 
 const fillMeta = (template: string) =>
   template
-    .replace('{month_name}', monthName)
-    .replace('{year}', String(year))
-    .replace('{value}', valueStr)
-    .replace('{last_12m}', last12mStr.replace('%', ''));
+    .replaceAll('{month_name}', monthName)
+    .replaceAll('{year}', String(year))
+    .replaceAll('{value}', valueStr)
+    .replaceAll('{last_12m}', last12mStr.replace('%', ''));
 
 const meta = {
   title: fillMeta(detail.meta.title),

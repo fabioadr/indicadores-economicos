@@ -12,8 +12,8 @@
     "url": "https://www.bcb.gov.br/estatisticas/indecoreestrut"
   },
   "meta": {
-    "title": "IPCA - Tabela atualizada {month_name}/{year} | Indicadores Econômicos Hoje",
-    "description": "IPCA de {month_name}/{year}: {value}%. Acumulado 12 meses: {last_12m}%. Tabela histórica completa desde 1980."
+    "title": "IPCA hoje: {value}% em {month_name}/{year} — tabela e histórico | Indicadores Econômicos Hoje",
+    "description": "IPCA hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e série histórica completa do IPCA desde 1980."
   },
   "latest": {
     "reference_date": "2026-04-01",
@@ -3905,5 +3905,5 @@
     "date": "2026-06-12",
     "source": "official"
   },
-  "last_built_at": "2026-06-10T08:14:23-03:00"
+  "last_built_at": "2026-06-10T10:45:07-03:00"
 }
