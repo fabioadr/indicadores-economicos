@@ -24,12 +24,17 @@ Fontes: BCB SGS (maioria) e IBGE SIDRA (IPCA-15).
 
 ## Features (estado atual — pós-Fase 2)
 
-- Página de detalhe por indicador com chart, métricas, tabela histórica
+- Página de detalhe por indicador com chart, métricas, tabela histórica,
+  data da última atualização e data prevista da próxima divulgação
 - Filtros de período (12m, 24m, 5a, total) com persistência por slug
 - Página `/comparar/` com grupos curados (4 grupos), charts comparativos
+- Página `/calendario/` com as próximas datas de divulgação de todos os
+  indicadores (datas oficiais do IBGE + estimativas para as demais fontes)
 - Bot Telegram com agendamento configurável: `/agendamento`, `/agendar`,
-  `/pausar`, `/retomar`, além de `/status`, `/coletar`, `/grupos`
+  `/pausar`, `/retomar`, além de `/status`, `/coletar`, `/grupos`, `/migrar`
 - Coleta horária via cron com gatekeeping por `schedule_overrides` no DB
+- Migrations aplicadas automaticamente no startup do bot e no `/coletar all`,
+  para que indicadores recém-adicionados entrem na coleta sem reiniciar nada
 
 ## Setup rápido
 
@@ -66,6 +71,7 @@ python -m pipeline.cli migrate              # aplica migrations pendentes
 python -m pipeline.cli collect <CODE>       # coleta um indicador
 python -m pipeline.cli collect --all        # coleta todos
 python -m pipeline.cli backfill <CODE>      # série histórica completa
+python -m pipeline.cli calendar-refresh     # atualiza datas oficiais (IBGE)
 python -m pipeline.cli build                # gera site/data + charts
 python -m pipeline.cli publish              # build + commit + push
 python -m pipeline.cli scheduled-collect    # usado pelo cron horário
@@ -79,6 +85,8 @@ Specs detalhadas em [docs/](docs/):
   conectores, pipeline, site, bot, catálogo, plano de implementação
 - [docs/fase-02/](docs/fase-02/) — deltas: SIDRA, comparações, filtros,
   agendamento
+- [docs/fase-03/](docs/fase-03/) — calculadora, charts interativos, sparklines
+- [docs/fase-04/](docs/fase-04/) — calendário de divulgação e auto-migração
 
 [CLAUDE.md](CLAUDE.md) contém o contexto persistente para sessões com
 Claude Code.

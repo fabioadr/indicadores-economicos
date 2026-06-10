@@ -62,6 +62,7 @@ def help_message() -> str:
         "/status — resumo do sistema\n"
         "/indicadores — lista indicadores ativos\n"
         "/coletar &lt;CODE|all&gt; — roda coleta imediata\n"
+        "/migrar — aplica migrations pendentes (indicadores novos)\n"
         "/publicar — gera build + deploy\n"
         "/logs [n] — últimas n entradas do log\n"
         "/erros — erros das últimas 24h\n"

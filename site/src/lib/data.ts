@@ -13,6 +13,11 @@ export interface IndicatorLatest {
   last_24m?: number | null;
 }
 
+export interface NextRelease {
+  date: string;
+  source: 'official' | 'estimated';
+}
+
 export interface IndicatorSummary {
   code: string;
   slug: string;
@@ -20,6 +25,8 @@ export interface IndicatorSummary {
   category: CategoryKey;
   frequency: Frequency;
   latest: IndicatorLatest;
+  last_collected_at: string | null;
+  next_release: NextRelease | null;
 }
 
 export interface CategorySection {
@@ -56,6 +63,8 @@ export interface IndicatorDetail {
   latest: IndicatorLatest;
   values: IndicatorValue[];
   charts: { current_year: string; history: string };
+  last_collected_at: string | null;
+  next_release: NextRelease | null;
   last_built_at: string;
 }
 
@@ -113,4 +122,24 @@ export interface GroupsIndex {
 
 export function loadGroups(): GroupsIndex {
   return readJson<GroupsIndex>('groups.json');
+}
+
+export interface CalendarEntry {
+  code: string;
+  slug: string;
+  name: string;
+  category: CategoryKey;
+  frequency: Frequency;
+  reference_date: string | null;
+  last_collected_at: string | null;
+  next_release: NextRelease;
+}
+
+export interface CalendarIndex {
+  generated_at: string;
+  calendar: CalendarEntry[];
+}
+
+export function loadCalendar(): CalendarIndex {
+  return readJson<CalendarIndex>('calendar.json');
 }

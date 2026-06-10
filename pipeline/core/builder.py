@@ -14,17 +14,18 @@ import sqlite3
 import subprocess
 from collections import defaultdict
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from pipeline import config
 from pipeline.config_groups import INDICATOR_GROUPS, group_codes
-from pipeline.core import charts, comparison_charts
+from pipeline.core import charts, comparison_charts, release_calendar
 from pipeline.db.connection import (
     Indicator,
     IndicatorValue,
     finish_build_log,
+    get_next_official_release_dates,
     list_active_indicators,
     list_values,
     start_build_log,
@@ -160,6 +161,7 @@ def _groups_to_rebuild(
 def write_indicators_index(
     indicators: list[Indicator],
     latest_by_id: dict[str, IndicatorValue | None],
+    next_by_id: dict[str, dict],
     out_dir: Path,
     generated_at: str,
 ) -> Path:
@@ -179,6 +181,8 @@ def write_indicators_index(
                     if latest_by_id.get(ind.id) is not None
                     else None
                 ),
+                "last_collected_at": ind.last_collected_at,
+                "next_release": next_by_id.get(ind.id),
             }
             for ind in indicators
         ],
@@ -197,6 +201,7 @@ def write_indicator_detail(
     out_dir: Path,
     charts_url_prefix: str,
     last_built_at: str,
+    next_release: dict | None = None,
 ) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     latest = values[-1] if values else None
@@ -223,6 +228,8 @@ def write_indicator_detail(
             "current_year": f"{charts_url_prefix}/{ind.slug}-{_current_year()}.png",
             "history": f"{charts_url_prefix}/{ind.slug}-history.png",
         },
+        "last_collected_at": ind.last_collected_at,
+        "next_release": next_release,
         "last_built_at": last_built_at,
     }
     out_path = out_dir / f"{ind.slug}.json"
@@ -235,6 +242,67 @@ def write_indicator_detail(
 
 def _current_year() -> int:
     return datetime.now(tz=SP_TZ).year
+
+
+def _today_sp() -> date:
+    return datetime.now(tz=SP_TZ).date()
+
+
+def _compute_next_by_id(
+    conn: sqlite3.Connection,
+    indicators: list[Indicator],
+    latest_by_id: dict[str, IndicatorValue | None],
+    today: date,
+) -> dict[str, dict]:
+    """Resolve a próxima divulgação (oficial ou estimada) por indicador."""
+    official = get_next_official_release_dates(conn, today)
+    out: dict[str, dict] = {}
+    for ind in indicators:
+        latest = latest_by_id.get(ind.id)
+        latest_ref = latest.reference_date if latest is not None else None
+        out[ind.id] = release_calendar.next_release_for(
+            ind, official, latest_ref, today
+        )
+    return out
+
+
+def write_calendar_index(
+    indicators: list[Indicator],
+    latest_by_id: dict[str, IndicatorValue | None],
+    next_by_id: dict[str, dict],
+    out_dir: Path,
+    generated_at: str,
+) -> Path:
+    """Escreve site/data/calendar.json ordenado pela próxima divulgação."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    entries: list[dict] = []
+    for ind in indicators:
+        nr = next_by_id.get(ind.id)
+        if nr is None:
+            continue
+        latest = latest_by_id.get(ind.id)
+        entries.append(
+            {
+                "code": ind.code,
+                "slug": ind.slug,
+                "name": ind.name,
+                "category": ind.category,
+                "frequency": ind.frequency,
+                "reference_date": (
+                    latest.reference_date.isoformat() if latest is not None else None
+                ),
+                "last_collected_at": ind.last_collected_at,
+                "next_release": nr,
+            }
+        )
+    entries.sort(key=lambda e: e["next_release"]["date"])
+    payload = {"generated_at": generated_at, "calendar": entries}
+    out_path = out_dir / "calendar.json"
+    out_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    return out_path
 
 
 def build(
@@ -274,6 +342,24 @@ def build(
                 no_change_files += 1
                 logger.info("build: wrote %s (no_changes path)", groups_path)
 
+            calendar_path = data_dir / "calendar.json"
+            if not calendar_path.exists():
+                today = _today_sp()
+                latest_by_id = {
+                    ind.id: (
+                        list_values(conn, ind.id, order="desc")[:1] or [None]
+                    )[0]
+                    for ind in indicators
+                }
+                next_by_id = _compute_next_by_id(
+                    conn, indicators, latest_by_id, today
+                )
+                write_calendar_index(
+                    indicators, latest_by_id, next_by_id, data_dir, _now_sp_iso()
+                )
+                no_change_files += 1
+                logger.info("build: wrote %s (no_changes path)", calendar_path)
+
             for group in INDICATOR_GROUPS:
                 png_path = charts_dir / f"compare-{group['slug']}.png"
                 if not png_path.exists():
@@ -294,6 +380,7 @@ def build(
 
         generated_at = _now_sp_iso()
         year = _current_year()
+        today = _today_sp()
 
         values_by_id: dict[str, list[IndicatorValue]] = {
             ind.id: list_values(conn, ind.id, order="asc") for ind in indicators
@@ -302,11 +389,12 @@ def build(
             ind.id: (values_by_id[ind.id][-1] if values_by_id[ind.id] else None)
             for ind in indicators
         }
+        next_by_id = _compute_next_by_id(conn, indicators, latest_by_id, today)
 
         files_generated = 0
 
         index_path = write_indicators_index(
-            indicators, latest_by_id, data_dir, generated_at
+            indicators, latest_by_id, next_by_id, data_dir, generated_at
         )
         files_generated += 1
         logger.info("build: wrote %s", index_path)
@@ -318,9 +406,16 @@ def build(
                 data_dir,
                 charts_url_prefix,
                 generated_at,
+                next_release=next_by_id.get(ind.id),
             )
             files_generated += 1
             logger.info("build: wrote %s", detail_path)
+
+        calendar_path = write_calendar_index(
+            indicators, latest_by_id, next_by_id, data_dir, generated_at
+        )
+        files_generated += 1
+        logger.info("build: wrote %s", calendar_path)
 
         for ind in changed:
             vals = values_by_id[ind.id]

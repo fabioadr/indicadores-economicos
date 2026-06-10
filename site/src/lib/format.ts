@@ -38,6 +38,12 @@ export function formatDateLong(iso: string): string {
   return `${day} de ${MONTHS_PT[month - 1]} de ${year}`;
 }
 
+export function formatDateShort(iso: string): string {
+  const { year, month, day } = parseISO(iso);
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${pad(day)}/${pad(month)}/${year}`;
+}
+
 export function yearOf(iso: string): number {
   return parseISO(iso).year;
 }

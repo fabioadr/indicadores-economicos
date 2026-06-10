@@ -661,6 +661,67 @@ def update_schedule_next_run(
         )
 
 
+def upsert_release_date(
+    conn: sqlite3.Connection,
+    indicator_id: str,
+    *,
+    release_date: str,
+    source: str,
+    reference_period: str | None = None,
+    title: str | None = None,
+) -> None:
+    """Insere/atualiza uma data oficial de divulgação para o indicador.
+
+    `release_date` em ISO (YYYY-MM-DD). Idempotente via UNIQUE(indicator_id,
+    release_date).
+    """
+    with conn:
+        conn.execute(
+            """
+            INSERT INTO release_dates (
+                id, indicator_id, release_date, reference_period, source, title
+            ) VALUES (?, ?, ?, ?, ?, ?)
+            ON CONFLICT (indicator_id, release_date) DO UPDATE SET
+                reference_period = excluded.reference_period,
+                source           = excluded.source,
+                title            = excluded.title,
+                fetched_at       = datetime('now')
+            """,
+            (
+                str(uuid.uuid4()),
+                indicator_id,
+                release_date,
+                reference_period,
+                source,
+                title,
+            ),
+        )
+
+
+def get_next_official_release_dates(
+    conn: sqlite3.Connection, today: date
+) -> dict[str, date]:
+    """Mapeia indicator_id -> menor `release_date` futura (>= hoje) conhecida.
+
+    Usado pelo builder para preferir datas oficiais sobre a estimativa.
+    """
+    rows = fetch_all(
+        conn,
+        """
+        SELECT indicator_id, MIN(release_date) AS d
+          FROM release_dates
+         WHERE release_date >= ?
+         GROUP BY indicator_id
+        """,
+        (today.isoformat(),),
+    )
+    out: dict[str, date] = {}
+    for row in rows:
+        if row["d"] is not None:
+            out[row["indicator_id"]] = date.fromisoformat(row["d"])
+    return out
+
+
 def apply_pending_migrations(
     conn: sqlite3.Connection,
     migrations_dir: Path,

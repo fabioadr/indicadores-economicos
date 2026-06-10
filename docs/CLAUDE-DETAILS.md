@@ -365,3 +365,23 @@ Use para consultar API/options do Chart.js sem poluir contexto principal. Especi
 ### Skill nova: `add-calculator`
 
 Use para adicionar calculadora a um indicador novo (futuro pós-Fase 3). Não usado nas calculadoras iniciais — essas são geradas em lote no M19.
+
+## Fase 4 — Adições e ajustes
+
+Incremento focado e já implementado, descrito em `docs/fase-04/00-README.md`. Dois eixos: auto-migração na coleta e calendário de divulgação.
+
+### Auto-migração na coleta
+
+O bot agora aplica `apply_pending_migrations` no startup (`pipeline/bot/__main__.py`) e no início do `/coletar all` (`handlers.cmd_coletar`). Novo comando `/migrar` aplica migrations sob demanda. Motivação: indicadores adicionados via migration ficavam invisíveis para o bot até alguém rodar `pipeline.cli migrate` naquele DB.
+
+**Não** adicionar lógica de coleta que dependa de estado prévio para indicador novo — `should_collect()` já trata `last_collected_at IS NULL` como coletável.
+
+### Calendário de divulgação (híbrido)
+
+Tabela nova `release_dates` (migration `006_release_calendar.sql`). Datas **oficiais** (IPCA, INPC, IPCA-15) vêm da API de calendário do IBGE e são persistidas na coleta; as demais usam **estimativa** calculada no build a partir de `expected_release_day`. Regra e fontes em `pipeline/core/release_calendar.py`.
+
+- `run_all` chama `refresh_official_dates` (fail-soft). CLI: `python -m pipeline.cli calendar-refresh`.
+- Build emite `last_collected_at` e `next_release` ({date, source}) nos JSONs e gera `site/data/calendar.json` (padrão `groups.json`: sempre no sucesso, no `no_changes` só se faltar).
+- Site: "Atualizado em" + "Próxima divulgação" no `IndicatorHero`, "Próxima:" nos cards, nova página `/calendario/` (link no `Header.astro`).
+
+**Não** persistir estimativas em `release_dates` — só datas oficiais. **Não** fazer chamada de rede no build — calendário oficial é responsabilidade da coleta.

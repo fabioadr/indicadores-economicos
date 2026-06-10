@@ -109,6 +109,10 @@ def test_build_writes_indicators_index_and_detail(db_conn, site_dirs):
 
     ipca_entry = next(i for i in index["indicators"] if i["code"] == "IPCA")
     assert set(ipca_entry["latest"].keys()) == {"reference_date", "value", "ytd", "last_12m"}
+    # Calendário: última coleta + próxima divulgação (estimada quando sem dado oficial).
+    assert ipca_entry["last_collected_at"] == "2026-04-29T10:00:00Z"
+    assert set(ipca_entry["next_release"].keys()) == {"date", "source"}
+    assert ipca_entry["next_release"]["source"] in {"official", "estimated"}
 
     # Detail JSON for IPCA
     detail = json.loads((data_dir / "ipca.json").read_text())
@@ -350,6 +354,30 @@ def test_build_writes_groups_json(db_conn, site_dirs):
     }
     for g in payload["groups"]:
         assert g["chart"] == f"/charts/compare-{g['slug']}.png"
+
+
+def test_build_writes_calendar_json_sorted(db_conn, site_dirs):
+    data_dir, charts_dir = site_dirs
+    _seed_ipca(db_conn)
+
+    builder.build(
+        db_conn, triggered_by="test",
+        site_data_dir=data_dir, site_charts_dir=charts_dir,
+    )
+    calendar_path = data_dir / "calendar.json"
+    assert calendar_path.exists()
+    payload = json.loads(calendar_path.read_text())
+    assert "generated_at" in payload
+    cal = payload["calendar"]
+    # Todos os indicadores ativos aparecem com next_release.
+    assert {e["code"] for e in cal} == {
+        "IPCA", "CDI", "TR", "SELIC", "SELICAC",
+        "IGPM", "IGPDI", "INPC", "INCCM", "IPCA15",
+    }
+    dates = [e["next_release"]["date"] for e in cal]
+    assert dates == sorted(dates)
+    for e in cal:
+        assert e["next_release"]["source"] in {"official", "estimated"}
 
 
 def test_build_writes_compare_pngs_on_first_run(db_conn, site_dirs):

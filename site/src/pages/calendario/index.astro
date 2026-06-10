@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/ui/Card.astro';
+import CategoryPill from '../../components/ui/CategoryPill.astro';
+import Disclaimer from '../../components/ui/Disclaimer.astro';
+import { loadCalendar } from '../../lib/data';
+import { formatDateLong, formatMonthYear } from '../../lib/format';
+
+const { calendar } = loadCalendar();
+
+const meta = {
+  title: 'Calendário de divulgação dos indicadores — Indicadores Econômicos Hoje',
+  description:
+    'Datas previstas de divulgação dos principais indicadores econômicos brasileiros: IPCA, INPC, IGP-M, SELIC e mais. Datas oficiais do IBGE e estimativas.',
+};
+---
+
+<BaseLayout title={meta.title} description={meta.description}>
+  <div class="space-y-10">
+    <header class="space-y-4">
+      <p class="text-xs uppercase tracking-wide text-ink-faint">Calendário</p>
+      <h1 class="font-display text-4xl font-semibold text-ink">Calendário de divulgação</h1>
+      <p class="text-base text-ink-muted leading-relaxed max-w-2xl">
+        Próximas datas previstas de divulgação de cada indicador. As datas do IBGE
+        (IPCA, INPC, IPCA-15) vêm do calendário oficial; as demais são estimadas a partir
+        do histórico de publicação e podem variar alguns dias.
+      </p>
+    </header>
+
+    {calendar.length > 0 ? (
+      <Card class="p-0 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-border text-left text-ink-faint">
+                <th class="px-4 py-3 font-medium uppercase tracking-wide text-xs">Próxima divulgação</th>
+                <th class="px-4 py-3 font-medium uppercase tracking-wide text-xs">Indicador</th>
+                <th class="px-4 py-3 font-medium uppercase tracking-wide text-xs">Categoria</th>
+                <th class="px-4 py-3 font-medium uppercase tracking-wide text-xs">Referência</th>
+                <th class="px-4 py-3 font-medium uppercase tracking-wide text-xs">Fonte</th>
+              </tr>
+            </thead>
+            <tbody>
+              {calendar.map((entry) => (
+                <tr class="border-b border-border last:border-0 hover:bg-bg-elevated">
+                  <td class="px-4 py-3 text-ink whitespace-nowrap">
+                    {formatDateLong(entry.next_release.date)}
+                  </td>
+                  <td class="px-4 py-3">
+                    <a href={`/${entry.slug}/`} class="no-underline hover:text-ink">
+                      <span class="font-medium text-ink">{entry.code}</span>
+                      <span class="text-ink-faint"> — {entry.name}</span>
+                    </a>
+                  </td>
+                  <td class="px-4 py-3">
+                    <CategoryPill category={entry.category} />
+                  </td>
+                  <td class="px-4 py-3 text-ink-muted whitespace-nowrap">
+                    {entry.reference_date ? formatMonthYear(entry.reference_date) : '—'}
+                  </td>
+                  <td class="px-4 py-3 text-ink-muted whitespace-nowrap">
+                    {entry.next_release.source === 'official' ? 'IBGE (oficial)' : 'Estimativa'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    ) : (
+      <p class="text-sm text-ink-muted">Sem datas disponíveis no momento.</p>
+    )}
+
+    <Disclaimer variant="card" />
+  </div>
+</BaseLayout>

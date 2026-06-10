@@ -20,6 +20,7 @@ from pipeline.bot.auth import authorized_only
 from pipeline.core import builder, scheduler
 from pipeline.core.cron import next_run as _cron_next_run, validate_frequency
 from pipeline.db.connection import (
+    apply_pending_migrations,
     get_active_schedule,
     get_connection,
     get_indicator_by_code,
@@ -119,14 +120,22 @@ async def cmd_coletar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     if target.lower() == "all":
         await _reply(update, "🔄 Rodando coleta em todos os indicadores...")
 
-        def work_all() -> list[scheduler.CollectResult]:
+        def work_all() -> tuple[list[str], list[scheduler.CollectResult]]:
             conn = get_connection(config.DB_PATH)
             try:
-                return scheduler.run_all(conn, triggered_by="telegram")
+                # Garante que indicadores recém-adicionados (via migration) entrem
+                # na coleta sem precisar reiniciar o bot.
+                applied = apply_pending_migrations(conn, config.MIGRATIONS_DIR)
+                return applied, scheduler.run_all(conn, triggered_by="telegram")
             finally:
                 conn.close()
 
-        results = await asyncio.to_thread(work_all)
+        applied, results = await asyncio.to_thread(work_all)
+        if applied:
+            await _reply(
+                update,
+                "🆕 Migrations aplicadas: " + ", ".join(applied),
+            )
         await _reply(update, formatters.collect_summary_message(results))
         return
 
@@ -153,6 +162,25 @@ async def cmd_coletar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
         await _reply(update, f"❓ Indicador desconhecido: {target}")
         return
     await _reply(update, formatters.collect_result_message(result, latest))
+
+
+@authorized_only
+async def cmd_migrar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    def work() -> list[str]:
+        conn = get_connection(config.DB_PATH)
+        try:
+            return apply_pending_migrations(conn, config.MIGRATIONS_DIR)
+        finally:
+            conn.close()
+
+    applied = await asyncio.to_thread(work)
+    if not applied:
+        await _reply(update, "✅ Nenhuma migration pendente.")
+        return
+    await _reply(
+        update,
+        "✅ Migrations aplicadas:\n" + "\n".join(f"• {name}" for name in applied),
+    )
 
 
 @authorized_only

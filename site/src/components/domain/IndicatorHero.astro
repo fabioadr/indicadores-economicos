@@ -9,10 +9,12 @@ interface Props {
 }
 
 const { indicator } = Astro.props;
-const { latest, frequency } = indicator;
+const { latest, frequency, last_collected_at, next_release } = indicator;
 const refLabel = frequency === 'monthly'
   ? formatMonthYear(latest.reference_date)
   : formatDateLong(latest.reference_date);
+const nextReleaseLabel = next_release ? formatDateLong(next_release.date) : null;
+const isEstimated = next_release?.source === 'estimated';
 ---
 
 <section class="space-y-6">
@@ -53,4 +55,24 @@ const refLabel = frequency === 'monthly'
       )}
     </dl>
   </div>
+
+  {(last_collected_at || nextReleaseLabel) && (
+    <dl class="flex flex-wrap gap-x-8 gap-y-2 text-sm">
+      {last_collected_at && (
+        <div class="flex items-baseline gap-2">
+          <dt class="text-ink-faint">Atualizado em</dt>
+          <dd class="text-ink-muted">{formatDateLong(last_collected_at)}</dd>
+        </div>
+      )}
+      {nextReleaseLabel && (
+        <div class="flex items-baseline gap-2">
+          <dt class="text-ink-faint">Próxima divulgação</dt>
+          <dd class="text-ink-muted">
+            {nextReleaseLabel}
+            {isEstimated && <span class="text-ink-faint"> (estimativa)</span>}
+          </dd>
+        </div>
+      )}
+    </dl>
+  )}
 </section>

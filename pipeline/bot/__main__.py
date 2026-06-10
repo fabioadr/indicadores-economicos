@@ -14,8 +14,26 @@ from telegram.ext import Application, CommandHandler
 
 from pipeline import config
 from pipeline.bot import handlers
+from pipeline.db.connection import apply_pending_migrations, get_connection
 
 logger = logging.getLogger(__name__)
+
+
+def _apply_pending_migrations() -> None:
+    """Aplica migrations pendentes no startup do bot.
+
+    Sem isto, indicadores novos (adicionados via migration SQL) ficam invisíveis
+    para `/coletar all` até alguém rodar `pipeline.cli migrate` no mesmo DB.
+    """
+    conn = get_connection(config.DB_PATH)
+    try:
+        applied = apply_pending_migrations(conn, config.MIGRATIONS_DIR)
+    finally:
+        conn.close()
+    if applied:
+        logger.info("Migrations aplicadas no startup: %s", ", ".join(applied))
+    else:
+        logger.info("Nenhuma migration pendente no startup")
 
 
 def build_application() -> Application:
@@ -32,6 +50,7 @@ def build_application() -> Application:
     app.add_handler(CommandHandler("status", handlers.cmd_status))
     app.add_handler(CommandHandler("indicadores", handlers.cmd_indicadores))
     app.add_handler(CommandHandler("coletar", handlers.cmd_coletar))
+    app.add_handler(CommandHandler("migrar", handlers.cmd_migrar))
     app.add_handler(CommandHandler("publicar", handlers.cmd_publicar))
     app.add_handler(CommandHandler("logs", handlers.cmd_logs))
     app.add_handler(CommandHandler("erros", handlers.cmd_erros))
@@ -45,6 +64,7 @@ def build_application() -> Application:
 
 def main() -> None:
     config.setup_logging()
+    _apply_pending_migrations()
     app = build_application()
     logger.info("Iniciando bot Telegram em modo long-polling")
     app.run_polling()

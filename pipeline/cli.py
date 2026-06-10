@@ -249,6 +249,26 @@ def cmd_scheduled_collect(args: argparse.Namespace) -> int:
         conn.close()
 
 
+def cmd_calendar_refresh(args: argparse.Namespace) -> int:
+    from datetime import date
+
+    from pipeline.core import release_calendar
+
+    _ensure_db_ready()
+    conn = get_connection(config.DB_PATH)
+    try:
+        persisted = release_calendar.refresh_official_dates(conn, date.today())
+    finally:
+        conn.close()
+
+    if not persisted:
+        print("calendar-refresh: nenhuma data oficial nova")
+        return 0
+    for entry in sorted(persisted, key=lambda e: e.release_date):
+        print(f"  {entry.code}: {entry.release_date.isoformat()}")
+    return 0
+
+
 def cmd_status(args: argparse.Namespace) -> int:
     print(f"indicadores-economicos pipeline v{VERSION}")
     print(f"  repo root:   {config.REPO_ROOT}")
@@ -277,6 +297,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_backfill.add_argument("code", help="Código do indicador (ex: IPCA)")
     p_backfill.set_defaults(func=cmd_backfill)
 
+    sub.add_parser(
+        "calendar-refresh",
+        help="Atualiza datas oficiais de divulgação (calendário IBGE)",
+    ).set_defaults(func=cmd_calendar_refresh)
     sub.add_parser("build", help="Gera JSONs + PNGs").set_defaults(func=cmd_build)
     sub.add_parser("deploy", help="git add + commit + push").set_defaults(func=cmd_deploy)
     sub.add_parser("publish", help="build + deploy").set_defaults(func=cmd_publish)

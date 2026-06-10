@@ -3,14 +3,14 @@ import type { IndicatorSummary } from '../../lib/data';
 import Card from '../ui/Card.astro';
 import CategoryPill from '../ui/CategoryPill.astro';
 import ValueDisplay from '../ui/ValueDisplay.astro';
-import { formatMonthYear, formatPercent } from '../../lib/format';
+import { formatMonthYear, formatPercent, formatDateShort } from '../../lib/format';
 
 interface Props {
   indicator: IndicatorSummary;
 }
 
 const { indicator } = Astro.props;
-const { latest } = indicator;
+const { latest, next_release } = indicator;
 ---
 
 <Card as="article" class="hover:border-ink/30 transition-colors">
@@ -36,5 +36,11 @@ const { latest } = indicator;
         <dd class="font-mono tabular-nums text-ink">{formatPercent(latest.last_12m)}</dd>
       </div>
     </dl>
+    {next_release && (
+      <p class="text-xs text-ink-faint">
+        Próxima: {formatDateShort(next_release.date)}
+        {next_release.source === 'estimated' && ' (est.)'}
+      </p>
+    )}
   </a>
 </Card>

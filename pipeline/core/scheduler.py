@@ -193,6 +193,14 @@ def backfill_indicator(
 def run_all(
     conn: sqlite3.Connection, triggered_by: str = "cron"
 ) -> list[CollectResult]:
+    # Atualiza datas oficiais de divulgação (IBGE) — fail-soft, nunca derruba.
+    try:
+        from pipeline.core import release_calendar
+
+        release_calendar.refresh_official_dates(conn)
+    except Exception:  # noqa: BLE001
+        logger.exception("Falha ao atualizar calendário de divulgação")
+
     results: list[CollectResult] = []
     for indicator in list_active_indicators(conn):
         if not should_collect(indicator, conn=conn):
