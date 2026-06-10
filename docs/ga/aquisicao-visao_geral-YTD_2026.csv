@@ -1,0 +1,506 @@
+# ----------------------------------------
+# Visão geral da aquisição
+# Conta: Innevo
+# Propriedade: Indicadores Econômicos Hoje
+# ----------------------------------------
+#  
+# Data de início: 20260101
+# Data de término: 20260610
+Nª semana,Usuários ativos
+0000,3
+0001,9
+0002,12
+0003,28
+0004,7
+0005,12
+0006,5
+0007,19
+0008,14
+0009,9
+0010,10
+0011,11
+0012,6
+0013,2
+0014,4
+0015,4
+0016,7
+0017,6
+0018,14
+0019,21
+0020,32
+0021,53
+0022,111
+0023,45
+
+# Data de início: 20250724
+# Data de término: 20251231
+Nª semana,Usuários ativos
+0000,3
+0001,4
+0002,16
+0003,5
+0004,9
+0005,5
+0006,5
+0007,6
+0008,0
+0009,2
+0010,5
+0011,3
+0012,2
+0013,8
+0014,8
+0015,5
+0016,10
+0017,19
+0018,6
+0019,2
+0020,10
+0021,2
+0022,3
+0023,0
+
+# Data de início: 20260101
+# Data de término: 20260610
+Nª semana,Novos usuários
+0000,3
+0001,9
+0002,12
+0003,28
+0004,7
+0005,12
+0006,5
+0007,19
+0008,14
+0009,9
+0010,10
+0011,11
+0012,6
+0013,2
+0014,4
+0015,4
+0016,6
+0017,6
+0018,14
+0019,20
+0020,31
+0021,51
+0022,109
+0023,41
+
+# Data de início: 20250724
+# Data de término: 20251231
+Nª semana,Novos usuários
+0000,3
+0001,4
+0002,16
+0003,5
+0004,9
+0005,5
+0006,5
+0007,6
+0008,0
+0009,2
+0010,5
+0011,3
+0012,2
+0013,8
+0014,8
+0015,5
+0016,10
+0017,19
+0018,6
+0019,2
+0020,10
+0021,2
+0022,3
+0023,0
+
+#  
+# Data de início: 20260101
+# Data de término: 20260610
+Grupo principal de canais do primeiro usuário (Agrupamento de canais padrão),Novos usuários
+Organic Search,247
+Direct,152
+Referral,30
+Unassigned,3
+Organic Social,1
+
+# Data de início: 20250724
+# Data de término: 20251231
+Grupo principal de canais do primeiro usuário (Agrupamento de canais padrão),Novos usuários
+Organic Search,47
+Direct,72
+Referral,17
+Unassigned,1
+Organic Social,1
+
+#  
+# Data de início: 20260101
+# Data de término: 20260610
+Grupo principal de canais da sessão (Agrupamento de canais padrão),Sessões
+Organic Search,317
+Direct,182
+Referral,31
+Unassigned,5
+Organic Social,1
+
+# Data de início: 20250724
+# Data de término: 20251231
+Grupo principal de canais da sessão (Agrupamento de canais padrão),Sessões
+Organic Search,52
+Direct,74
+Referral,17
+Unassigned,1
+Organic Social,1
+
+#  
+# Data de início: 20260101
+# Data de término: 20260610
+Sessão da campanha do Google Ads,Sessões
+
+
+# Data de início: 20250724
+# Data de término: 20251231
+Sessão da campanha do Google Ads,Sessões
+
+
+#  
+# Data de início: 20260210
+# Data de término: 20260609
+Coorte,Valor médio de 120 dias
+0000,0
+0001,0
+0002,0
+0003,0
+0004,0
+0005,0
+0006,0
+0007,0
+0008,0
+0009,0
+0010,0
+0011,0
+0012,0
+0013,0
+0014,0
+0015,0
+0016,0
+0017,0
+0018,0
+0019,0
+0020,0
+0021,0
+0022,0
+0023,0
+0024,0
+0025,0
+0026,0
+0027,0
+0028,0
+0029,0
+0030,0
+0031,0
+0032,0
+0033,0
+0034,0
+0035,0
+0036,0
+0037,0
+0038,0
+0039,0
+0040,0
+0041,0
+0042,0
+0043,0
+0044,0
+0045,0
+0046,0
+0047,0
+0048,0
+0049,0
+0050,0
+0051,0
+0052,0
+0053,0
+0054,0
+0055,0
+0056,0
+0057,0
+0058,0
+0059,0
+0060,0
+0061,0
+0062,0
+0063,0
+0064,0
+0065,0
+0066,0
+0067,0
+0068,0
+0069,0
+0070,0
+0071,0
+0072,0
+0073,0
+0074,0
+0075,0
+0076,0
+0077,0
+0078,0
+0079,0
+0080,0
+0081,0
+0082,0
+0083,0
+0084,0
+0085,0
+0086,0
+0087,0
+0088,0
+0089,0
+0090,0
+0091,0
+0092,0
+0093,0
+0094,0
+0095,0
+0096,0
+0097,0
+0098,0
+0099,0
+0100,0
+0101,0
+0102,0
+0103,0
+0104,0
+0105,0
+0106,0
+0107,0
+0108,0
+0109,0
+0110,0
+0111,0
+0112,0
+0113,0
+0114,0
+0115,0
+0116,0
+0117,0
+0118,0
+0119,0
+
+#  
+# Data de início: 20260101
+# Data de término: 20260610
+Página de destino + string de consulta,Impressões orgânicas da Pesquisa Google
+/cdi/,4062
+/tr/,2316
+/inpc/index.html,266
+/incc-10/index.html,524
+/selic-acumulada/,711
+/,277
+/ipc-fipe/index.html,226
+/incc-di/index.html,248
+/incc-m/index.html,289
+/igp-di/index.html,194
+/ipa-m/index.html,250
+/igp-m/,333
+/ipca/index.html,152
+/selic/,257
+/ipca/,203
+/ipa-di/index.html,100
+/igp-m/index.html,47
+/ipa-10/index.html,50
+/ipc-m/index.html,59
+/igp-10/index.html,38
+/inpc/,82
+/ipca-e/index.html,57
+/ipc-di/index.html,44
+/comparar/inflacao-oficial/,52
+/ipca-15/index.html,26
+/incc-m/,35
+/inflacao/,26
+/construcao-civil/,15
+/sobre/,15
+/igp-di/,14
+/juros/,12
+/ipc-s/index.html,4
+/comparar/,5
+/comparar/indices-fgv/,4
+/igp-m/grafico-variacao-rentabilidade-igpm-igp-m-2020-mes-a-mes-mensal-acumulado.png,3
+/contato/,2
+/comparar/construcao-civil/,1
+/correcao-monetaria/,1
+/igp-m/grafico-variacao-rentabilidade-igpm-igp-m-2021-mes-a-mes-mensal-acumulado.png,1
+/incc-m/grafico-variacao-rentabilidade-inccm-incc-m-2021-mes-a-mes-mensal-acumulado.png,1
+/inpc/grafico-variacao-rentabilidade-inpc-2021-mes-a-mes-mensal-acumulado.png,1
+/ipca/variacao-2020-12-dezembro-ipca-2020-grafico-mensal-acumulado.png,1
+
+# Data de início: 20250724
+# Data de término: 20251231
+Página de destino + string de consulta,Impressões orgânicas da Pesquisa Google
+/cdi/,0
+/tr/,0
+/inpc/index.html,1134
+/incc-10/index.html,695
+/selic-acumulada/,0
+/,423
+/ipc-fipe/index.html,389
+/incc-di/index.html,309
+/incc-m/index.html,213
+/igp-di/index.html,252
+/ipa-m/index.html,187
+/igp-m/,0
+/ipca/index.html,147
+/selic/,0
+/ipca/,0
+/ipa-di/index.html,100
+/igp-m/index.html,78
+/ipa-10/index.html,50
+/ipc-m/index.html,31
+/igp-10/index.html,51
+/inpc/,0
+/ipca-e/index.html,8
+/ipc-di/index.html,19
+/comparar/inflacao-oficial/,0
+/ipca-15/index.html,23
+/incc-m/,0
+/inflacao/,0
+/construcao-civil/,0
+/sobre/,0
+/igp-di/,0
+/juros/,0
+/ipc-s/index.html,6
+/comparar/,0
+/comparar/indices-fgv/,0
+/igp-m/grafico-variacao-rentabilidade-igpm-igp-m-2020-mes-a-mes-mensal-acumulado.png,1
+/contato/,0
+/comparar/construcao-civil/,0
+/correcao-monetaria/,0
+/igp-m/grafico-variacao-rentabilidade-igpm-igp-m-2021-mes-a-mes-mensal-acumulado.png,0
+/incc-m/grafico-variacao-rentabilidade-inccm-incc-m-2021-mes-a-mes-mensal-acumulado.png,0
+/inpc/grafico-variacao-rentabilidade-inpc-2021-mes-a-mes-mensal-acumulado.png,0
+/ipca/variacao-2020-12-dezembro-ipca-2020-grafico-mensal-acumulado.png,0
+
+#  
+# Data de início: 20260101
+# Data de término: 20260610
+Consulta de Pesquisa orgânica do Google,Cliques orgânicos da Pesquisa Google
+indicadores econômicos hoje,3
+cdi abril 2026,1
+cdi de maio 2026,1
+incc x cdi gráfico,0
+ipc fipe,0
+
+# Data de início: 20250724
+# Data de término: 20251231
+Consulta de Pesquisa orgânica do Google,Cliques orgânicos da Pesquisa Google
+indicadores econômicos hoje,1
+cdi abril 2026,0
+cdi de maio 2026,0
+incc x cdi gráfico,1
+ipc fipe,1
+
+#  
+# Data de início: 20260101
+# Data de término: 20260610
+Origem da campanha manual da sessão,Sessões
+bing,216
+google,44
+br.search.yahoo.com,54
+chatgpt.com,7
+copilot.com,4
+duckduckgo,2
+blekko.com,1
+facebook.com,1
+yahoo,1
+yometa.com,0
+alhea.com,0
+blinkx.com,1
+colorof.com,1
+datasetsearch.research.google.com,1
+ecosia.org,1
+egerin.com,0
+fresheye.com,0
+geona.com,1
+heapr.com,1
+home.mywebsearch.com,1
+iconfinder.com,1
+ierblog.xyz,1
+ifacnet.com,0
+inetmonster.com,0
+jamasp.com,1
+lexxe.com,0
+metacrawler.com,0
+multisearching.com,1
+myallsearch.com,1
+omnimedicalsearch.com,1
+panjoy.com,1
+pepesearch.com,1
+redz.com,1
+searchezee.com,0
+searchgby.com,1
+sify.com,0
+simplyhired.com,1
+slikk.com,1
+snappyfingers.com,0
+sperse.com,1
+statics.teams.cdn.office.net,1
+targ8.com,1
+teoma.com,1
+toile.com,1
+trooker.com,0
+vadlo.com,0
+web.stagram.com,1
+
+# Data de início: 20250724
+# Data de término: 20251231
+Origem da campanha manual da sessão,Sessões
+bing,14
+google,36
+br.search.yahoo.com,0
+chatgpt.com,3
+copilot.com,0
+duckduckgo,1
+blekko.com,1
+facebook.com,1
+yahoo,1
+yometa.com,2
+alhea.com,1
+blinkx.com,0
+colorof.com,0
+datasetsearch.research.google.com,0
+ecosia.org,0
+egerin.com,1
+fresheye.com,1
+geona.com,0
+heapr.com,0
+home.mywebsearch.com,0
+iconfinder.com,0
+ierblog.xyz,0
+ifacnet.com,1
+inetmonster.com,1
+jamasp.com,0
+lexxe.com,1
+metacrawler.com,1
+multisearching.com,0
+myallsearch.com,0
+omnimedicalsearch.com,0
+panjoy.com,0
+pepesearch.com,0
+redz.com,0
+searchezee.com,1
+searchgby.com,0
+sify.com,1
+simplyhired.com,0
+slikk.com,0
+snappyfingers.com,1
+sperse.com,0
+statics.teams.cdn.office.net,0
+targ8.com,0
+teoma.com,0
+toile.com,0
+trooker.com,1
+vadlo.com,1
+web.stagram.com,0

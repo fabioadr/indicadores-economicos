@@ -1,0 +1,87 @@
+# ----------------------------------------
+# Páginas e telas: Caminho da página e classe da tela
+# Conta: Innevo
+# Propriedade: Indicadores Econômicos Hoje
+# ----------------------------------------
+# 
+# Todos os usuários
+# Data de início: 20260101
+# Data de término: 20260610
+Caminho da página e classe da tela,Visualizações,Usuários ativos,Visualizações por usuário ativo,Tempo médio de engajamento por usuário ativo,Contagem de eventos,Eventos principais,Receita total
+/,227,141,1.6099290780141844,42.262411347517734,753,0,0
+/cdi/,131,104,1.2596153846153846,42.34615384615385,484,0,0
+/selic/,70,58,1.206896551724138,35.43103448275862,273,0,0
+/incc-m/,25,12,2.0833333333333335,294.3333333333333,80,0,0
+/igp-m/index.html,12,9,1.3333333333333333,24.11111111111111,36,0,0
+/incc-10/index.html,12,11,1.0909090909090908,11.363636363636363,39,0,0
+/incc-m/index.html,12,12,1,2.5,41,0,0
+/inpc/index.html,10,10,1,4,33,0,0
+/igp-m/,9,4,2.25,68.25,22,0,0
+/ipca-e/index.html,9,8,1.125,11.125,28,0,0
+/incc-di/index.html,8,7,1.1428571428571428,9.857142857142858,29,0,0
+/inflacao/,8,6,1.3333333333333333,14.333333333333334,17,0,0
+/ipc-fipe/index.html,8,8,1,7.125,28,0,0
+/ipc-m/index.html,8,8,1,3,24,0,0
+/igp-di/index.html,7,7,1,1.5714285714285714,23,0,0
+/ipa-di/index.html,7,7,1,1.7142857142857142,23,0,0
+/ipca/index.html,7,7,1,5.571428571428571,24,0,0
+/ipa-10/index.html,6,6,1,0.8333333333333334,19,0,0
+/ipc-di/index.html,6,6,1,2.1666666666666665,19,0,0
+/juros/,6,5,1.2,9.6,14,0,0
+/igp-10/index.html,5,5,1,0,15,0,0
+/ipa-m/index.html,5,5,1,0,15,0,0
+/ipca/,5,3,1.6666666666666667,13,16,0,0
+/inpc/,4,3,1.3333333333333333,34.333333333333336,14,0,0
+/ipca-15/index.html,4,4,1,0,12,0,0
+/selic-acumulada/,4,4,1,38,9,0,0
+/tr/,4,3,1.3333333333333333,12.333333333333334,12,0,0
+/igp-di/,3,3,1,6,8,0,0
+/comparar/,2,2,1,14,5,0,0
+/comparar/inflacao-oficial/,2,2,1,10.5,5,0,0
+/correcao-monetaria/,2,1,2,236,4,0,0
+/ipc-s/index.html,2,2,1,0,6,0,0
+/politica-privacidade/index.html,2,2,1,0,6,0,0
+/comparar/construcao-civil/,1,1,1,12,3,0,0
+/construcao-civil/,1,1,1,6,3,0,0
+/tr,1,1,1,1,4,0,0
+
+# Todos os usuários
+# Data de início: 20250724
+# Data de término: 20251231
+Caminho da página e classe da tela,Visualizações,Usuários ativos,Visualizações por usuário ativo,Tempo médio de engajamento por usuário ativo,Contagem de eventos,Eventos principais,Receita total
+/,78,66,1.1818181818181819,10.924242424242424,254,0,0
+/cdi/,0,0,0,0,0,0,0
+/selic/,0,0,0,0,0,0,0
+/incc-m/,0,0,0,0,0,0,0
+/igp-m/index.html,10,9,1.1111111111111112,12,37,0,0
+/incc-10/index.html,13,12,1.0833333333333333,21.25,50,0,0
+/incc-m/index.html,15,14,1.0714285714285714,18.428571428571427,56,0,0
+/inpc/index.html,11,10,1.1,18.4,39,0,0
+/igp-m/,0,0,0,0,0,0,0
+/ipca-e/index.html,2,2,1,1,7,0,0
+/incc-di/index.html,12,8,1.5,14.625,35,0,0
+/inflacao/,0,0,0,0,0,0,0
+/ipc-fipe/index.html,2,2,1,12.5,8,0,0
+/ipc-m/index.html,2,2,1,1,7,0,0
+/igp-di/index.html,4,4,1,15,13,0,0
+/ipa-di/index.html,4,4,1,2.75,14,0,0
+/ipca/index.html,7,6,1.1666666666666667,4.5,16,0,0
+/ipa-10/index.html,4,4,1,11.25,15,0,0
+/ipc-di/index.html,2,2,1,1,7,0,0
+/juros/,0,0,0,0,0,0,0
+/igp-10/index.html,3,3,1,7,9,0,0
+/ipa-m/index.html,2,2,1,0.5,7,0,0
+/ipca/,0,0,0,0,0,0,0
+/inpc/,0,0,0,0,0,0,0
+/ipca-15/index.html,0,0,0,0,0,0,0
+/selic-acumulada/,0,0,0,0,0,0,0
+/tr/,0,0,0,0,0,0,0
+/igp-di/,0,0,0,0,0,0,0
+/comparar/,0,0,0,0,0,0,0
+/comparar/inflacao-oficial/,0,0,0,0,0,0,0
+/correcao-monetaria/,0,0,0,0,0,0,0
+/ipc-s/index.html,0,0,0,0,0,0,0
+/politica-privacidade/index.html,0,0,0,0,0,0,0
+/comparar/construcao-civil/,0,0,0,0,0,0,0
+/construcao-civil/,0,0,0,0,0,0,0
+/tr,0,0,0,0,0,0,0
