@@ -87,6 +87,8 @@ Specs detalhadas em [docs/](docs/):
   agendamento
 - [docs/fase-03/](docs/fase-03/) — calculadora, charts interativos, sparklines
 - [docs/fase-04/](docs/fase-04/) — calendário de divulgação e auto-migração
+- [docs/fase-05/](docs/fase-05/) — catálogo "em breve" + medição de demanda
+- [docs/ROADMAP.md](docs/ROADMAP.md) — próximos passos de evolução da aplicação
 
 [CLAUDE.md](CLAUDE.md) contém o contexto persistente para sessões com
 Claude Code.
