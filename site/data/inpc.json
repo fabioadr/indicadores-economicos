@@ -3900,5 +3900,10 @@
     "current_year": "/charts/inpc-2026.png",
     "history": "/charts/inpc-history.png"
   },
-  "last_built_at": "2026-05-30T16:56:33-03:00"
+  "last_collected_at": "2026-05-16T15:31:02Z",
+  "next_release": {
+    "date": "2026-06-12",
+    "source": "official"
+  },
+  "last_built_at": "2026-06-10T08:14:23-03:00"
 }

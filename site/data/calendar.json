@@ -1,0 +1,135 @@
+{
+  "generated_at": "2026-06-10T08:14:23-03:00",
+  "calendar": [
+    {
+      "code": "IGPDI",
+      "slug": "igp-di",
+      "name": "IGP-DI - Índice Geral de Preços - Disponibilidade Interna",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-04-01",
+      "last_collected_at": "2026-05-12T10:39:09Z",
+      "next_release": {
+        "date": "2026-06-10",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "INPC",
+      "slug": "inpc",
+      "name": "INPC - Índice Nacional de Preços ao Consumidor",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-04-01",
+      "last_collected_at": "2026-05-16T15:31:02Z",
+      "next_release": {
+        "date": "2026-06-12",
+        "source": "official"
+      }
+    },
+    {
+      "code": "IPCA",
+      "slug": "ipca",
+      "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-04-01",
+      "last_collected_at": "2026-05-16T15:31:03Z",
+      "next_release": {
+        "date": "2026-06-12",
+        "source": "official"
+      }
+    },
+    {
+      "code": "IPCA15",
+      "slug": "ipca-15",
+      "name": "IPCA-15 - Índice de Preços ao Consumidor Amplo - 15",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-05-01",
+      "last_collected_at": "2026-05-30T19:56:23Z",
+      "next_release": {
+        "date": "2026-06-25",
+        "source": "official"
+      }
+    },
+    {
+      "code": "INCCM",
+      "slug": "incc-m",
+      "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
+      "category": "construcao_civil",
+      "frequency": "monthly",
+      "reference_date": "2026-04-01",
+      "last_collected_at": "2026-05-12T10:39:10Z",
+      "next_release": {
+        "date": "2026-06-30",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "CDI",
+      "slug": "cdi",
+      "name": "CDI - Certificado de Depósito Interbancário",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-05-01",
+      "last_collected_at": "2026-05-28T16:50:58Z",
+      "next_release": {
+        "date": "2026-07-01",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "SELICAC",
+      "slug": "selic-acumulada",
+      "name": "Selic acumulada no mês",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-05-01",
+      "last_collected_at": "2026-05-30T19:56:24Z",
+      "next_release": {
+        "date": "2026-07-01",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "TR",
+      "slug": "tr",
+      "name": "TR - Taxa Referencial",
+      "category": "correcao_monetaria",
+      "frequency": "monthly",
+      "reference_date": "2026-05-28",
+      "last_collected_at": "2026-05-30T19:56:25Z",
+      "next_release": {
+        "date": "2026-07-01",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "IGPM",
+      "slug": "igp-m",
+      "name": "IGP-M - Índice Geral de Preços do Mercado",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-05-01",
+      "last_collected_at": "2026-05-30T19:56:23Z",
+      "next_release": {
+        "date": "2026-07-30",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "SELIC",
+      "slug": "selic",
+      "name": "SELIC - Taxa Básica de Juros (anualizada)",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-06-01",
+      "last_collected_at": "2026-06-03T17:57:57Z",
+      "next_release": {
+        "date": "2026-08-01",
+        "source": "estimated"
+      }
+    }
+  ]
+}

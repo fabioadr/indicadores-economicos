@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T16:56:33-03:00",
+  "generated_at": "2026-06-10T08:14:23-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -44,6 +44,11 @@
         "value": 0.97,
         "ytd": 5.4341599017468045,
         "last_12m": 14.513763322829544
+      },
+      "last_collected_at": "2026-05-28T16:50:58Z",
+      "next_release": {
+        "date": "2026-07-01",
+        "source": "estimated"
       }
     },
     {
@@ -57,6 +62,11 @@
         "value": 2.41,
         "ytd": 2.912838064836798,
         "last_12m": 0.7732395086075261
+      },
+      "last_collected_at": "2026-05-12T10:39:09Z",
+      "next_release": {
+        "date": "2026-06-10",
+        "source": "estimated"
       }
     },
     {
@@ -70,6 +80,11 @@
         "value": 0.84,
         "ytd": 3.7952774183672044,
         "last_12m": 1.9644536162514603
+      },
+      "last_collected_at": "2026-05-30T19:56:23Z",
+      "next_release": {
+        "date": "2026-07-30",
+        "source": "estimated"
       }
     },
     {
@@ -83,6 +98,11 @@
         "value": 1.0,
         "ytd": 2.562901155264008,
         "last_12m": 6.364239478035638
+      },
+      "last_collected_at": "2026-05-12T10:39:10Z",
+      "next_release": {
+        "date": "2026-06-30",
+        "source": "estimated"
       }
     },
     {
@@ -96,6 +116,11 @@
         "value": 0.81,
         "ytd": 2.6960027502826778,
         "last_12m": 4.109608042978574
+      },
+      "last_collected_at": "2026-05-16T15:31:02Z",
+      "next_release": {
+        "date": "2026-06-12",
+        "source": "official"
       }
     },
     {
@@ -109,6 +134,11 @@
         "value": 0.67,
         "ytd": 2.604267669997573,
         "last_12m": 4.39171967147336
+      },
+      "last_collected_at": "2026-05-16T15:31:03Z",
+      "next_release": {
+        "date": "2026-06-12",
+        "source": "official"
       }
     },
     {
@@ -122,6 +152,11 @@
         "value": 0.62,
         "ytd": 3.024305981233155,
         "last_12m": 4.641155911890982
+      },
+      "last_collected_at": "2026-05-30T19:56:23Z",
+      "next_release": {
+        "date": "2026-06-25",
+        "source": "official"
       }
     },
     {
@@ -131,10 +166,15 @@
       "category": "juros",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-05-01",
+        "reference_date": "2026-06-01",
         "value": 14.4,
         "ytd": null,
         "last_12m": null
+      },
+      "last_collected_at": "2026-06-03T17:57:57Z",
+      "next_release": {
+        "date": "2026-08-01",
+        "source": "estimated"
       }
     },
     {
@@ -148,6 +188,11 @@
         "value": 1.07,
         "ytd": 5.653546949995869,
         "last_12m": 14.752043179592288
+      },
+      "last_collected_at": "2026-05-30T19:56:24Z",
+      "next_release": {
+        "date": "2026-07-01",
+        "source": "estimated"
       }
     },
     {
@@ -161,6 +206,11 @@
         "value": 0.1709,
         "ytd": 0.8049695754078767,
         "last_12m": 2.0315623584629794
+      },
+      "last_collected_at": "2026-05-30T19:56:25Z",
+      "next_release": {
+        "date": "2026-07-01",
+        "source": "estimated"
       }
     }
   ]
