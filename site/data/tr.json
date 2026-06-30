@@ -16,11 +16,11 @@
     "description": "TR (Taxa Referencial) hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e histórico da TR desde 1991."
   },
   "latest": {
-    "reference_date": "2026-05-28",
-    "value": 0.1709,
-    "ytd": 0.8049695754078767,
-    "last_12m": 2.0315623584629794,
-    "last_24m": 3.4063454263367543
+    "reference_date": "2026-06-29",
+    "value": 0.1713,
+    "ytd": 0.9776484882905612,
+    "last_12m": 2.028914143088145,
+    "last_24m": 3.514746704240501
   },
   "values": [
     {
@@ -102998,16 +102998,32 @@
       "last_12m": 2.0315623584629794,
       "last_24m": 3.4063454263367543,
       "since_inception": 3432762.8062652415
+    },
+    {
+      "reference_date": "2026-06-28",
+      "value": 0.1695,
+      "ytd": 0.9776484882905612,
+      "last_12m": 2.028914143088145,
+      "last_24m": 3.514746704240501,
+      "since_inception": 3438643.3002523743
+    },
+    {
+      "reference_date": "2026-06-29",
+      "value": 0.1713,
+      "ytd": 0.9776484882905612,
+      "last_12m": 2.028914143088145,
+      "last_24m": 3.514746704240501,
+      "since_inception": 3438643.3002523743
     }
   ],
   "charts": {
     "current_year": "/charts/tr-2026.png",
     "history": "/charts/tr-history.png"
   },
-  "last_collected_at": "2026-05-30T19:56:25Z",
+  "last_collected_at": "2026-06-30T18:42:27Z",
   "next_release": {
-    "date": "2026-07-01",
+    "date": "2026-08-01",
     "source": "estimated"
   },
-  "last_built_at": "2026-06-17T18:06:08-03:00"
+  "last_built_at": "2026-06-30T15:42:41-03:00"
 }

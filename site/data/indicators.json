@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T18:06:08-03:00",
+  "generated_at": "2026-06-30T15:42:41-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -40,14 +40,14 @@
       "category": "juros",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-05-01",
-        "value": 0.97,
-        "ytd": 5.4341599017468045,
-        "last_12m": 14.513763322829544
+        "reference_date": "2026-06-01",
+        "value": 1.07,
+        "ytd": 6.5623054126954905,
+        "last_12m": 14.479782977629885
       },
-      "last_collected_at": "2026-05-28T16:50:58Z",
+      "last_collected_at": "2026-06-30T18:42:25Z",
       "next_release": {
-        "date": "2026-07-01",
+        "date": "2026-08-01",
         "source": "estimated"
       }
     },
@@ -76,14 +76,14 @@
       "category": "inflacao",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-05-01",
-        "value": 0.84,
-        "ytd": 3.7952774183672044,
-        "last_12m": 1.9644536162514603
+        "reference_date": "2026-06-01",
+        "value": -0.5,
+        "ytd": 3.2763010312753638,
+        "last_12m": 3.1776989201364847
       },
-      "last_collected_at": "2026-05-30T19:56:23Z",
+      "last_collected_at": "2026-06-30T18:42:26Z",
       "next_release": {
-        "date": "2026-07-30",
+        "date": "2026-08-30",
         "source": "estimated"
       }
     },
@@ -137,7 +137,7 @@
       },
       "last_collected_at": "2026-06-14T22:18:57Z",
       "next_release": {
-        "date": "2026-06-25",
+        "date": "2026-07-10",
         "source": "official"
       }
     },
@@ -148,14 +148,14 @@
       "category": "inflacao",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-05-01",
-        "value": 0.62,
-        "ytd": 3.024305981233155,
-        "last_12m": 4.641155911890982
+        "reference_date": "2026-06-01",
+        "value": 0.41,
+        "ytd": 3.44670563575622,
+        "last_12m": 4.79771060356049
       },
-      "last_collected_at": "2026-05-30T19:56:23Z",
+      "last_collected_at": "2026-06-30T18:42:26Z",
       "next_release": {
-        "date": "2026-06-25",
+        "date": "2026-07-28",
         "source": "official"
       }
     },
@@ -184,14 +184,14 @@
       "category": "juros",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-05-01",
+        "reference_date": "2026-06-01",
         "value": 1.07,
-        "ytd": 5.653546949995869,
-        "last_12m": 14.752043179592288
+        "ytd": 6.784039902360828,
+        "last_12m": 14.717992128203662
       },
-      "last_collected_at": "2026-05-30T19:56:24Z",
+      "last_collected_at": "2026-06-30T18:42:26Z",
       "next_release": {
-        "date": "2026-07-01",
+        "date": "2026-08-01",
         "source": "estimated"
       }
     },
@@ -202,14 +202,14 @@
       "category": "correcao_monetaria",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-05-28",
-        "value": 0.1709,
-        "ytd": 0.8049695754078767,
-        "last_12m": 2.0315623584629794
+        "reference_date": "2026-06-29",
+        "value": 0.1713,
+        "ytd": 0.9776484882905612,
+        "last_12m": 2.028914143088145
       },
-      "last_collected_at": "2026-05-30T19:56:25Z",
+      "last_collected_at": "2026-06-30T18:42:27Z",
       "next_release": {
-        "date": "2026-07-01",
+        "date": "2026-08-01",
         "source": "estimated"
       }
     }
