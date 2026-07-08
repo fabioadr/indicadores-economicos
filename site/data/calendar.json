@@ -1,19 +1,6 @@
 {
-  "generated_at": "2026-07-05T09:45:32-03:00",
+  "generated_at": "2026-07-08T15:21:55-03:00",
   "calendar": [
-    {
-      "code": "IGPDI",
-      "slug": "igp-di",
-      "name": "IGP-DI - Índice Geral de Preços - Disponibilidade Interna",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-05-01",
-      "last_collected_at": "2026-06-17T18:47:12Z",
-      "next_release": {
-        "date": "2026-07-10",
-        "source": "estimated"
-      }
-    },
     {
       "code": "INPC",
       "slug": "inpc",
@@ -51,19 +38,6 @@
       "next_release": {
         "date": "2026-07-28",
         "source": "official"
-      }
-    },
-    {
-      "code": "INCCM",
-      "slug": "incc-m",
-      "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
-      "category": "construcao_civil",
-      "frequency": "monthly",
-      "reference_date": "2026-05-01",
-      "last_collected_at": "2026-06-17T18:47:13Z",
-      "next_release": {
-        "date": "2026-07-30",
-        "source": "estimated"
       }
     },
     {
@@ -106,6 +80,19 @@
       }
     },
     {
+      "code": "IGPDI",
+      "slug": "igp-di",
+      "name": "IGP-DI - Índice Geral de Preços - Disponibilidade Interna",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-06-01",
+      "last_collected_at": "2026-07-08T18:21:48Z",
+      "next_release": {
+        "date": "2026-08-10",
+        "source": "estimated"
+      }
+    },
+    {
       "code": "IGPM",
       "slug": "igp-m",
       "name": "IGP-M - Índice Geral de Preços do Mercado",
@@ -113,6 +100,19 @@
       "frequency": "monthly",
       "reference_date": "2026-06-01",
       "last_collected_at": "2026-06-30T18:42:26Z",
+      "next_release": {
+        "date": "2026-08-30",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "INCCM",
+      "slug": "incc-m",
+      "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
+      "category": "construcao_civil",
+      "frequency": "monthly",
+      "reference_date": "2026-06-01",
+      "last_collected_at": "2026-07-08T18:21:49Z",
       "next_release": {
         "date": "2026-08-30",
         "source": "estimated"

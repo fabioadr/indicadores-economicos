@@ -16,11 +16,11 @@
     "description": "INCC-M hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Custo da construção civil: tabela atualizada e histórico desde 1989."
   },
   "latest": {
-    "reference_date": "2026-05-01",
-    "value": 0.88,
-    "ytd": 3.4654546854303137,
-    "last_12m": 6.681492131082067,
-    "last_24m": 14.40355584378068
+    "reference_date": "2026-06-01",
+    "value": 0.78,
+    "ytd": 4.272485231976675,
+    "last_12m": 6.7768475218040525,
+    "last_24m": 14.483073755696685
   },
   "values": [
     {
@@ -3902,16 +3902,24 @@
       "last_12m": 6.681492131082067,
       "last_24m": 14.40355584378068,
       "since_inception": 766048107759.0972
+    },
+    {
+      "reference_date": "2026-06-01",
+      "value": 0.78,
+      "ytd": 4.272485231976675,
+      "last_12m": 6.7768475218040525,
+      "last_24m": 14.483073755696685,
+      "since_inception": 772023283000.3982
     }
   ],
   "charts": {
     "current_year": "/charts/incc-m-2026.png",
     "history": "/charts/incc-m-history.png"
   },
-  "last_collected_at": "2026-06-17T18:47:13Z",
+  "last_collected_at": "2026-07-08T18:21:49Z",
   "next_release": {
-    "date": "2026-07-30",
+    "date": "2026-08-30",
     "source": "estimated"
   },
-  "last_built_at": "2026-07-05T09:45:32-03:00"
+  "last_built_at": "2026-07-08T15:21:55-03:00"
 }

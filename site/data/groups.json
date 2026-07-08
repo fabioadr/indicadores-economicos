@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-05T09:45:32-03:00",
+  "generated_at": "2026-07-08T15:21:55-03:00",
   "groups": [
     {
       "slug": "inflacao-oficial",
@@ -80,21 +80,21 @@
       ],
       "chart": "/charts/compare-indices-fgv.png",
       "latest": {
-        "reference_date": "2026-05-01",
+        "reference_date": "2026-06-01",
         "values": {
           "IGPM": {
-            "reference_date": "2026-05-01",
-            "value": 0.84,
-            "last_12m": 1.9644536162514603,
-            "ytd": 3.7952774183672044,
-            "last_24m": 9.12866318527119
+            "reference_date": "2026-06-01",
+            "value": -0.5,
+            "last_12m": 3.1776989201364847,
+            "ytd": 3.2763010312753638,
+            "last_24m": 7.710564298526723
           },
           "IGPDI": {
-            "reference_date": "2026-05-01",
-            "value": 0.87,
-            "last_12m": 2.5213985802646555,
-            "ytd": 3.8081797560008734,
-            "last_24m": 8.955953943186312
+            "reference_date": "2026-06-01",
+            "value": -0.79,
+            "last_12m": 3.5758447367419066,
+            "ytd": 2.988095135928459,
+            "last_24m": 7.557414832870846
           }
         }
       }
@@ -178,21 +178,21 @@
       ],
       "chart": "/charts/compare-construcao-civil.png",
       "latest": {
-        "reference_date": "2026-05-01",
+        "reference_date": "2026-06-01",
         "values": {
           "INCCM": {
-            "reference_date": "2026-05-01",
-            "value": 0.88,
-            "last_12m": 6.681492131082067,
-            "ytd": 3.4654546854303137,
-            "last_24m": 14.40355584378068
+            "reference_date": "2026-06-01",
+            "value": 0.78,
+            "last_12m": 6.7768475218040525,
+            "ytd": 4.272485231976675,
+            "last_24m": 14.483073755696685
           },
           "IGPM": {
-            "reference_date": "2026-05-01",
-            "value": 0.84,
-            "last_12m": 1.9644536162514603,
-            "ytd": 3.7952774183672044,
-            "last_24m": 9.12866318527119
+            "reference_date": "2026-06-01",
+            "value": -0.5,
+            "last_12m": 3.1776989201364847,
+            "ytd": 3.2763010312753638,
+            "last_24m": 7.710564298526723
           }
         }
       }
