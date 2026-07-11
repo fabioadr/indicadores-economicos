@@ -17,9 +17,9 @@ from dateutil.relativedelta import relativedelta
 from .base import BaseConnector, FetchError, ParseError, RawDataPoint, register
 
 BCB_BASE_URL = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{series_id}/dados"
-MAX_WINDOW_YEARS = 10
+MAX_WINDOW_YEARS = 5
 PAGINATION_PAUSE_SECONDS = 1.0
-HTTP_TIMEOUT_SECONDS = 30.0
+HTTP_TIMEOUT_SECONDS = 120.0
 
 
 @register("bcb_sgs")

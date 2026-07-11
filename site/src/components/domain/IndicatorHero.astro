@@ -2,14 +2,14 @@
 import type { IndicatorDetail } from '../../lib/data';
 import CategoryPill from '../ui/CategoryPill.astro';
 import ValueDisplay from '../ui/ValueDisplay.astro';
-import { formatDateLong, formatMonthYear, formatPercent } from '../../lib/format';
+import { formatDateLong, formatMonthYear, formatPercent, formatValue } from '../../lib/format';
 
 interface Props {
   indicator: IndicatorDetail;
 }
 
 const { indicator } = Astro.props;
-const { latest, frequency, last_collected_at, next_release } = indicator;
+const { latest, frequency, last_collected_at, next_release, unit } = indicator;
 const refLabel = frequency === 'monthly'
   ? formatMonthYear(latest.reference_date)
   : formatDateLong(latest.reference_date);
@@ -33,7 +33,7 @@ const isEstimated = next_release?.source === 'estimated';
   </h1>
   <p class="text-lg text-ink-muted max-w-3xl">
     <strong class="text-ink">{shortLabel} hoje</strong> ({refLabel}):
-    <span class="font-mono tabular-nums text-ink">{formatPercent(latest.value)}</span>
+    <span class="font-mono tabular-nums text-ink">{formatValue(latest.value, unit)}</span>
   </p>
   <p class="text-base text-ink-muted leading-relaxed max-w-3xl">
     {indicator.short_description}
@@ -44,7 +44,7 @@ const isEstimated = next_release?.source === 'estimated';
       <p class="text-xs uppercase tracking-wide text-ink-faint mb-2">
         Último valor — {refLabel}
       </p>
-      <ValueDisplay value={latest.value} size="xl" />
+      <ValueDisplay value={latest.value} unit={unit} size="xl" />
     </div>
     <dl class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 text-sm md:border-l md:border-border md:pl-8">
       <div>

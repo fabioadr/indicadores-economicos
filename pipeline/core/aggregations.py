@@ -12,6 +12,10 @@ Casos especiais (controlados via `indicators.aggregation_mode`):
   agregações mudam.
 - ``none``: a série não admite composição (ex: SELIC anualizada). Gravamos
   ``NULL`` em todas as colunas agregadas.
+- ``level``: a série é um nível absoluto (estoque, fluxo ou índice). As
+  colunas agregadas passam a ser **variação %** do nível: YTD vs dez. do ano
+  anterior (ou 1º ponto do ano), last_12m/24m vs −12/−24, since_inception vs
+  o primeiro ponto.
 """
 
 from __future__ import annotations
@@ -36,6 +40,13 @@ def accumulate(percentages: list[float]) -> float:
     for p in percentages:
         factor *= 1 + p / 100
     return (factor - 1) * 100
+
+
+def pct_change(current: float, base: float) -> float | None:
+    """Variação percentual de ``base`` → ``current``. None se base == 0."""
+    if base == 0:
+        return None
+    return (current - base) / base * 100
 
 
 def _get_aggregation_mode(conn: sqlite3.Connection, indicator_id: str) -> str:
@@ -102,6 +113,50 @@ def _compound_updates(
     return updates
 
 
+def _level_updates(
+    monthly_values: list[IndicatorValue],
+) -> list[tuple[str, float | None, float | None, float | None, float | None]]:
+    """Variação % do nível: YTD / 12m / 24m / since_inception."""
+    if not monthly_values:
+        return []
+
+    by_ym: dict[tuple[int, int], float] = {
+        (v.reference_date.year, v.reference_date.month): v.value
+        for v in monthly_values
+    }
+    first_of_year: dict[int, float] = {}
+    for v in monthly_values:
+        year = v.reference_date.year
+        if year not in first_of_year:
+            first_of_year[year] = v.value
+
+    inception = monthly_values[0].value
+    updates: list[
+        tuple[str, float | None, float | None, float | None, float | None]
+    ] = []
+
+    for i, v in enumerate(monthly_values):
+        year = v.reference_date.year
+        dec_prev = by_ym.get((year - 1, 12))
+        ytd_base = dec_prev if dec_prev is not None else first_of_year[year]
+        ytd = pct_change(v.value, ytd_base)
+
+        last_12m = (
+            pct_change(v.value, monthly_values[i - 12].value)
+            if i >= 12
+            else None
+        )
+        last_24m = (
+            pct_change(v.value, monthly_values[i - 24].value)
+            if i >= 24
+            else None
+        )
+        since_inception = pct_change(v.value, inception)
+
+        updates.append((v.id, ytd, last_12m, last_24m, since_inception))
+    return updates
+
+
 def _propagate_monthly_to_all(
     all_values: list[IndicatorValue],
     monthly_updates: list[
@@ -144,6 +199,10 @@ def recompute_aggregations(conn: sqlite3.Connection, indicator_id: str) -> None:
 
     if mode == "none":
         batch_update_aggregations(conn, _null_aggregations(values))
+        return
+
+    if mode == "level":
+        batch_update_aggregations(conn, _level_updates(values))
         return
 
     if mode == "compound_daily_to_monthly":

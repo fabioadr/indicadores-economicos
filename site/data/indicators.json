@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T15:21:55-03:00",
+  "generated_at": "2026-07-11T08:14:25-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -7,6 +7,14 @@
         "cdi",
         "selic",
         "selic-acumulada"
+      ]
+    },
+    "mercado_imobiliario": {
+      "label": "Mercado Imobiliário",
+      "indicators": [
+        "financiamento-imobiliario-concessoes",
+        "financiamento-imobiliario-saldo",
+        "ivg-r"
       ]
     },
     "inflacao": {
@@ -25,6 +33,13 @@
         "incc-m"
       ]
     },
+    "poupanca": {
+      "label": "Poupança",
+      "indicators": [
+        "poupanca-rentabilidade",
+        "poupanca-saldo"
+      ]
+    },
     "correcao_monetaria": {
       "label": "Correção Monetária",
       "indicators": [
@@ -38,6 +53,7 @@
       "slug": "cdi",
       "name": "CDI - Certificado de Depósito Interbancário",
       "category": "juros",
+      "unit": "percent",
       "frequency": "monthly",
       "latest": {
         "reference_date": "2026-06-01",
@@ -52,10 +68,49 @@
       }
     },
     {
+      "code": "FINIMOB",
+      "slug": "financiamento-imobiliario-concessoes",
+      "name": "Financiamento imobiliário - Concessões (PF)",
+      "category": "mercado_imobiliario",
+      "unit": "brl_millions",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-05-01",
+        "value": 23566.0,
+        "ytd": 5.781488463955472,
+        "last_12m": 26.876278669107357
+      },
+      "last_collected_at": "2026-07-11T11:14:08Z",
+      "next_release": {
+        "date": "2026-07-25",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "FINISAL",
+      "slug": "financiamento-imobiliario-saldo",
+      "name": "Financiamento imobiliário - Saldo PF (taxas reguladas)",
+      "category": "mercado_imobiliario",
+      "unit": "brl_millions",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-05-01",
+        "value": 1213382.0,
+        "ytd": 5.010986766550034,
+        "last_12m": 11.357658499338305
+      },
+      "last_collected_at": "2026-07-11T11:14:15Z",
+      "next_release": {
+        "date": "2026-07-25",
+        "source": "estimated"
+      }
+    },
+    {
       "code": "IGPDI",
       "slug": "igp-di",
       "name": "IGP-DI - Índice Geral de Preços - Disponibilidade Interna",
       "category": "inflacao",
+      "unit": "percent",
       "frequency": "monthly",
       "latest": {
         "reference_date": "2026-06-01",
@@ -74,6 +129,7 @@
       "slug": "igp-m",
       "name": "IGP-M - Índice Geral de Preços do Mercado",
       "category": "inflacao",
+      "unit": "percent",
       "frequency": "monthly",
       "latest": {
         "reference_date": "2026-06-01",
@@ -92,6 +148,7 @@
       "slug": "incc-m",
       "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
       "category": "construcao_civil",
+      "unit": "percent",
       "frequency": "monthly",
       "latest": {
         "reference_date": "2026-06-01",
@@ -110,6 +167,7 @@
       "slug": "inpc",
       "name": "INPC - Índice Nacional de Preços ao Consumidor",
       "category": "inflacao",
+      "unit": "percent",
       "frequency": "monthly",
       "latest": {
         "reference_date": "2026-05-01",
@@ -119,7 +177,7 @@
       },
       "last_collected_at": "2026-06-14T22:18:57Z",
       "next_release": {
-        "date": "2026-07-10",
+        "date": "2026-08-11",
         "source": "official"
       }
     },
@@ -128,6 +186,7 @@
       "slug": "ipca",
       "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
       "category": "inflacao",
+      "unit": "percent",
       "frequency": "monthly",
       "latest": {
         "reference_date": "2026-05-01",
@@ -137,7 +196,7 @@
       },
       "last_collected_at": "2026-06-14T22:18:57Z",
       "next_release": {
-        "date": "2026-07-10",
+        "date": "2026-08-11",
         "source": "official"
       }
     },
@@ -146,6 +205,7 @@
       "slug": "ipca-15",
       "name": "IPCA-15 - Índice de Preços ao Consumidor Amplo - 15",
       "category": "inflacao",
+      "unit": "percent",
       "frequency": "monthly",
       "latest": {
         "reference_date": "2026-06-01",
@@ -160,10 +220,68 @@
       }
     },
     {
+      "code": "IVGR",
+      "slug": "ivg-r",
+      "name": "IVG-R - Índice de Valores de Garantia de Imóveis Residenciais",
+      "category": "mercado_imobiliario",
+      "unit": "index",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-04-01",
+        "value": 769.45,
+        "ytd": 1.3768115942029047,
+        "last_12m": 4.278473464519983
+      },
+      "last_collected_at": "2026-07-11T11:14:25Z",
+      "next_release": {
+        "date": "2026-07-25",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "POUPREN",
+      "slug": "poupanca-rentabilidade",
+      "name": "Poupança - Rentabilidade (depósitos a partir de 04/05/2012)",
+      "category": "poupanca",
+      "unit": "percent",
+      "frequency": "daily",
+      "latest": {
+        "reference_date": "2026-07-09",
+        "value": 0.6722,
+        "ytd": 4.761802298077478,
+        "last_12m": 8.336959184117188
+      },
+      "last_collected_at": "2026-07-11T11:14:02Z",
+      "next_release": {
+        "date": "2026-09-01",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "POUPSAL",
+      "slug": "poupanca-saldo",
+      "name": "Poupança - Saldo de depósitos (SBPE e rural)",
+      "category": "poupanca",
+      "unit": "brl_millions",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-06-01",
+        "value": 1017505.0,
+        "ytd": -0.45375255712752527,
+        "last_12m": -0.1889289221143952
+      },
+      "last_collected_at": "2026-07-11T11:09:26Z",
+      "next_release": {
+        "date": "2026-08-20",
+        "source": "estimated"
+      }
+    },
+    {
       "code": "SELIC",
       "slug": "selic",
       "name": "SELIC - Taxa Básica de Juros (anualizada)",
       "category": "juros",
+      "unit": "percent",
       "frequency": "monthly",
       "latest": {
         "reference_date": "2026-07-01",
@@ -182,6 +300,7 @@
       "slug": "selic-acumulada",
       "name": "Selic acumulada no mês",
       "category": "juros",
+      "unit": "percent",
       "frequency": "monthly",
       "latest": {
         "reference_date": "2026-06-01",
@@ -200,6 +319,7 @@
       "slug": "tr",
       "name": "TR - Taxa Referencial",
       "category": "correcao_monetaria",
+      "unit": "percent",
       "frequency": "monthly",
       "latest": {
         "reference_date": "2026-06-29",

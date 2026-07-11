@@ -54,19 +54,25 @@ def test_single_window_parses_payload():
 
 @respx.mock
 def test_pagination_concatenates_and_dedups_overlap():
+    # 2000-01-01 → 2024-12-31 com janelas de 5 anos = 5 requests.
     payload_w1 = [{"data": "01/01/2005", "valor": "0.30"}]
-    payload_w2 = [
+    payload_w2 = []
+    payload_w3 = [
         {"data": "01/01/2015", "valor": "0.40"},
         {"data": "01/01/2015", "valor": "0.40"},  # duplicado dentro da mesma janela
     ]
-    payload_w3 = [
+    payload_w4 = [
         {"data": "01/01/2015", "valor": "0.40"},  # duplicado entre janelas
+    ]
+    payload_w5 = [
         {"data": "01/01/2024", "valor": "0.50"},
     ]
     responses = iter([
         httpx.Response(200, json=payload_w1),
         httpx.Response(200, json=payload_w2),
         httpx.Response(200, json=payload_w3),
+        httpx.Response(200, json=payload_w4),
+        httpx.Response(200, json=payload_w5),
     ])
     route = respx.get(URL).mock(side_effect=lambda request: next(responses))
 
@@ -76,7 +82,7 @@ def test_pagination_concatenates_and_dedups_overlap():
         until=date(2024, 12, 31),
     )
 
-    assert route.call_count == 3
+    assert route.call_count == 5
     assert [p.reference_date for p in points] == [
         date(2005, 1, 1),
         date(2015, 1, 1),

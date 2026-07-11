@@ -1,0 +1,182 @@
+{
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/astro.config.mjs": {
+    "mtime": 1777489074.0604684,
+    "hash": "7924839f8ab7c09190754c89b08d1d5d"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/src/lib/format.ts": {
+    "mtime": 1783767921.688099,
+    "hash": "66282dfccc319392cd0b9e51c0b62802"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/src/lib/markdown.ts": {
+    "mtime": 1777487609.9073462,
+    "hash": "5956146f54bbd0b92b44161ebb1baac0"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/src/lib/data.ts": {
+    "mtime": 1783767897.748567,
+    "hash": "9c974ad23c1f2072861eb9a6a034185c"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/README.md": {
+    "mtime": 1777430848.5561259,
+    "hash": "db7c39298f40fc47466658e886358910"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/pnpm-workspace.yaml": {
+    "mtime": 1777430821.621828,
+    "hash": "b8f761ad17f24a86297819d29079ee79"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/ads.txt": {
+    "mtime": 1777690667.3416908,
+    "hash": "cfe059b0830d257e9efe6ba7542ceb37"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/robots.txt": {
+    "mtime": 1777489111.3659115,
+    "hash": "98d9f2f3bb53e4aef50c882567c3dfae"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/favicon.svg": {
+    "mtime": 1777379453.0,
+    "hash": "8c13f40658976ea1dfb8ba37a8be0e8d"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/selic-acumulada-history.png": {
+    "mtime": 1782844963.407743,
+    "hash": "1a6e9540ce16485ea5174c2a83ebe4b2"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-m-2026.png": {
+    "mtime": 1782844962.7190518,
+    "hash": "f15000d4d434e0bef084d188f7134110"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-poupanca-e-credito-imobiliario.png": {
+    "mtime": 1783768479.6779304,
+    "hash": "ebfbb9d2822d0e6107ab08db1dc2fb8e"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/tr-history.png": {
+    "mtime": 1782844963.6898575,
+    "hash": "7b585aeff746444855da26de86695a5d"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-di-2026.png": {
+    "mtime": 1783534915.9532034,
+    "hash": "2dc4720b4f231091812c78cc15f04f09"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/inpc-2026.png": {
+    "mtime": 1781475564.067769,
+    "hash": "dd3adcaa5309c8f1c22222d691a9b78d"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-construcao-civil.png": {
+    "mtime": 1783768479.5111508,
+    "hash": "5b118be1da04b1df9dc1c693cdfd8625"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/incc-m-history.png": {
+    "mtime": 1783534916.3311489,
+    "hash": "c024bc7765fe64e9bda6cf0e3be35faf"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/financiamento-imobiliario-concessoes-history.png": {
+    "mtime": 1783768466.3206253,
+    "hash": "ee2dcc9aa0173b89591fde445713fa81"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/inpc-history.png": {
+    "mtime": 1781475564.1717691,
+    "hash": "e384a93afc5da348c3438a2c6f608336"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/financiamento-imobiliario-saldo-2026.png": {
+    "mtime": 1783768466.4246254,
+    "hash": "d723ebc952578d32e1bc41f2ec91067e"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-inflacao-oficial.png": {
+    "mtime": 1783768479.0179276,
+    "hash": "318b7663ca729e33e618895d3d4c6cec"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/incc-m-2026.png": {
+    "mtime": 1783534916.2065308,
+    "hash": "bb8ae3f5a30302f348a2230e5c54c922"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-precos-e-custo-imobiliario.png": {
+    "mtime": 1783768479.8448296,
+    "hash": "880848c41245f429167643b03491eba5"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/cdi-history.png": {
+    "mtime": 1782844962.5945895,
+    "hash": "a480fe53769dea99ab393b4c92ba396d"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/poupanca-rentabilidade-history.png": {
+    "mtime": 1783768467.0638971,
+    "hash": "e4e8574c7ec511aa78a4d681bebf6916"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-juros-vs-inflacao.png": {
+    "mtime": 1783768479.3406005,
+    "hash": "edb6b4b34c6881dc7476db2f40a398fe"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/tr-2026.png": {
+    "mtime": 1782844963.5322053,
+    "hash": "c776b8e0b41fa8a450f6e7ff867fee28"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/financiamento-imobiliario-concessoes-2026.png": {
+    "mtime": 1783768466.1773937,
+    "hash": "d26c15cd5f9e5857ff58225ccc4df082"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/poupanca-rentabilidade-2026.png": {
+    "mtime": 1783768466.9606264,
+    "hash": "9d6ccd560bb4c18e240005cbee2dc56e"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-15-2026.png": {
+    "mtime": 1782844962.9845715,
+    "hash": "08d4e761df419d79a843506dc29a592c"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/poupanca-saldo-2026.png": {
+    "mtime": 1783768467.162994,
+    "hash": "a5c1534899bfd64b743fe3f7a66b97aa"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-15-history.png": {
+    "mtime": 1782844963.1090336,
+    "hash": "07be5858243d2ca25e3a09082bcb0070"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-di-history.png": {
+    "mtime": 1783534916.0698528,
+    "hash": "57e10f6cdf2c6da0771fb51175e6b3d9"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ivg-r-2026.png": {
+    "mtime": 1783768466.664626,
+    "hash": "7f6b634222cb2e73e3af036ee1aed062"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/cdi-2026.png": {
+    "mtime": 1782844962.4659786,
+    "hash": "badd0f72e4aa1b8ed762bec88d17c1b6"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-2026.png": {
+    "mtime": 1781475564.275769,
+    "hash": "bc6f2d679213ad01e9f2e459d9fd9947"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/igp-m-history.png": {
+    "mtime": 1782844962.8518116,
+    "hash": "07cd48510c5478bd2563c80e4eecf50b"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/compare-indices-fgv.png": {
+    "mtime": 1783768479.1862726,
+    "hash": "8c19bee65398839a5f9bc4c5716fc90a"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/selic-history.png": {
+    "mtime": 1783255532.95778,
+    "hash": "b23de5a18f016ed4ec3ce5ead244e95a"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/financiamento-imobiliario-saldo-history.png": {
+    "mtime": 1783768466.5513446,
+    "hash": "e4c8c0fa30b0bf5eb01e657c2f5f7612"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/selic-2026.png": {
+    "mtime": 1783255532.842581,
+    "hash": "689f6d53ca948c23f4c15afb1c7aaf9f"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/selic-acumulada-2026.png": {
+    "mtime": 1782844963.2417934,
+    "hash": "74ad085fbf0b7265c525fc851c2d3aad"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ipca-history.png": {
+    "mtime": 1781475564.379769,
+    "hash": "772e44f6cf332a36c7670f214acb158c"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/poupanca-saldo-history.png": {
+    "mtime": 1783768467.2982383,
+    "hash": "7b740cb6b892c8fe2eebb92b6eb31471"
+  },
+  "/home/fabio_diniz/repos/innevo/indicadores-economicos/site/public/charts/ivg-r-history.png": {
+    "mtime": 1783768466.8562672,
+    "hash": "d1d97383c35549f0a91bde0f5ca6e595"
+  }
+}

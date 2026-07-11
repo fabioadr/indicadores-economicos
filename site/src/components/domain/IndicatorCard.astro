@@ -3,7 +3,7 @@ import type { IndicatorSummary } from '../../lib/data';
 import Card from '../ui/Card.astro';
 import CategoryPill from '../ui/CategoryPill.astro';
 import ValueDisplay from '../ui/ValueDisplay.astro';
-import { formatMonthYear, formatPercent, formatDateShort } from '../../lib/format';
+import { formatDateShort, formatMonthYear, formatPercent } from '../../lib/format';
 
 interface Props {
   indicator: IndicatorSummary;
@@ -11,6 +11,7 @@ interface Props {
 
 const { indicator } = Astro.props;
 const { latest, next_release } = indicator;
+const unit = indicator.unit ?? 'percent';
 ---
 
 <Card as="article" class="hover:border-ink/30 transition-colors">
@@ -23,7 +24,7 @@ const { latest, next_release } = indicator;
     </div>
     <p class="text-sm text-ink-muted leading-snug">{indicator.name}</p>
     <div class="flex items-baseline gap-2">
-      <ValueDisplay value={latest.value} size="lg" />
+      <ValueDisplay value={latest.value} unit={unit} size="lg" />
       <span class="text-xs text-ink-faint">{formatMonthYear(latest.reference_date)}</span>
     </div>
     <dl class="grid grid-cols-2 gap-2 text-xs text-ink-muted">

@@ -14,8 +14,9 @@ slug:                  igp-m
 name:                  IGP-M - Índice Geral de Preços do Mercado
 short_description:     <1 frase>
 long_description:      <markdown multilinha; 3 seções: O que é, Para que serve, Fonte>
-category:              inflacao | juros | correcao_monetaria | construcao_civil
-unit:                  pct_mensal | pct_anualizado | indice
+category:              inflacao | juros | correcao_monetaria | construcao_civil | poupanca | mercado_imobiliario
+unit:                  percent | brl_millions | index
+aggregation_mode:      compound_monthly | compound_daily_to_monthly | none | level
 frequency:             monthly
 source_name:           Banco Central / IBGE / FGV (espelho BCB)
 source_url:            https://...
@@ -45,7 +46,7 @@ meta_description:      <SEO>
        id, code, slug, name, short_description, long_description,
        category, unit, frequency, source_name, source_url,
        connector_type, connector_config, inception_date, expected_release_day,
-       active, meta_title, meta_description
+       active, meta_title, meta_description, aggregation_mode
    ) VALUES (
        '<uuid>',
        '<CODE>',
@@ -64,7 +65,8 @@ meta_description:      <SEO>
        <expected_release_day>,
        <active>,
        '<meta_title>',
-       '<meta_description>'
+       '<meta_description>',
+       '<aggregation_mode>'
    );
    ```
 

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T15:21:55-03:00",
+  "generated_at": "2026-07-11T11:14:38.833393+00:00",
   "groups": [
     {
       "slug": "inflacao-oficial",
@@ -193,6 +193,104 @@
             "last_12m": 3.1776989201364847,
             "ytd": 3.2763010312753638,
             "last_24m": 7.710564298526723
+          }
+        }
+      }
+    },
+    {
+      "slug": "poupanca-e-credito-imobiliario",
+      "title": "Poupança e crédito imobiliário",
+      "description": "Do funding ao crédito: saldo da poupança (SBPE e rural) lado a lado com concessões e saldo de financiamento imobiliário a pessoas físicas.",
+      "metric": "value",
+      "indicators": [
+        {
+          "code": "POUPSAL",
+          "slug": "poupanca-saldo",
+          "name": "Poupança - Saldo de depósitos (SBPE e rural)",
+          "metric": "value",
+          "style": "line"
+        },
+        {
+          "code": "FINIMOB",
+          "slug": "financiamento-imobiliario-concessoes",
+          "name": "Financiamento imobiliário - Concessões (PF)",
+          "metric": "value",
+          "style": "line"
+        },
+        {
+          "code": "FINISAL",
+          "slug": "financiamento-imobiliario-saldo",
+          "name": "Financiamento imobiliário - Saldo PF (taxas reguladas)",
+          "metric": "value",
+          "style": "line"
+        }
+      ],
+      "chart": "/charts/compare-poupanca-e-credito-imobiliario.png",
+      "latest": {
+        "reference_date": "2026-05-01",
+        "values": {
+          "POUPSAL": {
+            "reference_date": "2026-05-01",
+            "value": 1014420.0,
+            "last_12m": 0.34463111413581077,
+            "ytd": -0.7555694261957475,
+            "last_24m": 2.1290219305266525
+          },
+          "FINIMOB": {
+            "reference_date": "2026-05-01",
+            "value": 23566.0,
+            "last_12m": 26.876278669107357,
+            "ytd": 5.781488463955472,
+            "last_24m": 13.861912354447503
+          },
+          "FINISAL": {
+            "reference_date": "2026-05-01",
+            "value": 1213382.0,
+            "last_12m": 11.357658499338305,
+            "ytd": 5.010986766550034,
+            "last_24m": 24.0026448294504
+          }
+        }
+      }
+    },
+    {
+      "slug": "precos-e-custo-imobiliario",
+      "title": "Preços e custo imobiliário: IVG-R e INCC-M",
+      "description": "Valorização das garantias residenciais (IVG-R) comparada ao custo da construção civil (INCC-M), na variação acumulada em 12 meses.",
+      "metric": "last_12m",
+      "indicators": [
+        {
+          "code": "IVGR",
+          "slug": "ivg-r",
+          "name": "IVG-R - Índice de Valores de Garantia de Imóveis Residenciais",
+          "metric": "last_12m",
+          "style": "line"
+        },
+        {
+          "code": "INCCM",
+          "slug": "incc-m",
+          "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
+          "metric": "last_12m",
+          "style": "line"
+        }
+      ],
+      "chart": "/charts/compare-precos-e-custo-imobiliario.png",
+      "latest": {
+        "reference_date": "2026-04-01",
+        "values": {
+          "IVGR": {
+            "reference_date": "2026-04-01",
+            "value": 769.45,
+            "last_12m": 4.278473464519983,
+            "ytd": 1.3768115942029047,
+            "last_24m": 10.067661321469952
+          },
+          "INCCM": {
+            "reference_date": "2026-04-01",
+            "value": 1.0,
+            "last_12m": 6.364239478035638,
+            "ytd": 2.562901155264008,
+            "last_24m": 14.380874726444382
           }
         }
       }

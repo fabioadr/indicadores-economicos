@@ -64,6 +64,29 @@ INDICATOR_GROUPS: list[dict] = [
         "indicators": ["INCCM", "IGPM"],
         "metric": "last_12m",
     },
+    {
+        "slug": "poupanca-e-credito-imobiliario",
+        "title": "Poupança e crédito imobiliário",
+        "description": (
+            "Do funding ao crédito: saldo da poupança (SBPE e rural) "
+            "lado a lado com concessões e saldo de financiamento "
+            "imobiliário a pessoas físicas."
+        ),
+        "indicators": ["POUPSAL", "FINIMOB", "FINISAL"],
+        "metric": "value",
+        "normalize": True,
+    },
+    {
+        "slug": "precos-e-custo-imobiliario",
+        "title": "Preços e custo imobiliário: IVG-R e INCC-M",
+        "description": (
+            "Valorização das garantias residenciais (IVG-R) comparada "
+            "ao custo da construção civil (INCC-M), na variação "
+            "acumulada em 12 meses."
+        ),
+        "indicators": ["IVGR", "INCCM"],
+        "metric": "last_12m",
+    },
 ]
 
 
@@ -72,7 +95,7 @@ def metric_label(metric: str) -> str:
     return {
         "last_12m": "Acumulado 12 meses (%)",
         "last_24m": "Acumulado 24 meses (%)",
-        "value": "Variação no período (%)",
+        "value": "Valor",
         "ytd": "Acumulado no ano (%)",
         "since_inception": "Acumulado desde o início (%)",
     }.get(metric, metric)

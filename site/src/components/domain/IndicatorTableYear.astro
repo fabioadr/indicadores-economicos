@@ -2,8 +2,9 @@
 import type { IndicatorDetail } from '../../lib/data';
 import DataTable from '../ui/DataTable.astro';
 import {
-  formatPercent,
   formatMonthShort,
+  formatPercent,
+  formatValue,
   reduceToMonthly,
   yearOf,
 } from '../../lib/format';
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const { indicator } = Astro.props;
+const unit = indicator.unit;
 
 const monthlyValues = reduceToMonthly(indicator.values);
 
@@ -43,7 +45,7 @@ const yearRows = monthlyValues
       {yearRows.map((row) => (
         <tr>
           <th scope="row" class="capitalize">{formatMonthShort(row.reference_date)}</th>
-          <td>{formatPercent(row.value)}</td>
+          <td>{formatValue(row.value, unit)}</td>
           <td>{formatPercent(row.ytd)}</td>
           <td>{formatPercent(row.last_12m)}</td>
         </tr>

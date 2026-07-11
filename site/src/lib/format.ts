@@ -1,4 +1,4 @@
-import type { CategoryKey, IndicatorValue } from './data';
+import type { CategoryKey, IndicatorUnit, IndicatorValue } from './data';
 
 const MONTHS_PT = [
   'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho',
@@ -21,6 +21,60 @@ export function formatPercent(n: number | null | undefined, fractionDigits = 2):
     minimumFractionDigits: fractionDigits,
     maximumFractionDigits: fractionDigits,
   })}%`;
+}
+
+/**
+ * Formata o valor absoluto conforme a unidade do indicador.
+ * `brl_millions` usa escala milhão → bi → tri; `index` com 2 casas;
+ * demais (incl. percent) delegam a formatPercent.
+ */
+export function formatValue(
+  n: number | null | undefined,
+  unit: IndicatorUnit = 'percent',
+  fractionDigits = 2,
+): string {
+  if (n === null || n === undefined || Number.isNaN(n)) return '—';
+
+  if (unit === 'brl_millions') {
+    // Valor persistido em R$ milhões. Escala: mi / bi / tri.
+    const abs = Math.abs(n);
+    if (abs >= 1_000_000) {
+      return `R$ ${(n / 1_000_000).toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })} tri`;
+    }
+    if (abs >= 1_000) {
+      return `R$ ${(n / 1_000).toLocaleString('pt-BR', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      })} bi`;
+    }
+    return `R$ ${n.toLocaleString('pt-BR', {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    })} mi`;
+  }
+
+  if (unit === 'index') {
+    return n.toLocaleString('pt-BR', {
+      minimumFractionDigits: fractionDigits,
+      maximumFractionDigits: fractionDigits,
+    });
+  }
+
+  if (unit === 'raw') {
+    return n.toLocaleString('pt-BR', {
+      minimumFractionDigits: fractionDigits,
+      maximumFractionDigits: fractionDigits,
+    });
+  }
+
+  return formatPercent(n, fractionDigits);
+}
+
+export function isLevelUnit(unit: IndicatorUnit | undefined): boolean {
+  return unit === 'brl_millions' || unit === 'index';
 }
 
 export function formatMonthYear(iso: string): string {
@@ -57,6 +111,8 @@ const CATEGORY_LABEL: Record<CategoryKey, string> = {
   juros: 'Juros',
   correcao_monetaria: 'Correção Monetária',
   construcao_civil: 'Construção Civil',
+  poupanca: 'Poupança',
+  mercado_imobiliario: 'Mercado Imobiliário',
 };
 
 const CATEGORY_SLUG: Record<CategoryKey, string> = {
@@ -64,6 +120,8 @@ const CATEGORY_SLUG: Record<CategoryKey, string> = {
   juros: 'juros',
   correcao_monetaria: 'correcao-monetaria',
   construcao_civil: 'construcao-civil',
+  poupanca: 'poupanca',
+  mercado_imobiliario: 'mercado-imobiliario',
 };
 
 const SLUG_TO_CATEGORY: Record<string, CategoryKey> = {
@@ -71,6 +129,8 @@ const SLUG_TO_CATEGORY: Record<string, CategoryKey> = {
   'juros': 'juros',
   'correcao-monetaria': 'correcao_monetaria',
   'construcao-civil': 'construcao_civil',
+  'poupanca': 'poupanca',
+  'mercado-imobiliario': 'mercado_imobiliario',
 };
 
 export function categoryLabel(key: CategoryKey): string {

@@ -73,7 +73,7 @@ def test_normalize_group_accepts_strings_and_objects():
 
 def test_metric_label_known_and_unknown():
     assert metric_label("last_12m") == "Acumulado 12 meses (%)"
-    assert metric_label("value") == "Variação no período (%)"
+    assert metric_label("value") == "Valor"
     assert metric_label("unknown_x") == "unknown_x"
     assert metric_legend_suffix("last_12m") == "12m"
     assert metric_legend_suffix("value") == "valor"

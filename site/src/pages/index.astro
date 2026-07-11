@@ -10,11 +10,19 @@ import {
   categorySlug,
   formatMonthYear,
   formatPercent,
+  formatValue,
 } from '../lib/format';
 
 const index = loadIndex();
 
-const categoryOrder: CategoryKey[] = ['inflacao', 'juros', 'correcao_monetaria', 'construcao_civil'];
+const categoryOrder: CategoryKey[] = [
+  'inflacao',
+  'juros',
+  'correcao_monetaria',
+  'construcao_civil',
+  'poupanca',
+  'mercado_imobiliario',
+];
 
 const indicatorBySlug = new Map(index.indicators.map((i) => [i.slug, i]));
 
@@ -61,7 +69,7 @@ const meta = {
               </a>
             </th>
             <td>{formatMonthYear(ind.latest.reference_date)}</td>
-            <td>{formatPercent(ind.latest.value)}</td>
+            <td>{formatValue(ind.latest.value, ind.unit ?? 'percent')}</td>
             <td>{formatPercent(ind.latest.ytd)}</td>
             <td>{formatPercent(ind.latest.last_12m)}</td>
           </tr>

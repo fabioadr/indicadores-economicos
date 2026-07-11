@@ -187,7 +187,11 @@ def backfill_indicator(
     indicator: Indicator,
     triggered_by: str = "backfill",
 ) -> CollectResult:
-    return _run_collection(conn, indicator, triggered_by, since=None)
+    # Usa inception_date para não varrer janelas vazias pré-série (ex.: SGS
+    # diária desde 2012 que timeoutava em 1986–1995).
+    return _run_collection(
+        conn, indicator, triggered_by, since=indicator.inception_date
+    )
 
 
 def run_all(

@@ -7,7 +7,7 @@ import IndicatorTableHistory from '../components/domain/IndicatorTableHistory.as
 import IndicatorCard from '../components/domain/IndicatorCard.astro';
 import Disclaimer from '../components/ui/Disclaimer.astro';
 import { loadIndex, loadDetail } from '../lib/data';
-import { formatMonthYear, formatPercent, yearOf } from '../lib/format';
+import { formatMonthYear, formatPercent, formatValue, yearOf } from '../lib/format';
 import { renderMarkdown } from '../lib/markdown';
 
 export async function getStaticPaths() {
@@ -29,8 +29,7 @@ const related = index.indicators.filter(
 const refDate = detail.latest.reference_date;
 const monthName = formatMonthYear(refDate).split('/')[0];
 const year = yearOf(refDate);
-const valueStr = (detail.latest.value ?? 0)
-  .toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const valueStr = formatValue(detail.latest.value, detail.unit).replace('%', '');
 const last12mStr = formatPercent(detail.latest.last_12m);
 
 const fillMeta = (template: string) =>
@@ -46,6 +45,12 @@ const meta = {
 };
 
 const longHtml = renderMarkdown(detail.long_description);
+
+const unitTextByUnit: Record<string, string> = {
+  percent: 'percent',
+  brl_millions: 'BRL million',
+  index: 'index',
+};
 
 const firstDate = detail.values[0]?.reference_date ?? detail.latest.reference_date;
 const lastDate = detail.latest.reference_date;
@@ -64,7 +69,7 @@ const jsonLd = {
   variableMeasured: {
     '@type': 'PropertyValue',
     name: detail.name,
-    unitText: 'percent',
+    unitText: unitTextByUnit[detail.unit] ?? detail.unit,
   },
   isAccessibleForFree: true,
   inLanguage: 'pt-BR',

@@ -97,7 +97,8 @@ def test_build_writes_indicators_index_and_detail(db_conn, site_dirs):
     index = json.loads((data_dir / "indicators.json").read_text())
     assert "generated_at" in index
     assert set(index["categories"].keys()) == {
-        "inflacao", "juros", "correcao_monetaria", "construcao_civil"
+        "inflacao", "juros", "correcao_monetaria", "construcao_civil",
+        "poupanca", "mercado_imobiliario",
     }
     assert index["categories"]["inflacao"]["label"] == "Inflação"
     assert "ipca" in index["categories"]["inflacao"]["indicators"]
@@ -105,9 +106,11 @@ def test_build_writes_indicators_index_and_detail(db_conn, site_dirs):
     assert codes == {
         "IPCA", "CDI", "TR", "SELIC", "SELICAC",
         "IGPM", "IGPDI", "INPC", "INCCM", "IPCA15",
+        "POUPSAL", "POUPREN", "FINIMOB", "FINISAL", "IVGR",
     }
 
     ipca_entry = next(i for i in index["indicators"] if i["code"] == "IPCA")
+    assert ipca_entry["unit"] == "percent"
     assert set(ipca_entry["latest"].keys()) == {"reference_date", "value", "ytd", "last_12m"}
     # Calendário: última coleta + próxima divulgação (estimada quando sem dado oficial).
     assert ipca_entry["last_collected_at"] == "2026-04-29T10:00:00Z"
@@ -351,6 +354,7 @@ def test_build_writes_groups_json(db_conn, site_dirs):
     assert slugs == {
         "inflacao-oficial", "indices-fgv",
         "juros-vs-inflacao", "construcao-civil",
+        "poupanca-e-credito-imobiliario", "precos-e-custo-imobiliario",
     }
     for g in payload["groups"]:
         assert g["chart"] == f"/charts/compare-{g['slug']}.png"
@@ -373,6 +377,7 @@ def test_build_writes_calendar_json_sorted(db_conn, site_dirs):
     assert {e["code"] for e in cal} == {
         "IPCA", "CDI", "TR", "SELIC", "SELICAC",
         "IGPM", "IGPDI", "INPC", "INCCM", "IPCA15",
+        "POUPSAL", "POUPREN", "FINIMOB", "FINISAL", "IVGR",
     }
     dates = [e["next_release"]["date"] for e in cal]
     assert dates == sorted(dates)

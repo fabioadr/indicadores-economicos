@@ -1,9 +1,10 @@
 ---
-import { formatPercent } from '../../lib/format';
+import type { IndicatorUnit } from '../../lib/data';
+import { formatValue } from '../../lib/format';
 
 interface Props {
   value: number | null | undefined;
-  unit?: 'percent' | 'raw';
+  unit?: IndicatorUnit | 'raw';
   size?: 'sm' | 'md' | 'lg' | 'xl';
   fractionDigits?: number;
   class?: string;
@@ -24,15 +25,7 @@ const sizeClass = {
   xl: 'text-6xl',
 }[size];
 
-const formatted =
-  unit === 'percent'
-    ? formatPercent(value, fractionDigits)
-    : value === null || value === undefined
-      ? '—'
-      : value.toLocaleString('pt-BR', {
-          minimumFractionDigits: fractionDigits,
-          maximumFractionDigits: fractionDigits,
-        });
+const formatted = formatValue(value, unit, fractionDigits);
 ---
 
 <span class={`font-display font-semibold tabular-nums ${sizeClass} ${extraClass}`}>

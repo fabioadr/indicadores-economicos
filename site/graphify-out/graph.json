@@ -1,0 +1,648 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "astro.config.mjs",
+      "file_type": "code",
+      "source_file": "astro.config.mjs",
+      "source_location": "L1",
+      "id": "astro_config_mjs",
+      "community": 6,
+      "norm_label": "astro.config.mjs"
+    },
+    {
+      "label": "format.ts",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L1",
+      "id": "src_lib_format_ts",
+      "community": 0,
+      "norm_label": "format.ts"
+    },
+    {
+      "label": "parseISO()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L13",
+      "id": "lib_format_parseiso",
+      "community": 1,
+      "norm_label": "parseiso()"
+    },
+    {
+      "label": "formatPercent()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L18",
+      "id": "lib_format_formatpercent",
+      "community": 5,
+      "norm_label": "formatpercent()"
+    },
+    {
+      "label": "formatValue()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L31",
+      "id": "lib_format_formatvalue",
+      "community": 5,
+      "norm_label": "formatvalue()"
+    },
+    {
+      "label": "isLevelUnit()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L76",
+      "id": "lib_format_islevelunit",
+      "community": 0,
+      "norm_label": "islevelunit()"
+    },
+    {
+      "label": "formatMonthYear()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L80",
+      "id": "lib_format_formatmonthyear",
+      "community": 1,
+      "norm_label": "formatmonthyear()"
+    },
+    {
+      "label": "formatMonthShort()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L85",
+      "id": "lib_format_formatmonthshort",
+      "community": 1,
+      "norm_label": "formatmonthshort()"
+    },
+    {
+      "label": "formatDateLong()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L90",
+      "id": "lib_format_formatdatelong",
+      "community": 0,
+      "norm_label": "formatdatelong()"
+    },
+    {
+      "label": "formatDateShort()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L95",
+      "id": "lib_format_formatdateshort",
+      "community": 1,
+      "norm_label": "formatdateshort()"
+    },
+    {
+      "label": "yearOf()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L101",
+      "id": "lib_format_yearof",
+      "community": 4,
+      "norm_label": "yearof()"
+    },
+    {
+      "label": "monthOf()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L105",
+      "id": "lib_format_monthof",
+      "community": 1,
+      "norm_label": "monthof()"
+    },
+    {
+      "label": "categoryLabel()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L136",
+      "id": "lib_format_categorylabel",
+      "community": 0,
+      "norm_label": "categorylabel()"
+    },
+    {
+      "label": "categorySlug()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L140",
+      "id": "lib_format_categoryslug",
+      "community": 0,
+      "norm_label": "categoryslug()"
+    },
+    {
+      "label": "categoryFromSlug()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L144",
+      "id": "lib_format_categoryfromslug",
+      "community": 0,
+      "norm_label": "categoryfromslug()"
+    },
+    {
+      "label": "reduceToMonthly()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L152",
+      "id": "lib_format_reducetomonthly",
+      "community": 1,
+      "norm_label": "reducetomonthly()"
+    },
+    {
+      "label": "groupByYearDesc()",
+      "file_type": "code",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L168",
+      "id": "lib_format_groupbyyeardesc",
+      "community": 4,
+      "norm_label": "groupbyyeardesc()"
+    },
+    {
+      "label": "markdown.ts",
+      "file_type": "code",
+      "source_file": "src/lib/markdown.ts",
+      "source_location": "L1",
+      "id": "src_lib_markdown_ts",
+      "community": 3,
+      "norm_label": "markdown.ts"
+    },
+    {
+      "label": "escape()",
+      "file_type": "code",
+      "source_file": "src/lib/markdown.ts",
+      "source_location": "L11",
+      "id": "lib_markdown_escape",
+      "community": 3,
+      "norm_label": "escape()"
+    },
+    {
+      "label": "inline()",
+      "file_type": "code",
+      "source_file": "src/lib/markdown.ts",
+      "source_location": "L19",
+      "id": "lib_markdown_inline",
+      "community": 3,
+      "norm_label": "inline()"
+    },
+    {
+      "label": "renderMarkdown()",
+      "file_type": "code",
+      "source_file": "src/lib/markdown.ts",
+      "source_location": "L23",
+      "id": "lib_markdown_rendermarkdown",
+      "community": 3,
+      "norm_label": "rendermarkdown()"
+    },
+    {
+      "label": "data.ts",
+      "file_type": "code",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L1",
+      "id": "src_lib_data_ts",
+      "community": 2,
+      "norm_label": "data.ts"
+    },
+    {
+      "label": "readJson()",
+      "file_type": "code",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L82",
+      "id": "lib_data_readjson",
+      "community": 2,
+      "norm_label": "readjson()"
+    },
+    {
+      "label": "loadIndex()",
+      "file_type": "code",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L86",
+      "id": "lib_data_loadindex",
+      "community": 2,
+      "norm_label": "loadindex()"
+    },
+    {
+      "label": "loadDetail()",
+      "file_type": "code",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L90",
+      "id": "lib_data_loaddetail",
+      "community": 2,
+      "norm_label": "loaddetail()"
+    },
+    {
+      "label": "loadGroups()",
+      "file_type": "code",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L132",
+      "id": "lib_data_loadgroups",
+      "community": 2,
+      "norm_label": "loadgroups()"
+    },
+    {
+      "label": "loadCalendar()",
+      "file_type": "code",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L152",
+      "id": "lib_data_loadcalendar",
+      "community": 2,
+      "norm_label": "loadcalendar()"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_parseiso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_formatpercent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_formatvalue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L76",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_islevelunit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_formatmonthyear",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_formatmonthshort",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_formatdatelong",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L95",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_formatdateshort",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_yearof",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_monthof",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L136",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_categorylabel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L140",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_categoryslug",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_categoryfromslug",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L152",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_reducetomonthly",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "src_lib_format_ts",
+      "target": "lib_format_groupbyyeardesc",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "lib_format_formatmonthyear",
+      "target": "lib_format_parseiso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "lib_format_formatmonthshort",
+      "target": "lib_format_parseiso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "lib_format_formatdatelong",
+      "target": "lib_format_parseiso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "lib_format_formatdateshort",
+      "target": "lib_format_parseiso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "lib_format_yearof",
+      "target": "lib_format_parseiso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "lib_format_monthof",
+      "target": "lib_format_parseiso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "lib_format_reducetomonthly",
+      "target": "lib_format_parseiso",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "lib_format_formatvalue",
+      "target": "lib_format_formatpercent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/format.ts",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "lib_format_groupbyyeardesc",
+      "target": "lib_format_yearof",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/markdown.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_lib_markdown_ts",
+      "target": "lib_markdown_escape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/markdown.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_lib_markdown_ts",
+      "target": "lib_markdown_inline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/markdown.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "src_lib_markdown_ts",
+      "target": "lib_markdown_rendermarkdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/markdown.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "lib_markdown_inline",
+      "target": "lib_markdown_escape",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/markdown.ts",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "lib_markdown_rendermarkdown",
+      "target": "lib_markdown_inline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L82",
+      "weight": 1.0,
+      "source": "src_lib_data_ts",
+      "target": "lib_data_readjson",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "src_lib_data_ts",
+      "target": "lib_data_loadindex",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L90",
+      "weight": 1.0,
+      "source": "src_lib_data_ts",
+      "target": "lib_data_loaddetail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L132",
+      "weight": 1.0,
+      "source": "src_lib_data_ts",
+      "target": "lib_data_loadgroups",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L152",
+      "weight": 1.0,
+      "source": "src_lib_data_ts",
+      "target": "lib_data_loadcalendar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "lib_data_loadindex",
+      "target": "lib_data_readjson",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "lib_data_loaddetail",
+      "target": "lib_data_readjson",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L133",
+      "weight": 1.0,
+      "source": "lib_data_loadgroups",
+      "target": "lib_data_readjson",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/data.ts",
+      "source_location": "L153",
+      "weight": 1.0,
+      "source": "lib_data_loadcalendar",
+      "target": "lib_data_readjson",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}

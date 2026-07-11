@@ -12,11 +12,12 @@ Modos especiais (alinhados com `indicators.aggregation_mode`):
   a granularidade visual passa a ser mensal, igual aos demais.
 - ``none``: a série não admite composição (ex: SELIC anualizada). Plotamos
   apenas uma linha de "taxa em vigor" — sem barras mensais, sem YTD.
+- ``level``: série de nível absoluto (R$ mi / índice). Plotamos a série do
+  nível; no histórico, opcionalmente a variação YoY (%).
 """
 
 from __future__ import annotations
 
-from datetime import date
 from pathlib import Path
 
 import matplotlib
@@ -31,6 +32,8 @@ PALETTE = {
     "juros": "#1e3a8a",
     "correcao_monetaria": "#166534",
     "construcao_civil": "#c2410c",
+    "poupanca": "#0f766e",
+    "mercado_imobiliario": "#7c2d12",
 }
 DEFAULT_COLOR = "#1a1a1a"
 ACCUM_COLOR = "#525252"
@@ -103,6 +106,7 @@ def generate_chart_current_year(
     - ``compound_daily_to_monthly``: reduz a 1 valor por mês (último do mês) antes
       de plotar — assim TR diária fica visualmente igual aos mensais.
     - ``none``: linha contínua da "taxa em vigor" (sem barras, sem YTD).
+    - ``level``: linha do nível absoluto no ano (sem linha de acumulado).
     """
     out_path.parent.mkdir(parents=True, exist_ok=True)
     color = _category_color(category)
@@ -121,6 +125,28 @@ def generate_chart_current_year(
                 label="Taxa em vigor (% a.a.)",
             )
             ax.legend(loc="best", frameon=False)
+        ax.set_title(str(year))
+        _style_axes(ax)
+        fig.tight_layout()
+        fig.savefig(out_path, format="png", facecolor="white")
+        plt.close(fig)
+        return
+
+    if aggregation_mode == "level":
+        fig, ax = plt.subplots(figsize=FIGSIZE, dpi=DPI)
+        fig.patch.set_facecolor("white")
+        ax.set_facecolor("white")
+        if year_values:
+            months = [v.reference_date.month for v in year_values]
+            levels = [v.value for v in year_values]
+            ax.plot(
+                months, levels, color=color, linewidth=2.0, marker="o",
+                label="Nível",
+            )
+            ax.legend(loc="best", frameon=False)
+        ax.set_xticks(range(1, 13))
+        ax.set_xticklabels(MONTH_LABELS)
+        ax.set_xlim(0.5, 12.5)
         ax.set_title(str(year))
         _style_axes(ax)
         fig.tight_layout()
@@ -170,6 +196,7 @@ def generate_chart_history(
 
     Para ``aggregation_mode='none'`` plota apenas uma linha da taxa em vigor.
     Para ``compound_daily_to_monthly`` reduz a 1 valor por mês antes de plotar.
+    Para ``level`` plota o nível e, se disponível, a variação YoY (%).
     """
     out_path.parent.mkdir(parents=True, exist_ok=True)
     color = _category_color(category)
@@ -187,6 +214,30 @@ def generate_chart_history(
                 label="Taxa em vigor (% a.a.)",
             )
             ax.legend(loc="best", frameon=False)
+        _style_axes(ax)
+        fig.tight_layout()
+        fig.savefig(out_path, format="png", facecolor="white")
+        plt.close(fig)
+        return
+
+    if aggregation_mode == "level":
+        if values:
+            dates = [v.reference_date for v in values]
+            levels = [v.value for v in values]
+            ax.plot(dates, levels, color=color, linewidth=1.6, label="Nível")
+            yoy = [v.last_12m for v in values]
+            if any(y is not None for y in yoy):
+                ax2 = ax.twinx()
+                ax2.plot(
+                    dates, yoy, color=ACCUM_COLOR, linewidth=1.2,
+                    alpha=0.8, label="Var. 12m (%)",
+                )
+                ax2.spines["top"].set_visible(False)
+                lines1, labels1 = ax.get_legend_handles_labels()
+                lines2, labels2 = ax2.get_legend_handles_labels()
+                ax.legend(lines1 + lines2, labels1 + labels2, loc="best", frameon=False)
+            else:
+                ax.legend(loc="best", frameon=False)
         _style_axes(ax)
         fig.tight_layout()
         fig.savefig(out_path, format="png", facecolor="white")

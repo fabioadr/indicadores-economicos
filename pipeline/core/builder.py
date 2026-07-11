@@ -40,6 +40,8 @@ CATEGORY_LABELS = {
     "juros": "Juros",
     "correcao_monetaria": "Correção Monetária",
     "construcao_civil": "Construção Civil",
+    "poupanca": "Poupança",
+    "mercado_imobiliario": "Mercado Imobiliário",
 }
 
 SP_TZ = ZoneInfo("America/Sao_Paulo")
@@ -175,6 +177,7 @@ def write_indicators_index(
                 "slug": ind.slug,
                 "name": ind.name,
                 "category": ind.category,
+                "unit": ind.unit,
                 "frequency": ind.frequency,
                 "latest": (
                     _latest_index(latest_by_id[ind.id])

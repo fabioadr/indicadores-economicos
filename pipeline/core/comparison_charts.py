@@ -70,6 +70,10 @@ def generate_comparison_chart(
 
     Indicadores sem dados (todos `None` na métrica) são ignorados na legenda.
     Se nenhum indicador rendeu pontos, escreve um placeholder vazio e retorna False.
+
+    Quando o grupo define ``normalize: True`` (ou unidades misturadas com
+    ``metric='value'``), as séries são rebaseadas para índice 100 no início da
+    janela comum — útil para comparar níveis em R$ mi com índices.
     """
     out_path.parent.mkdir(parents=True, exist_ok=True)
     g = normalize_group(group)
@@ -78,9 +82,10 @@ def generate_comparison_chart(
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
 
-    plotted = 0
-    metrics_used: set[str] = set()
-    for idx, item in enumerate(g["indicators"]):
+    # Coleta todas as séries primeiro para decidir normalização e janela comum.
+    series_data: list[tuple[dict, Indicator, list[tuple[date, float]]]] = []
+    units: set[str] = set()
+    for item in g["indicators"]:
         ind, points = _series_for_item(conn, item)
         if ind is None or not points:
             logger.info(
@@ -88,13 +93,36 @@ def generate_comparison_chart(
                 item["code"], item["metric"],
             )
             continue
+        series_data.append((item, ind, points))
+        units.add(ind.unit)
+
+    force_normalize = bool(g.get("normalize"))
+    mixed_value = (
+        len(units) > 1
+        and any(item["metric"] == "value" for item, _, _ in series_data)
+    )
+    do_normalize = force_normalize or mixed_value
+
+    plotted = 0
+    metrics_used: set[str] = set()
+    for idx, (item, ind, points) in enumerate(series_data):
         dates_, values_ = zip(*points, strict=False)
+        plot_values = list(values_)
+        if do_normalize and plot_values:
+            base = plot_values[0]
+            if base != 0:
+                plot_values = [(v / base) * 100 for v in plot_values]
         color = PALETTE[idx % len(PALETTE)]
-        label = f"{ind.code} ({metric_legend_suffix(item['metric'])})"
+        suffix = metric_legend_suffix(item["metric"])
+        label = (
+            f"{ind.code} (índice 100)"
+            if do_normalize
+            else f"{ind.code} ({suffix})"
+        )
         if item["style"] == "step":
-            ax.step(dates_, values_, where="post", color=color, linewidth=2.0, label=label)
+            ax.step(dates_, plot_values, where="post", color=color, linewidth=2.0, label=label)
         else:
-            ax.plot(dates_, values_, color=color, linewidth=2.0, label=label)
+            ax.plot(dates_, plot_values, color=color, linewidth=2.0, label=label)
         plotted += 1
         metrics_used.add(item["metric"])
 
@@ -103,7 +131,9 @@ def generate_comparison_chart(
         base_charts._save_empty(out_path, group["title"])
         return False
 
-    if len(metrics_used) == 1:
+    if do_normalize:
+        ax.set_ylabel("Índice (início = 100)")
+    elif len(metrics_used) == 1:
         ax.set_ylabel(metric_label(next(iter(metrics_used))))
     else:
         ax.set_ylabel("% (ver legenda)")

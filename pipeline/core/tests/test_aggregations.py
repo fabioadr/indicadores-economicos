@@ -9,7 +9,7 @@ from pathlib import Path
 import pytest
 
 from pipeline.connectors.base import RawDataPoint
-from pipeline.core.aggregations import accumulate, recompute_aggregations
+from pipeline.core.aggregations import accumulate, pct_change, recompute_aggregations
 from pipeline.db.connection import (
     apply_pending_migrations,
     get_connection,
@@ -301,3 +301,61 @@ def test_aggregation_mode_daily_to_monthly_last_12m_uses_monthly_window(db_conn)
     rows = list_values(db_conn, DUMMY_INDICATOR_ID)
     last = rows[-1]
     assert last.last_12m == pytest.approx(accumulate([0.10] * 12))
+
+
+# ---------------------------------------------------------------------------
+# aggregation_mode = "level" (saldo / índice absoluto)
+# ---------------------------------------------------------------------------
+
+
+def test_pct_change_basic():
+    assert pct_change(110.0, 100.0) == pytest.approx(10.0)
+    assert pct_change(100.0, 0.0) is None
+
+
+def test_aggregation_mode_level_ytd_from_prior_december(db_conn):
+    db_conn.execute(
+        "UPDATE indicators SET aggregation_mode = 'level', unit = 'brl_millions' "
+        "WHERE id = ?",
+        (DUMMY_INDICATOR_ID,),
+    )
+    db_conn.commit()
+
+    _insert_series(
+        db_conn,
+        [
+            (date(2024, 12, 1), 1000.0),
+            (date(2025, 1, 1), 1050.0),
+            (date(2025, 2, 1), 1100.0),
+        ],
+    )
+    recompute_aggregations(db_conn, DUMMY_INDICATOR_ID)
+
+    by_date = {v.reference_date: v for v in list_values(db_conn, DUMMY_INDICATOR_ID)}
+    # Dez/2024: sem dez anterior → base = próprio 1º ponto do ano → 0%
+    assert by_date[date(2024, 12, 1)].ytd == pytest.approx(0.0)
+    assert by_date[date(2025, 1, 1)].ytd == pytest.approx(5.0)
+    assert by_date[date(2025, 2, 1)].ytd == pytest.approx(10.0)
+
+
+def test_aggregation_mode_level_last_12m_and_since_inception(db_conn):
+    db_conn.execute(
+        "UPDATE indicators SET aggregation_mode = 'level', unit = 'index' "
+        "WHERE id = ?",
+        (DUMMY_INDICATOR_ID,),
+    )
+    db_conn.commit()
+
+    # 13 meses: índice sobe de 100 → 112
+    series = [(date(2024, m, 1), 100.0 + m) for m in range(1, 13)]
+    series.append((date(2025, 1, 1), 112.0))
+    _insert_series(db_conn, series)
+    recompute_aggregations(db_conn, DUMMY_INDICATOR_ID)
+
+    rows = list_values(db_conn, DUMMY_INDICATOR_ID)
+    for row in rows[:12]:
+        assert row.last_12m is None
+    # Jan/2025 (112) vs Jan/2024 (101)
+    assert rows[12].last_12m == pytest.approx(pct_change(112.0, 101.0))
+    assert rows[0].since_inception == pytest.approx(0.0)
+    assert rows[-1].since_inception == pytest.approx(pct_change(112.0, 101.0))

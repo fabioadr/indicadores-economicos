@@ -1,7 +1,15 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-export type CategoryKey = 'inflacao' | 'juros' | 'correcao_monetaria' | 'construcao_civil';
+export type CategoryKey =
+  | 'inflacao'
+  | 'juros'
+  | 'correcao_monetaria'
+  | 'construcao_civil'
+  | 'poupanca'
+  | 'mercado_imobiliario';
+
+export type IndicatorUnit = 'percent' | 'brl_millions' | 'index' | string;
 
 export type Frequency = 'monthly' | 'daily';
 
@@ -23,6 +31,7 @@ export interface IndicatorSummary {
   slug: string;
   name: string;
   category: CategoryKey;
+  unit?: IndicatorUnit;
   frequency: Frequency;
   latest: IndicatorLatest;
   last_collected_at: string | null;
@@ -56,7 +65,7 @@ export interface IndicatorDetail {
   short_description: string;
   long_description: string;
   category: CategoryKey;
-  unit: 'percent' | string;
+  unit: IndicatorUnit;
   frequency: Frequency;
   source: { name: string; url: string };
   meta: { title: string; description: string };
