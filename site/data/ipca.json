@@ -16,11 +16,11 @@
     "description": "IPCA hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e série histórica completa do IPCA desde 1980."
   },
   "latest": {
-    "reference_date": "2026-05-01",
-    "value": 0.58,
-    "ytd": 3.1993724224835596,
-    "last_12m": 4.7249068876600075,
-    "last_24m": 10.295890273852958
+    "reference_date": "2026-06-01",
+    "value": 0.16,
+    "ytd": 3.3644914183595276,
+    "last_12m": 4.641327552554153,
+    "last_24m": 10.24085789670799
   },
   "values": [
     {
@@ -3902,16 +3902,24 @@
       "last_12m": 4.7249068876600075,
       "last_24m": 10.295890273852958,
       "since_inception": 441028824122.48114
+    },
+    {
+      "reference_date": "2026-06-01",
+      "value": 0.16,
+      "ytd": 3.3644914183595276,
+      "last_12m": 4.641327552554153,
+      "last_24m": 10.24085789670799,
+      "since_inception": 441734470241.2372
     }
   ],
   "charts": {
     "current_year": "/charts/ipca-2026.png",
     "history": "/charts/ipca-history.png"
   },
-  "last_collected_at": "2026-06-14T22:18:57Z",
+  "last_collected_at": "2026-07-13T13:52:51Z",
   "next_release": {
     "date": "2026-08-11",
     "source": "official"
   },
-  "last_built_at": "2026-07-11T08:14:25-03:00"
+  "last_built_at": "2026-07-13T10:52:57-03:00"
 }

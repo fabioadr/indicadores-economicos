@@ -8,7 +8,7 @@
   "unit": "percent",
   "frequency": "monthly",
   "source": {
-    "name": "Banco Central do Brasil (espelhando FGV)",
+    "name": "FGV (via SGS do Banco Central do Brasil)",
     "url": "https://portalibre.fgv.br/"
   },
   "meta": {
@@ -3921,5 +3921,5 @@
     "date": "2026-08-10",
     "source": "estimated"
   },
-  "last_built_at": "2026-07-11T08:14:25-03:00"
+  "last_built_at": "2026-07-13T10:52:57-03:00"
 }
