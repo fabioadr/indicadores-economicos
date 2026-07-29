@@ -16,11 +16,11 @@
     "description": "CDI hoje: {value}% no mês de {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e histórico completo do CDI desde 1986."
   },
   "latest": {
-    "reference_date": "2026-06-01",
-    "value": 1.07,
-    "ytd": 6.5623054126954905,
-    "last_12m": 14.479782977629885,
-    "last_24m": 28.39891006275468
+    "reference_date": "2026-07-01",
+    "value": 1.06,
+    "ytd": 7.691865850070068,
+    "last_12m": 14.231110463263041,
+    "last_24m": 28.589771587969448
   },
   "values": [
     {
@@ -3854,16 +3854,24 @@
       "last_12m": 14.479782977629885,
       "last_24m": 28.39891006275468,
       "since_inception": 10465636593214.146
+    },
+    {
+      "reference_date": "2026-07-01",
+      "value": 1.06,
+      "ytd": 7.691865850070068,
+      "last_12m": 14.231110463263041,
+      "last_24m": 28.589771587969448,
+      "since_inception": 10576572341103.275
     }
   ],
   "charts": {
     "current_year": "/charts/cdi-2026.png",
     "history": "/charts/cdi-history.png"
   },
-  "last_collected_at": "2026-06-30T18:42:25Z",
+  "last_collected_at": "2026-07-29T21:37:54Z",
   "next_release": {
-    "date": "2026-08-01",
+    "date": "2026-09-01",
     "source": "estimated"
   },
-  "last_built_at": "2026-07-13T10:52:57-03:00"
+  "last_built_at": "2026-07-29T18:38:06-03:00"
 }

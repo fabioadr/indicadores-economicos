@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-13T10:52:57-03:00",
+  "generated_at": "2026-07-29T18:38:06-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -56,14 +56,14 @@
       "unit": "percent",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-06-01",
-        "value": 1.07,
-        "ytd": 6.5623054126954905,
-        "last_12m": 14.479782977629885
+        "reference_date": "2026-07-01",
+        "value": 1.06,
+        "ytd": 7.691865850070068,
+        "last_12m": 14.231110463263041
       },
-      "last_collected_at": "2026-06-30T18:42:25Z",
+      "last_collected_at": "2026-07-29T21:37:54Z",
       "next_release": {
-        "date": "2026-08-01",
+        "date": "2026-09-01",
         "source": "estimated"
       }
     },
@@ -82,7 +82,7 @@
       },
       "last_collected_at": "2026-07-11T11:14:08Z",
       "next_release": {
-        "date": "2026-07-25",
+        "date": "2026-08-25",
         "source": "estimated"
       }
     },
@@ -101,7 +101,7 @@
       },
       "last_collected_at": "2026-07-11T11:14:15Z",
       "next_release": {
-        "date": "2026-07-25",
+        "date": "2026-08-25",
         "source": "estimated"
       }
     },
@@ -208,14 +208,14 @@
       "unit": "percent",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-06-01",
-        "value": 0.41,
-        "ytd": 3.44670563575622,
-        "last_12m": 4.79771060356049
+        "reference_date": "2026-07-01",
+        "value": 0.06,
+        "ytd": 3.508773659137665,
+        "last_12m": 4.515687461300333
       },
-      "last_collected_at": "2026-06-30T18:42:26Z",
+      "last_collected_at": "2026-07-29T21:37:57Z",
       "next_release": {
-        "date": "2026-07-28",
+        "date": "2026-08-26",
         "source": "official"
       }
     },
@@ -234,7 +234,7 @@
       },
       "last_collected_at": "2026-07-11T11:14:25Z",
       "next_release": {
-        "date": "2026-07-25",
+        "date": "2026-08-25",
         "source": "estimated"
       }
     },
@@ -303,14 +303,14 @@
       "unit": "percent",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-06-01",
-        "value": 1.07,
-        "ytd": 6.784039902360828,
-        "last_12m": 14.717992128203662
+        "reference_date": "2026-07-01",
+        "value": 1.06,
+        "ytd": 7.915950725325849,
+        "last_12m": 14.468802176898365
       },
-      "last_collected_at": "2026-06-30T18:42:26Z",
+      "last_collected_at": "2026-07-29T21:37:57Z",
       "next_release": {
-        "date": "2026-08-01",
+        "date": "2026-09-01",
         "source": "estimated"
       }
     },
