@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-29T18:38:06-03:00",
+  "generated_at": "2026-08-03T15:15:57-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -75,12 +75,12 @@
       "unit": "brl_millions",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-05-01",
-        "value": 23566.0,
-        "ytd": 5.781488463955472,
-        "last_12m": 26.876278669107357
+        "reference_date": "2026-06-01",
+        "value": 26575.0,
+        "ytd": 19.28808690187629,
+        "last_12m": 41.43161255987227
       },
-      "last_collected_at": "2026-07-11T11:14:08Z",
+      "last_collected_at": "2026-08-03T18:15:36Z",
       "next_release": {
         "date": "2026-08-25",
         "source": "estimated"
@@ -94,12 +94,12 @@
       "unit": "brl_millions",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-05-01",
-        "value": 1213382.0,
-        "ytd": 5.010986766550034,
-        "last_12m": 11.357658499338305
+        "reference_date": "2026-06-01",
+        "value": 1229467.0,
+        "ytd": 6.403047735099062,
+        "last_12m": 11.96536129491712
       },
-      "last_collected_at": "2026-07-11T11:14:15Z",
+      "last_collected_at": "2026-08-03T18:15:37Z",
       "next_release": {
         "date": "2026-08-25",
         "source": "estimated"
@@ -132,14 +132,14 @@
       "unit": "percent",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-06-01",
-        "value": -0.5,
-        "ytd": 3.2763010312753638,
-        "last_12m": 3.1776989201364847
+        "reference_date": "2026-07-01",
+        "value": -1.16,
+        "ytd": 2.078295939312569,
+        "last_12m": 2.772183425035668
       },
-      "last_collected_at": "2026-06-30T18:42:26Z",
+      "last_collected_at": "2026-08-03T18:15:37Z",
       "next_release": {
-        "date": "2026-08-30",
+        "date": "2026-09-30",
         "source": "estimated"
       }
     },
@@ -322,14 +322,14 @@
       "unit": "percent",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-06-29",
-        "value": 0.1713,
-        "ytd": 0.9776484882905612,
-        "last_12m": 2.028914143088145
+        "reference_date": "2026-07-31",
+        "value": 0.1694,
+        "ytd": 1.148704624829744,
+        "last_12m": 2.0240252716233975
       },
-      "last_collected_at": "2026-06-30T18:42:27Z",
+      "last_collected_at": "2026-08-03T18:15:40Z",
       "next_release": {
-        "date": "2026-08-01",
+        "date": "2026-09-01",
         "source": "estimated"
       }
     }

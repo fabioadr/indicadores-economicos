@@ -16,11 +16,11 @@
     "description": "TR (Taxa Referencial) hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e histórico da TR desde 1991."
   },
   "latest": {
-    "reference_date": "2026-06-29",
-    "value": 0.1713,
-    "ytd": 0.9776484882905612,
-    "last_12m": 2.028914143088145,
-    "last_24m": 3.514746704240501
+    "reference_date": "2026-07-31",
+    "value": 0.1694,
+    "ytd": 1.148704624829744,
+    "last_12m": 2.0240252716233975,
+    "last_24m": 3.6131161398655687
   },
   "values": [
     {
@@ -103014,16 +103014,40 @@
       "last_12m": 2.028914143088145,
       "last_24m": 3.514746704240501,
       "since_inception": 3438643.3002523743
+    },
+    {
+      "reference_date": "2026-07-29",
+      "value": 0.1729,
+      "ytd": 1.148704624829744,
+      "last_12m": 2.0240252716233975,
+      "last_24m": 3.6131161398655687,
+      "since_inception": 3444468.5314030023
+    },
+    {
+      "reference_date": "2026-07-30",
+      "value": 0.171,
+      "ytd": 1.148704624829744,
+      "last_12m": 2.0240252716233975,
+      "last_24m": 3.6131161398655687,
+      "since_inception": 3444468.5314030023
+    },
+    {
+      "reference_date": "2026-07-31",
+      "value": 0.1694,
+      "ytd": 1.148704624829744,
+      "last_12m": 2.0240252716233975,
+      "last_24m": 3.6131161398655687,
+      "since_inception": 3444468.5314030023
     }
   ],
   "charts": {
     "current_year": "/charts/tr-2026.png",
     "history": "/charts/tr-history.png"
   },
-  "last_collected_at": "2026-06-30T18:42:27Z",
+  "last_collected_at": "2026-08-03T18:15:40Z",
   "next_release": {
-    "date": "2026-08-01",
+    "date": "2026-09-01",
     "source": "estimated"
   },
-  "last_built_at": "2026-07-29T18:38:06-03:00"
+  "last_built_at": "2026-08-03T15:15:57-03:00"
 }
