@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T15:15:57-03:00",
+  "generated_at": "2026-08-06T15:00:06-03:00",
   "calendar": [
     {
       "code": "IGPDI",
@@ -41,19 +41,6 @@
       }
     },
     {
-      "code": "POUPSAL",
-      "slug": "poupanca-saldo",
-      "name": "Poupança - Saldo de depósitos (SBPE e rural)",
-      "category": "poupanca",
-      "frequency": "monthly",
-      "reference_date": "2026-06-01",
-      "last_collected_at": "2026-07-11T11:09:26Z",
-      "next_release": {
-        "date": "2026-08-20",
-        "source": "estimated"
-      }
-    },
-    {
       "code": "FINIMOB",
       "slug": "financiamento-imobiliario-concessoes",
       "name": "Financiamento imobiliário - Concessões (PF)",
@@ -85,8 +72,8 @@
       "name": "IVG-R - Índice de Valores de Garantia de Imóveis Residenciais",
       "category": "mercado_imobiliario",
       "frequency": "monthly",
-      "reference_date": "2026-04-01",
-      "last_collected_at": "2026-07-11T11:14:25Z",
+      "reference_date": "2026-05-01",
+      "last_collected_at": "2026-08-06T17:59:56Z",
       "next_release": {
         "date": "2026-08-25",
         "source": "estimated"
@@ -145,19 +132,6 @@
       }
     },
     {
-      "code": "SELIC",
-      "slug": "selic",
-      "name": "SELIC - Taxa Básica de Juros (anualizada)",
-      "category": "juros",
-      "frequency": "monthly",
-      "reference_date": "2026-07-01",
-      "last_collected_at": "2026-07-05T12:45:13Z",
-      "next_release": {
-        "date": "2026-09-01",
-        "source": "estimated"
-      }
-    },
-    {
       "code": "SELICAC",
       "slug": "selic-acumulada",
       "name": "Selic acumulada no mês",
@@ -184,6 +158,19 @@
       }
     },
     {
+      "code": "POUPSAL",
+      "slug": "poupanca-saldo",
+      "name": "Poupança - Saldo de depósitos (SBPE e rural)",
+      "category": "poupanca",
+      "frequency": "monthly",
+      "reference_date": "2026-07-01",
+      "last_collected_at": "2026-08-06T17:59:56Z",
+      "next_release": {
+        "date": "2026-09-20",
+        "source": "estimated"
+      }
+    },
+    {
       "code": "IGPM",
       "slug": "igp-m",
       "name": "IGP-M - Índice Geral de Preços do Mercado",
@@ -193,6 +180,19 @@
       "last_collected_at": "2026-08-03T18:15:37Z",
       "next_release": {
         "date": "2026-09-30",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "SELIC",
+      "slug": "selic",
+      "name": "SELIC - Taxa Básica de Juros (anualizada)",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-08-01",
+      "last_collected_at": "2026-08-06T17:59:56Z",
+      "next_release": {
+        "date": "2026-10-01",
         "source": "estimated"
       }
     }

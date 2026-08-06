@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T15:15:57-03:00",
+  "generated_at": "2026-08-06T15:00:06-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -227,12 +227,12 @@
       "unit": "index",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-04-01",
-        "value": 769.45,
-        "ytd": 1.3768115942029047,
-        "last_12m": 4.278473464519983
+        "reference_date": "2026-05-01",
+        "value": 808.87,
+        "ytd": 6.570487483530963,
+        "last_12m": 9.21967620410753
       },
-      "last_collected_at": "2026-07-11T11:14:25Z",
+      "last_collected_at": "2026-08-06T17:59:56Z",
       "next_release": {
         "date": "2026-08-25",
         "source": "estimated"
@@ -265,14 +265,14 @@
       "unit": "brl_millions",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-06-01",
-        "value": 1017505.0,
-        "ytd": -0.45375255712752527,
-        "last_12m": -0.1889289221143952
+        "reference_date": "2026-07-01",
+        "value": 1022832.0,
+        "ytd": 0.06740739798638742,
+        "last_12m": 0.31226462465478283
       },
-      "last_collected_at": "2026-07-11T11:09:26Z",
+      "last_collected_at": "2026-08-06T17:59:56Z",
       "next_release": {
-        "date": "2026-08-20",
+        "date": "2026-09-20",
         "source": "estimated"
       }
     },
@@ -284,14 +284,14 @@
       "unit": "percent",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-07-01",
+        "reference_date": "2026-08-01",
         "value": 14.15,
         "ytd": null,
         "last_12m": null
       },
-      "last_collected_at": "2026-07-05T12:45:13Z",
+      "last_collected_at": "2026-08-06T17:59:56Z",
       "next_release": {
-        "date": "2026-09-01",
+        "date": "2026-10-01",
         "source": "estimated"
       }
     },
