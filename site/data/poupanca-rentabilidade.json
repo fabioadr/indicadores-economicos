@@ -16,11 +16,11 @@
     "description": "Rentabilidade da poupança (regime pós-2012) em {month_name}/{year}: {value}%. Acumulado 12 meses: {last_12m}%. Série diária desde maio/2012."
   },
   "latest": {
-    "reference_date": "2026-07-09",
-    "value": 0.6722,
-    "ytd": 4.761802298077478,
-    "last_12m": 8.336959184117188,
-    "last_24m": 16.74195673510235
+    "reference_date": "2026-08-11",
+    "value": 0.6717,
+    "ytd": 5.465487324113671,
+    "last_12m": 8.333192821029334,
+    "last_24m": 16.8514124032755
   },
   "values": [
     {
@@ -38150,16 +38150,40 @@
       "last_12m": 8.336959184117188,
       "last_24m": 16.74195673510235,
       "since_inception": 138.13116972255872
+    },
+    {
+      "reference_date": "2026-08-09",
+      "value": 0.6699,
+      "ytd": 5.465487324113671,
+      "last_12m": 8.333192821029334,
+      "last_24m": 16.8514124032755,
+      "since_inception": 139.73069678958518
+    },
+    {
+      "reference_date": "2026-08-10",
+      "value": 0.6718,
+      "ytd": 5.465487324113671,
+      "last_12m": 8.333192821029334,
+      "last_24m": 16.8514124032755,
+      "since_inception": 139.73069678958518
+    },
+    {
+      "reference_date": "2026-08-11",
+      "value": 0.6717,
+      "ytd": 5.465487324113671,
+      "last_12m": 8.333192821029334,
+      "last_24m": 16.8514124032755,
+      "since_inception": 139.73069678958518
     }
   ],
   "charts": {
     "current_year": "/charts/poupanca-rentabilidade-2026.png",
     "history": "/charts/poupanca-rentabilidade-history.png"
   },
-  "last_collected_at": "2026-07-11T11:14:02Z",
+  "last_collected_at": "2026-08-12T23:24:42Z",
   "next_release": {
-    "date": "2026-09-01",
+    "date": "2026-10-01",
     "source": "estimated"
   },
-  "last_built_at": "2026-08-10T14:22:35-03:00"
+  "last_built_at": "2026-08-12T20:25:14-03:00"
 }
