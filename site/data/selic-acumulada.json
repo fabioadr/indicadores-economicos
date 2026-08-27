@@ -16,11 +16,11 @@
     "description": "Selic acumulada no mês hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela e histórico da Selic mensal desde 1986."
   },
   "latest": {
-    "reference_date": "2026-07-01",
-    "value": 1.06,
-    "ytd": 7.915950725325849,
-    "last_12m": 14.468802176898365,
-    "last_24m": 28.8573407557799
+    "reference_date": "2026-08-01",
+    "value": 0.94,
+    "ytd": 8.930360662143922,
+    "last_12m": 14.219858558087385,
+    "last_24m": 28.946762921467407
   },
   "values": [
     {
@@ -3862,16 +3862,24 @@
       "last_12m": 14.468802176898365,
       "last_24m": 28.8573407557799,
       "since_inception": 6665101488277.506
+    },
+    {
+      "reference_date": "2026-08-01",
+      "value": 0.94,
+      "ytd": 8.930360662143922,
+      "last_12m": 14.219858558087385,
+      "last_24m": 28.946762921467407,
+      "since_inception": 6727753442268.255
     }
   ],
   "charts": {
     "current_year": "/charts/selic-acumulada-2026.png",
     "history": "/charts/selic-acumulada-history.png"
   },
-  "last_collected_at": "2026-07-29T21:37:57Z",
+  "last_collected_at": "2026-08-27T16:00:06Z",
   "next_release": {
-    "date": "2026-09-01",
+    "date": "2026-10-01",
     "source": "estimated"
   },
-  "last_built_at": "2026-08-19T15:38:30-03:00"
+  "last_built_at": "2026-08-27T13:00:15-03:00"
 }

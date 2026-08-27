@@ -16,11 +16,11 @@
     "description": "IPCA-15 hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Prévia oficial do IPCA (IBGE): tabela atualizada e histórico."
   },
   "latest": {
-    "reference_date": "2026-07-01",
-    "value": 0.06,
-    "ytd": 3.508773659137665,
-    "last_12m": 4.515687461300333,
-    "last_24m": 10.054376841624602
+    "reference_date": "2026-08-01",
+    "value": -0.4,
+    "ytd": 3.0947385645011094,
+    "last_12m": 4.243565703439955,
+    "last_24m": 9.406287388220447
   },
   "values": [
     {
@@ -2542,16 +2542,24 @@
       "last_12m": 4.515687461300333,
       "last_24m": 10.054376841624602,
       "since_inception": 375.12673624814397
+    },
+    {
+      "reference_date": "2026-08-01",
+      "value": -0.4,
+      "ytd": 3.0947385645011094,
+      "last_12m": 4.243565703439955,
+      "last_24m": 9.406287388220447,
+      "since_inception": 373.2262293031514
     }
   ],
   "charts": {
     "current_year": "/charts/ipca-15-2026.png",
     "history": "/charts/ipca-15-history.png"
   },
-  "last_collected_at": "2026-07-29T21:37:57Z",
+  "last_collected_at": "2026-08-27T16:00:05Z",
   "next_release": {
-    "date": "2026-08-26",
+    "date": "2026-09-25",
     "source": "official"
   },
-  "last_built_at": "2026-08-19T15:38:30-03:00"
+  "last_built_at": "2026-08-27T13:00:15-03:00"
 }

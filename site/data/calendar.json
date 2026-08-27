@@ -1,84 +1,6 @@
 {
-  "generated_at": "2026-08-19T15:38:30-03:00",
+  "generated_at": "2026-08-27T13:00:15-03:00",
   "calendar": [
-    {
-      "code": "FINIMOB",
-      "slug": "financiamento-imobiliario-concessoes",
-      "name": "Financiamento imobiliário - Concessões (PF)",
-      "category": "mercado_imobiliario",
-      "frequency": "monthly",
-      "reference_date": "2026-06-01",
-      "last_collected_at": "2026-08-03T18:15:36Z",
-      "next_release": {
-        "date": "2026-08-25",
-        "source": "estimated"
-      }
-    },
-    {
-      "code": "FINISAL",
-      "slug": "financiamento-imobiliario-saldo",
-      "name": "Financiamento imobiliário - Saldo PF (taxas reguladas)",
-      "category": "mercado_imobiliario",
-      "frequency": "monthly",
-      "reference_date": "2026-06-01",
-      "last_collected_at": "2026-08-03T18:15:37Z",
-      "next_release": {
-        "date": "2026-08-25",
-        "source": "estimated"
-      }
-    },
-    {
-      "code": "IVGR",
-      "slug": "ivg-r",
-      "name": "IVG-R - Índice de Valores de Garantia de Imóveis Residenciais",
-      "category": "mercado_imobiliario",
-      "frequency": "monthly",
-      "reference_date": "2026-06-01",
-      "last_collected_at": "2026-08-19T18:38:23Z",
-      "next_release": {
-        "date": "2026-08-25",
-        "source": "estimated"
-      }
-    },
-    {
-      "code": "IPCA15",
-      "slug": "ipca-15",
-      "name": "IPCA-15 - Índice de Preços ao Consumidor Amplo - 15",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-07-01",
-      "last_collected_at": "2026-07-29T21:37:57Z",
-      "next_release": {
-        "date": "2026-08-26",
-        "source": "official"
-      }
-    },
-    {
-      "code": "CDI",
-      "slug": "cdi",
-      "name": "CDI - Certificado de Depósito Interbancário",
-      "category": "juros",
-      "frequency": "monthly",
-      "reference_date": "2026-07-01",
-      "last_collected_at": "2026-07-29T21:37:54Z",
-      "next_release": {
-        "date": "2026-09-01",
-        "source": "estimated"
-      }
-    },
-    {
-      "code": "SELICAC",
-      "slug": "selic-acumulada",
-      "name": "Selic acumulada no mês",
-      "category": "juros",
-      "frequency": "monthly",
-      "reference_date": "2026-07-01",
-      "last_collected_at": "2026-07-29T21:37:57Z",
-      "next_release": {
-        "date": "2026-09-01",
-        "source": "estimated"
-      }
-    },
     {
       "code": "TR",
       "slug": "tr",
@@ -145,6 +67,58 @@
       }
     },
     {
+      "code": "FINIMOB",
+      "slug": "financiamento-imobiliario-concessoes",
+      "name": "Financiamento imobiliário - Concessões (PF)",
+      "category": "mercado_imobiliario",
+      "frequency": "monthly",
+      "reference_date": "2026-06-01",
+      "last_collected_at": "2026-08-03T18:15:36Z",
+      "next_release": {
+        "date": "2026-09-25",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "FINISAL",
+      "slug": "financiamento-imobiliario-saldo",
+      "name": "Financiamento imobiliário - Saldo PF (taxas reguladas)",
+      "category": "mercado_imobiliario",
+      "frequency": "monthly",
+      "reference_date": "2026-06-01",
+      "last_collected_at": "2026-08-03T18:15:37Z",
+      "next_release": {
+        "date": "2026-09-25",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "IPCA15",
+      "slug": "ipca-15",
+      "name": "IPCA-15 - Índice de Preços ao Consumidor Amplo - 15",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-08-01",
+      "last_collected_at": "2026-08-27T16:00:05Z",
+      "next_release": {
+        "date": "2026-09-25",
+        "source": "official"
+      }
+    },
+    {
+      "code": "IVGR",
+      "slug": "ivg-r",
+      "name": "IVG-R - Índice de Valores de Garantia de Imóveis Residenciais",
+      "category": "mercado_imobiliario",
+      "frequency": "monthly",
+      "reference_date": "2026-06-01",
+      "last_collected_at": "2026-08-19T18:38:23Z",
+      "next_release": {
+        "date": "2026-09-25",
+        "source": "estimated"
+      }
+    },
+    {
       "code": "IGPM",
       "slug": "igp-m",
       "name": "IGP-M - Índice Geral de Preços do Mercado",
@@ -171,6 +145,19 @@
       }
     },
     {
+      "code": "CDI",
+      "slug": "cdi",
+      "name": "CDI - Certificado de Depósito Interbancário",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-08-01",
+      "last_collected_at": "2026-08-27T16:00:04Z",
+      "next_release": {
+        "date": "2026-10-01",
+        "source": "estimated"
+      }
+    },
+    {
       "code": "POUPREN",
       "slug": "poupanca-rentabilidade",
       "name": "Poupança - Rentabilidade (depósitos a partir de 04/05/2012)",
@@ -191,6 +178,19 @@
       "frequency": "monthly",
       "reference_date": "2026-08-01",
       "last_collected_at": "2026-08-06T17:59:56Z",
+      "next_release": {
+        "date": "2026-10-01",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "SELICAC",
+      "slug": "selic-acumulada",
+      "name": "Selic acumulada no mês",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-08-01",
+      "last_collected_at": "2026-08-27T16:00:06Z",
       "next_release": {
         "date": "2026-10-01",
         "source": "estimated"
