@@ -16,11 +16,11 @@
     "description": "Concessões de crédito imobiliário PF em {month_name}/{year}: {value}. Variação em 12 meses: {last_12m}%. Fluxo mensal desde 2011."
   },
   "latest": {
-    "reference_date": "2026-06-01",
-    "value": 26575.0,
-    "ytd": 19.28808690187629,
-    "last_12m": 41.43161255987227,
-    "last_24m": 28.91098714528256
+    "reference_date": "2026-07-01",
+    "value": 28162.0,
+    "ytd": 26.411706616392856,
+    "last_12m": 52.342313101806766,
+    "last_24m": 31.193515326562938
   },
   "values": [
     {
@@ -1494,16 +1494,24 @@
       "last_12m": 41.43161255987227,
       "last_24m": 28.91098714528256,
       "since_inception": 354.9734634480397
+    },
+    {
+      "reference_date": "2026-07-01",
+      "value": 28162.0,
+      "ytd": 26.411706616392856,
+      "last_12m": 52.342313101806766,
+      "last_24m": 31.193515326562938,
+      "since_inception": 382.14346858414655
     }
   ],
   "charts": {
     "current_year": "/charts/financiamento-imobiliario-concessoes-2026.png",
     "history": "/charts/financiamento-imobiliario-concessoes-history.png"
   },
-  "last_collected_at": "2026-08-03T18:15:36Z",
+  "last_collected_at": "2026-08-31T00:42:14Z",
   "next_release": {
     "date": "2026-09-25",
     "source": "estimated"
   },
-  "last_built_at": "2026-08-27T13:00:15-03:00"
+  "last_built_at": "2026-08-30T21:42:30-03:00"
 }
