@@ -1,19 +1,6 @@
 {
-  "generated_at": "2026-08-30T21:42:30-03:00",
+  "generated_at": "2026-09-01T21:00:54-03:00",
   "calendar": [
-    {
-      "code": "TR",
-      "slug": "tr",
-      "name": "TR - Taxa Referencial",
-      "category": "correcao_monetaria",
-      "frequency": "monthly",
-      "reference_date": "2026-07-31",
-      "last_collected_at": "2026-08-03T18:15:40Z",
-      "next_release": {
-        "date": "2026-09-01",
-        "source": "estimated"
-      }
-    },
     {
       "code": "IGPDI",
       "slug": "igp-di",
@@ -119,19 +106,6 @@
       }
     },
     {
-      "code": "IGPM",
-      "slug": "igp-m",
-      "name": "IGP-M - Índice Geral de Preços do Mercado",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-07-01",
-      "last_collected_at": "2026-08-03T18:15:37Z",
-      "next_release": {
-        "date": "2026-09-30",
-        "source": "estimated"
-      }
-    },
-    {
       "code": "INCCM",
       "slug": "incc-m",
       "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
@@ -193,6 +167,32 @@
       "last_collected_at": "2026-08-27T16:00:06Z",
       "next_release": {
         "date": "2026-10-01",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "TR",
+      "slug": "tr",
+      "name": "TR - Taxa Referencial",
+      "category": "correcao_monetaria",
+      "frequency": "monthly",
+      "reference_date": "2026-08-31",
+      "last_collected_at": "2026-09-02T00:00:41Z",
+      "next_release": {
+        "date": "2026-10-01",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "IGPM",
+      "slug": "igp-m",
+      "name": "IGP-M - Índice Geral de Preços do Mercado",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-08-01",
+      "last_collected_at": "2026-09-02T00:00:38Z",
+      "next_release": {
+        "date": "2026-10-30",
         "source": "estimated"
       }
     }
