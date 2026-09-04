@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T21:00:54-03:00",
+  "generated_at": "2026-09-04T17:00:31-03:00",
   "calendar": [
     {
       "code": "IGPDI",
@@ -145,19 +145,6 @@
       }
     },
     {
-      "code": "SELIC",
-      "slug": "selic",
-      "name": "SELIC - Taxa Básica de Juros (anualizada)",
-      "category": "juros",
-      "frequency": "monthly",
-      "reference_date": "2026-08-01",
-      "last_collected_at": "2026-08-06T17:59:56Z",
-      "next_release": {
-        "date": "2026-10-01",
-        "source": "estimated"
-      }
-    },
-    {
       "code": "SELICAC",
       "slug": "selic-acumulada",
       "name": "Selic acumulada no mês",
@@ -193,6 +180,19 @@
       "last_collected_at": "2026-09-02T00:00:38Z",
       "next_release": {
         "date": "2026-10-30",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "SELIC",
+      "slug": "selic",
+      "name": "SELIC - Taxa Básica de Juros (anualizada)",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-09-01",
+      "last_collected_at": "2026-09-04T19:54:55Z",
+      "next_release": {
+        "date": "2026-11-01",
         "source": "estimated"
       }
     }
