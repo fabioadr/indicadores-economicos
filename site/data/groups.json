@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T17:00:31-03:00",
+  "generated_at": "2026-09-08T14:15:02-03:00",
   "groups": [
     {
       "slug": "inflacao-oficial",
@@ -80,21 +80,21 @@
       ],
       "chart": "/charts/compare-indices-fgv.png",
       "latest": {
-        "reference_date": "2026-07-01",
+        "reference_date": "2026-08-01",
         "values": {
           "IGPM": {
-            "reference_date": "2026-07-01",
-            "value": -1.16,
-            "last_12m": 2.772183425035668,
-            "ytd": 2.078295939312569,
-            "last_24m": 5.8156463101718625
+            "reference_date": "2026-08-01",
+            "value": -0.22,
+            "last_12m": 2.178242946891751,
+            "ytd": 1.8537236882460784,
+            "last_24m": 5.277547001983662
           },
           "IGPDI": {
-            "reference_date": "2026-07-01",
-            "value": -0.86,
-            "last_12m": 2.7570223876773214,
-            "ytd": 2.102397517759469,
-            "last_24m": 5.754657408815
+            "reference_date": "2026-08-01",
+            "value": 0.06,
+            "last_12m": 2.613449701706494,
+            "ytd": 2.163658956270109,
+            "last_24m": 5.691280666460585
           }
         }
       }
@@ -178,21 +178,21 @@
       ],
       "chart": "/charts/compare-construcao-civil.png",
       "latest": {
-        "reference_date": "2026-07-01",
+        "reference_date": "2026-08-01",
         "values": {
           "INCCM": {
-            "reference_date": "2026-07-01",
-            "value": 0.61,
-            "last_12m": 6.459405699818688,
-            "ytd": 4.908547391891727,
-            "last_24m": 14.35804259889435
+            "reference_date": "2026-08-01",
+            "value": 0.66,
+            "last_12m": 6.60767785260401,
+            "ytd": 5.600943804678216,
+            "last_24m": 14.312617358537306
           },
           "IGPM": {
-            "reference_date": "2026-07-01",
-            "value": -1.16,
-            "last_12m": 2.772183425035668,
-            "ytd": 2.078295939312569,
-            "last_24m": 5.8156463101718625
+            "reference_date": "2026-08-01",
+            "value": -0.22,
+            "last_12m": 2.178242946891751,
+            "ytd": 1.8537236882460784,
+            "last_24m": 5.277547001983662
           }
         }
       }
