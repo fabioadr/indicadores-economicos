@@ -186,10 +186,16 @@ def next_release_for(
     official_dates: dict[str, date],
     latest_reference_date: date | None,
     today: date,
-) -> dict:
-    """Retorna {"date": ISO, "source": "official"|"estimated"} para o indicador."""
+) -> dict | None:
+    """Retorna {"date": ISO, "source": "official"|"estimated"} ou None.
+
+    Sem data oficial e sem `expected_release_day` não estima: o calendário
+    mensal não se aplica a séries que mudam por decreto (ex.: salário mínimo).
+    """
     official = official_dates.get(indicator.id)
     if official is not None:
         return {"date": official.isoformat(), "source": "official"}
+    if indicator.expected_release_day is None:
+        return None
     est = estimated_next_release(indicator, latest_reference_date, today)
     return {"date": est.isoformat(), "source": "estimated"}

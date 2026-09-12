@@ -71,3 +71,8 @@ def test_next_release_falls_back_to_estimate():
     ind = _ind(expected_release_day=10)
     out = rc.next_release_for(ind, {}, date(2026, 4, 1), today=date(2026, 5, 20))
     assert out == {"date": "2026-06-10", "source": "estimated"}
+
+
+def test_next_release_skips_estimate_without_expected_day():
+    ind = _ind(expected_release_day=None)
+    assert rc.next_release_for(ind, {}, date(2026, 4, 1), today=date(2026, 5, 20)) is None

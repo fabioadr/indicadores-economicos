@@ -142,26 +142,26 @@ async def cmd_coletar(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     # Coleta de um indicador específico
     await _reply(update, formatters.collect_starting_message(target))
 
-    def work_single() -> tuple[scheduler.CollectResult | None, object]:
+    def work_single() -> tuple[scheduler.CollectResult | None, object, str]:
         conn = get_connection(config.DB_PATH)
         try:
             indicator = get_indicator_by_code(conn, target.upper())
             if indicator is None:
-                return None, None
+                return None, None, "percent"
             result = scheduler.collect_single(
                 conn, indicator, triggered_by="telegram"
             )
             vals = list_values(conn, indicator.id, order="desc")
             latest = vals[0] if vals else None
-            return result, latest
+            return result, latest, indicator.unit
         finally:
             conn.close()
 
-    result, latest = await asyncio.to_thread(work_single)
+    result, latest, unit = await asyncio.to_thread(work_single)
     if result is None:
         await _reply(update, f"❓ Indicador desconhecido: {target}")
         return
-    await _reply(update, formatters.collect_result_message(result, latest))
+    await _reply(update, formatters.collect_result_message(result, latest, unit=unit))
 
 
 @authorized_only

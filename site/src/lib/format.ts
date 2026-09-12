@@ -25,8 +25,8 @@ export function formatPercent(n: number | null | undefined, fractionDigits = 2):
 
 /**
  * Formata o valor absoluto conforme a unidade do indicador.
- * `brl_millions` usa escala milhão → bi → tri; `index` com 2 casas;
- * demais (incl. percent) delegam a formatPercent.
+ * `brl` é reais com 2 casas; `brl_millions` usa escala milhão → bi → tri;
+ * `index` com 2 casas; demais (incl. percent) delegam a formatPercent.
  */
 export function formatValue(
   n: number | null | undefined,
@@ -56,6 +56,13 @@ export function formatValue(
     })} mi`;
   }
 
+  if (unit === 'brl') {
+    return `R$ ${n.toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}`;
+  }
+
   if (unit === 'index') {
     return n.toLocaleString('pt-BR', {
       minimumFractionDigits: fractionDigits,
@@ -74,7 +81,7 @@ export function formatValue(
 }
 
 export function isLevelUnit(unit: IndicatorUnit | undefined): boolean {
-  return unit === 'brl_millions' || unit === 'index';
+  return unit === 'brl' || unit === 'brl_millions' || unit === 'index';
 }
 
 export function formatMonthYear(iso: string): string {
@@ -113,6 +120,7 @@ const CATEGORY_LABEL: Record<CategoryKey, string> = {
   construcao_civil: 'Construção Civil',
   poupanca: 'Poupança',
   mercado_imobiliario: 'Mercado Imobiliário',
+  trabalho: 'Trabalho',
 };
 
 const CATEGORY_SLUG: Record<CategoryKey, string> = {
@@ -122,6 +130,7 @@ const CATEGORY_SLUG: Record<CategoryKey, string> = {
   construcao_civil: 'construcao-civil',
   poupanca: 'poupanca',
   mercado_imobiliario: 'mercado-imobiliario',
+  trabalho: 'trabalho',
 };
 
 const SLUG_TO_CATEGORY: Record<string, CategoryKey> = {
@@ -131,6 +140,7 @@ const SLUG_TO_CATEGORY: Record<string, CategoryKey> = {
   'construcao-civil': 'construcao_civil',
   'poupanca': 'poupanca',
   'mercado-imobiliario': 'mercado_imobiliario',
+  'trabalho': 'trabalho',
 };
 
 export function categoryLabel(key: CategoryKey): string {

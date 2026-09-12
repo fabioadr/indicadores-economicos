@@ -20,7 +20,7 @@ from zoneinfo import ZoneInfo
 
 from pipeline import config
 from pipeline.config_groups import INDICATOR_GROUPS, group_codes
-from pipeline.core import charts, comparison_charts, release_calendar
+from pipeline.core import charts, comparison_charts, release_calendar, wage
 from pipeline.db.connection import (
     Indicator,
     IndicatorValue,
@@ -42,6 +42,7 @@ CATEGORY_LABELS = {
     "construcao_civil": "Construção Civil",
     "poupanca": "Poupança",
     "mercado_imobiliario": "Mercado Imobiliário",
+    "trabalho": "Trabalho",
 }
 
 SP_TZ = ZoneInfo("America/Sao_Paulo")
@@ -163,7 +164,7 @@ def _groups_to_rebuild(
 def write_indicators_index(
     indicators: list[Indicator],
     latest_by_id: dict[str, IndicatorValue | None],
-    next_by_id: dict[str, dict],
+    next_by_id: dict[str, dict | None],
     out_dir: Path,
     generated_at: str,
 ) -> Path:
@@ -235,6 +236,9 @@ def write_indicator_detail(
         "next_release": next_release,
         "last_built_at": last_built_at,
     }
+    if ind.code == "SALMIN" and values:
+        payload["steps"] = wage.derive_steps(values)
+        payload["highlights"] = wage.derive_highlights(values)
     out_path = out_dir / f"{ind.slug}.json"
     out_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
@@ -256,10 +260,10 @@ def _compute_next_by_id(
     indicators: list[Indicator],
     latest_by_id: dict[str, IndicatorValue | None],
     today: date,
-) -> dict[str, dict]:
+) -> dict[str, dict | None]:
     """Resolve a próxima divulgação (oficial ou estimada) por indicador."""
     official = get_next_official_release_dates(conn, today)
-    out: dict[str, dict] = {}
+    out: dict[str, dict | None] = {}
     for ind in indicators:
         latest = latest_by_id.get(ind.id)
         latest_ref = latest.reference_date if latest is not None else None
@@ -272,7 +276,7 @@ def _compute_next_by_id(
 def write_calendar_index(
     indicators: list[Indicator],
     latest_by_id: dict[str, IndicatorValue | None],
-    next_by_id: dict[str, dict],
+    next_by_id: dict[str, dict | None],
     out_dir: Path,
     generated_at: str,
 ) -> Path:
@@ -427,10 +431,12 @@ def build(
             charts.generate_chart_current_year(
                 vals, ind.category, year, cy_path,
                 aggregation_mode=ind.aggregation_mode,
+                unit=ind.unit,
             )
             charts.generate_chart_history(
                 vals, ind.category, hi_path,
                 aggregation_mode=ind.aggregation_mode,
+                unit=ind.unit,
             )
             files_generated += 2
             logger.info("build: charts %s, %s", cy_path, hi_path)

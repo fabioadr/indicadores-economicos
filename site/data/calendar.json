@@ -1,32 +1,6 @@
 {
-  "generated_at": "2026-09-08T14:15:02-03:00",
+  "generated_at": "2026-09-12T08:39:00-03:00",
   "calendar": [
-    {
-      "code": "INPC",
-      "slug": "inpc",
-      "name": "INPC - Índice Nacional de Preços ao Consumidor",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-07-01",
-      "last_collected_at": "2026-08-12T23:24:41Z",
-      "next_release": {
-        "date": "2026-09-11",
-        "source": "official"
-      }
-    },
-    {
-      "code": "IPCA",
-      "slug": "ipca",
-      "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-07-01",
-      "last_collected_at": "2026-08-12T23:24:41Z",
-      "next_release": {
-        "date": "2026-09-11",
-        "source": "official"
-      }
-    },
     {
       "code": "POUPSAL",
       "slug": "poupanca-saldo",
@@ -64,6 +38,19 @@
       "next_release": {
         "date": "2026-09-25",
         "source": "estimated"
+      }
+    },
+    {
+      "code": "IPCA",
+      "slug": "ipca",
+      "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-07-01",
+      "last_collected_at": "2026-08-12T23:24:41Z",
+      "next_release": {
+        "date": "2026-09-25",
+        "source": "official"
       }
     },
     {
@@ -142,6 +129,19 @@
       "next_release": {
         "date": "2026-10-01",
         "source": "estimated"
+      }
+    },
+    {
+      "code": "INPC",
+      "slug": "inpc",
+      "name": "INPC - Índice Nacional de Preços ao Consumidor",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-07-01",
+      "last_collected_at": "2026-08-12T23:24:41Z",
+      "next_release": {
+        "date": "2026-10-09",
+        "source": "official"
       }
     },
     {

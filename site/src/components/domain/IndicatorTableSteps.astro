@@ -1,0 +1,48 @@
+---
+import type { IndicatorDetail } from '../../lib/data';
+import DataTable from '../ui/DataTable.astro';
+import { formatMonthYear, formatPercent, formatValue } from '../../lib/format';
+
+interface Props {
+  indicator: IndicatorDetail;
+}
+
+const { indicator } = Astro.props;
+const steps = [...(indicator.steps ?? [])].sort((a, b) => b.from.localeCompare(a.from));
+const latestDate = indicator.latest.reference_date;
+
+function formatAdjustment(brl: number | null, pct: number | null): string {
+  if (brl === null || pct === null) return '—';
+  const sign = brl > 0 ? '+' : '';
+  return `${sign}${formatValue(brl, 'brl')} (${sign}${formatPercent(pct)})`;
+}
+---
+
+<section class="space-y-3">
+  <header class="flex items-baseline justify-between gap-4">
+    <h2 class="font-display text-xl font-semibold text-ink">Histórico por vigência</h2>
+    <p class="text-xs text-ink-faint">Uma linha por valor, não mês a mês</p>
+  </header>
+  <DataTable caption={`Vigências de ${indicator.name}`}>
+    <thead>
+      <tr>
+        <th scope="col">De</th>
+        <th scope="col">Até</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Variação</th>
+      </tr>
+    </thead>
+    <tbody>
+      {steps.map((step) => (
+        <tr>
+          <th scope="row" class="capitalize">{formatMonthYear(step.from)}</th>
+          <td class="capitalize">
+            {step.until === latestDate ? 'em vigor' : formatMonthYear(step.until)}
+          </td>
+          <td>{formatValue(step.value, 'brl')}</td>
+          <td>{formatAdjustment(step.change_brl, step.change_pct)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </DataTable>
+</section>

@@ -27,6 +27,7 @@ CATEGORY_ICON = {
     "inflacao": "🏛",
     "juros": "💰",
     "correcao_monetaria": "🏠",
+    "trabalho": "💼",
 }
 
 _PT_MONTHS = {
@@ -39,6 +40,23 @@ def _fmt_pct(value: float | None) -> str:
     if value is None:
         return "—"
     return f"{value:.2f}".replace(".", ",") + "%"
+
+
+def _fmt_number(value: float, digits: int) -> str:
+    formatted = f"{value:,.{digits}f}"
+    return formatted.replace(",", "X").replace(".", ",").replace("X", ".")
+
+
+def _fmt_value(value: float | None, unit: str = "percent") -> str:
+    if value is None:
+        return "—"
+    if unit == "brl":
+        return "R$ " + _fmt_number(value, 2)
+    if unit == "brl_millions":
+        return "R$ " + _fmt_number(value, 1) + " mi"
+    if unit == "index":
+        return _fmt_number(value, 2)
+    return _fmt_pct(value)
 
 
 def _fmt_month(d) -> str:
@@ -150,7 +168,7 @@ def indicators_message(
         lines.append(f"   Última coleta: {last_collect}")
         if latest is not None:
             lines.append(
-                f"   Último valor: {_fmt_pct(latest.value)} ({_fmt_month(latest.reference_date)})"
+                f"   Último valor: {_fmt_value(latest.value, getattr(ind, 'unit', 'percent'))} ({_fmt_month(latest.reference_date)})"
             )
         else:
             lines.append("   Último valor: —")
@@ -162,7 +180,11 @@ def collect_starting_message(code: str) -> str:
     return f"🔄 Coletando {escape(code)}..."
 
 
-def collect_result_message(result: "CollectResult", latest: "IndicatorValue | None") -> str:
+def collect_result_message(
+    result: "CollectResult",
+    latest: "IndicatorValue | None",
+    unit: str = "percent",
+) -> str:
     if not result.ok:
         return (
             f"❌ <b>Erro na coleta</b>\n\n"
@@ -179,7 +201,7 @@ def collect_result_message(result: "CollectResult", latest: "IndicatorValue | No
         parts.append(f"   {result.added} valor(es) novo(s)")
         if latest is not None:
             parts.append(
-                f"   Último: {_fmt_pct(latest.value)} ({_fmt_month(latest.reference_date)})"
+                f"   Último: {_fmt_value(latest.value, unit)} ({_fmt_month(latest.reference_date)})"
             )
     if result.updated:
         parts.append(f"   {result.updated} valor(es) atualizado(s)")

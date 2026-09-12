@@ -98,7 +98,7 @@ def test_build_writes_indicators_index_and_detail(db_conn, site_dirs):
     assert "generated_at" in index
     assert set(index["categories"].keys()) == {
         "inflacao", "juros", "correcao_monetaria", "construcao_civil",
-        "poupanca", "mercado_imobiliario",
+        "poupanca", "mercado_imobiliario", "trabalho",
     }
     assert index["categories"]["inflacao"]["label"] == "Inflação"
     assert "ipca" in index["categories"]["inflacao"]["indicators"]
@@ -107,6 +107,7 @@ def test_build_writes_indicators_index_and_detail(db_conn, site_dirs):
         "IPCA", "CDI", "TR", "SELIC", "SELICAC",
         "IGPM", "IGPDI", "INPC", "INCCM", "IPCA15",
         "POUPSAL", "POUPREN", "FINIMOB", "FINISAL", "IVGR",
+        "SALMIN",
     }
 
     ipca_entry = next(i for i in index["indicators"] if i["code"] == "IPCA")
@@ -373,7 +374,7 @@ def test_build_writes_calendar_json_sorted(db_conn, site_dirs):
     payload = json.loads(calendar_path.read_text())
     assert "generated_at" in payload
     cal = payload["calendar"]
-    # Todos os indicadores ativos aparecem com next_release.
+    # Indicadores com expected_release_day nulo (salário mínimo) ficam de fora.
     assert {e["code"] for e in cal} == {
         "IPCA", "CDI", "TR", "SELIC", "SELICAC",
         "IGPM", "IGPDI", "INPC", "INCCM", "IPCA15",
@@ -381,6 +382,8 @@ def test_build_writes_calendar_json_sorted(db_conn, site_dirs):
     }
     dates = [e["next_release"]["date"] for e in cal]
     assert dates == sorted(dates)
+    # Salário mínimo não tem dia de divulgação: fica fora do calendário.
+    assert "SALMIN" not in {e["code"] for e in cal}
     for e in cal:
         assert e["next_release"]["source"] in {"official", "estimated"}
 

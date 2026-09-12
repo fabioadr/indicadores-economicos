@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T14:15:02-03:00",
+  "generated_at": "2026-09-12T08:39:00-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -38,6 +38,12 @@
       "indicators": [
         "poupanca-rentabilidade",
         "poupanca-saldo"
+      ]
+    },
+    "trabalho": {
+      "label": "Trabalho",
+      "indicators": [
+        "salario-minimo"
       ]
     },
     "correcao_monetaria": {
@@ -177,7 +183,7 @@
       },
       "last_collected_at": "2026-08-12T23:24:41Z",
       "next_release": {
-        "date": "2026-09-11",
+        "date": "2026-10-09",
         "source": "official"
       }
     },
@@ -196,7 +202,7 @@
       },
       "last_collected_at": "2026-08-12T23:24:41Z",
       "next_release": {
-        "date": "2026-09-11",
+        "date": "2026-09-25",
         "source": "official"
       }
     },
@@ -275,6 +281,22 @@
         "date": "2026-09-20",
         "source": "estimated"
       }
+    },
+    {
+      "code": "SALMIN",
+      "slug": "salario-minimo",
+      "name": "Salário mínimo",
+      "category": "trabalho",
+      "unit": "brl",
+      "frequency": "monthly",
+      "latest": {
+        "reference_date": "2026-09-01",
+        "value": 1621.0,
+        "ytd": 6.785243741765481,
+        "last_12m": 6.785243741765481
+      },
+      "last_collected_at": "2026-09-12T11:38:23Z",
+      "next_release": null
     },
     {
       "code": "SELIC",

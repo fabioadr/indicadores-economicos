@@ -4,7 +4,7 @@
  *   - "## Heading"
  *   - parágrafos separados por linha em branco
  *   - listas com "- "
- *   - **bold** dentro de texto
+ *   - **bold** e [link](/caminho/) ou [link](https://...) dentro de texto
  * Faz escape de HTML antes de aplicar a sintaxe — não aceita HTML literal.
  */
 
@@ -17,7 +17,12 @@ function escape(text: string): string {
 }
 
 function inline(text: string): string {
-  return escape(text).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  const escaped = escape(text);
+  const withLinks = escaped.replace(
+    /\[([^\]]+)\]\((\/[^)\s]*|https:\/\/[^)\s]+)\)/g,
+    '<a href="$2">$1</a>',
+  );
+  return withLinks.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 }
 
 export function renderMarkdown(src: string): string {

@@ -19,6 +19,7 @@ class _Indicator:
     slug: str = "ipca"
     name: str = "IPCA"
     category: str = "inflacao"
+    unit: str = "percent"
     frequency: str = "monthly"
     last_collected_at: str | None = "2026-04-28T07:15:00Z"
 
@@ -68,6 +69,20 @@ def test_indicators_message_with_latest():
     assert "IPCA" in msg
     assert "0,56%" in msg
     assert "mar/2026" in msg
+
+
+def test_indicators_message_formats_brl():
+    ind = _Indicator(code="SALMIN", category="trabalho", unit="brl")
+    msg = formatters.indicators_message([ind], {"ind-1": _Value(value=1621.0)})
+    assert "R$ 1.621,00" in msg
+    assert "1621,00%" not in msg
+
+
+def test_collect_result_formats_brl():
+    result = CollectResult(code="SALMIN", added=1, updated=0)
+    msg = formatters.collect_result_message(result, _Value(value=1621.0), unit="brl")
+    assert "R$ 1.621,00" in msg
+    assert "%" not in msg.split("Último:")[1].split("(")[0]
 
 
 def test_collect_result_success():

@@ -7,9 +7,10 @@ export type CategoryKey =
   | 'correcao_monetaria'
   | 'construcao_civil'
   | 'poupanca'
-  | 'mercado_imobiliario';
+  | 'mercado_imobiliario'
+  | 'trabalho';
 
-export type IndicatorUnit = 'percent' | 'brl_millions' | 'index' | string;
+export type IndicatorUnit = 'brl' | 'brl_millions' | 'index' | 'percent' | string;
 
 export type Frequency = 'monthly' | 'daily';
 
@@ -58,6 +59,25 @@ export interface IndicatorValue {
   since_inception: number | null;
 }
 
+export interface WageStep {
+  from: string;
+  until: string;
+  value: number;
+  change_brl: number | null;
+  change_pct: number | null;
+}
+
+export interface WageHighlights {
+  monthly: number;
+  daily: number;
+  hourly: number;
+  day_divisor: number;
+  hour_divisor: number;
+  previous_value: number | null;
+  adjustment_brl: number | null;
+  adjustment_pct: number | null;
+}
+
 export interface IndicatorDetail {
   code: string;
   slug: string;
@@ -75,6 +95,8 @@ export interface IndicatorDetail {
   last_collected_at: string | null;
   next_release: NextRelease | null;
   last_built_at: string;
+  steps?: WageStep[];
+  highlights?: WageHighlights | null;
 }
 
 const DATA_DIR = path.resolve('./data');

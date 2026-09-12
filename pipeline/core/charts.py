@@ -34,6 +34,7 @@ PALETTE = {
     "construcao_civil": "#c2410c",
     "poupanca": "#0f766e",
     "mercado_imobiliario": "#7c2d12",
+    "trabalho": "#0369a1",
 }
 DEFAULT_COLOR = "#1a1a1a"
 ACCUM_COLOR = "#525252"
@@ -47,6 +48,10 @@ MONTH_LABELS = [
     "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
     "Jul", "Ago", "Set", "Out", "Nov", "Dez",
 ]
+
+
+def _level_label(unit: str) -> str:
+    return "R$" if unit == "brl" else "Nível"
 
 
 def _category_color(category: str) -> str:
@@ -97,6 +102,7 @@ def generate_chart_current_year(
     out_path: Path,
     *,
     aggregation_mode: str = "compound_monthly",
+    unit: str = "percent",
 ) -> None:
     """Bars per month + YTD cumulative line for the given year.
 
@@ -141,7 +147,7 @@ def generate_chart_current_year(
             levels = [v.value for v in year_values]
             ax.plot(
                 months, levels, color=color, linewidth=2.0, marker="o",
-                label="Nível",
+                label=_level_label(unit),
             )
             ax.legend(loc="best", frameon=False)
         ax.set_xticks(range(1, 13))
@@ -191,6 +197,7 @@ def generate_chart_history(
     out_path: Path,
     *,
     aggregation_mode: str = "compound_monthly",
+    unit: str = "percent",
 ) -> None:
     """Monthly line + 12m cumulative line over the entire series.
 
@@ -224,7 +231,7 @@ def generate_chart_history(
         if values:
             dates = [v.reference_date for v in values]
             levels = [v.value for v in values]
-            ax.plot(dates, levels, color=color, linewidth=1.6, label="Nível")
+            ax.plot(dates, levels, color=color, linewidth=1.6, label=_level_label(unit))
             yoy = [v.last_12m for v in values]
             if any(y is not None for y in yoy):
                 ax2 = ax.twinx()
