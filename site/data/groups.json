@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T08:39:00-03:00",
+  "generated_at": "2026-09-14T08:21:55-03:00",
   "groups": [
     {
       "slug": "inflacao-oficial",
@@ -31,28 +31,28 @@
       ],
       "chart": "/charts/compare-inflacao-oficial.png",
       "latest": {
-        "reference_date": "2026-07-01",
+        "reference_date": "2026-08-01",
         "values": {
           "IPCA": {
-            "reference_date": "2026-07-01",
-            "value": 0.07,
-            "last_12m": 4.44302461783459,
-            "ytd": 3.436846562352369,
-            "last_24m": 9.900404958393771
+            "reference_date": "2026-08-01",
+            "value": -0.32,
+            "last_12m": 4.223452737068278,
+            "ytd": 3.1058486533528384,
+            "last_24m": 9.570637790085001
           },
           "IGPM": {
-            "reference_date": "2026-07-01",
-            "value": -1.16,
-            "last_12m": 2.772183425035668,
-            "ytd": 2.078295939312569,
-            "last_24m": 5.8156463101718625
+            "reference_date": "2026-08-01",
+            "value": -0.22,
+            "last_12m": 2.178242946891751,
+            "ytd": 1.8537236882460784,
+            "last_24m": 5.277547001983662
           },
           "INPC": {
-            "reference_date": "2026-07-01",
-            "value": -0.01,
-            "last_12m": 4.098045816621276,
-            "ytd": 3.4978848820643726,
-            "last_24m": 9.43616858553371
+            "reference_date": "2026-08-01",
+            "value": -0.32,
+            "last_12m": 3.983296993694818,
+            "ytd": 3.1666916504417664,
+            "last_24m": 9.238907316302791
           }
         }
       }
@@ -129,24 +129,24 @@
       ],
       "chart": "/charts/compare-juros-vs-inflacao.png",
       "latest": {
-        "reference_date": "2026-07-01",
+        "reference_date": "2026-08-01",
         "values": {
           "SELICAC": {
-            "reference_date": "2026-07-01",
-            "value": 1.06,
-            "last_12m": 14.468802176898365,
-            "ytd": 7.915950725325849,
-            "last_24m": 28.8573407557799
+            "reference_date": "2026-08-01",
+            "value": 0.94,
+            "last_12m": 14.219858558087385,
+            "ytd": 8.930360662143922,
+            "last_24m": 28.946762921467407
           },
           "IPCA": {
-            "reference_date": "2026-07-01",
-            "value": 0.07,
-            "last_12m": 4.44302461783459,
-            "ytd": 3.436846562352369,
-            "last_24m": 9.900404958393771
+            "reference_date": "2026-08-01",
+            "value": -0.32,
+            "last_12m": 4.223452737068278,
+            "ytd": 3.1058486533528384,
+            "last_24m": 9.570637790085001
           },
           "SELIC": {
-            "reference_date": "2026-07-01",
+            "reference_date": "2026-08-01",
             "value": 14.15,
             "last_12m": null,
             "ytd": null,
