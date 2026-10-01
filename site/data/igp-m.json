@@ -16,11 +16,11 @@
     "description": "IGP-M hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e histórico completo do IGP-M desde 1989."
   },
   "latest": {
-    "reference_date": "2026-08-01",
-    "value": -0.22,
-    "ytd": 1.8537236882460784,
-    "last_12m": 2.178242946891751,
-    "last_24m": 5.277547001983662
+    "reference_date": "2026-09-01",
+    "value": 1.57,
+    "ytd": 3.4528271501515384,
+    "last_12m": 3.3483781728321116,
+    "last_24m": 6.271521059346807
   },
   "values": [
     {
@@ -3598,16 +3598,24 @@
       "last_12m": 2.178242946891751,
       "last_24m": 5.277547001983662,
       "since_inception": 3372155392.553211
+    },
+    {
+      "reference_date": "2026-09-01",
+      "value": 1.57,
+      "ytd": 3.4528271501515384,
+      "last_12m": 3.3483781728321116,
+      "last_24m": 6.271521059346807,
+      "since_inception": 3425098233.786297
     }
   ],
   "charts": {
     "current_year": "/charts/igp-m-2026.png",
     "history": "/charts/igp-m-history.png"
   },
-  "last_collected_at": "2026-09-02T00:00:38Z",
+  "last_collected_at": "2026-10-01T11:48:48Z",
   "next_release": {
-    "date": "2026-10-30",
+    "date": "2026-11-30",
     "source": "estimated"
   },
-  "last_built_at": "2026-09-25T19:34:36-03:00"
+  "last_built_at": "2026-10-01T08:49:55-03:00"
 }
