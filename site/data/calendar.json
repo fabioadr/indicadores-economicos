@@ -1,19 +1,6 @@
 {
-  "generated_at": "2026-10-01T08:49:55-03:00",
+  "generated_at": "2026-10-05T07:57:19-03:00",
   "calendar": [
-    {
-      "code": "TR",
-      "slug": "tr",
-      "name": "TR - Taxa Referencial",
-      "category": "correcao_monetaria",
-      "frequency": "monthly",
-      "reference_date": "2026-08-31",
-      "last_collected_at": "2026-09-02T00:00:41Z",
-      "next_release": {
-        "date": "2026-10-01",
-        "source": "estimated"
-      }
-    },
     {
       "code": "INPC",
       "slug": "inpc",
@@ -158,19 +145,6 @@
       }
     },
     {
-      "code": "SELIC",
-      "slug": "selic",
-      "name": "SELIC - Taxa Básica de Juros (anualizada)",
-      "category": "juros",
-      "frequency": "monthly",
-      "reference_date": "2026-09-01",
-      "last_collected_at": "2026-09-04T19:54:55Z",
-      "next_release": {
-        "date": "2026-11-01",
-        "source": "estimated"
-      }
-    },
-    {
       "code": "SELICAC",
       "slug": "selic-acumulada",
       "name": "Selic acumulada no mês",
@@ -193,6 +167,32 @@
       "last_collected_at": "2026-10-01T11:48:48Z",
       "next_release": {
         "date": "2026-11-30",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "SELIC",
+      "slug": "selic",
+      "name": "SELIC - Taxa Básica de Juros (anualizada)",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-10-01",
+      "last_collected_at": "2026-10-05T10:57:12Z",
+      "next_release": {
+        "date": "2026-12-01",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "TR",
+      "slug": "tr",
+      "name": "TR - Taxa Referencial",
+      "category": "correcao_monetaria",
+      "frequency": "monthly",
+      "reference_date": "2026-10-01",
+      "last_collected_at": "2026-10-05T10:57:13Z",
+      "next_release": {
+        "date": "2026-12-01",
         "source": "estimated"
       }
     }
