@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T07:57:19-03:00",
+  "generated_at": "2026-10-08T08:20:36-03:00",
   "calendar": [
     {
       "code": "INPC",
@@ -25,32 +25,6 @@
       "next_release": {
         "date": "2026-10-09",
         "source": "official"
-      }
-    },
-    {
-      "code": "IGPDI",
-      "slug": "igp-di",
-      "name": "IGP-DI - Índice Geral de Preços - Disponibilidade Interna",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-08-01",
-      "last_collected_at": "2026-09-08T17:12:31Z",
-      "next_release": {
-        "date": "2026-10-10",
-        "source": "estimated"
-      }
-    },
-    {
-      "code": "POUPSAL",
-      "slug": "poupanca-saldo",
-      "name": "Poupança - Saldo de depósitos (SBPE e rural)",
-      "category": "poupanca",
-      "frequency": "monthly",
-      "reference_date": "2026-08-01",
-      "last_collected_at": "2026-09-16T13:53:03Z",
-      "next_release": {
-        "date": "2026-10-20",
-        "source": "estimated"
       }
     },
     {
@@ -106,19 +80,6 @@
       }
     },
     {
-      "code": "INCCM",
-      "slug": "incc-m",
-      "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
-      "category": "construcao_civil",
-      "frequency": "monthly",
-      "reference_date": "2026-08-01",
-      "last_collected_at": "2026-09-08T17:12:31Z",
-      "next_release": {
-        "date": "2026-10-30",
-        "source": "estimated"
-      }
-    },
-    {
       "code": "CDI",
       "slug": "cdi",
       "name": "CDI - Certificado de Depósito Interbancário",
@@ -158,6 +119,32 @@
       }
     },
     {
+      "code": "IGPDI",
+      "slug": "igp-di",
+      "name": "IGP-DI - Índice Geral de Preços - Disponibilidade Interna",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-09-01",
+      "last_collected_at": "2026-10-08T11:20:23Z",
+      "next_release": {
+        "date": "2026-11-10",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "POUPSAL",
+      "slug": "poupanca-saldo",
+      "name": "Poupança - Saldo de depósitos (SBPE e rural)",
+      "category": "poupanca",
+      "frequency": "monthly",
+      "reference_date": "2026-09-01",
+      "last_collected_at": "2026-10-08T11:20:25Z",
+      "next_release": {
+        "date": "2026-11-20",
+        "source": "estimated"
+      }
+    },
+    {
       "code": "IGPM",
       "slug": "igp-m",
       "name": "IGP-M - Índice Geral de Preços do Mercado",
@@ -165,6 +152,19 @@
       "frequency": "monthly",
       "reference_date": "2026-09-01",
       "last_collected_at": "2026-10-01T11:48:48Z",
+      "next_release": {
+        "date": "2026-11-30",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "INCCM",
+      "slug": "incc-m",
+      "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
+      "category": "construcao_civil",
+      "frequency": "monthly",
+      "reference_date": "2026-09-01",
+      "last_collected_at": "2026-10-08T11:20:24Z",
       "next_release": {
         "date": "2026-11-30",
         "source": "estimated"

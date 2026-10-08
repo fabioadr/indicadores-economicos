@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T07:57:19-03:00",
+  "generated_at": "2026-10-08T08:20:36-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -119,14 +119,14 @@
       "unit": "percent",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-08-01",
-        "value": 0.06,
-        "ytd": 2.163658956270109,
-        "last_12m": 2.613449701706494
+        "reference_date": "2026-09-01",
+        "value": 1.5,
+        "ytd": 3.696113840614146,
+        "last_12m": 3.7790468784696385
       },
-      "last_collected_at": "2026-09-08T17:12:31Z",
+      "last_collected_at": "2026-10-08T11:20:23Z",
       "next_release": {
-        "date": "2026-10-10",
+        "date": "2026-11-10",
         "source": "estimated"
       }
     },
@@ -157,14 +157,14 @@
       "unit": "percent",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-08-01",
-        "value": 0.66,
-        "ytd": 5.600943804678216,
-        "last_12m": 6.60767785260401
+        "reference_date": "2026-09-01",
+        "value": 0.22,
+        "ytd": 5.8332658810485105,
+        "last_12m": 6.660891228790788
       },
-      "last_collected_at": "2026-09-08T17:12:31Z",
+      "last_collected_at": "2026-10-08T11:20:24Z",
       "next_release": {
-        "date": "2026-10-30",
+        "date": "2026-11-30",
         "source": "estimated"
       }
     },
@@ -271,14 +271,14 @@
       "unit": "brl_millions",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-08-01",
-        "value": 1015786.0,
-        "ytd": -0.6219286342517633,
-        "last_12m": -0.2753804029291443
+        "reference_date": "2026-09-01",
+        "value": 1014280.0,
+        "ytd": -0.76926613986497,
+        "last_12m": 0.4224698097945274
       },
-      "last_collected_at": "2026-09-16T13:53:03Z",
+      "last_collected_at": "2026-10-08T11:20:25Z",
       "next_release": {
-        "date": "2026-10-20",
+        "date": "2026-11-20",
         "source": "estimated"
       }
     },

@@ -3126,7 +3126,7 @@
   },
   "last_collected_at": "2026-09-12T11:38:23Z",
   "next_release": null,
-  "last_built_at": "2026-10-05T07:57:19-03:00",
+  "last_built_at": "2026-10-08T08:20:36-03:00",
   "steps": [
     {
       "from": "2026-01-01",

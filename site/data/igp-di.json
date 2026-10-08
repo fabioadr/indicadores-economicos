@@ -16,11 +16,11 @@
     "description": "IGP-DI hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e histórico completo do IGP-DI desde 1944."
   },
   "latest": {
-    "reference_date": "2026-08-01",
-    "value": 0.06,
-    "ytd": 2.163658956270109,
-    "last_12m": 2.613449701706494,
-    "last_24m": 5.691280666460585
+    "reference_date": "2026-09-01",
+    "value": 1.5,
+    "ytd": 3.696113840614146,
+    "last_12m": 3.7790468784696385,
+    "last_24m": 6.182965333522117
   },
   "values": [
     {
@@ -3926,16 +3926,24 @@
       "last_12m": 2.613449701706494,
       "last_24m": 5.691280666460585,
       "since_inception": 661128025413.393
+    },
+    {
+      "reference_date": "2026-09-01",
+      "value": 1.5,
+      "ytd": 3.696113840614146,
+      "last_12m": 3.7790468784696385,
+      "last_24m": 6.182965333522117,
+      "since_inception": 671044945796.0938
     }
   ],
   "charts": {
     "current_year": "/charts/igp-di-2026.png",
     "history": "/charts/igp-di-history.png"
   },
-  "last_collected_at": "2026-09-08T17:12:31Z",
+  "last_collected_at": "2026-10-08T11:20:23Z",
   "next_release": {
-    "date": "2026-10-10",
+    "date": "2026-11-10",
     "source": "estimated"
   },
-  "last_built_at": "2026-10-05T07:57:19-03:00"
+  "last_built_at": "2026-10-08T08:20:36-03:00"
 }
