@@ -16,7 +16,7 @@
     "description": "Salário mínimo de {month_name}/{year}: {value}. Reajuste em 12 meses: {last_12m}%. Valor diário, por hora e histórico desde 1994."
   },
   "latest": {
-    "reference_date": "2026-09-01",
+    "reference_date": "2026-10-01",
     "value": 1621.0,
     "ytd": 6.785243741765481,
     "last_12m": 6.785243741765481,
@@ -3118,19 +3118,27 @@
       "last_12m": 6.785243741765481,
       "last_24m": 14.801699716713882,
       "since_inception": 2401.9293100787154
+    },
+    {
+      "reference_date": "2026-10-01",
+      "value": 1621.0,
+      "ytd": 6.785243741765481,
+      "last_12m": 6.785243741765481,
+      "last_24m": 14.801699716713882,
+      "since_inception": 2401.9293100787154
     }
   ],
   "charts": {
     "current_year": "/charts/salario-minimo-2026.png",
     "history": "/charts/salario-minimo-history.png"
   },
-  "last_collected_at": "2026-09-12T11:38:23Z",
+  "last_collected_at": "2026-10-13T00:07:42Z",
   "next_release": null,
-  "last_built_at": "2026-10-08T08:20:36-03:00",
+  "last_built_at": "2026-10-12T21:07:52-03:00",
   "steps": [
     {
       "from": "2026-01-01",
-      "until": "2026-09-01",
+      "until": "2026-10-01",
       "value": 1621.0,
       "change_brl": 103.0,
       "change_pct": 6.785243741765479

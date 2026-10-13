@@ -1,32 +1,6 @@
 {
-  "generated_at": "2026-10-08T08:20:36-03:00",
+  "generated_at": "2026-10-12T21:07:52-03:00",
   "calendar": [
-    {
-      "code": "INPC",
-      "slug": "inpc",
-      "name": "INPC - Índice Nacional de Preços ao Consumidor",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-08-01",
-      "last_collected_at": "2026-09-14T11:21:45Z",
-      "next_release": {
-        "date": "2026-10-09",
-        "source": "official"
-      }
-    },
-    {
-      "code": "IPCA",
-      "slug": "ipca",
-      "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-08-01",
-      "last_collected_at": "2026-09-14T11:21:45Z",
-      "next_release": {
-        "date": "2026-10-09",
-        "source": "official"
-      }
-    },
     {
       "code": "IPCA15",
       "slug": "ipca-15",
@@ -129,6 +103,32 @@
       "next_release": {
         "date": "2026-11-10",
         "source": "estimated"
+      }
+    },
+    {
+      "code": "INPC",
+      "slug": "inpc",
+      "name": "INPC - Índice Nacional de Preços ao Consumidor",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-09-01",
+      "last_collected_at": "2026-10-13T00:07:41Z",
+      "next_release": {
+        "date": "2026-11-12",
+        "source": "official"
+      }
+    },
+    {
+      "code": "IPCA",
+      "slug": "ipca",
+      "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-09-01",
+      "last_collected_at": "2026-10-13T00:07:41Z",
+      "next_release": {
+        "date": "2026-11-12",
+        "source": "official"
       }
     },
     {
