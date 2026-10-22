@@ -20,6 +20,8 @@ if TYPE_CHECKING:
         IndicatorValue,
         ScheduleOverride,
     )
+    from pipeline.gsc.collect import GscCollectResult
+    from pipeline.gsc.report import GscBriefing, QueryStat
 
 SITE_URL = "https://indicadoreseconomicoshoje.com.br/"
 
@@ -335,3 +337,115 @@ def errors_message(logs: list["CollectionLog"]) -> str:
 
 def unauthorized_message() -> str:
     return "⛔ Não autorizado."
+
+
+def _fmt_int(value: float) -> str:
+    return f"{int(round(value)):,}".replace(",", ".")
+
+
+def _fmt_ctr_ratio(ctr: float) -> str:
+    return f"{ctr * 100:.2f}".replace(".", ",") + "%"
+
+
+def _fmt_pos(position: float) -> str:
+    return f"{position:.1f}".replace(".", ",")
+
+
+def _fmt_delta(current: float, previous: float) -> str:
+    if previous == 0:
+        return "—" if current == 0 else "novo"
+    pct = (current - previous) / previous * 100
+    sign = "+" if pct >= 0 else ""
+    return f"{sign}{pct:.0f}%".replace(".", ",")
+
+
+def _fmt_query_line(stat: "QueryStat") -> str:
+    q = escape(stat.query)
+    if len(q) > 60:
+        q = q[:57] + "…"
+    extra = ""
+    if stat.canonical_path:
+        extra = f" → <code>{escape(stat.canonical_path)}</code>"
+    return (
+        f"• {q} — {_fmt_int(stat.impressions)} impr, "
+        f"pos {_fmt_pos(stat.position)}, CTR {_fmt_ctr_ratio(stat.ctr)}{extra}"
+    )
+
+
+def gsc_collect_error_message(error: str) -> str:
+    now = datetime.now(tz=timezone.utc).strftime("%d/%m %H:%M UTC")
+    return (
+        "❌ <b>ERRO na coleta GSC</b>\n\n"
+        f"Hora: {now}\n"
+        f"Erro: {escape(error)}\n\n"
+        "Confira docs/gsc/SETUP.md (service account no GSC, siteUrl)."
+    )
+
+
+def gsc_collect_success_message(result: "GscCollectResult") -> str:
+    start = result.start.isoformat() if result.start else "—"
+    end = result.end.isoformat() if result.end else "—"
+    return (
+        "🔎 <b>GSC coleta ok</b>\n\n"
+        f"Janela: {escape(start)} → {escape(end)}\n"
+        f"Dias com dado: {result.days_ok} (vazios: {result.days_empty})\n"
+        f"Linhas upsert: {_fmt_int(result.rows_upserted)}\n"
+        f"searchAppearance: {_fmt_int(result.appearance_rows)}"
+    )
+
+
+def gsc_report_message(briefing: "GscBriefing") -> str:
+    cur = briefing.current
+    prev = briefing.previous
+    start = briefing.window_start.strftime("%d/%m")
+    end = briefing.window_end.strftime("%d/%m/%Y")
+    lines = [
+        "📈 <b>GSC semanal</b>",
+        f"{escape(start)} – {escape(end)}",
+        "",
+        (
+            f"Cliques: {_fmt_int(cur.clicks)} "
+            f"({_fmt_delta(cur.clicks, prev.clicks)})"
+        ),
+        (
+            f"Impressões: {_fmt_int(cur.impressions)} "
+            f"({_fmt_delta(cur.impressions, prev.impressions)})"
+        ),
+        (
+            f"CTR: {_fmt_ctr_ratio(cur.ctr)} · "
+            f"Posição: {_fmt_pos(cur.position)}"
+        ),
+    ]
+
+    def _section(title: str, stats: list) -> None:
+        lines.append("")
+        lines.append(f"<b>{title}</b>")
+        if not stats:
+            lines.append("• —")
+            return
+        for stat in stats:
+            lines.append(_fmt_query_line(stat))
+
+    _section("Ouro (impr. altas, pos. 15–70)", briefing.ouro)
+    _section("Snippet (pos. boa, CTR baixo)", briefing.snippet)
+    _section("Striking distance (pos. 8–20)", briefing.striking)
+    _section("Queries novas", briefing.new_queries)
+    _section("Gaps (landing fora do catálogo)", briefing.gaps)
+
+    lines.append("")
+    lines.append(
+        "Higiene: "
+        f"www={briefing.hygiene_www} · "
+        f"index.html={briefing.hygiene_index_html} · "
+        f"asset={briefing.hygiene_png}"
+    )
+    if briefing.appearance_labels:
+        labels = ", ".join(escape(x) for x in briefing.appearance_labels)
+        lines.append(f"searchAppearance: {labels}")
+    else:
+        lines.append("searchAppearance: (vazio — AEO/GEO só na UI, se houver)")
+
+    text = "\n".join(lines)
+    if len(text) > 4000:
+        text = text[:3990] + "\n…"
+    return text

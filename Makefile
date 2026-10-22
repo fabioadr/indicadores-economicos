@@ -1,4 +1,4 @@
-.PHONY: install collect build status migrate
+.PHONY: install collect build status migrate gsc-collect gsc-report gsc-sites
 
 install:
 	python3 -m venv .venv
@@ -16,3 +16,12 @@ migrate:
 
 status:
 	.venv/bin/python -m pipeline.cli status
+
+gsc-sites:
+	.venv/bin/python -m pipeline.cli gsc-sites
+
+gsc-collect:
+	.venv/bin/python -m pipeline.cli gsc-collect
+
+gsc-report:
+	.venv/bin/python -m pipeline.cli gsc-report

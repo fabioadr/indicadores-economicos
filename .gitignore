@@ -19,6 +19,7 @@ site/.astro/
 .env
 .env.*.local
 pipeline/.env
+pipeline/secrets/*.json
 
 # Logs
 pipeline/logs/

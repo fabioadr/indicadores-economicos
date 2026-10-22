@@ -9,7 +9,8 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
-from datetime import datetime
+from datetime import date, datetime
+from pathlib import Path
 
 from pipeline import config
 from pipeline.core import builder, scheduler
@@ -269,12 +270,123 @@ def cmd_calendar_refresh(args: argparse.Namespace) -> int:
     return 0
 
 
+def _gsc_config_or_exit() -> tuple[str, Path]:
+    site = config.GSC_SITE_URL
+    creds = config.GSC_CREDENTIALS_PATH
+    if not site:
+        print("gsc: GSC_SITE_URL ausente. Ver docs/gsc/SETUP.md.", file=sys.stderr)
+        raise SystemExit(2)
+    if not Path(creds).exists():
+        print(
+            f"gsc: credenciais não encontradas em {creds}. Ver docs/gsc/SETUP.md.",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
+    return site, creds
+
+
+def cmd_gsc_sites(args: argparse.Namespace) -> int:
+    from pipeline.gsc.client import GscClient
+    from pipeline.gsc.exceptions import GscError
+
+    site, creds = _gsc_config_or_exit()
+    try:
+        with GscClient(site, credentials_path=creds) as client:
+            entries = client.list_sites()
+    except GscError as exc:
+        print(f"gsc-sites: {exc}", file=sys.stderr)
+        return 1
+    if not entries:
+        print("gsc-sites: nenhuma propriedade visível para esta service account")
+        print("  → adicione o client_email como usuário no GSC (docs/gsc/SETUP.md)")
+        return 1
+    print(f"gsc-sites: {len(entries)} propriedade(s)")
+    for entry in entries:
+        mark = " ← GSC_SITE_URL" if entry.site_url == site else ""
+        print(f"  {entry.site_url}  ({entry.permission_level}){mark}")
+    if site not in {e.site_url for e in entries}:
+        print(
+            f"aviso: GSC_SITE_URL={site!r} não está na lista — confira o valor exato.",
+            file=sys.stderr,
+        )
+        return 1
+    return 0
+
+
+def cmd_gsc_collect(args: argparse.Namespace) -> int:
+    from pipeline.bot import notifications
+    from pipeline.gsc.client import GscClient
+    from pipeline.gsc.collect import collect
+    from pipeline.gsc.exceptions import GscError
+
+    _ensure_db_ready()
+    site, creds = _gsc_config_or_exit()
+    since = date.fromisoformat(args.since) if args.since else None
+    until = date.fromisoformat(args.until) if args.until else None
+    conn = get_connection(config.DB_PATH)
+    try:
+        with GscClient(site, credentials_path=creds) as client:
+            result = collect(
+                conn,
+                client,
+                backfill=args.backfill,
+                since=since,
+                triggered_by="cli",
+                until=until,
+            )
+    except GscError as exc:
+        notifications.send_gsc_collect_error(str(exc))
+        print(f"gsc-collect: {exc}", file=sys.stderr)
+        return 1
+    finally:
+        conn.close()
+
+    if not result.ok:
+        notifications.send_gsc_collect_error(result.error or "erro desconhecido")
+        print(f"gsc-collect: {result.error}", file=sys.stderr)
+        return 1
+
+    start = result.start.isoformat() if result.start else "—"
+    end = result.end.isoformat() if result.end else "—"
+    print(
+        f"gsc-collect: {start} → {end}  "
+        f"days_ok={result.days_ok} empty={result.days_empty} "
+        f"rows={result.rows_upserted} appearance={result.appearance_rows}"
+    )
+    if args.notify:
+        notifications.send_gsc_collect_success(result)
+    return 0
+
+
+def cmd_gsc_report(args: argparse.Namespace) -> int:
+    from pipeline.bot import notifications
+    from pipeline.gsc.report import build_briefing
+
+    _ensure_db_ready()
+    conn = get_connection(config.DB_PATH)
+    try:
+        briefing = build_briefing(conn, days=args.days)
+    finally:
+        conn.close()
+
+    from pipeline.bot import formatters
+
+    text = formatters.gsc_report_message(briefing)
+    # stdout sem tags HTML para leitura no terminal
+    print(text.replace("<b>", "").replace("</b>", "").replace("<code>", "").replace("</code>", ""))
+    notifications.send_gsc_report(briefing)
+    return 0
+
+
 def cmd_status(args: argparse.Namespace) -> int:
+    creds_ok = config.GSC_CREDENTIALS_PATH.exists()
     print(f"indicadores-economicos pipeline v{VERSION}")
     print(f"  repo root:   {config.REPO_ROOT}")
     print(f"  db path:     {config.DB_PATH} ({'exists' if config.DB_PATH.exists() else 'not created yet'})")
     print(f"  site data:   {config.SITE_DATA_DIR} ({'exists' if config.SITE_DATA_DIR.exists() else 'not created yet'})")
     print(f"  site charts: {config.SITE_CHARTS_DIR} ({'exists' if config.SITE_CHARTS_DIR.exists() else 'not created yet'})")
+    print(f"  gsc site:    {config.GSC_SITE_URL or '(GSC_SITE_URL não definido)'}")
+    print(f"  gsc creds:   {config.GSC_CREDENTIALS_PATH} ({'exists' if creds_ok else 'missing'})")
     print("  indicators:  run `sqlite3 data/indicadores.db 'SELECT code FROM indicators;'`")
     return 0
 
@@ -309,6 +421,41 @@ def build_parser() -> argparse.ArgumentParser:
         "scheduled-collect",
         help="Coleta automática via cron — executa apenas se a hora bater com a config do DB",
     ).set_defaults(func=cmd_scheduled_collect)
+
+    sub.add_parser(
+        "gsc-sites",
+        help="Lista propriedades GSC visíveis para a service account (smoke de acesso)",
+    ).set_defaults(func=cmd_gsc_sites)
+
+    p_gsc_collect = sub.add_parser(
+        "gsc-collect",
+        help="Coleta Search Console (dia a dia) para o SQLite local",
+    )
+    p_gsc_collect.add_argument(
+        "--backfill",
+        action="store_true",
+        help="Puxa 16 meses (primeira carga). Sem isto, últimos ~7 dias.",
+    )
+    p_gsc_collect.add_argument("--since", help="Início YYYY-MM-DD (inclusive)")
+    p_gsc_collect.add_argument("--until", help="Fim YYYY-MM-DD (inclusive)")
+    p_gsc_collect.add_argument(
+        "--notify",
+        action="store_true",
+        help="Envia resumo de sucesso no Telegram (erro sempre notifica)",
+    )
+    p_gsc_collect.set_defaults(func=cmd_gsc_collect)
+
+    p_gsc_report = sub.add_parser(
+        "gsc-report",
+        help="Briefing semanal GSC (Telegram + stdout)",
+    )
+    p_gsc_report.add_argument(
+        "--days",
+        type=int,
+        default=7,
+        help="Tamanho da janela em dias (padrão 7)",
+    )
+    p_gsc_report.set_defaults(func=cmd_gsc_report)
 
     return parser
 

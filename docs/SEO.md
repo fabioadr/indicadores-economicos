@@ -137,14 +137,17 @@ Regras:
 
 ## Métrica e cadência
 
-- **Fontes:** dumps em `docs/gsc/` (Consultas, Páginas) e `docs/ga/` (aquisição, páginas,
-  eventos). Reexportar a cada revisão; ver guia de exportação no histórico de chat / GA4
-  Query Explorer.
+- **Fonte primária GSC:** SQLite local (`gsc_*_daily`), preenchido por
+  `pipeline.cli gsc-collect` / `gsc-report` (setup em `docs/gsc/SETUP.md`).
+  Os CSVs em `docs/gsc/` são snapshot legado (UI, teto de 1.000 linhas).
+- **GA4:** dumps em `docs/ga/` (aquisição, páginas, eventos). Reexportar a cada
+  revisão; ver guia de exportação no histórico de chat / GA4 Query Explorer.
 - **O que olhar primeiro:** **impressões × posição = oportunidade.** Muita impressão +
   posição ruim (15–70) = alvo. Posição boa + CTR baixo = problema de snippet/título.
 - **Não confiar em CTR isolado** em posição alta (ver `/tr/`).
-- **Cadência:** revisão trimestral, ou após qualquer mudança grande de título/estrutura
-  (comparar GSC antes/depois). Ignorar ruído de referral spam na leitura de aquisição.
+- **Cadência:** briefing semanal automático (cron + Telegram). Revisão humana
+  após mudança grande de título/estrutura (comparar GSC antes/depois). Ignorar
+  ruído de referral spam na leitura de aquisição.
 
 ## Estado atual e oportunidades (snapshot jun/2026)
 

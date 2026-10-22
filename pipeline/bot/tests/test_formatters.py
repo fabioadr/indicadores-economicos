@@ -197,3 +197,49 @@ def test_errors_message_empty():
 
 def test_unauthorized_message():
     assert formatters.unauthorized_message() == "⛔ Não autorizado."
+
+
+def test_gsc_collect_error_message():
+    msg = formatters.gsc_collect_error_message("403 forbidden")
+    assert "ERRO na coleta GSC" in msg
+    assert "403 forbidden" in msg
+
+
+def test_gsc_report_message_lists_sections():
+    from pipeline.gsc.report import GscBriefing, QueryStat, Totals
+
+    briefing = GscBriefing(
+        appearance_labels=["AI_OVERVIEW"],
+        current=Totals(clicks=2, ctr=0.02, impressions=100, position=20.0),
+        previous=Totals(clicks=1, ctr=0.01, impressions=50, position=22.0),
+        gaps=[
+            QueryStat(
+                canonical_path="/pib/",
+                clicks=0,
+                ctr=0,
+                impressions=15,
+                position=25.0,
+                query="pib tabela",
+            )
+        ],
+        hygiene_index_html=1,
+        hygiene_png=0,
+        hygiene_www=2,
+        ouro=[
+            QueryStat(
+                clicks=0,
+                ctr=0,
+                impressions=50,
+                position=40.0,
+                query="cdi hoje",
+            )
+        ],
+        window_end=date(2026, 9, 10),
+        window_start=date(2026, 9, 4),
+    )
+    msg = formatters.gsc_report_message(briefing)
+    assert "GSC semanal" in msg
+    assert "cdi hoje" in msg
+    assert "pib tabela" in msg
+    assert "www=2" in msg
+    assert "AI_OVERVIEW" in msg

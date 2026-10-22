@@ -21,6 +21,8 @@ if TYPE_CHECKING:
     from pipeline.core.builder import BuildResult, DeployResult
     from pipeline.core.scheduler import CollectResult
     from pipeline.db.connection import Indicator
+    from pipeline.gsc.collect import GscCollectResult
+    from pipeline.gsc.report import GscBriefing
 
 logger = logging.getLogger(__name__)
 
@@ -113,3 +115,23 @@ def send_deploy_error(exc: BaseException) -> None:
     from pipeline.bot import formatters
 
     send_message(formatters.deploy_error_message(exc))
+
+
+def send_gsc_collect_success(result: "GscCollectResult") -> None:
+    if not result.ok:
+        return
+    from pipeline.bot import formatters
+
+    send_message(formatters.gsc_collect_success_message(result))
+
+
+def send_gsc_collect_error(error: str) -> None:
+    from pipeline.bot import formatters
+
+    send_message(formatters.gsc_collect_error_message(error))
+
+
+def send_gsc_report(briefing: "GscBriefing") -> None:
+    from pipeline.bot import formatters
+
+    send_message(formatters.gsc_report_message(briefing))

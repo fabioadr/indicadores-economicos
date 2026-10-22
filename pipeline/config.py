@@ -42,6 +42,11 @@ LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN") or None
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID") or None
 
+GSC_SITE_URL = (os.getenv("GSC_SITE_URL") or "").strip() or None
+GSC_CREDENTIALS_PATH = _path_from_env(
+    "GSC_CREDENTIALS_PATH", PIPELINE_ROOT / "secrets" / "gsc-sa.json"
+)
+
 _LOG_FORMAT = "%(asctime)s %(levelname)s %(name)s %(message)s"
 _logging_configured = False
 
