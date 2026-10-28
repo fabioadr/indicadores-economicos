@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T14:06:59-03:00",
+  "generated_at": "2026-10-28T08:45:26-03:00",
   "categories": {
     "juros": {
       "label": "Juros",
@@ -233,12 +233,12 @@
       "unit": "index",
       "frequency": "monthly",
       "latest": {
-        "reference_date": "2026-07-01",
-        "value": 790.08,
-        "ytd": 4.094861660079057,
-        "last_12m": 5.920205920205931
+        "reference_date": "2026-08-01",
+        "value": 796.75,
+        "ytd": 4.973649538866931,
+        "last_12m": 6.439115623538847
       },
-      "last_collected_at": "2026-10-01T11:48:50Z",
+      "last_collected_at": "2026-10-28T11:44:07Z",
       "next_release": {
         "date": "2026-11-25",
         "source": "estimated"

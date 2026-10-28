@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T14:06:59-03:00",
+  "generated_at": "2026-10-28T08:45:26-03:00",
   "groups": [
     {
       "slug": "inflacao-oficial",
@@ -276,21 +276,21 @@
       ],
       "chart": "/charts/compare-precos-e-custo-imobiliario.png",
       "latest": {
-        "reference_date": "2026-07-01",
+        "reference_date": "2026-08-01",
         "values": {
           "IVGR": {
-            "reference_date": "2026-07-01",
-            "value": 790.08,
-            "last_12m": 5.920205920205931,
-            "ytd": 4.094861660079057,
-            "last_24m": 11.297684115625183
+            "reference_date": "2026-08-01",
+            "value": 796.75,
+            "last_12m": 6.439115623538847,
+            "ytd": 4.973649538866931,
+            "last_24m": 11.689749915890992
           },
           "INCCM": {
-            "reference_date": "2026-07-01",
-            "value": 0.61,
-            "last_12m": 6.459405699818688,
-            "ytd": 4.908547391891727,
-            "last_24m": 14.35804259889435
+            "reference_date": "2026-08-01",
+            "value": 0.66,
+            "last_12m": 6.60767785260401,
+            "ytd": 5.600943804678216,
+            "last_24m": 14.312617358537306
           }
         }
       }

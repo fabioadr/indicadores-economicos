@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T14:06:59-03:00",
+  "generated_at": "2026-10-28T08:45:26-03:00",
   "calendar": [
     {
       "code": "IGPDI",
@@ -85,8 +85,8 @@
       "name": "IVG-R - Índice de Valores de Garantia de Imóveis Residenciais",
       "category": "mercado_imobiliario",
       "frequency": "monthly",
-      "reference_date": "2026-07-01",
-      "last_collected_at": "2026-10-01T11:48:50Z",
+      "reference_date": "2026-08-01",
+      "last_collected_at": "2026-10-28T11:44:07Z",
       "next_release": {
         "date": "2026-11-25",
         "source": "estimated"

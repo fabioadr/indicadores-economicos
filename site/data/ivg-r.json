@@ -16,11 +16,11 @@
     "description": "IVG-R em {month_name}/{year}: {value}. Variação em 12 meses: {last_12m}%. Índice de valorização de garantias residenciais desde 2001."
   },
   "latest": {
-    "reference_date": "2026-07-01",
-    "value": 790.08,
-    "ytd": 4.094861660079057,
-    "last_12m": 5.920205920205931,
-    "last_24m": 11.297684115625183
+    "reference_date": "2026-08-01",
+    "value": 796.75,
+    "ytd": 4.973649538866931,
+    "last_12m": 6.439115623538847,
+    "last_24m": 11.689749915890992
   },
   "values": [
     {
@@ -2462,16 +2462,24 @@
       "last_12m": 5.920205920205931,
       "last_24m": 11.297684115625183,
       "since_inception": 690.08
+    },
+    {
+      "reference_date": "2026-08-01",
+      "value": 796.75,
+      "ytd": 4.973649538866931,
+      "last_12m": 6.439115623538847,
+      "last_24m": 11.689749915890992,
+      "since_inception": 696.75
     }
   ],
   "charts": {
     "current_year": "/charts/ivg-r-2026.png",
     "history": "/charts/ivg-r-history.png"
   },
-  "last_collected_at": "2026-10-01T11:48:50Z",
+  "last_collected_at": "2026-10-28T11:44:07Z",
   "next_release": {
     "date": "2026-11-25",
     "source": "estimated"
   },
-  "last_built_at": "2026-10-26T14:06:59-03:00"
+  "last_built_at": "2026-10-28T08:45:26-03:00"
 }
