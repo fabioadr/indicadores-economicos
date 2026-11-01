@@ -16,11 +16,11 @@
     "description": "Saldo de crédito imobiliário PF (taxas reguladas) em {month_name}/{year}: {value}. Variação em 12 meses: {last_12m}%. Estoque desde 2007."
   },
   "latest": {
-    "reference_date": "2026-08-01",
-    "value": 1261588.0,
-    "ytd": 9.182929013977729,
-    "last_12m": 13.199292228511132,
-    "last_24m": 24.778006579194635
+    "reference_date": "2026-09-01",
+    "value": 1272018.0,
+    "ytd": 10.085583406390931,
+    "last_12m": 13.230815793338882,
+    "last_24m": 24.46238295124314
   },
   "values": [
     {
@@ -1894,16 +1894,24 @@
       "last_12m": 13.199292228511132,
       "last_24m": 24.778006579194635,
       "since_inception": 3687.415190633443
+    },
+    {
+      "reference_date": "2026-09-01",
+      "value": 1272018.0,
+      "ytd": 10.085583406390931,
+      "last_12m": 13.230815793338882,
+      "last_24m": 24.46238295124314,
+      "since_inception": 3718.727108976283
     }
   ],
   "charts": {
     "current_year": "/charts/financiamento-imobiliario-saldo-2026.png",
     "history": "/charts/financiamento-imobiliario-saldo-history.png"
   },
-  "last_collected_at": "2026-10-01T11:48:47Z",
+  "last_collected_at": "2026-11-01T11:18:52Z",
   "next_release": {
     "date": "2026-11-25",
     "source": "estimated"
   },
-  "last_built_at": "2026-10-28T08:45:26-03:00"
+  "last_built_at": "2026-11-01T08:19:03-03:00"
 }
