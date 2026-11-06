@@ -16,11 +16,11 @@
     "description": "Saldo da poupança (SBPE e rural) em {month_name}/{year}: {value}. Variação em 12 meses: {last_12m}%. Estoque mensal desde 1994."
   },
   "latest": {
-    "reference_date": "2026-09-01",
-    "value": 1014280.0,
-    "ytd": -0.76926613986497,
-    "last_12m": 0.4224698097945274,
-    "last_24m": -0.4961067831345276
+    "reference_date": "2026-10-01",
+    "value": 1011234.0,
+    "ytd": -1.0672674958396233,
+    "last_12m": 0.4401059591598357,
+    "last_24m": -0.7235392753219111
   },
   "values": [
     {
@@ -3110,16 +3110,24 @@
       "last_12m": 0.4224698097945274,
       "last_24m": -0.4961067831345276,
       "since_inception": 2343.047426355469
+    },
+    {
+      "reference_date": "2026-10-01",
+      "value": 1011234.0,
+      "ytd": -1.0672674958396233,
+      "last_12m": 0.4401059591598357,
+      "last_24m": -0.7235392753219111,
+      "since_inception": 2335.7106727364694
     }
   ],
   "charts": {
     "current_year": "/charts/poupanca-saldo-2026.png",
     "history": "/charts/poupanca-saldo-history.png"
   },
-  "last_collected_at": "2026-10-08T11:20:25Z",
+  "last_collected_at": "2026-11-05T23:52:13Z",
   "next_release": {
-    "date": "2026-11-20",
+    "date": "2026-12-20",
     "source": "estimated"
   },
-  "last_built_at": "2026-11-01T08:19:03-03:00"
+  "last_built_at": "2026-11-05T21:57:41-03:00"
 }

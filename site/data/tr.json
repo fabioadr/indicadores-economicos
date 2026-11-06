@@ -16,11 +16,11 @@
     "description": "TR (Taxa Referencial) hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e histórico da TR desde 1991."
   },
   "latest": {
-    "reference_date": "2026-10-01",
-    "value": 0.1616,
-    "ytd": 1.6501155557908431,
-    "last_12m": 2.0001944688534445,
-    "last_24m": 3.907864131151184
+    "reference_date": "2026-11-04",
+    "value": 0.1696,
+    "ytd": 1.8225141517734578,
+    "last_12m": 1.9994816813692529,
+    "last_24m": 4.0139864418557325
   },
   "values": [
     {
@@ -103062,16 +103062,48 @@
       "last_12m": 2.0001944688534445,
       "last_24m": 3.907864131151184,
       "since_inception": 3461543.829801496
+    },
+    {
+      "reference_date": "2026-11-01",
+      "value": 0.1196,
+      "ytd": 1.8225141517734578,
+      "last_12m": 1.9994816813692529,
+      "last_24m": 4.0139864418557325,
+      "since_inception": 3467414.777736839
+    },
+    {
+      "reference_date": "2026-11-02",
+      "value": 0.1521,
+      "ytd": 1.8225141517734578,
+      "last_12m": 1.9994816813692529,
+      "last_24m": 4.0139864418557325,
+      "since_inception": 3467414.777736839
+    },
+    {
+      "reference_date": "2026-11-03",
+      "value": 0.1695,
+      "ytd": 1.8225141517734578,
+      "last_12m": 1.9994816813692529,
+      "last_24m": 4.0139864418557325,
+      "since_inception": 3467414.777736839
+    },
+    {
+      "reference_date": "2026-11-04",
+      "value": 0.1696,
+      "ytd": 1.8225141517734578,
+      "last_12m": 1.9994816813692529,
+      "last_24m": 4.0139864418557325,
+      "since_inception": 3467414.777736839
     }
   ],
   "charts": {
     "current_year": "/charts/tr-2026.png",
     "history": "/charts/tr-history.png"
   },
-  "last_collected_at": "2026-10-05T10:57:13Z",
+  "last_collected_at": "2026-11-05T23:52:14Z",
   "next_release": {
-    "date": "2026-12-01",
+    "date": "2027-01-01",
     "source": "estimated"
   },
-  "last_built_at": "2026-11-01T08:19:03-03:00"
+  "last_built_at": "2026-11-05T21:57:41-03:00"
 }

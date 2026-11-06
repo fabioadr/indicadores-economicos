@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T08:19:03-03:00",
+  "generated_at": "2026-11-05T21:57:41-03:00",
   "calendar": [
     {
       "code": "IGPDI",
@@ -38,19 +38,6 @@
       "next_release": {
         "date": "2026-11-12",
         "source": "official"
-      }
-    },
-    {
-      "code": "POUPSAL",
-      "slug": "poupanca-saldo",
-      "name": "Poupança - Saldo de depósitos (SBPE e rural)",
-      "category": "poupanca",
-      "frequency": "monthly",
-      "reference_date": "2026-09-01",
-      "last_collected_at": "2026-10-08T11:20:25Z",
-      "next_release": {
-        "date": "2026-11-20",
-        "source": "estimated"
       }
     },
     {
@@ -145,19 +132,6 @@
       }
     },
     {
-      "code": "SELIC",
-      "slug": "selic",
-      "name": "SELIC - Taxa Básica de Juros (anualizada)",
-      "category": "juros",
-      "frequency": "monthly",
-      "reference_date": "2026-10-01",
-      "last_collected_at": "2026-10-05T10:57:12Z",
-      "next_release": {
-        "date": "2026-12-01",
-        "source": "estimated"
-      }
-    },
-    {
       "code": "SELICAC",
       "slug": "selic-acumulada",
       "name": "Selic acumulada no mês",
@@ -171,15 +145,15 @@
       }
     },
     {
-      "code": "TR",
-      "slug": "tr",
-      "name": "TR - Taxa Referencial",
-      "category": "correcao_monetaria",
+      "code": "POUPSAL",
+      "slug": "poupanca-saldo",
+      "name": "Poupança - Saldo de depósitos (SBPE e rural)",
+      "category": "poupanca",
       "frequency": "monthly",
       "reference_date": "2026-10-01",
-      "last_collected_at": "2026-10-05T10:57:13Z",
+      "last_collected_at": "2026-11-05T23:52:13Z",
       "next_release": {
-        "date": "2026-12-01",
+        "date": "2026-12-20",
         "source": "estimated"
       }
     },
@@ -193,6 +167,32 @@
       "last_collected_at": "2026-11-01T11:18:52Z",
       "next_release": {
         "date": "2026-12-30",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "SELIC",
+      "slug": "selic",
+      "name": "SELIC - Taxa Básica de Juros (anualizada)",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-11-01",
+      "last_collected_at": "2026-11-05T23:52:14Z",
+      "next_release": {
+        "date": "2027-01-01",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "TR",
+      "slug": "tr",
+      "name": "TR - Taxa Referencial",
+      "category": "correcao_monetaria",
+      "frequency": "monthly",
+      "reference_date": "2026-11-04",
+      "last_collected_at": "2026-11-05T23:52:14Z",
+      "next_release": {
+        "date": "2027-01-01",
         "source": "estimated"
       }
     }
