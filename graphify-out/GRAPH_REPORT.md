@@ -1,208 +1,267 @@
-# Graph Report - indicadores-economicos  (2026-10-22)
+# Graph Report - indicadores-economicos  (2026-11-05)
 
 ## Corpus Check
-- 76 files · ~82,482 words
+- 144 files · ~378,674 words
 - Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 11 file(s) not represented in the graph (top: (none) 6, .sqlite 1, .db 1)
 
 ## Summary
-- 753 nodes · 1458 edges · 28 communities detected
-- Extraction: 72% EXTRACTED · 28% INFERRED · 0% AMBIGUOUS · INFERRED: 411 edges (avg confidence: 0.76)
+- 1116 nodes · 2952 edges · 61 communities (37 shown, 24 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 95 edges (avg confidence: 0.91)
 - Token cost: 0 input · 0 output
 
+## Graph Freshness
+- Built from commit: `a8f589c1`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
+
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_Community 0|Community 0]]
-- [[_COMMUNITY_Community 1|Community 1]]
-- [[_COMMUNITY_Community 2|Community 2]]
-- [[_COMMUNITY_Community 3|Community 3]]
-- [[_COMMUNITY_Community 4|Community 4]]
-- [[_COMMUNITY_Community 5|Community 5]]
-- [[_COMMUNITY_Community 6|Community 6]]
-- [[_COMMUNITY_Community 7|Community 7]]
-- [[_COMMUNITY_Community 8|Community 8]]
-- [[_COMMUNITY_Community 9|Community 9]]
-- [[_COMMUNITY_Community 10|Community 10]]
-- [[_COMMUNITY_Community 11|Community 11]]
-- [[_COMMUNITY_Community 12|Community 12]]
-- [[_COMMUNITY_Community 13|Community 13]]
-- [[_COMMUNITY_Community 14|Community 14]]
-- [[_COMMUNITY_Community 15|Community 15]]
-- [[_COMMUNITY_Community 16|Community 16]]
-- [[_COMMUNITY_Community 17|Community 17]]
-- [[_COMMUNITY_Community 18|Community 18]]
-- [[_COMMUNITY_Community 19|Community 19]]
-- [[_COMMUNITY_Community 20|Community 20]]
-- [[_COMMUNITY_Community 21|Community 21]]
-- [[_COMMUNITY_Community 22|Community 22]]
-- [[_COMMUNITY_Community 23|Community 23]]
-- [[_COMMUNITY_Community 24|Community 24]]
-- [[_COMMUNITY_Community 25|Community 25]]
-- [[_COMMUNITY_Community 26|Community 26]]
-- [[_COMMUNITY_Community 35|Community 35]]
+- datetime
+- base.py
+- builder.py
+- get_connection
+- test_aggregations.py
+- connection.py
+- test_ibge_sidra.py
+- test_comparison_charts.py
+- report.py
+- release_calendar.py
+- package.json
+- is_cron_match
+- test_wage.py
+- AGENTS.md
+- notifications.py
+- formatters.py
+- format.ts
+- IndicatorTableHistory.astro
+- BaseLayout.astro
+- [category]/index.astro
+- test_formatters.py
+- data.ts
+- pages/[slug].astro
+- handlers.py
+- comparar/[slug].astro
+- build_error_message
+- DeployResult
+- context7
+- vercel.json
+- tsconfig.json
+- Astro Starter Kit: Minimal
+- PeriodFilter.astro
+- allowBuilds
+- unauthorized_message
+- precommit.sh
+- validate-build.sh
+- validate-fase2-build.sh
+- inspect-db.sh
+- install_cron.sh
+- install_systemd.sh
+- regenerate-comparisons.sh
+- setup.sh
+- validate-fase3-build.sh
+- BCBSGSConnector
+- RawDataPoint
+- IBGESIDRAConnector
+- reproduce_bcb_fetch.py
+- _fmt_iso_local
+- collect_summary_message
 
 ## God Nodes (most connected - your core abstractions)
-1. `get_connection()` - 36 edges
-2. `IBGESIDRAConnector` - 23 edges
-3. `GscClient` - 22 edges
-4. `recompute_aggregations()` - 22 edges
-5. `escape()` - 20 edges
-6. `execute()` - 20 edges
-7. `apply_pending_migrations()` - 20 edges
-8. `fetch_all()` - 19 edges
-9. `list_values()` - 19 edges
-10. `BCBSGSConnector` - 19 edges
+1. `get_connection()` - 64 edges
+2. `build()` - 37 edges
+3. `apply_pending_migrations()` - 33 edges
+4. `Indicator` - 29 edges
+5. `get_active_schedule()` - 28 edges
+6. `list_values()` - 28 edges
+7. `recompute_aggregations()` - 27 edges
+8. `IBGESIDRAConnector` - 27 edges
+9. `cmd_scheduled_collect()` - 26 edges
+10. `get_indicator_by_code()` - 26 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `collect_starting_message()` --calls--> `escape()`  [INFERRED]
-  pipeline/bot/formatters.py → site/src/lib/markdown.ts
-- `collect_summary_message()` --calls--> `escape()`  [INFERRED]
-  pipeline/bot/formatters.py → site/src/lib/markdown.ts
-- `collect_error_message()` --calls--> `escape()`  [INFERRED]
-  pipeline/bot/formatters.py → site/src/lib/markdown.ts
-- `build_success_message()` --calls--> `escape()`  [INFERRED]
-  pipeline/bot/formatters.py → site/src/lib/markdown.ts
-- `build_error_message()` --calls--> `escape()`  [INFERRED]
-  pipeline/bot/formatters.py → site/src/lib/markdown.ts
+- `5. Comandos` --references--> `deploy()`  [INFERRED]
+  AGENTS.md → pipeline/core/builder.py
+- `Hooks (`.claude/settings.json`)` --references--> `deploy()`  [INFERRED]
+  CLAUDE.md → pipeline/core/builder.py
+- `7. Operação (como roda em produção)` --references--> `is_due()`  [INFERRED]
+  AGENTS.md → pipeline/core/cron.py
+- `9. Não fazer` --references--> `build()`  [INFERRED]
+  AGENTS.md → pipeline/core/builder.py
+- `9. Não fazer` --references--> `deploy()`  [INFERRED]
+  AGENTS.md → pipeline/core/builder.py
 
-## Communities
+## Import Cycles
+- None detected.
 
-### Community 0 - "Community 0"
-Cohesion: 0.05
-Nodes (66): batch_update_aggregations(), BuildLog, CollectionLog, execute(), fetch_all(), finish_build_log(), finish_collection_log(), get_indicator_by_code() (+58 more)
+## Communities (61 total, 24 thin omitted)
 
-### Community 1 - "Community 1"
-Cohesion: 0.05
-Nodes (52): ABC, BaseConnector, BaseConnector, ConnectorError, FetchError, get_connector(), ParseError, Base interfaces for data source connectors.  Every external source (BCB, IBGE, F (+44 more)
-
-### Community 2 - "Community 2"
+### Community 0 - "datetime"
 Cohesion: 0.06
-Nodes (45): fetch_one(), fetch_access_token(), OAuth2 JWT grant da service account via httpx (sem google-api-python-client)., Troca o JWT da service account por um access token., GscClient, GscRow, GscSite, Cliente HTTP da Search Console API v3 (searchanalytics + sites.list). (+37 more)
+Nodes (33): execute(), fetch_one(), fetch_access_token(), GscClient, GscRow, GscSite, collect(), _iter_days() (+25 more)
 
-### Community 3 - "Community 3"
-Cohesion: 0.06
-Nodes (48): _apply_pending_migrations(), build_application(), main(), Entry point: `python -m pipeline.bot`.  Inicia long polling do Telegram com os h, Aplica migrations pendentes no startup do bot.      Sem isto, indicadores novos, apply_pending_migrations(), executescript(), get_connection() (+40 more)
-
-### Community 4 - "Community 4"
-Cohesion: 0.09
-Nodes (48): Normalized point returned by any connector., RawDataPoint, accumulate(), _compound_updates(), _get_aggregation_mode(), _level_updates(), _null_aggregations(), pct_change() (+40 more)
-
-### Community 5 - "Community 5"
-Cohesion: 0.1
-Nodes (34): BuildResult, DeployResult, CollectResult, Indicator, _appearance_labels(), build_briefing(), GscBriefing, _query_stats() (+26 more)
-
-### Community 6 - "Community 6"
-Cohesion: 0.07
-Nodes (40): build(), _build_categories(), _build_commit_message(), _compute_next_by_id(), _current_year(), deploy(), _groups_to_rebuild(), _latest_detail() (+32 more)
-
-### Community 7 - "Community 7"
-Cohesion: 0.07
-Nodes (37): build_groups_payload(), _find_latest_common_date(), generate_comparison_chart(), PNGs comparativos entre indicadores e payload de `site/data/groups.json`.  Spec:, Mínimo dos máximos de reference_date entre os indicadores do grupo,     consider, Pega o IndicatorValue mais recente com reference_date <= target., Mínimo dos máximos de reference_date entre os indicadores do grupo,     consider, Monta o dict serializável para `site/data/groups.json`. (+29 more)
-
-### Community 8 - "Community 8"
-Cohesion: 0.11
-Nodes (34): build_error_message(), build_success_message(), collect_error_message(), collect_result_message(), collect_starting_message(), collect_summary_message(), deploy_error_message(), deploy_success_message() (+26 more)
-
-### Community 9 - "Community 9"
+### Community 1 - "base.py"
 Cohesion: 0.17
-Nodes (13): get_active_schedule(), Linha ativa atual: enabled=1 mais recente; cai pra enabled=0 mais recente     se, Liga/desliga a linha mais recente. Retorna a linha atualizada, ou None     se a, set_schedule_enabled(), _context(), Testes para os handlers de agendamento: /agendamento, /agendar, /pausar, /retoma, _run(), TestCmdAgendamento (+5 more)
+Nodes (5): BaseConnector, ConnectorError, FetchError, get_connector(), register()
 
-### Community 10 - "Community 10"
+### Community 2 - "builder.py"
+Cohesion: 0.07
+Nodes (44): work(), group_codes(), build(), _build_categories(), _build_commit_message(), BuildResult, _compute_next_by_id(), _current_year() (+36 more)
+
+### Community 3 - "get_connection"
+Cohesion: 0.05
+Nodes (54): list_codes(), work_all(), work(), work(), _auth_ok(), _context(), db_path(), _run() (+46 more)
+
+### Community 4 - "test_aggregations.py"
 Cohesion: 0.11
-Nodes (11): is_cron_match(), next_run(), Utilitários puros de cron para o gatekeeper `scheduled-collect` e validação no b, True se há alguma execução agendada dentro da janela [hora_de(dt), +1h).      Co, False se o campo de minutos permite mais de 1 execução por hora.      Heurística, Próxima execução da expressão a partir de `dt`., validate_frequency(), Testes para pipeline.core.cron. (+3 more)
+Nodes (29): accumulate(), _compound_updates(), _get_aggregation_mode(), _level_updates(), _null_aggregations(), pct_change(), _propagate_monthly_to_all(), recompute_aggregations() (+21 more)
 
-### Community 11 - "Community 11"
+### Community 5 - "connection.py"
+Cohesion: 0.05
+Nodes (58): work(), work_single(), work(), work(), backfill_indicator(), collect_single(), CollectResult, _has_value_for_month() (+50 more)
+
+### Community 6 - "test_ibge_sidra.py"
+Cohesion: 0.17
+Nodes (13): _load_fixture(), _no_pagination_pause(), test_dash_and_ellipsis_are_skipped(), test_empty_response_returns_empty_list(), test_http_404_raises_fetch_error(), test_http_500_raises_fetch_error(), test_malformed_json_raises_parse_error(), test_multiple_localities_are_filtered_by_nivel() (+5 more)
+
+### Community 7 - "test_comparison_charts.py"
+Cohesion: 0.07
+Nodes (34): metric_label(), metric_legend_suffix(), normalize_group(), _accumulate_running(), _category_color(), generate_chart_current_year(), generate_chart_history(), _last_per_month() (+26 more)
+
+### Community 8 - "report.py"
+Cohesion: 0.16
+Nodes (24): test_gsc_report_message_lists_sections(), fetch_all(), list_indicator_slugs(), _appearance_labels(), build_briefing(), GscBriefing, _hygiene_counts(), _query_stats() (+16 more)
+
+### Community 9 - "release_calendar.py"
 Cohesion: 0.13
-Nodes (21): _accumulate_running(), _category_color(), generate_chart_current_year(), generate_chart_history(), _last_per_month(), _level_label(), Static PNG charts for indicator pages.  Spec: docs/05-pipeline.md (1200x600 @ 10, Bars per month + YTD cumulative line for the given year.      Comportamento por (+13 more)
+Nodes (17): estimated_next_release(), fetch_ibge_calendar(), _match_code(), next_release_for(), _parse_release_date(), refresh_official_dates(), ReleaseEntry, _safe_date() (+9 more)
 
-### Community 12 - "Community 12"
-Cohesion: 0.18
-Nodes (16): derive_highlights(), derive_steps(), _pct(), _Point, Derivados do salário mínimo: vigências (degraus) e destaques da página.  Não são, Uma linha por vigência (valor constante consecutivo). Mais recente primeiro., Valor vigente, dia, hora e reajuste do último degrau., _same_money() (+8 more)
+### Community 10 - "package.json"
+Cohesion: 0.08
+Nodes (30): astro, @astrojs/check, @astrojs/sitemap, @fontsource/fraunces, @fontsource/inter, tailwindcss, @tailwindcss/vite, @types/node (+22 more)
 
-### Community 13 - "Community 13"
-Cohesion: 0.22
-Nodes (16): cmd_agendamento(), cmd_agendar(), cmd_cancelar(), cmd_coletar(), cmd_erros(), cmd_help(), cmd_indicadores(), cmd_logs() (+8 more)
+### Community 11 - "is_cron_match"
+Cohesion: 0.09
+Nodes (8): is_cron_match(), is_due(), next_run(), validate_frequency(), TestIsCronMatch, TestIsDue, TestNextRun, TestValidateFrequency
 
-### Community 14 - "Community 14"
-Cohesion: 0.2
-Nodes (11): formatDateLong(), formatDateShort(), formatMonthShort(), formatMonthYear(), formatPercent(), formatValue(), groupByYearDesc(), monthOf() (+3 more)
-
-### Community 15 - "Community 15"
+### Community 12 - "test_wage.py"
 Cohesion: 0.21
-Nodes (14): _hygiene_counts(), canonical_path(), is_asset_path(), is_index_html(), is_published_path(), is_www(), Normalização de URLs do GSC para casar com slugs do catálogo., Apex path com barra final, sem `/index.html`. Assets conservam o arquivo. (+6 more)
+Nodes (10): _Point, _series(), test_empty_series(), test_highlights_2026_step(), test_steps_collapse_identical_months(), derive_highlights(), derive_steps(), _pct() (+2 more)
 
-### Community 16 - "Community 16"
+### Community 13 - "AGENTS.md"
+Cohesion: 0.07
+Nodes (24): 10. Antes de dizer que terminou, 11. Workflows (runbooks), 12. graphify, 1. Regras de ambiente (leia antes de executar qualquer coisa), 2. O projeto, 3. Stack, 4. Estrutura, 5. Comandos (+16 more)
+
+### Community 14 - "notifications.py"
+Cohesion: 0.13
+Nodes (17): _credentials(), send_build_error(), send_build_success(), send_collect_error(), send_collect_success(), send_deploy_error(), send_deploy_success(), send_gsc_collect_error() (+9 more)
+
+### Community 15 - "formatters.py"
 Cohesion: 0.17
-Nodes (15): estimated_next_release(), fetch_ibge_calendar(), _match_code(), next_release_for(), _parse_release_date(), Calendário de divulgação — datas oficiais (IBGE) + estimativa.  Estratégia híbri, Coleta e persiste datas oficiais futuras do IBGE. Fail-soft.      Erros de rede, Estima a próxima divulgação a partir de `expected_release_day`.      Regra (mens (+7 more)
+Nodes (16): build_success_message(), collect_starting_message(), _fmt_ctr_ratio(), _fmt_delta(), _fmt_int(), _fmt_number(), _fmt_pct(), _fmt_pos() (+8 more)
 
-### Community 17 - "Community 17"
-Cohesion: 0.23
-Nodes (14): _credentials(), Push notifications enviadas pelo pipeline para o Telegram via Bot API.  Decisão, Resumo de uma rodada de coleta. Chamado pelo scheduler.run_all., Resumo de uma rodada de coleta. Chamado pelo scheduler.run_all., send_build_error(), send_build_success(), send_collect_error(), send_collect_success() (+6 more)
+### Community 16 - "format.ts"
+Cohesion: 0.11
+Nodes (21): Props, Props, formatted, Props, IndicatorSummary, IndicatorUnit, IndicatorValue, CATEGORY_LABEL (+13 more)
 
-### Community 18 - "Community 18"
-Cohesion: 0.27
-Nodes (11): _make_daily_values(), _make_values(), Smoke tests for chart generation: produces valid PNG files., Multiple daily values per month, mimicking TR shape., test_current_year_chart_daily_to_monthly_writes_png(), test_current_year_chart_mode_none_writes_png(), test_current_year_chart_with_no_year_data(), test_current_year_chart_writes_png() (+3 more)
+### Community 17 - "IndicatorTableHistory.astro"
+Cohesion: 0.12
+Nodes (22): groups, monthIndexByDate, monthlyValues, Props, years, formatAdjustment(), Props, steps (+14 more)
 
-### Community 19 - "Community 19"
-Cohesion: 0.27
-Nodes (10): backfill_indicator(), collect_single(), _has_value_for_month(), _next_since(), _parse_iso_datetime(), Coleta orquestrada — decide o que rodar e dispara conector + persistência.  Spec, Replica a regra documentada em docs/05-pipeline.md.      `conn` só é necessário, run_all() (+2 more)
+### Community 18 - "BaseLayout.astro"
+Cohesion: 0.09
+Nodes (11): year, navItems, Props, Props, canonicalUrl, Props, { groups }, meta (+3 more)
 
-### Community 20 - "Community 20"
-Cohesion: 0.29
-Nodes (8): _ind(), Tests for release_calendar: matching, date parse, estimativa, next_release., test_estimated_next_release_clamps_day_to_month_length(), test_estimated_next_release_rolls_forward_when_past(), test_estimated_next_release_two_months_after_reference(), test_next_release_falls_back_to_estimate(), test_next_release_prefers_official(), test_next_release_skips_estimate_without_expected_day()
+### Community 19 - "[category]/index.astro"
+Cohesion: 0.11
+Nodes (20): colorClass, label, Props, CategoryKey, loadIndex(), categoryLabel(), categorySlug(), CATEGORY_DESCRIPTIONS (+12 more)
 
-### Community 21 - "Community 21"
-Cohesion: 0.25
-Nodes (1): Tests for pipeline/bot/notifications: httpx-based fail-quiet sends.
+### Community 20 - "test_formatters.py"
+Cohesion: 0.15
+Nodes (20): collect_error_message(), collect_result_message(), _fmt_month(), indicators_message(), status_message(), work(), _BuildLog, _Indicator (+12 more)
 
-### Community 22 - "Community 22"
-Cohesion: 0.6
-Nodes (5): loadCalendar(), loadDetail(), loadGroups(), loadIndex(), readJson()
+### Community 21 - "data.ts"
+Cohesion: 0.11
+Nodes (17): CalendarEntry, CalendarIndex, CategorySection, DATA_DIR, Frequency, GroupIndicatorRef, GroupLatest, GroupLatestEntry (+9 more)
 
-### Community 23 - "Community 23"
+### Community 22 - "pages/[slug].astro"
+Cohesion: 0.14
+Nodes (14): escape(), inline(), renderMarkdown(), detail, index, jsonLd, last12mStr, longHtml (+6 more)
+
+### Community 23 - "handlers.py"
+Cohesion: 0.09
+Nodes (27): authorized_only(), help_message(), cmd_agendamento(), cmd_agendar(), cmd_cancelar(), cmd_coletar(), cmd_erros(), cmd_help() (+19 more)
+
+### Community 24 - "comparar/[slug].astro"
+Cohesion: 0.18
+Nodes (8): Props, Group, loadGroups(), getStaticPaths(), { group }, jsonLd, meta, Props
+
+### Community 25 - "build_error_message"
+Cohesion: 0.40
+Nodes (4): build_error_message(), deploy_error_message(), test_build_error_message(), test_deploy_error_message()
+
+### Community 26 - "DeployResult"
+Cohesion: 0.38
+Nodes (7): deploy_success_message(), publish_summary_message(), test_deploy_success_message(), test_publish_summary_message_full_success(), test_publish_summary_message_no_changes_in_build(), test_publish_summary_message_no_changes_in_deploy(), DeployResult
+
+### Community 27 - "context7"
 Cohesion: 0.33
-Nodes (4): Pipeline configuration: paths, env loading, and logging setup.  Single import po, Configure root logger with stdout + daily file handler.      Idempotent: subsequ, Configure root logger with stdout + daily file handler.      Idempotent: subsequ, setup_logging()
+Nodes (5): npx, uvx, context7, sqlite, @upstash/context7-mcp
 
-### Community 24 - "Community 24"
-Cohesion: 0.53
-Nodes (5): _fake_update(), Tests for pipeline/bot/auth: chat-id whitelist decorator., test_authorized_chat_passes(), test_missing_chat_id_blocks(), test_unauthorized_chat_replies_and_skips()
+### Community 28 - "vercel.json"
+Cohesion: 0.33
+Nodes (5): buildCommand, framework, installCommand, outputDirectory, redirects
 
-### Community 25 - "Community 25"
+### Community 29 - "tsconfig.json"
+Cohesion: 0.40
+Nodes (4): astro/tsconfigs/strict, exclude, extends, include
+
+### Community 30 - "Astro Starter Kit: Minimal"
+Cohesion: 0.40
+Nodes (4): Astro Starter Kit: Minimal, 🧞 Commands, 🚀 Project Structure, 👀 Want to learn more?
+
+### Community 31 - "PeriodFilter.astro"
+Cohesion: 0.40
+Nodes (3): buttons, Props, VALID
+
+### Community 32 - "allowBuilds"
+Cohesion: 0.50
+Nodes (3): allowBuilds, esbuild, sharp
+
+### Community 33 - "unauthorized_message"
 Cohesion: 0.67
-Nodes (1): Decorator de autorização — whitelist single-user via TELEGRAM_CHAT_ID.
+Nodes (3): wrapper(), unauthorized_message(), test_unauthorized_message()
 
-### Community 26 - "Community 26"
-Cohesion: 1.0
-Nodes (1): Coleta e relatório do Google Search Console (módulo à parte dos connectors).
+### Community 53 - "BCBSGSConnector"
+Cohesion: 0.23
+Nodes (9): BCBSGSConnector, _no_pagination_pause(), test_404_returns_empty_list(), test_decimal_with_comma_is_parsed(), test_http_error_raises_fetch_error(), test_malformed_json_raises_parse_error(), test_pagination_concatenates_and_dedups_overlap(), test_registry_resolves_bcb_sgs() (+1 more)
 
-### Community 35 - "Community 35"
-Cohesion: 1.0
-Nodes (1): Fetch data from the source.          Returns a list ordered by `reference_date`
+### Community 56 - "reproduce_bcb_fetch.py"
+Cohesion: 0.25
+Nodes (4): main(), _parse_since(), main(), _parse_since()
+
+### Community 57 - "_fmt_iso_local"
+Cohesion: 0.22
+Nodes (8): errors_message(), _fmt_iso_local(), format_schedule(), logs_message(), work(), work(), test_errors_message_empty(), test_logs_message_empty()
 
 ## Knowledge Gaps
-- **160 isolated node(s):** `Pipeline configuration: paths, env loading, and logging setup.  Single import po`, `Configure root logger with stdout + daily file handler.      Idempotent: subsequ`, `Pipeline CLI — entry point para collect, build, deploy, status, etc.  M1 impleme`, `Configuração dos grupos de comparação curados (Fase 2 / M14).  Cada grupo gera u`, `Rótulo PT-BR do eixo Y para uma métrica de IndicatorValue.` (+155 more)
-  These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 21`** (8 nodes): `test_notifications.py`, `Tests for pipeline/bot/notifications: httpx-based fail-quiet sends.`, `_reset_warning_flag()`, `test_send_message_noop_when_no_chat_id()`, `test_send_message_noop_when_no_token()`, `test_send_message_posts_to_bot_api()`, `test_send_message_swallows_http_errors()`, `test_send_message_swallows_network_errors()`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 25`** (3 nodes): `authorized_only()`, `Decorator de autorização — whitelist single-user via TELEGRAM_CHAT_ID.`, `auth.py`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 26`** (2 nodes): `Coleta e relatório do Google Search Console (módulo à parte dos connectors).`, `__init__.py`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 35`** (1 nodes): `Fetch data from the source.          Returns a list ordered by `reference_date``
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **4 isolated node(s):** `npx`, `@upstash/context7-mcp`, `uvx`, `astro/tsconfigs/strict`
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 338 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **24 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `RawDataPoint` connect `Community 4` to `Community 0`, `Community 1`, `Community 5`, `Community 7`?**
-  _High betweenness centrality (0.129) - this node is a cross-community bridge._
-- **Why does `get_connection()` connect `Community 3` to `Community 0`, `Community 9`, `Community 7`?**
-  _High betweenness centrality (0.123) - this node is a cross-community bridge._
-- **Why does `cmd_scheduled_collect()` connect `Community 3` to `Community 0`, `Community 9`, `Community 10`?**
-  _High betweenness centrality (0.098) - this node is a cross-community bridge._
-- **Are the 34 inferred relationships involving `get_connection()` (e.g. with `cmd_migrate()` and `cmd_collect()`) actually correct?**
-  _`get_connection()` has 34 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 13 inferred relationships involving `IBGESIDRAConnector` (e.g. with `BaseConnector` and `FetchError`) actually correct?**
-  _`IBGESIDRAConnector` has 13 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 9 inferred relationships involving `GscClient` (e.g. with `GscAuthError` and `GscFetchError`) actually correct?**
-  _`GscClient` has 9 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 15 inferred relationships involving `recompute_aggregations()` (e.g. with `list_values()` and `batch_update_aggregations()`) actually correct?**
-  _`recompute_aggregations()` has 15 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `get_connection()` connect `get_connection` to `datetime`, `builder.py`, `test_aggregations.py`, `connection.py`, `test_comparison_charts.py`, `test_formatters.py`, `handlers.py`, `_fmt_iso_local`?**
+  _High betweenness centrality (0.051) - this node is a cross-community bridge._
+- **What connects `npx`, `@upstash/context7-mcp`, `uvx` to the rest of the system?**
+  _4 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `datetime` be split into smaller, more focused modules?**
+  _Cohesion score 0.06495589414595028 - nodes in this community are weakly interconnected._
+- **Why does `build()` connect `builder.py` to `get_connection`, `test_aggregations.py`, `connection.py`, `test_comparison_charts.py`, `AGENTS.md`, `notifications.py`?**
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Should `builder.py` be split into smaller, more focused modules?**
+  _Cohesion score 0.06820119352088662 - nodes in this community are weakly interconnected._
+- **Why does `RawDataPoint` connect `RawDataPoint` to `base.py`, `builder.py`, `test_aggregations.py`, `connection.py`, `test_comparison_charts.py`, `IBGESIDRAConnector`?**
+  _High betweenness centrality (0.029) - this node is a cross-community bridge._
+- **Should `get_connection` be split into smaller, more focused modules?**
+  _Cohesion score 0.05359719645433931 - nodes in this community are weakly interconnected._
