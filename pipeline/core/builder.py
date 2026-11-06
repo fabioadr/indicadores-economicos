@@ -1,6 +1,6 @@
 """Generate site/data/*.json + site/public/charts/*.png from SQLite.
 
-Spec: docs/05-pipeline.md.
+Spec: docs/fase-01/05-pipeline.md.
 
 JSONs are always rewritten (cheap). Charts are regenerated only for indicators
 whose `last_collected_at` is newer than `last_built_at` (or that never built).
@@ -554,8 +554,10 @@ def deploy(
 
         _run_git(["add", "--", *DEPLOY_PATHS], cwd=repo)
         message = _build_commit_message(build_result)
-        _run_git(["commit", "-m", message], cwd=repo)
-        _run_git(["push", "origin", "main"], cwd=repo)
+        # Commit only the derived paths: anything else staged in the index must not ride along.
+        _run_git(["commit", "-m", message, "--", *DEPLOY_PATHS], cwd=repo)
+        # Push to the branch upstream (remote is "fabioadr", not "origin"; a hard-coded name broke deploys).
+        _run_git(["push"], cwd=repo)
         sha = _run_git(["rev-parse", "HEAD"], cwd=repo).stdout.strip()
 
         if build_result.log_id:

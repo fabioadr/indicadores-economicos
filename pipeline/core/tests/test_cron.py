@@ -6,7 +6,7 @@ from datetime import datetime
 
 import pytest
 
-from pipeline.core.cron import is_cron_match, next_run, validate_frequency
+from pipeline.core.cron import is_cron_match, is_due, next_run, validate_frequency
 
 
 class TestIsCronMatch:
@@ -80,3 +80,24 @@ class TestNextRun:
     def test_next_run_type(self):
         result = next_run("0 7 * * *", datetime(2026, 5, 6, 7, 0))
         assert isinstance(result, datetime)
+
+
+class TestIsDue:
+    def test_never_ran_is_due(self):
+        assert is_due("0 7 * * *", datetime(2026, 5, 6, 14, 0), None) is True
+
+    def test_due_at_exact_slot(self):
+        assert is_due("0 7 * * *", datetime(2026, 5, 6, 7, 0), datetime(2026, 5, 5, 7, 0, 30)) is True
+
+    def test_missed_slot_is_due_later_same_day(self):
+        assert is_due("0 7 * * *", datetime(2026, 5, 6, 8, 0), datetime(2026, 5, 5, 7, 0, 30)) is True
+
+    def test_not_due_after_slot_already_ran(self):
+        assert is_due("0 7 * * *", datetime(2026, 5, 6, 15, 0), datetime(2026, 5, 6, 8, 0)) is False
+
+    def test_not_due_before_todays_slot(self):
+        assert is_due("0 7 * * *", datetime(2026, 5, 6, 6, 0), datetime(2026, 5, 5, 7, 0, 30)) is False
+
+    def test_invalid_expression_raises(self):
+        with pytest.raises(ValueError):
+            is_due("not a cron", datetime(2026, 5, 6, 7, 0), None)

@@ -39,6 +39,18 @@ def db_path(tmp_path):
     return p
 
 
+def _set_last_run(db_path, value):
+    conn = get_connection(db_path)
+    with conn:
+        conn.execute("UPDATE schedule_overrides SET last_run_at = ?", (value,))
+    conn.close()
+
+
+def _fake_clock(mock_dt, now):
+    mock_dt.now.return_value = now
+    mock_dt.fromisoformat = datetime.fromisoformat
+
+
 def _args():
     return MagicMock()
 
@@ -59,13 +71,25 @@ class TestScheduledCollectSkips:
         assert rc == 0
         mock_run.assert_not_called()
 
-    def test_skips_when_out_of_cron_window(self, db_path, monkeypatch):
+    def test_skips_when_latest_slot_already_ran(self, db_path, monkeypatch):
+        # Seed é 0 7 * * *; a execução das 07h de hoje já rodou → 14:30 não coleta.
+        _set_last_run(db_path, "2026-05-06T07:00:41")
         monkeypatch.setattr("pipeline.cli.config.DB_PATH", db_path)
-        # Seed é 0 7 * * * — passar datetime bem fora (hora 14)
         fake_now = datetime(2026, 5, 6, 14, 30)
         with patch("pipeline.cli.datetime") as mock_dt, \
              patch("pipeline.cli.scheduler.run_all") as mock_run:
-            mock_dt.now.return_value = fake_now
+            _fake_clock(mock_dt, fake_now)
+            rc = cmd_scheduled_collect(_args())
+        assert rc == 0
+        mock_run.assert_not_called()
+
+    def test_skips_before_todays_slot_when_yesterday_ran(self, db_path, monkeypatch):
+        _set_last_run(db_path, "2026-05-05T07:00:10")
+        monkeypatch.setattr("pipeline.cli.config.DB_PATH", db_path)
+        fake_now = datetime(2026, 5, 6, 6, 0)
+        with patch("pipeline.cli.datetime") as mock_dt, \
+             patch("pipeline.cli.scheduler.run_all") as mock_run:
+            _fake_clock(mock_dt, fake_now)
             rc = cmd_scheduled_collect(_args())
         assert rc == 0
         mock_run.assert_not_called()
@@ -84,6 +108,29 @@ class TestScheduledCollectSkips:
 
 
 class TestScheduledCollectExecutes:
+    def test_catches_up_missed_slot(self, db_path, monkeypatch):
+        # Host desligado às 07h; primeira execução do cron às 08h deve coletar.
+        _set_last_run(db_path, "2026-05-05T07:00:10")
+        monkeypatch.setattr("pipeline.cli.config.DB_PATH", db_path)
+        fake_now = datetime(2026, 5, 6, 8, 0)
+        with patch("pipeline.cli.datetime") as mock_dt, \
+             patch("pipeline.cli.scheduler.run_all", return_value=[]) as mock_run:
+            _fake_clock(mock_dt, fake_now)
+            rc = cmd_scheduled_collect(_args())
+        assert rc == 0
+        mock_run.assert_called_once()
+
+    def test_catches_up_after_several_missed_days_only_once(self, db_path, monkeypatch):
+        _set_last_run(db_path, "2026-05-01T07:00:00")
+        monkeypatch.setattr("pipeline.cli.config.DB_PATH", db_path)
+        with patch("pipeline.cli.datetime") as mock_dt, \
+             patch("pipeline.cli.scheduler.run_all", return_value=[]) as mock_run:
+            _fake_clock(mock_dt, datetime(2026, 5, 6, 9, 0))
+            cmd_scheduled_collect(_args())
+            _fake_clock(mock_dt, datetime(2026, 5, 6, 10, 0))
+            cmd_scheduled_collect(_args())
+        assert mock_run.call_count == 1
+
     def test_runs_collect_when_cron_matches(self, db_path, monkeypatch):
         monkeypatch.setattr("pipeline.cli.config.DB_PATH", db_path)
         fake_now = datetime(2026, 5, 6, 7, 0)  # bate com 0 7 * * *

@@ -4,8 +4,11 @@ Não fazem I/O — fáceis de testar.
 
 Convenções:
 - O cron real do sistema dispara `scheduled-collect` de hora em hora (`0 * * * *`).
-- `is_cron_match` retorna True se a expressão configurada tem alguma execução
-  agendada dentro da hora atual.
+- `is_due` decide se o `scheduled-collect` deve coletar: True se a execução
+  agendada mais recente (<= agora) ainda não foi feita (`last_run` anterior a ela).
+  Isso recupera execuções perdidas: o host é um desktop e o WSL só sobe após o
+  logon, então a hora exata agendada muitas vezes passa com a máquina desligada.
+- `is_cron_match` (janela da hora atual) fica para validações pontuais.
 - Tz: usamos `datetime.now()` naive — mesma tz do processo (e portanto do cron).
   Se o notebook estiver em UTC e o usuário esperar America/Sao_Paulo, a coleta
   dispara em horário deslocado. Operacional, não de código.
@@ -29,6 +32,16 @@ def is_cron_match(expression: str, dt: datetime) -> bool:
     iterator = croniter(expression, base - timedelta(seconds=1))
     next_run = iterator.get_next(datetime)
     return base <= next_run < upper
+
+
+def is_due(expression: str, now: datetime, last_run: datetime | None) -> bool:
+    """True se a execução agendada mais recente (<= `now`) ainda não rodou.
+
+    Coleta é idempotente, então rodar atrasado (catch-up) é seguro; várias
+    execuções perdidas viram uma só.
+    """
+    latest_scheduled = croniter(expression, now + timedelta(seconds=1)).get_prev(datetime)
+    return last_run is None or last_run < latest_scheduled
 
 
 def validate_frequency(expression: str) -> bool:

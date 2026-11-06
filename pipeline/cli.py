@@ -14,7 +14,7 @@ from pathlib import Path
 
 from pipeline import config
 from pipeline.core import builder, scheduler
-from pipeline.core.cron import is_cron_match, next_run
+from pipeline.core.cron import is_due, next_run
 from pipeline.db.connection import (
     apply_pending_migrations,
     get_active_schedule,
@@ -198,6 +198,16 @@ def cmd_publish(args: argparse.Namespace) -> int:
         conn.close()
 
 
+def _parse_last_run(value: str | None) -> datetime | None:
+    """`last_run_at` is a naive local ISO timestamp; unreadable values count as never run."""
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value)
+    except ValueError:
+        return None
+
+
 def cmd_scheduled_collect(args: argparse.Namespace) -> int:
     _ensure_db_ready()
     conn = get_connection(config.DB_PATH)
@@ -208,17 +218,22 @@ def cmd_scheduled_collect(args: argparse.Namespace) -> int:
             return 0
 
         now = datetime.now()
+        last_run = _parse_last_run(cfg.last_run_at)
         try:
-            match = is_cron_match(cfg.cron_expression, now)
+            due = is_due(cfg.cron_expression, now, last_run)
         except Exception as exc:  # noqa: BLE001
             logger.error("scheduled-collect: invalid cron expression %r: %s", cfg.cron_expression, exc)
             return 1
 
-        if not match:
-            logger.debug("scheduled-collect: skip — out of window (%s)", cfg.cron_expression)
+        if not due:
+            logger.debug("scheduled-collect: skip — already ran for latest slot (%s)", cfg.cron_expression)
             return 0
 
-        logger.info("scheduled-collect: running collect (cron=%s)", cfg.cron_expression)
+        logger.info(
+            "scheduled-collect: running collect (cron=%s, last_run=%s)",
+            cfg.cron_expression,
+            cfg.last_run_at,
+        )
         results = scheduler.run_all(conn, triggered_by="cron")
 
         has_changes = any(r.added or r.updated for r in results)

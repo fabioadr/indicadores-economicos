@@ -272,6 +272,10 @@ def test_deploy_success(db_conn, monkeypatch, tmp_path):
     cmds = [c[1] for c in calls]
     assert cmds == ["status", "add", "commit", "push", "rev-parse"]
 
+    # Commit restrito aos paths derivados: nada mais que esteja no índice entra.
+    commit_args = next(c for c in calls if c[1] == "commit")
+    assert commit_args[-(len(builder.DEPLOY_PATHS) + 1):] == ["--", *builder.DEPLOY_PATHS]
+
     # SHA persistido no build_log.
     log = get_last_successful_build(db_conn)
     assert log is not None
