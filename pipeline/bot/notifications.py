@@ -1,6 +1,6 @@
 """Push notifications enviadas pelo pipeline para o Telegram via Bot API.
 
-Decisão registrada em docs/07-telegram-bot.md:132 — sem queue, chamada
+Decisão registrada em docs/fase-01/07-telegram-bot.md ("Notificações disparadas pelo pipeline") — sem queue, chamada
 direta via httpx. Falha de Telegram nunca derruba o pipeline: tudo é
 envelopado em try/except e logado.
 

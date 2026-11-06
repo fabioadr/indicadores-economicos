@@ -46,15 +46,15 @@ Adicionar dict no array `INDICATOR_GROUPS`. Manter ordem (mais relevante primeir
 - `site/data/groups.json` contém entrada para o `slug`?
 - `cd site && pnpm dev` → abrir `/comparar/<slug>/` e conferir render.
 
-## 6. Commit
+## 6. Commit (só se o usuário pedir)
 
 `git add pipeline/config_groups.py site/public/charts/compare-<slug>.png site/data/groups.json`
 
-Mensagem: `site: add comparison group <slug>`.
+Mensagem: `feat(site): add comparison group <slug>`.
 
-## 7. Deploy (opcional)
+## 7. Deploy (só se o usuário pedir)
 
-`python -m pipeline.cli deploy` (se for ir para produção agora).
+`.venv/bin/python -m pipeline.cli deploy` (git push → Vercel publica em produção).
 
 ## Notas
 

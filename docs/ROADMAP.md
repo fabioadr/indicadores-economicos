@@ -36,10 +36,10 @@ princípios estão em **Fora de escopo permanente** no fim.
 ## 2. Catálogo de indicadores
 
 - **Mais indicadores em categorias existentes** — *Pronto para spec*. A Fase 2
-  deixou `construcao_civil` com só o INCC-M e a Fase 3 deixou `atividade` com só
-  a PIM-PF, ambos "receberá outros indicadores em fases futuras"
-  (`docs/CLAUDE-DETAILS.md`). Candidatos naturais: PIB (atividade), PNAD/
-  desemprego (atividade). Fluxo já existe: skill `add-indicator`.
+  deixou `construcao_civil` com só o INCC-M ("receberá outros indicadores em
+  fases futuras"). A categoria `atividade` (PIM-PF) foi especificada na Fase 3,
+  que **não foi implementada** (`docs/PROJECT-CONTEXT.md`); PIB e PNAD/desemprego
+  exigem criar essa categoria primeiro. Fluxo já existe: skill `add-indicator`.
 - **Páginas "em breve" para indicadores propostos** — *Pronto para spec*.
   Publicar uma landing por indicador ainda não coletado (ex.: IPC-Fipe, PIM-PF
   do catálogo da Fase 3, PIB, PNAD) num estado "em breve" — explicação do que é,
@@ -59,11 +59,11 @@ princípios estão em **Fora de escopo permanente** no fim.
 ## 3. Calculadoras
 
 - **Calculadora de rentabilidade / investimento (SELIC, CDI)** — *Candidato*.
-  Citada em dois lugares como candidata pós-Fase 3 (`docs/CLAUDE-DETAILS.md`:
-  "calculadora de investimento é Fase 4 candidata"; `docs/fase-01/01-product-
-  vision.md`). Reusaria a infra de calculadora da Fase 3 (`site/src/components/
-  calculator/`, flag no DB, skill `add-calculator`), mas a lógica é diferente da
-  correção monetária — precisa de spec própria.
+  Citada em dois lugares como candidata pós-Fase 3 (`docs/fase-03/01-vision-and-scope.md`:
+  "não implementar calculadora de investimento (CDI/SELIC) nesta fase"; `docs/fase-01/01-product-
+  vision.md`). Dependeria da infra de calculadora especificada na Fase 3
+  (`docs/fase-03/03-calculator.md`), que **ainda não existe no código**, e a lógica
+  é diferente da correção monetária — precisa de spec própria.
 
 ## 4. Comparações
 
@@ -121,4 +121,4 @@ Reafirmando o que os docs já fixam — não entram no roadmap:
 - Dados em tempo real: câmbio, bolsa, cripto
   (`docs/fase-01/01-product-vision.md`)
 - SSR/SPA, frameworks JS no cliente, Docker, PostgreSQL, ORM
-  (`docs/CLAUDE-DETAILS.md`)
+  (`AGENTS.md`)

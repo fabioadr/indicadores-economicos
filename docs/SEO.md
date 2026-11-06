@@ -4,7 +4,7 @@ Documento **vivo** de conhecimento de SEO. Diz, de forma opinativa, **o que traz
 de valor para este site e o que é ruído** — para guiar decisões de título, conteúdo e
 priorização sem reaprender a cada análise.
 
-Não confundir com o `ROADMAP.md` (backlog de features) nem com `CLAUDE-DETAILS.md`
+Não confundir com o `ROADMAP.md` (backlog de features) nem com `docs/PROJECT-CONTEXT.md`/`AGENTS.md`
 (diretrizes de engenharia). Aqui é a **tese de busca**: por que ranqueamos, para quê vale
 a pena ranquear, e onde mexer no código quando for executar. Toda afirmação abaixo está
 ancorada nos dados de Search Console (GSC) e GA4 em `docs/gsc/` e `docs/ga/` (snapshot

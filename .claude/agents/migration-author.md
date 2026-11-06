@@ -14,8 +14,8 @@ slug:                  igp-m
 name:                  IGP-M - Índice Geral de Preços do Mercado
 short_description:     <1 frase>
 long_description:      <markdown multilinha; 3 seções: O que é, Para que serve, Fonte>
-category:              inflacao | juros | correcao_monetaria | construcao_civil | poupanca | mercado_imobiliario
-unit:                  percent | brl_millions | index
+category:              uma das existentes (SELECT DISTINCT category FROM indicators) — hoje: inflacao | juros | correcao_monetaria | construcao_civil | poupanca | mercado_imobiliario | trabalho
+unit:                  uma das existentes (SELECT DISTINCT unit FROM indicators) — hoje: percent | brl_millions | brl | index
 aggregation_mode:      compound_monthly | compound_daily_to_monthly | none | level
 frequency:             monthly
 source_name:           Banco Central / IBGE / FGV (espelho BCB)
@@ -70,7 +70,18 @@ meta_description:      <SEO>
    );
    ```
 
-4. **Validar**: rodar `.venv/bin/python -c "import sqlite3; sqlite3.complete_statement(open('pipeline/db/migrations/NNN_add_<code>.sql').read())"` para sanity check da sintaxe (deve ser `True`).
+4. **Validar** contra uma cópia em memória do banco real (pega coluna errada, não só sintaxe; o banco real não é alterado):
+
+   ```bash
+   .venv/bin/python - <<'PY'
+   import sqlite3
+   src = sqlite3.connect("file:data/indicadores.db?mode=ro", uri=True)
+   mem = sqlite3.connect(":memory:")
+   src.backup(mem)
+   mem.executescript(open("pipeline/db/migrations/NNN_add_<code>.sql").read())
+   print("syntax_ok:", mem.execute("SELECT COUNT(*) FROM indicators WHERE code = '<CODE>'").fetchone()[0] == 1)
+   PY
+   ```
 
 5. **Não rodar a migration**: deixar isso para o usuário/skill que chamou.
 

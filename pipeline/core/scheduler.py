@@ -1,6 +1,6 @@
 """Coleta orquestrada — decide o que rodar e dispara conector + persistência.
 
-Spec em docs/05-pipeline.md. Erros de coleta são contidos: registramos no
+Spec em docs/fase-01/05-pipeline.md. Erros de coleta são contidos: registramos no
 collection_log e no logger, mas não propagamos para que `run_all` continue
 processando os demais indicadores. A integração com o bot Telegram entra no M8.
 """
@@ -72,7 +72,7 @@ def should_collect(
     conn: sqlite3.Connection | None = None,
     now: datetime | None = None,
 ) -> bool:
-    """Replica a regra documentada em docs/05-pipeline.md.
+    """Replica a regra documentada em docs/fase-01/05-pipeline.md.
 
     `conn` só é necessário para indicadores `monthly` (consulta valor do mês
     anterior). Para `daily`/`biweekly` o argumento é ignorado.

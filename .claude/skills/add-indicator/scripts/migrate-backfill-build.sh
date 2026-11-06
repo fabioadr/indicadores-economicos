@@ -7,6 +7,10 @@ if [[ -z "$CODE" ]]; then
   exit 1
 fi
 
-python -m pipeline.cli migrate
-python -m pipeline.cli backfill "$CODE"
-python -m pipeline.cli build
+REPO_ROOT="$(cd "$(dirname "$0")/../../../.." && pwd)"
+cd "$REPO_ROOT"
+PY="$REPO_ROOT/.venv/bin/python"
+
+"$PY" -m pipeline.cli migrate
+"$PY" -m pipeline.cli backfill "$CODE"
+"$PY" -m pipeline.cli build

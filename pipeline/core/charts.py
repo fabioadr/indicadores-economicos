@@ -1,7 +1,7 @@
 """Static PNG charts for indicator pages.
 
-Spec: docs/05-pipeline.md (1200x600 @ 100 dpi, white background, no seaborn)
-and docs/06-site.md (palette by category).
+Spec: docs/fase-01/05-pipeline.md (1200x600 @ 100 dpi, white background, no seaborn)
+and docs/fase-01/06-site.md (palette by category).
 
 Modos especiais (alinhados com `indicators.aggregation_mode`):
 

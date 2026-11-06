@@ -1,5 +1,5 @@
 -- 002 — Phase 1 seed indicators (IPCA, CDI, TR)
--- UUIDs are fixed (see docs/08-indicators-catalog.md) so INSERT OR IGNORE
+-- UUIDs are fixed (see docs/fase-01/08-indicators-catalog.md) so INSERT OR IGNORE
 -- keeps this migration idempotent even outside the _migrations runner.
 
 INSERT OR IGNORE INTO indicators (

@@ -1,134 +1,191 @@
 {
-  "logLevel": "debug",
-  "verbose": true,
-  "skills": {
-    "enabled": true,
-    "conditional": true,
-    "autoload": []
-  },
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "mcp__sqlite",
+      "Read",
+      "mcp__sqlite__list_tables",
+      "mcp__sqlite__describe_table",
+      "mcp__sqlite__read_query",
+      "mcp__sqlite__write_query",
       "mcp__context7",
-
       "Bash(ls:*)",
       "Bash(cat:*)",
-      "Bash(grep:*)",
-      "Bash(find:*)",
-      "Bash(tree:*)",
-      "Bash(wc:*)",
       "Bash(head:*)",
       "Bash(tail:*)",
-
+      "Bash(less:*)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(find:*)",
+      "Bash(tree:*)",
+      "Bash(du:*)",
+      "Bash(df:*)",
+      "Bash(stat:*)",
+      "Bash(file:*)",
+      "Bash(diff:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(cut:*)",
+      "Bash(tr:*)",
+      "Bash(jq:*)",
+      "Bash(sed -n *)",
+      "Bash(awk:*)",
+      "Bash(echo:*)",
+      "Bash(printf:*)",
+      "Bash(pwd)",
+      "Bash(which:*)",
+      "Bash(command -v *)",
+      "Bash(type:*)",
+      "Bash(readlink:*)",
+      "Bash(realpath:*)",
+      "Bash(basename:*)",
+      "Bash(dirname:*)",
+      "Bash(date:*)",
+      "Bash(uptime:*)",
+      "Bash(whoami)",
+      "Bash(id:*)",
+      "Bash(ps:*)",
+      "Bash(pgrep:*)",
+      "Bash(free:*)",
+      "Bash(test:*)",
+      "Bash(true)",
+      "Bash(sleep:*)",
+      "Bash(mountpoint:*)",
+      "Bash(findmnt:*)",
+      "Bash(lsblk:*)",
+      "Bash(sqlite3 -readonly *)",
+      "Bash(gzip -c *)",
+      "Bash(bash -n *)",
       "Bash(mkdir:*)",
       "Bash(touch:*)",
       "Bash(cp:*)",
       "Bash(mv:*)",
       "Bash(chmod:*)",
-
       "Bash(.venv/bin/python *)",
       "Bash(.venv/bin/pytest *)",
-      "Bash(.venv/bin/pip *)",
-      "Bash(.venv/bin/ruff:*)",
+      "Bash(.venv/bin/ruff *)",
       "Bash(uv:*)",
       "Bash(uvx:*)",
-      "Bash(ruff:*)",
-
-      "Bash(npm:*)",
-      "Bash(npx:*)",
-      "Bash(node:*)",
       "Bash(pnpm:*)",
-
+      "Bash(node:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
+      "Bash(git show:*)",
+      "Bash(git blame:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git remote -v)",
       "Bash(git branch:*)",
+      "Bash(git tag -l*)",
+      "Bash(git describe:*)",
+      "Bash(git config --get *)",
+      "Bash(git add:*)",
       "Bash(git checkout:*)",
+      "Bash(git switch:*)",
       "Bash(git restore:*)",
       "Bash(git stash:*)",
       "Bash(git rm:*)",
       "Bash(git mv:*)",
       "Bash(git pull:*)",
       "Bash(git fetch:*)",
-
+      "Bash(git push --dry-run*)",
       "Bash(make:*)",
       "Bash(bash scripts/*)",
       "Bash(./scripts/*)",
-
-      "Read(*)",
-      "Write(pipeline/**)",
-      "Write(site/**)",
-      "Write(scripts/**)",
-      "Write(data/**)",
-      "Write(docs/**)",
-      "Write(.claude/**)",
-      "Write(.gitignore)",
-      "Write(.env.example)",
-      "Write(README.md)",
-      "Write(Makefile)",
-      "Write(vercel.json)",
-      "Write(astro.config.mjs)",
-      "Write(tailwind.config.mjs)",
-      "Write(package.json)",
-      "Write(package-lock.json)",
-      "Write(requirements.txt)",
-      "Write(tsconfig.json)",
-
+      "Bash(bash .claude/*)",
+      "Bash(graphify:*)",
+      "Bash(systemctl --user status *)",
+      "Bash(systemctl --user is-active *)",
+      "Bash(systemctl --user restart indicadores-bot*)",
+      "Bash(journalctl --user *)",
+      "Bash(crontab -l)",
+      "Edit(pipeline/**)",
+      "Edit(site/**)",
+      "Edit(scripts/**)",
+      "Edit(tests/**)",
+      "Edit(docs/**)",
+      "Edit(.claude/**)",
+      "Edit(AGENTS.md)",
+      "Edit(CLAUDE.md)",
+      "Edit(README.md)",
+      "Edit(Makefile)",
+      "Edit(.gitignore)",
       "WebFetch(domain:api.bcb.gov.br)",
       "WebFetch(domain:dadosabertos.bcb.gov.br)",
-      "WebFetch(domain:docs.astro.build)",
-      "WebFetch(domain:docs.python-telegram-bot.org)",
-      "WebFetch(domain:matplotlib.org)",
+      "WebFetch(domain:www3.bcb.gov.br)",
       "WebFetch(domain:python-bcb.readthedocs.io)",
       "WebFetch(domain:servicodados.ibge.gov.br)",
+      "WebFetch(domain:sidra.ibge.gov.br)",
+      "WebFetch(domain:apisidra.ibge.gov.br)",
+      "WebFetch(domain:docs.astro.build)",
       "WebFetch(domain:tailwindcss.com)",
-      "WebFetch(domain:www3.bcb.gov.br)",
+      "WebFetch(domain:docs.python-telegram-bot.org)",
+      "WebFetch(domain:matplotlib.org)",
+      "WebFetch(domain:docs.astral.sh)",
+      "WebFetch(domain:pypi.org)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
       "WebSearch"
     ],
     "ask": [
+      "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(git reset:*)",
       "Bash(git rebase:*)",
-      "Bash(git commit --amend:*)",
       "Bash(git clean:*)",
-      "Bash(crontab:*)",
-      "Bash(systemctl:*)",
-      "Bash(loginctl:*)",
-      "Read(.venv/**)",
-      "Read(venv/**)",
-      "Write(.env)"
+      "Bash(sudo:*)",
+      "Edit(.env)",
+      "Edit(pipeline/.env)"
     ],
     "deny": [
       "Bash(rm -rf /*)",
       "Bash(rm -rf ~/*)",
-      "Bash(sudo:*)",
-      "Bash(curl * | sh:*)",
-      "Bash(curl * | bash:*)",
-      "Bash(wget * | sh:*)",
-      "Bash(wget * | bash:*)",
+      "Bash(curl * | sh*)",
+      "Bash(curl * | bash*)",
+      "Bash(wget * | sh*)",
+      "Bash(wget * | bash*)",
       "Bash(eval:*)",
       "Read(./.env)",
       "Read(./pipeline/.env)",
+      "Read(**/.env)",
+      "Read(./pipeline/secrets/**)",
+      "Edit(./pipeline/secrets/**)",
       "Read(**/*secret*)",
       "Read(**/*token*)",
+      "Read(**/*.pem)",
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)",
-      "Read(node_modules/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.config/gh/**)",
+      "Read(~/.git-credentials)",
+      "Read(~/.netrc)",
+      "Read(**/node_modules/**)",
       "Read(**/__pycache__/)",
       "Read(pipeline/logs/)",
       "Read(*.log)"
     ]
   },
   "hooks": {
-    "PreToolUse": [
+    "SessionStart": [
       {
-        "matcher": "Bash(git push.*)",
         "hooks": [
           {
             "type": "command",
-            "command": "echo '\u26a0\ufe0f git push pendente. Isso vai disparar deploy na Vercel. Confirme antes de aprovar.'"
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/session-health.sh",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/bash_guard.py",
+            "timeout": 10
           }
         ]
       },
@@ -137,7 +194,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "SQL=$(python3 -c \"import json,sys; d=json.load(sys.stdin); print(d.get('tool_input',d).get('query',''))\" 2>/dev/null || true); echo \"$SQL\" | grep -iqE 'DROP[[:space:]]+TABLE|TRUNCATE|DELETE[[:space:]]+FROM[[:space:]]+[a-zA-Z_]+([[:space:]]*;|[[:space:]]*$)' && echo '\u26a0\ufe0f DML destrutivo no SQLite (DROP/TRUNCATE/DELETE sem WHERE). Confirme manualmente.' || true"
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/sqlite_write_guard.py",
+            "timeout": 10
           }
         ]
       },
@@ -151,32 +209,14 @@
         ]
       }
     ],
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "test -f data/indicadores.db && (echo 'DB ok'; bash scripts/inspect-db.sh status 2>/dev/null; git status -s 2>/dev/null | head -3) || echo 'DB n\u00e3o iniciado'"
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "FP=$(python3 -c \"import json,sys; d=json.load(sys.stdin); print(d.get('tool_input',d).get('file_path',''))\" 2>/dev/null || true); case \"$FP\" in *.astro|*.ts|*.tsx) [ -d site/dist ] && SIZE=$(find site/dist -name '*.js' -exec gzip -c {} \\; 2>/dev/null | wc -c) && [ \"${SIZE:-0}\" -gt 5120 ] && echo \"\u26a0\ufe0f JS bundle gzipped: ${SIZE} bytes (>5KB budget)\" || true ;; esac"
-          }
-        ]
-      },
       {
         "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'if [[ \"$CLAUDE_HOOK_TOOL_INPUT\" == *\"npm run build\"* ]] || [[ \"$CLAUDE_HOOK_TOOL_INPUT\" == *\"astro build\"* ]]; then total=$(find ./site/dist -name \"*.js\" -exec gzip -c {} \\; | wc -c); if [ \"$total\" -gt 51200 ]; then echo \"WARN: JS bundle gzipped ${total}B excede 50KB\"; fi; fi'"
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/js_budget.py",
+            "timeout": 30
           }
         ]
       }

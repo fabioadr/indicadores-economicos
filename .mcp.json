@@ -3,27 +3,21 @@
     "context7": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"],
-      "autoApprove": [],
-      "loadTools": "lazy",
-      "env": {}
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ]
     },
     "sqlite": {
       "type": "stdio",
       "command": "uvx",
       "args": [
-        "mcp-server-sqlite",
+        "--with",
+        "mcp<2",
+        "mcp-server-sqlite==2025.4.25",
         "--db-path",
         "/home/fabio_diniz/repos/innevo/indicadores-economicos/data/indicadores.db"
-      ],
-      "autoApprove": [
-        "list_tables",
-        "describe_table",
-        "read_query",
-        "write_query"
-      ],
-      "loadTools": "eager",
-      "env": {}
+      ]
     }
   }
 }

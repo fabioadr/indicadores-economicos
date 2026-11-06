@@ -4,8 +4,8 @@ Site estático que publica diariamente indicadores econômicos brasileiros
 (inflação, juros, correção monetária, construção civil) com séries históricas,
 charts e comparações entre indicadores.
 
-- **Site**: Astro 4 + Tailwind, deploy estático via Vercel
-- **Pipeline**: Python 3.12 com SQLite local como fonte da verdade
+- **Site**: Astro 7 + Tailwind 4, deploy estático via Vercel
+- **Pipeline**: Python 3.14 (gerenciado pelo uv) com SQLite local como fonte da verdade
 - **Bot Telegram**: notificações de erro e controle de coleta sob demanda
 
 Stack consciente: sem ORM, sem Docker, free tier de infra. Static-first,
@@ -13,16 +13,19 @@ idempotente, fail loud.
 
 ## Indicadores publicados
 
-10 indicadores ao vivo, agrupados em 4 categorias:
+16 indicadores ao vivo, agrupados em 7 categorias:
 
 - **Inflação**: IPCA, IGP-M, IGP-DI, INPC, IPCA-15
 - **Juros**: SELIC (anualizada e acumulada), CDI
 - **Correção monetária**: TR
 - **Construção civil**: INCC-M
+- **Poupança**: rentabilidade e saldo
+- **Mercado imobiliário**: financiamento imobiliário (concessões e saldo), IVG-R
+- **Trabalho**: salário mínimo
 
 Fontes: BCB SGS (maioria) e IBGE SIDRA (IPCA-15).
 
-## Features (estado atual — pós-Fase 2)
+## Features (estado atual — Fases 1, 2 e 4; as Fases 3 e 5 estão só especificadas)
 
 - Página de detalhe por indicador com chart, métricas, tabela histórica,
   data da última atualização e data prevista da próxima divulgação
@@ -31,7 +34,7 @@ Fontes: BCB SGS (maioria) e IBGE SIDRA (IPCA-15).
 - Página `/calendario/` com as próximas datas de divulgação de todos os
   indicadores (datas oficiais do IBGE + estimativas para as demais fontes)
 - Bot Telegram com agendamento configurável: `/agendamento`, `/agendar`,
-  `/pausar`, `/retomar`, além de `/status`, `/coletar`, `/grupos`, `/migrar`
+  `/pausar`, `/retomar`, além de `/status`, `/coletar`, `/publicar`, `/erros`, `/logs`, `/migrar`
 - Coleta horária via cron com gatekeeping por `schedule_overrides` no DB
 - Migrations aplicadas automaticamente no startup do bot e no `/coletar all`,
   para que indicadores recém-adicionados entrem na coleta sem reiniciar nada
@@ -41,7 +44,7 @@ Fontes: BCB SGS (maioria) e IBGE SIDRA (IPCA-15).
 ```bash
 git clone <repo>
 cd indicadores-economicos
-bash scripts/setup.sh                       # cria .venv e instala deps
+bash scripts/setup.sh                       # requer uv: instala Python 3.14, cria .venv e instala deps
 cp pipeline/.env.example pipeline/.env      # preencher tokens
 .venv/bin/python -m pipeline.cli migrate    # aplica schema + seeds
 ```
@@ -90,15 +93,16 @@ Specs detalhadas em [docs/](docs/):
 - [docs/fase-05/](docs/fase-05/) — catálogo "em breve" + medição de demanda
 - [docs/ROADMAP.md](docs/ROADMAP.md) — próximos passos de evolução da aplicação
 
-[CLAUDE.md](CLAUDE.md) contém o contexto persistente para sessões com
-Claude Code.
+[AGENTS.md](AGENTS.md) é a fonte de instruções para agentes de código (qualquer LLM) e
+[docs/PROJECT-CONTEXT.md](docs/PROJECT-CONTEXT.md) traz o estado atual e as decisões por área.
+[CLAUDE.md](CLAUDE.md) só acrescenta o que é específico do Claude Code.
 
 ## Layout do repo
 
 ```
 pipeline/      # Python: connectors, db, core (collect/build/deploy), bot, cli
 site/          # Astro: pages, components, data/, public/charts/
-data/          # SQLite (indicadores.db) — não versionado
+data/          # SQLite (indicadores.db) — versionado (fonte da verdade)
 scripts/       # setup, install_cron, install_systemd, validate-build
 tests/         # fixtures + pytest
 docs/          # specs por fase

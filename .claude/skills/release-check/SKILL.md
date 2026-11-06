@@ -51,4 +51,8 @@ Status: PASS | FAIL
 
 Se FAIL em qualquer etapa, **não autorize commit/push**. Devolva primeiro erro e pergunte se o usuário quer corrigir ou seguir.
 
-Se PASS em tudo, sugira a mensagem de commit no formato `<scope>: <descrição>` baseada no diff.
+Se PASS em tudo, sugira a mensagem de commit em Conventional Commits (`feat(site): ...`, `fix(pipeline): ...`) baseada no diff. Não faça o commit sem pedido explícito.
+
+Falhas pré-existentes conhecidas (2026-11-05): ruff aponta ~85 avisos antigos em `pipeline/` (nunca tinha rodado) e
+`test_backfill_calls_connector_with_no_since` está desatualizado desde `0b54f83`. Reporte como pré-existentes,
+separados do que o diff atual introduziu (rode `ruff check` só nos arquivos alterados para isolar).

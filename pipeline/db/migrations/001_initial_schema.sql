@@ -1,5 +1,5 @@
 -- 001 — Initial schema
--- Mirrors docs/03-data-model.md. Idempotent via IF NOT EXISTS.
+-- Mirrors docs/fase-01/03-data-model.md. Idempotent via IF NOT EXISTS.
 
 CREATE TABLE IF NOT EXISTS indicators (
     id                   TEXT PRIMARY KEY,

@@ -16,10 +16,10 @@ Recebe um destes formatos:
 ## O que fazer
 
 1. **BCB**:
-   `.venv/bin/python .claude/skills/debug-collection/scripts/reproduce_bcb_fetch.py <series_id> --since <since>`
+   `.venv/bin/python scripts/debug/reproduce_bcb_fetch.py <series_id> --since <since>`
 
 2. **SIDRA**:
-   `.venv/bin/python .claude/skills/debug-collection/scripts/reproduce_sidra_fetch.py <tabela> <variavel> --localidade '<localidade>' --since <since>`
+   `.venv/bin/python scripts/debug/reproduce_sidra_fetch.py <tabela> <variavel> --localidade '<localidade>' --since <since>`
 
 3. Se houver erro, capture:
    - HTTP status (se `httpx.HTTPStatusError`)

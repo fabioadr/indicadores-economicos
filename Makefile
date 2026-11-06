@@ -1,8 +1,9 @@
 .PHONY: install collect build status migrate gsc-collect gsc-report gsc-sites
 
 install:
-	python3 -m venv .venv
-	.venv/bin/pip install -r pipeline/requirements.txt
+	uv python install 3.14
+	uv venv --python 3.14 --managed-python --clear .venv
+	uv pip install --python .venv/bin/python -r pipeline/requirements-dev.txt
 	cd site && pnpm install
 
 collect:

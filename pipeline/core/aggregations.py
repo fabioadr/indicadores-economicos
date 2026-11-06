@@ -1,6 +1,6 @@
 """Recompute YTD / last_12m / last_24m / since_inception for an indicator.
 
-Spec: docs/03-data-model.md (cálculo das agregações) and docs/05-pipeline.md.
+Spec: docs/fase-01/03-data-model.md (cálculo das agregações) and docs/fase-01/05-pipeline.md.
 A maioria dos indicadores são variações mensais compostas geometricamente.
 Casos especiais (controlados via `indicators.aggregation_mode`):
 

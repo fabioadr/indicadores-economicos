@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Bootstrap completo do projeto numa máquina nova
-python3 -m venv .venv
-.venv/bin/pip install -U pip
-.venv/bin/pip install -r pipeline/requirements.txt
+# Bootstrap completo do projeto numa máquina nova.
+# Python é gerenciado pelo uv (não pelo sistema): upgrades do Ubuntu não quebram o .venv.
+PYTHON_VERSION="3.14"
+
+command -v uv >/dev/null 2>&1 || {
+  echo "✗ uv não encontrado. Instale: https://docs.astral.sh/uv/getting-started/installation/" >&2
+  exit 1
+}
+
+uv python install "$PYTHON_VERSION"
+uv venv --python "$PYTHON_VERSION" --managed-python --clear .venv
+uv pip install --python .venv/bin/python -r pipeline/requirements-dev.txt
 
 cd site
 pnpm install

@@ -1,7 +1,7 @@
 """BCB SGS connector.
 
 Fetches time series from the Sistema Gerenciador de Séries Temporais.
-Spec in docs/04-connectors.md.
+Spec in docs/fase-01/04-connectors.md.
 """
 
 from __future__ import annotations
