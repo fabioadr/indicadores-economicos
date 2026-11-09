@@ -8,9 +8,8 @@ import httpx
 import pytest
 import respx
 
-from pipeline.connectors.bcb import BCB_BASE_URL, BCBSGSConnector
+from pipeline.connectors.bcb import BCB_BASE_URL, MAX_FETCH_ATTEMPTS, BCBSGSConnector
 from pipeline.connectors.base import FetchError, ParseError, get_connector
-
 
 SERIES_ID = 433
 URL = BCB_BASE_URL.format(series_id=SERIES_ID)
@@ -93,7 +92,7 @@ def test_pagination_concatenates_and_dedups_overlap():
 
 @respx.mock
 def test_http_error_raises_fetch_error():
-    respx.get(URL).mock(return_value=httpx.Response(500, text="boom"))
+    route = respx.get(URL).mock(return_value=httpx.Response(500, text="boom"))
 
     with pytest.raises(FetchError):
         BCBSGSConnector().fetch(
@@ -102,10 +101,12 @@ def test_http_error_raises_fetch_error():
             until=date(2024, 12, 31),
         )
 
+    assert route.call_count == MAX_FETCH_ATTEMPTS
+
 
 @respx.mock
 def test_malformed_json_raises_parse_error():
-    respx.get(URL).mock(
+    route = respx.get(URL).mock(
         return_value=httpx.Response(
             200,
             text="<html>504 Gateway Timeout</html>",
@@ -113,18 +114,20 @@ def test_malformed_json_raises_parse_error():
         )
     )
 
-    with pytest.raises(ParseError):
+    with pytest.raises(ParseError, match="content-type="):
         BCBSGSConnector().fetch(
             {"series_id": SERIES_ID},
             since=date(2024, 1, 1),
             until=date(2024, 12, 31),
         )
 
+    assert route.call_count == MAX_FETCH_ATTEMPTS
+
 
 @respx.mock
 def test_404_returns_empty_list():
     """BCB returns 404 when there is no data for the requested date range (e.g. future month)."""
-    respx.get(URL).mock(return_value=httpx.Response(404, text="Not Found"))
+    route = respx.get(URL).mock(return_value=httpx.Response(404, text="Not Found"))
 
     points = BCBSGSConnector().fetch(
         {"series_id": SERIES_ID},
@@ -133,6 +136,74 @@ def test_404_returns_empty_list():
     )
 
     assert points == []
+    assert route.call_count == 1
+
+
+@respx.mock
+def test_empty_body_is_retried_then_parsed():
+    payload = [{"data": "01/10/2026", "valor": "0.51"}]
+    responses = iter([
+        httpx.Response(200, text=""),
+        httpx.Response(200, json=payload),
+    ])
+    route = respx.get(URL).mock(side_effect=lambda request: next(responses))
+
+    points = BCBSGSConnector().fetch(
+        {"series_id": SERIES_ID},
+        since=date(2026, 10, 1),
+        until=date(2026, 10, 31),
+    )
+
+    assert route.call_count == 2
+    assert points[0].value == 0.51
+
+
+@respx.mock
+def test_502_is_retried_then_parsed():
+    payload = [{"data": "01/10/2026", "valor": "0.51"}]
+    responses = iter([
+        httpx.Response(502, text="<html>bad gateway</html>"),
+        httpx.Response(200, json=payload),
+    ])
+    route = respx.get(URL).mock(side_effect=lambda request: next(responses))
+
+    points = BCBSGSConnector().fetch(
+        {"series_id": SERIES_ID},
+        since=date(2026, 10, 1),
+        until=date(2026, 10, 31),
+    )
+
+    assert route.call_count == 2
+    assert points[0].value == 0.51
+
+
+def test_connect_error_is_retried_then_parsed(monkeypatch):
+    calls = {"n": 0}
+    payload = [{"data": "01/10/2026", "valor": "0.51"}]
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise httpx.ConnectError("connection reset")
+        return httpx.Response(200, json=payload)
+
+    transport = httpx.MockTransport(handler)
+    real_client = httpx.Client
+
+    def client_with_mock(*args, **kwargs):
+        kwargs["transport"] = transport
+        return real_client(*args, **kwargs)
+
+    monkeypatch.setattr(httpx._api, "Client", client_with_mock)
+
+    points = BCBSGSConnector().fetch(
+        {"series_id": SERIES_ID},
+        since=date(2026, 10, 1),
+        until=date(2026, 10, 31),
+    )
+
+    assert calls["n"] == 2
+    assert points[0].value == 0.51
 
 
 @respx.mock
