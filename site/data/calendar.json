@@ -1,19 +1,6 @@
 {
-  "generated_at": "2026-11-05T21:57:41-03:00",
+  "generated_at": "2026-11-10T15:18:42-03:00",
   "calendar": [
-    {
-      "code": "IGPDI",
-      "slug": "igp-di",
-      "name": "IGP-DI - Índice Geral de Preços - Disponibilidade Interna",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-09-01",
-      "last_collected_at": "2026-10-08T11:20:23Z",
-      "next_release": {
-        "date": "2026-11-10",
-        "source": "estimated"
-      }
-    },
     {
       "code": "INPC",
       "slug": "inpc",
@@ -93,19 +80,6 @@
       }
     },
     {
-      "code": "INCCM",
-      "slug": "incc-m",
-      "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
-      "category": "construcao_civil",
-      "frequency": "monthly",
-      "reference_date": "2026-09-01",
-      "last_collected_at": "2026-10-08T11:20:24Z",
-      "next_release": {
-        "date": "2026-11-30",
-        "source": "estimated"
-      }
-    },
-    {
       "code": "CDI",
       "slug": "cdi",
       "name": "CDI - Certificado de Depósito Interbancário",
@@ -145,6 +119,19 @@
       }
     },
     {
+      "code": "IGPDI",
+      "slug": "igp-di",
+      "name": "IGP-DI - Índice Geral de Preços - Disponibilidade Interna",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-10-01",
+      "last_collected_at": "2026-11-10T18:18:30Z",
+      "next_release": {
+        "date": "2026-12-10",
+        "source": "estimated"
+      }
+    },
+    {
       "code": "POUPSAL",
       "slug": "poupanca-saldo",
       "name": "Poupança - Saldo de depósitos (SBPE e rural)",
@@ -165,6 +152,19 @@
       "frequency": "monthly",
       "reference_date": "2026-10-01",
       "last_collected_at": "2026-11-01T11:18:52Z",
+      "next_release": {
+        "date": "2026-12-30",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "INCCM",
+      "slug": "incc-m",
+      "name": "INCC-M - Índice Nacional do Custo da Construção (Mercado)",
+      "category": "construcao_civil",
+      "frequency": "monthly",
+      "reference_date": "2026-10-01",
+      "last_collected_at": "2026-11-10T18:18:31Z",
       "next_release": {
         "date": "2026-12-30",
         "source": "estimated"
