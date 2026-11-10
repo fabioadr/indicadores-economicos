@@ -1,0 +1,27 @@
+[project]
+name = "indicadores-economicos"
+version = "0.1.0"
+description = "Collection and build pipeline for Indicadores Econômicos Hoje"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "croniter>=2.0",
+    "google-auth",
+    "httpx",
+    "matplotlib",
+    "pandas",
+    "python-dateutil",
+    "python-dotenv",
+    "python-telegram-bot>=21",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "respx",
+    "ruff",
+]
+
+[tool.uv]
+package = false
+python-preference = "only-managed"

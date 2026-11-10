@@ -1,17 +1,17 @@
-# Graph Report - indicadores-economicos  (2026-11-09)
+# Graph Report - indicadores-economicos  (2026-11-10)
 
 ## Corpus Check
-- 144 files · ~379,105 words
+- 145 files · ~379,261 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 11 file(s) not represented in the graph (top: (none) 6, .sqlite 1, .db 1)
+- Unclassified: 13 file(s) not represented in the graph (top: (none) 7, .sqlite 1, .db 1)
 
 ## Summary
-- 1126 nodes · 2967 edges · 67 communities (38 shown, 29 thin omitted)
+- 1127 nodes · 2967 edges · 68 communities (38 shown, 30 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 97 edges (avg confidence: 0.91)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2da9dc0c`
+- Built from commit: `1d5e270b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -66,6 +66,7 @@
 - test_notifications.py
 - reproduce_sidra_fetch.py
 - gsc_collect_error_message
+- indicadores-economicos
 
 ## God Nodes (most connected - your core abstractions)
 1. `get_connection()` - 64 edges
@@ -80,10 +81,10 @@
 10. `cmd_scheduled_collect()` - 26 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Hooks (`.claude/settings.json`)` --references--> `deploy()`  [INFERRED]
-  CLAUDE.md → pipeline/core/builder.py
 - `7. Operação (como roda em produção)` --references--> `is_due()`  [INFERRED]
   AGENTS.md → pipeline/core/cron.py
+- `Hooks (`.claude/settings.json`)` --references--> `deploy()`  [INFERRED]
+  CLAUDE.md → pipeline/core/builder.py
 - `5. Comandos` --references--> `deploy()`  [INFERRED]
   AGENTS.md → pipeline/core/builder.py
 - `9. Não fazer` --references--> `build()`  [INFERRED]
@@ -94,7 +95,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (67 total, 29 thin omitted)
+## Communities (68 total, 30 thin omitted)
 
 ### Community 0 - "datetime"
 Cohesion: 0.06
@@ -249,24 +250,24 @@ Cohesion: 0.20
 Nodes (6): _reset_warning_flag(), test_send_message_noop_when_no_chat_id(), test_send_message_noop_when_no_token(), test_send_message_posts_to_bot_api(), test_send_message_swallows_http_errors(), test_send_message_swallows_network_errors()
 
 ## Knowledge Gaps
-- **4 isolated node(s):** `npx`, `uvx`, `@upstash/context7-mcp`, `astro/tsconfigs/strict`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 342 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **5 isolated node(s):** `indicadores-economicos`, `npx`, `uvx`, `@upstash/context7-mcp`, `astro/tsconfigs/strict`
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 343 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **30 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `get_connection()` connect `get_connection` to `datetime`, `builder.py`, `test_aggregations.py`, `connection.py`, `test_comparison_charts.py`, `scheduler.py`, `handlers.py`?**
-  _High betweenness centrality (0.041) - this node is a cross-community bridge._
-- **What connects `npx`, `uvx`, `@upstash/context7-mcp` to the rest of the system?**
-  _4 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.045) - this node is a cross-community bridge._
+- **What connects `indicadores-economicos`, `npx`, `uvx` to the rest of the system?**
+  _5 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `datetime` be split into smaller, more focused modules?**
   _Cohesion score 0.063585291113381 - nodes in this community are weakly interconnected._
 - **Why does `deploy()` connect `builder.py` to `get_connection`, `connection.py`, `AGENTS.md`, `notifications.py`, `DeployResult`?**
-  _High betweenness centrality (0.039) - this node is a cross-community bridge._
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
 - **Should `base.py` be split into smaller, more focused modules?**
   _Cohesion score 0.14245014245014245 - nodes in this community are weakly interconnected._
-- **Why does `Hooks (`.claude/settings.json`)` connect `AGENTS.md` to `builder.py`?**
-  _High betweenness centrality (0.028) - this node is a cross-community bridge._
+- **Why does `build()` connect `builder.py` to `get_connection`, `test_aggregations.py`, `connection.py`, `test_comparison_charts.py`, `scheduler.py`, `notifications.py`?**
+  _High betweenness centrality (0.023) - this node is a cross-community bridge._
 - **Should `builder.py` be split into smaller, more focused modules?**
   _Cohesion score 0.05403508771929825 - nodes in this community are weakly interconnected._

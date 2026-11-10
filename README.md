@@ -44,7 +44,7 @@ Fontes: BCB SGS (maioria) e IBGE SIDRA (IPCA-15).
 ```bash
 git clone <repo>
 cd indicadores-economicos
-bash scripts/setup.sh                       # requer uv: instala Python 3.14, cria .venv e instala deps
+bash scripts/setup.sh                       # requer uv: Python 3.14 gerenciado + uv sync + pnpm
 cp pipeline/.env.example pipeline/.env      # preencher tokens
 .venv/bin/python -m pipeline.cli migrate    # aplica schema + seeds
 ```
@@ -69,15 +69,15 @@ bash scripts/install_systemd.sh      # bot como user service
 ## Comandos principais do CLI
 
 ```bash
-python -m pipeline.cli status               # diagnóstico geral
-python -m pipeline.cli migrate              # aplica migrations pendentes
-python -m pipeline.cli collect <CODE>       # coleta um indicador
-python -m pipeline.cli collect --all        # coleta todos
-python -m pipeline.cli backfill <CODE>      # série histórica completa
-python -m pipeline.cli calendar-refresh     # atualiza datas oficiais (IBGE)
-python -m pipeline.cli build                # gera site/data + charts
-python -m pipeline.cli publish              # build + commit + push
-python -m pipeline.cli scheduled-collect    # usado pelo cron horário
+.venv/bin/python -m pipeline.cli status               # diagnóstico geral
+.venv/bin/python -m pipeline.cli migrate              # aplica migrations pendentes
+.venv/bin/python -m pipeline.cli collect <CODE>       # coleta um indicador
+.venv/bin/python -m pipeline.cli collect --all        # coleta todos
+.venv/bin/python -m pipeline.cli backfill <CODE>      # série histórica completa
+.venv/bin/python -m pipeline.cli calendar-refresh     # atualiza datas oficiais (IBGE)
+.venv/bin/python -m pipeline.cli build                # gera site/data + charts
+.venv/bin/python -m pipeline.cli publish              # build + commit + push
+.venv/bin/python -m pipeline.cli scheduled-collect    # usado pelo cron horário
 ```
 
 ## Documentação

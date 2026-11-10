@@ -4,7 +4,7 @@ Pré-requisito humano (uma vez). O pipeline **não** cria o projeto GCP nem
 adiciona a service account no GSC. Sem estes passos, `gsc-collect` falha
 loud com 403.
 
-Smoke depois do código: `python -m pipeline.cli gsc-sites`.
+Smoke depois do código: `.venv/bin/python -m pipeline.cli gsc-sites`.
 
 ## 1. Google Cloud
 
@@ -54,18 +54,17 @@ GSC_CREDENTIALS_PATH=./pipeline/secrets/gsc-sa.json
 ## 5. Smoke
 
 ```bash
-source .venv/bin/activate
-python -m pipeline.cli migrate
-python -m pipeline.cli gsc-sites
+.venv/bin/python -m pipeline.cli migrate
+.venv/bin/python -m pipeline.cli gsc-sites
 ```
 
 `gsc-sites` deve listar a propriedade com `siteFullUser` ou
 `siteRestrictedUser`. Depois:
 
 ```bash
-python -m pipeline.cli gsc-collect          # últimos ~7 dias
-python -m pipeline.cli gsc-collect --backfill  # 16 meses, primeira vez
-python -m pipeline.cli gsc-report
+.venv/bin/python -m pipeline.cli gsc-collect          # últimos ~7 dias
+.venv/bin/python -m pipeline.cli gsc-collect --backfill  # 16 meses, primeira vez
+.venv/bin/python -m pipeline.cli gsc-report
 ```
 
 Atraso típico dos dados: 2–3 dias. `dataState=final` (padrão do coletor).

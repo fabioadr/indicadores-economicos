@@ -7,10 +7,14 @@ só acrescentam o que é exclusivo daquela ferramenta.
 ## 1. Regras de ambiente (leia antes de executar qualquer coisa)
 
 - **Python é sempre `.venv/bin/python`** (CPython 3.14 gerenciado pelo uv, isolado do Python do sistema).
+  A versão menor está em `.python-version`; o patch acompanha `uv python upgrade 3.14`.
   Ferramentas: `.venv/bin/pytest`, `.venv/bin/ruff`. Não procure outros interpretadores, não use
   `python`/`python3`/`pip` soltos e não escreva scripts para descobrir o ambiente: ele já está definido aqui.
-- O venv não tem `pip`. Para instalar pacote: `uv pip install --python .venv/bin/python <pacote>`
-  (e registre em `pipeline/requirements*.txt`). Para recriar o venv do zero: `bash scripts/setup.sh`.
+- Dependências ficam no `pyproject.toml` (runtime em `project.dependencies`, ferramentas em
+  `[dependency-groups] dev`) e as versões exatas no `uv.lock`. Acrescentar pacote: `uv add <pacote>`
+  ou `uv add --dev <pacote>`. Recriar o ambiente: `uv sync` (o `bash scripts/setup.sh` faz isso e
+  também o `pnpm install` do site). O projeto não é um pacote publicável: o uv só instala as
+  dependências. Cron, bot e agentes chamam `.venv/bin/python`; `uv run` é equivalente no terminal.
 - Site: Node 24 + **pnpm** (nunca npm/yarn), sempre dentro de `site/`.
 - O repositório fica num disco separado montado pelo Windows em `/mnt/wsl/dev` (`~/repos` é symlink).
   Antes de escrever arquivos, confirme `mountpoint -q /mnt/wsl/dev`. Sem o disco, nada funciona.
@@ -48,6 +52,7 @@ Princípios (não desviar sem combinar):
 ## 4. Estrutura
 
 ```
+pyproject.toml, uv.lock, .python-version   # ambiente Python (uv); o .venv não entra no git
 pipeline/
   connectors/   # bcb.py, ibge_sidra.py (plugins; registry em __init__.py)
   core/         # scheduler (coleta), aggregations, builder (build+deploy), charts, release_calendar, cron, wage
@@ -66,8 +71,9 @@ docs/           # PROJECT-CONTEXT.md, specs por fase (fase-0N/), ROADMAP.md, SEO
 
 ```bash
 # Setup
-bash scripts/setup.sh                              # uv python + .venv + deps dev + pnpm install
+bash scripts/setup.sh                              # uv python 3.14 + uv sync + pnpm install
 make install                                       # equivalente
+uv sync                                            # só o ambiente Python, a partir do uv.lock
 
 # Pipeline (sempre da raiz)
 .venv/bin/python -m pipeline.cli status            # diagnóstico

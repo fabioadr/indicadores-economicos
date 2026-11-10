@@ -3,6 +3,7 @@ set -euo pipefail
 
 # Bootstrap completo do projeto numa máquina nova.
 # Python é gerenciado pelo uv (não pelo sistema): upgrades do Ubuntu não quebram o .venv.
+# Dependências estão em pyproject.toml; as versões exatas, em uv.lock.
 PYTHON_VERSION="3.14"
 
 command -v uv >/dev/null 2>&1 || {
@@ -11,8 +12,7 @@ command -v uv >/dev/null 2>&1 || {
 }
 
 uv python install "$PYTHON_VERSION"
-uv venv --python "$PYTHON_VERSION" --managed-python --clear .venv
-uv pip install --python .venv/bin/python -r pipeline/requirements-dev.txt
+uv sync --managed-python
 
 cd site
 pnpm install

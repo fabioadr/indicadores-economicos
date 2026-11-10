@@ -1,8 +1,0 @@
-httpx
-python-telegram-bot>=21
-matplotlib
-pandas
-python-dateutil
-python-dotenv
-croniter>=2.0
-google-auth

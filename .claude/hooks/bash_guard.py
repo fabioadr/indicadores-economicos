@@ -77,7 +77,7 @@ def main() -> int:
     tool = _venv_violation(command)
     if tool:
         if tool == "pip":
-            hint = "uv pip install --python .venv/bin/python <pacote> (o venv não tem pip)"
+            hint = "uv add <pacote> (dev: uv add --dev <pacote>). O venv não tem pip"
         else:
             hint = f".venv/bin/{tool} <mesmos argumentos>"
         _decision(

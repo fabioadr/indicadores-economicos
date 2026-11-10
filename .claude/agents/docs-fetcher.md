@@ -14,7 +14,7 @@ Faz:
 2. Se faltar, busca na doc oficial da biblioteca
 3. Para Astro (v7) prefere docs.astro.build; para Tailwind (v4, via `@tailwindcss/vite`, sem `tailwind.config`) prefere tailwindcss.com
 4. Para python-telegram-bot (v22, async), prefere docs.python-telegram-bot.org
-5. Confira a versão instalada antes de responder: `site/package.json` (site) ou `uv pip list --python .venv/bin/python` (pipeline)
+5. Confira a versão instalada antes de responder: `site/package.json` (site) ou `uv tree` (pipeline; o pin está em `uv.lock`)
 
 Devolve:
 

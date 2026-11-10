@@ -2,8 +2,7 @@
 
 install:
 	uv python install 3.14
-	uv venv --python 3.14 --managed-python --clear .venv
-	uv pip install --python .venv/bin/python -r pipeline/requirements-dev.txt
+	uv sync --managed-python
 	cd site && pnpm install
 
 collect:

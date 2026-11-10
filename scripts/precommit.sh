@@ -13,7 +13,7 @@ RUFF=""
 if command -v ruff >/dev/null 2>&1; then RUFF="ruff"; fi
 if [[ -x .venv/bin/ruff ]]; then RUFF=".venv/bin/ruff"; fi
 if [[ -z "$RUFF" ]]; then
-  echo "⚠ ruff não instalado (skip). Instale com: .venv/bin/pip install ruff"
+  echo "⚠ ruff não instalado (skip). Instale com: uv sync"
 else
   $RUFF check pipeline/ || { echo "✗ ruff falhou"; exit 1; }
   echo "✓ ruff ok"
