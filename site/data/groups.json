@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T15:18:42-03:00",
+  "generated_at": "2026-11-12T17:00:05-03:00",
   "groups": [
     {
       "slug": "inflacao-oficial",
@@ -31,28 +31,28 @@
       ],
       "chart": "/charts/compare-inflacao-oficial.png",
       "latest": {
-        "reference_date": "2026-09-01",
+        "reference_date": "2026-10-01",
         "values": {
           "IPCA": {
-            "reference_date": "2026-09-01",
-            "value": 0.82,
-            "last_12m": 4.576119675071877,
-            "ytd": 3.9513166123103405,
-            "last_24m": 9.985182218203548
+            "reference_date": "2026-10-01",
+            "value": 0.14,
+            "last_12m": 4.628360717970881,
+            "ytd": 4.096848455567592,
+            "last_24m": 9.525816898676464
           },
           "IGPM": {
-            "reference_date": "2026-09-01",
-            "value": 1.57,
-            "last_12m": 3.3483781728321116,
-            "ytd": 3.4528271501515384,
-            "last_24m": 6.271521059346807
+            "reference_date": "2026-10-01",
+            "value": 1.47,
+            "last_12m": 5.2464866840352675,
+            "ytd": 4.973583709258755,
+            "last_24m": 6.2191808696998585
           },
           "INPC": {
-            "reference_date": "2026-09-01",
-            "value": 0.82,
-            "last_12m": 4.293633136732078,
-            "ytd": 4.012658521975387,
-            "last_24m": 9.608545338670815
+            "reference_date": "2026-10-01",
+            "value": 0.22,
+            "last_12m": 4.491731610149863,
+            "ytd": 4.241486370723724,
+            "last_24m": 9.183663789301221
           }
         }
       }
@@ -129,25 +129,25 @@
       ],
       "chart": "/charts/compare-juros-vs-inflacao.png",
       "latest": {
-        "reference_date": "2026-09-01",
+        "reference_date": "2026-10-01",
         "values": {
           "SELICAC": {
-            "reference_date": "2026-09-01",
-            "value": 0.93,
-            "last_12m": 13.89261335968941,
-            "ytd": 9.94341301630186,
-            "last_24m": 29.061848290992742
+            "reference_date": "2026-10-01",
+            "value": 0.82,
+            "last_12m": 13.375328583371715,
+            "ytd": 10.844949003035541,
+            "last_24m": 28.921188394906295
           },
           "IPCA": {
-            "reference_date": "2026-09-01",
-            "value": 0.82,
-            "last_12m": 4.576119675071877,
-            "ytd": 3.9513166123103405,
-            "last_24m": 9.985182218203548
+            "reference_date": "2026-10-01",
+            "value": 0.14,
+            "last_12m": 4.628360717970881,
+            "ytd": 4.096848455567592,
+            "last_24m": 9.525816898676464
           },
           "SELIC": {
-            "reference_date": "2026-09-01",
-            "value": 13.9,
+            "reference_date": "2026-10-01",
+            "value": 13.65,
             "last_12m": null,
             "ytd": null,
             "last_24m": null
@@ -276,21 +276,21 @@
       ],
       "chart": "/charts/compare-precos-e-custo-imobiliario.png",
       "latest": {
-        "reference_date": "2026-08-01",
+        "reference_date": "2026-09-01",
         "values": {
           "IVGR": {
-            "reference_date": "2026-08-01",
-            "value": 796.75,
-            "last_12m": 6.439115623538847,
-            "ytd": 4.973649538866931,
-            "last_24m": 11.689749915890992
+            "reference_date": "2026-09-01",
+            "value": 803.77,
+            "last_12m": 7.0024095743972765,
+            "ytd": 5.898550724637679,
+            "last_24m": 12.140913847227065
           },
           "INCCM": {
-            "reference_date": "2026-08-01",
-            "value": 0.66,
-            "last_12m": 6.60767785260401,
-            "ytd": 5.600943804678216,
-            "last_24m": 14.312617358537306
+            "reference_date": "2026-09-01",
+            "value": 0.22,
+            "last_12m": 6.660891228790788,
+            "ytd": 5.8332658810485105,
+            "last_24m": 13.90346501961226
           }
         }
       }

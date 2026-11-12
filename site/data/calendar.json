@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T15:18:42-03:00",
+  "generated_at": "2026-11-12T17:00:05-03:00",
   "calendar": [
     {
       "code": "INPC",
@@ -7,8 +7,8 @@
       "name": "INPC - Índice Nacional de Preços ao Consumidor",
       "category": "inflacao",
       "frequency": "monthly",
-      "reference_date": "2026-09-01",
-      "last_collected_at": "2026-10-13T00:07:41Z",
+      "reference_date": "2026-10-01",
+      "last_collected_at": "2026-11-12T20:00:03Z",
       "next_release": {
         "date": "2026-11-12",
         "source": "official"
@@ -20,8 +20,8 @@
       "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
       "category": "inflacao",
       "frequency": "monthly",
-      "reference_date": "2026-09-01",
-      "last_collected_at": "2026-10-13T00:07:41Z",
+      "reference_date": "2026-10-01",
+      "last_collected_at": "2026-11-12T20:00:04Z",
       "next_release": {
         "date": "2026-11-12",
         "source": "official"
@@ -59,8 +59,8 @@
       "name": "IVG-R - Índice de Valores de Garantia de Imóveis Residenciais",
       "category": "mercado_imobiliario",
       "frequency": "monthly",
-      "reference_date": "2026-08-01",
-      "last_collected_at": "2026-10-28T11:44:07Z",
+      "reference_date": "2026-09-01",
+      "last_collected_at": "2026-11-12T20:00:04Z",
       "next_release": {
         "date": "2026-11-25",
         "source": "estimated"

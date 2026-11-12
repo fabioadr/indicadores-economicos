@@ -16,11 +16,11 @@
     "description": "INPC hoje: {value}% em {month_name}/{year}. Acumulado em 12 meses: {last_12m}%. Tabela atualizada e histórico completo do INPC desde 1979."
   },
   "latest": {
-    "reference_date": "2026-09-01",
-    "value": 0.82,
-    "ytd": 4.012658521975387,
-    "last_12m": 4.293633136732078,
-    "last_24m": 9.608545338670815
+    "reference_date": "2026-10-01",
+    "value": 0.22,
+    "ytd": 4.241486370723724,
+    "last_12m": 4.491731610149863,
+    "last_24m": 9.183663789301221
   },
   "values": [
     {
@@ -3934,16 +3934,24 @@
       "last_12m": 4.293633136732078,
       "last_24m": 9.608545338670815,
       "since_inception": 417238586219.36633
+    },
+    {
+      "reference_date": "2026-10-01",
+      "value": 0.22,
+      "ytd": 4.241486370723724,
+      "last_12m": 4.491731610149863,
+      "last_24m": 9.183663789301221,
+      "since_inception": 418156511109.2689
     }
   ],
   "charts": {
     "current_year": "/charts/inpc-2026.png",
     "history": "/charts/inpc-history.png"
   },
-  "last_collected_at": "2026-10-13T00:07:41Z",
+  "last_collected_at": "2026-11-12T20:00:03Z",
   "next_release": {
     "date": "2026-11-12",
     "source": "official"
   },
-  "last_built_at": "2026-11-10T15:18:42-03:00"
+  "last_built_at": "2026-11-12T17:00:05-03:00"
 }
