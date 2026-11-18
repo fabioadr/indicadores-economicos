@@ -3950,8 +3950,8 @@
   },
   "last_collected_at": "2026-11-12T20:00:03Z",
   "next_release": {
-    "date": "2026-11-12",
+    "date": "2026-12-11",
     "source": "official"
   },
-  "last_built_at": "2026-11-12T17:00:05-03:00"
+  "last_built_at": "2026-11-18T09:07:16-03:00"
 }

@@ -1,32 +1,6 @@
 {
-  "generated_at": "2026-11-12T17:00:05-03:00",
+  "generated_at": "2026-11-18T09:07:16-03:00",
   "calendar": [
-    {
-      "code": "INPC",
-      "slug": "inpc",
-      "name": "INPC - Índice Nacional de Preços ao Consumidor",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-10-01",
-      "last_collected_at": "2026-11-12T20:00:03Z",
-      "next_release": {
-        "date": "2026-11-12",
-        "source": "official"
-      }
-    },
-    {
-      "code": "IPCA",
-      "slug": "ipca",
-      "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
-      "category": "inflacao",
-      "frequency": "monthly",
-      "reference_date": "2026-10-01",
-      "last_collected_at": "2026-11-12T20:00:04Z",
-      "next_release": {
-        "date": "2026-11-12",
-        "source": "official"
-      }
-    },
     {
       "code": "FINIMOB",
       "slug": "financiamento-imobiliario-concessoes",
@@ -93,19 +67,6 @@
       }
     },
     {
-      "code": "POUPREN",
-      "slug": "poupanca-rentabilidade",
-      "name": "Poupança - Rentabilidade (depósitos a partir de 04/05/2012)",
-      "category": "poupanca",
-      "frequency": "daily",
-      "reference_date": "2026-10-15",
-      "last_collected_at": "2026-10-16T17:51:28Z",
-      "next_release": {
-        "date": "2026-12-01",
-        "source": "estimated"
-      }
-    },
-    {
       "code": "SELICAC",
       "slug": "selic-acumulada",
       "name": "Selic acumulada no mês",
@@ -129,6 +90,32 @@
       "next_release": {
         "date": "2026-12-10",
         "source": "estimated"
+      }
+    },
+    {
+      "code": "INPC",
+      "slug": "inpc",
+      "name": "INPC - Índice Nacional de Preços ao Consumidor",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-10-01",
+      "last_collected_at": "2026-11-12T20:00:03Z",
+      "next_release": {
+        "date": "2026-12-11",
+        "source": "official"
+      }
+    },
+    {
+      "code": "IPCA",
+      "slug": "ipca",
+      "name": "IPCA - Índice Nacional de Preços ao Consumidor Amplo",
+      "category": "inflacao",
+      "frequency": "monthly",
+      "reference_date": "2026-10-01",
+      "last_collected_at": "2026-11-12T20:00:04Z",
+      "next_release": {
+        "date": "2026-12-11",
+        "source": "official"
       }
     },
     {
@@ -167,6 +154,19 @@
       "last_collected_at": "2026-11-10T18:18:31Z",
       "next_release": {
         "date": "2026-12-30",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "POUPREN",
+      "slug": "poupanca-rentabilidade",
+      "name": "Poupança - Rentabilidade (depósitos a partir de 04/05/2012)",
+      "category": "poupanca",
+      "frequency": "daily",
+      "reference_date": "2026-11-17",
+      "last_collected_at": "2026-11-18T12:07:08Z",
+      "next_release": {
+        "date": "2027-01-01",
         "source": "estimated"
       }
     },
