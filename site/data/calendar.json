@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T09:07:16-03:00",
+  "generated_at": "2026-11-24T09:00:06-03:00",
   "calendar": [
     {
       "code": "FINIMOB",
@@ -51,32 +51,6 @@
       "next_release": {
         "date": "2026-11-26",
         "source": "official"
-      }
-    },
-    {
-      "code": "CDI",
-      "slug": "cdi",
-      "name": "CDI - Certificado de Depósito Interbancário",
-      "category": "juros",
-      "frequency": "monthly",
-      "reference_date": "2026-10-01",
-      "last_collected_at": "2026-10-26T17:06:16Z",
-      "next_release": {
-        "date": "2026-12-01",
-        "source": "estimated"
-      }
-    },
-    {
-      "code": "SELICAC",
-      "slug": "selic-acumulada",
-      "name": "Selic acumulada no mês",
-      "category": "juros",
-      "frequency": "monthly",
-      "reference_date": "2026-10-01",
-      "last_collected_at": "2026-10-26T17:06:49Z",
-      "next_release": {
-        "date": "2026-12-01",
-        "source": "estimated"
       }
     },
     {
@@ -158,6 +132,19 @@
       }
     },
     {
+      "code": "CDI",
+      "slug": "cdi",
+      "name": "CDI - Certificado de Depósito Interbancário",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-11-01",
+      "last_collected_at": "2026-11-24T12:00:03Z",
+      "next_release": {
+        "date": "2027-01-01",
+        "source": "estimated"
+      }
+    },
+    {
       "code": "POUPREN",
       "slug": "poupanca-rentabilidade",
       "name": "Poupança - Rentabilidade (depósitos a partir de 04/05/2012)",
@@ -178,6 +165,19 @@
       "frequency": "monthly",
       "reference_date": "2026-11-01",
       "last_collected_at": "2026-11-05T23:52:14Z",
+      "next_release": {
+        "date": "2027-01-01",
+        "source": "estimated"
+      }
+    },
+    {
+      "code": "SELICAC",
+      "slug": "selic-acumulada",
+      "name": "Selic acumulada no mês",
+      "category": "juros",
+      "frequency": "monthly",
+      "reference_date": "2026-11-01",
+      "last_collected_at": "2026-11-24T12:00:04Z",
       "next_release": {
         "date": "2027-01-01",
         "source": "estimated"
