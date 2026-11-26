@@ -1910,8 +1910,8 @@
   },
   "last_collected_at": "2026-11-01T11:18:52Z",
   "next_release": {
-    "date": "2026-11-25",
+    "date": "2026-12-25",
     "source": "estimated"
   },
-  "last_built_at": "2026-11-24T09:00:06-03:00"
+  "last_built_at": "2026-11-26T15:00:04-03:00"
 }
