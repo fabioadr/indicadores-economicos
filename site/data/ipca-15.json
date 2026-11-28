@@ -2582,8 +2582,8 @@
   },
   "last_collected_at": "2026-11-26T18:00:02Z",
   "next_release": {
-    "date": "2026-11-26",
+    "date": "2026-12-23",
     "source": "official"
   },
-  "last_built_at": "2026-11-26T15:00:04-03:00"
+  "last_built_at": "2026-11-28T07:00:04-03:00"
 }
